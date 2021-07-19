@@ -1,0 +1,25 @@
+﻿@model List<CONSTRUCTION.Areas.Admin.Model.TechnologyMasterViewModel>
+
+<table id="tbltechnologymaster">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><img src="~/CommonImage/Technology/@item.Image" style="height:100px;width:100px;"/></td>
+                <td>@item.Name</td>
+                <td class="light-gray text-right d-flex align-items-center">
+                    <i class="deleteRow fa fa-check green ml-3 pr-2" aria-hidden="true" data-id="@item.Id"></i>
+                    <i class="editRow fa fa-pencil creamy ml-2 pr-2" aria-hidden="true" data-id="@item.Id" data-toggle="modal" data-target="#addTechnology"></i>
+                    @*<i class="fa fa-times red ml-2 pr-2" aria-hidden="true"></i>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

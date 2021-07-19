@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "Technology Master";
+}
+<div id="addTechnology" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> Technology Detail</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn_save">Save</button>
+                <button type="button" class="btn btn-default btn_Close" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="right-side">
+    <div class="heading">Technology Master</div>
+
+    <div class="data-table style-1">
+        <div class="box-table">
+            <div class="skill-table">
+                <div class="catagory-detail">
+                    <div class="catagory-flex1">
+                        <div><span class="add-catagory-btn" id="btnAddTech" data-toggle="modal" data-target="#addTechnology"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
+                    </div>
+                </div>
+                <div id="tableDiv">
+                    @Html.Action("TechnologyMasterList", "TechnologyMaster")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        dataTableTechnology();
+    });
+
+    function dataTableTechnology() {
+        $('#tableDiv').find('#tbltechnologymaster').DataTable({
+            language: {
+                searchPlaceholder: "Search",
+                search: "<button class='btn search-btn2' type='button'><i class='fa fa-search' ></i></button >",
+                "paginate": {
+                    "previous": "<i class='fa fa-angle-left' aria-hidden='true'></i>",
+                    "next": "<i class='fa fa-angle-right' aria-hidden='true'></i>"
+                }
+            },
+            columnDefs: [
+                {
+                    orderable: false, targets: -1
+                }
+            ]
+        });
+    }
+
+    $("#btnAddTech").click(function(){
+        $.ajax({
+            url: '@Url.Action("AddEditTechnologyMaster", "TechnologyMaster")',
+            success: function (data) {
+                $("#addTechnology").find(".modal-body").html("");
+                $("#addTechnology").find(".modal-body").html(data);
+            }
+        });
+    });
+
+    $("#addTechnology").on("change", "#image_browse", function (e) {
+        var files = e.target.files;
+        var imageData = "";
+        if (files.length > 0) {
+            if (window.FormData !== undefined) {
+                imageData = new FormData();
+                for (var x = 0; x < files.length; x++) {
+                    imageData.append("file" + x, files[x]);
+                }
+                setTimeout(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("FileUplaod", "TechnologyMaster")',
+                        contentType: false,
+                        processData: false,
+                        data: imageData,
+                        success: function (result) {
+                            $("#addTechnology").find('#file_HiddenName').val(result);
+                            var Pic = "/CommonImage/Technology/" + result;
+                            $("#addTechnology").find('#img_Profile_Pic').attr('src', Pic);
+                        }
+                    });
+                }, 500);
+            }
+        }
+        else {
+            $("#addTechnology").find("#file_HiddenName").val("");
+            $("#addTechnology").find("#img_Profile_Pic").val("");
+        }
+    });
+
+    $("#addTechnology").on("click", ".btn_save", function (e) {
+        var Id = $("#addTechnology").find('#txt_Id').val();
+        var Name = $("#addTechnology").find('#txt_Name').val();
+        var Image = $("#addTechnology").find('#file_HiddenName').val();
+        var isError = false;
+
+        if (Name == "") {
+            $("#addTechnology").find('#label_error_Name').show();
+            isError = true;
+        }
+        if (Image == "") {
+            $("#addTechnology").find('#label_error_Image').show();
+            isError = true;
+        }
+
+        if (isError == true) {
+            return false
+        } else {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SaveTechnologyMaster", "TechnologyMaster")',
+                data: {
+                    Id: Id,
+                    Image: Image,
+                    Name: Name
+                },
+                success: function (result) {
+                    $("#tableDiv").html("");
+                    $("#tableDiv").html(result);
+                    $("#addTechnology").find('.btn_Close').click();
+                    dataTableTechnology();
+                }
+            });
+        }
+    });
+
+    $("#tableDiv").on("click", ".editRow", function () {
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url: '@Url.Action("AddEditTechnologyMaster", "TechnologyMaster")',
+            data: {
+                Id:id
+            },
+            success: function (data) {
+                $("#addTechnology").find(".modal-body").html("");
+                $("#addTechnology").find(".modal-body").html(data);
+            }
+        });
+    });
+
+    $("#tableDiv").on("click",".deleteRow",function () {
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url: '@Url.Action("DeleteTechnologyMaster", "TechnologyMaster")',
+            data: {
+                Id: id
+            },
+            success: function (data) {
+                $("#tableDiv").html("");
+                $("#tableDiv").html(data);
+                dataTableTechnology();
+            }
+        });
+    });
+</script>

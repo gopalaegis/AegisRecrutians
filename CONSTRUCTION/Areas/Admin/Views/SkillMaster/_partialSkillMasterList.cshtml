@@ -1,0 +1,23 @@
+﻿@model List<CONSTRUCTION.Areas.Admin.Model.SkillMasterViewModel>
+
+<table id="tblSkillmaster">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td class="light-gray text-right d-flex align-items-center">
+                    <i class="deleteRow fa fa-check green ml-3 pr-2" aria-hidden="true" data-id="@item.Id"></i>
+                    <i class="editRow fa fa-pencil creamy ml-2 pr-2" aria-hidden="true" data-id="@item.Id" data-toggle="modal" data-target="#addSkill"></i>
+                    @*<i class="fa fa-times red ml-2 pr-2" aria-hidden="true"></i>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
