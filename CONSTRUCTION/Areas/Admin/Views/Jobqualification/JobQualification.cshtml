@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "JobQualification";
+}
+
+<div id="addQualification" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> Add: Qualification</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn_save">Save</button>
+                <button type="button" class="btn btn-default btn_Close" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="right-side">
+    <div class="heading">Qualification Master</div>
+
+    <div class="data-table style-1">
+        <div class="box-table">
+            <div class="skill-table">
+                <div class="catagory-detail">
+                    <div class="catagory-flex1">
+                        <div><span class="add-catagory-btn" id="btnAddQua" data-toggle="modal" data-target="#addQualification"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
+                    </div>
+                </div>
+                <div id="tableDiv">
+                    @Html.Action("JobQualificationMasterList", "Jobqualification")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        dataTableJobQualification();
+    });
+
+    function dataTableJobQualification() {
+        $('#tableDiv').find('#tblJobQualificationMaster').DataTable({
+            language: {
+                searchPlaceholder: "Search",
+                search: "<button class='btn search-btn2' type='button'><i class='fa fa-search' ></i></button >",
+                "paginate": {
+                    "previous": "<i class='fa fa-angle-left' aria-hidden='true'></i>",
+                    "next": "<i class='fa fa-angle-right' aria-hidden='true'></i>"
+                }
+            },
+            columnDefs: [
+                {
+                    orderable: false, targets: -1
+                }
+            ]
+        });
+    }
+
+    $("#btnAddQua").click(function(){
+        $.ajax({
+            url: '@Url.Action("AddEditJobQualification", "Jobqualification")',
+            success: function (data) {
+                $("#addQualification").find(".modal-body").html("");
+                $("#addQualification").find(".modal-body").html(data);
+            }
+        });
+    });
+
+
+    $("#addQualification").on("click", ".btn_save", function (e) {
+        var Id = $("#addQualification").find('#txt_Id').val();
+        var Qualification = $("#addQualification").find('#Drop_Qualification').val();
+        var isError = false;
+
+        if (Qualification == "") {
+            $("#addQualification").find('#label_error_qualification').show();
+            isError = true;
+        }
+
+        if (isError == true) {
+            return false
+        } else {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SaveJobQualificationMaster", "Jobqualification")',
+                data: {
+                    Id: Id,
+                    Qualification: Qualification,
+                },
+                success: function (result) {
+                    $("#tableDiv").html("");
+                    $("#tableDiv").html(result);
+                    $("#addQualification").find('.btn_Close').click();
+                    dataTableJobQualification();
+                }
+            });
+        }
+    });
+
+    $("#tableDiv").on("click", ".editRow", function () {
+        debugger
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url: '@Url.Action("AddEditJobQualification", "Jobqualification")',
+            data: {
+                Id:id
+            },
+            success: function (data) {
+                $("#addQualification").find(".modal-body").html("");
+                $("#addQualification").find(".modal-body").html(data);
+            }
+        });
+    });
+
+    $("#tableDiv").on("click",".deleteRow",function () {
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url: '@Url.Action("DeleteJobQualificationMaster", "Jobqualification")',
+            data: {
+                Id: id
+            },
+            success: function (data) {
+                $("#tableDiv").html("");
+                $("#tableDiv").html(data);
+                dataTableJobQualification();
+            }
+        });
+    });
+</script>

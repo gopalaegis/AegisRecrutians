@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "JobEducation";
+}
+
+<div id="addEducation" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> Add: Education</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn_save">Save</button>
+                <button type="button" class="btn btn-default btn_Close" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="right-side">
+    <div class="heading">Education Master</div>
+
+    <div class="data-table style-1">
+        <div class="box-table">
+            <div class="skill-table">
+                <div class="catagory-detail">
+                    <div class="catagory-flex1">
+                        <div><span class="add-catagory-btn" id="btnAddEdu" data-toggle="modal" data-target="#addEducation"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
+                    </div>
+                </div>
+                <div id="tableDiv">
+                    @Html.Action("JobEducationMasterList", "JobEducation")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        dataTableJobEducation();
+    });
+
+    function dataTableJobEducation() {
+        $('#tableDiv').find('#tblJobEducationMaster').DataTable({
+            language: {
+                searchPlaceholder: "Search",
+                search: "<button class='btn search-btn2' type='button'><i class='fa fa-search' ></i></button >",
+                "paginate": {
+                    "previous": "<i class='fa fa-angle-left' aria-hidden='true'></i>",
+                    "next": "<i class='fa fa-angle-right' aria-hidden='true'></i>"
+                }
+            },
+            columnDefs: [
+                {
+                    orderable: false, targets: -1
+                }
+            ]
+        });
+    }
+
+    $("#btnAddEdu").click(function(){
+        $.ajax({
+            url: '@Url.Action("AddEditJobEducationMaster", "JobEducation")',
+            success: function (data) {
+                $("#addEducation").find(".modal-body").html("");
+                $("#addEducation").find(".modal-body").html(data);
+            }
+        });
+    });
+
+   
+    $("#addEducation").on("click", ".btn_save", function (e) {
+        var Id = $("#addEducation").find('#txt_Id').val();
+        var Education = $("#addEducation").find('#Drop_Education').val();
+        var isError = false;
+
+        if (Education == "") {
+            $("#addEducation").find('#label_error_education').show();
+            isError = true;
+        }
+
+        if (isError == true) {
+            return false
+        } else {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SaveJobEducationMaster", "JobEducation")',
+                data: {
+                    Id: Id,
+                    Education: Education,
+                },
+                success: function (result) {
+                    $("#tableDiv").html("");
+                    $("#tableDiv").html(result);
+                    $("#addEducation").find('.btn_Close').click();
+                    dataTableJobEducation();
+                }
+            });
+        }
+    });
+
+    $("#tableDiv").on("click", ".editRow", function () {
+        debugger
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url: '@Url.Action("AddEditJobEducationMaster", "JobEducation")',
+            data: {
+                Id:id
+            },
+            success: function (data) {
+                $("#addEducation").find(".modal-body").html("");
+                $("#addEducation").find(".modal-body").html(data);
+            }
+        });
+    });
+
+    $("#tableDiv").on("click",".deleteRow",function () {
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url: '@Url.Action("DeleteJobEducationMaster", "JobEducation")',
+            data: {
+                Id: id
+            },
+            success: function (data) {
+                $("#tableDiv").html("");
+                $("#tableDiv").html(data);
+                dataTableJobEducation();
+            }
+        });
+    });
+</script>

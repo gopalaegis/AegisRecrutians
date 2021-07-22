@@ -1,0 +1,40 @@
+﻿@model List<CONSTRUCTION.Areas.Admin.Model.JobDetailsViewModel>
+
+<table id="tblJobDetails">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Company</th>
+            <th>Logo</th>
+            <th>Category</th>
+            <th>Sub Category</th>
+            <th>Profession</th>
+            <th>Country</th>
+            <th>City</th>
+            <th>Location</th>
+            <th>IsVerified</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.CompanyName</td>
+                <td>@item.CompanyLogo</td>
+                <td>@item.CategoryName</td>
+                <td>@item.SubCategoryName</td>
+                <td>@item.Profession</td>
+                <td>@item.CountryName</td>
+                <td>@item.CityName</td>
+                <td>@item.Location</td>
+                <td>@item.IsVerified</td>
+                <td class="light-gray text-right d-flex align-items-center">
+                    <i class="deleteRow deleteRow fa fa-trash-o black fa-d ml-3 pr-2" aria-hidden="true" data-id="@item.Id"></i>
+                    <i class="editRow fa fa-pencil creamy ml-2 pr-2" aria-hidden="true" data-id="@item.Id" data-toggle="modal" data-target="#addJobDetail"></i>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -37,5 +37,7 @@ namespace CONSTRUCTION.Areas.Admin.Model
         public int MaxSalary { get; set; }
         public string JobEducation { get; set; }
         public string JobQualification { get; set; }
+        public Boolean IsVerified { get; set; }
+        public string ShowOnHome { get; set; }
     }
 }

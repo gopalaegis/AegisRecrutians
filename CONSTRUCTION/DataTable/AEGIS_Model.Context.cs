@@ -33,5 +33,7 @@ namespace CONSTRUCTION.DataTable
         public virtual DbSet<tblState> tblStates { get; set; }
         public virtual DbSet<tblSubCategoryMaster> tblSubCategoryMasters { get; set; }
         public virtual DbSet<tblTechnologyMaster> tblTechnologyMasters { get; set; }
+        public virtual DbSet<tblJobEducation> tblJobEducations { get; set; }
+        public virtual DbSet<tblJobQualification> tblJobQualifications { get; set; }
     }
 }

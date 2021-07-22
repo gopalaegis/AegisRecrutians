@@ -12,19 +12,65 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
     public class JobDetailsController : Controller
     {
         AEGIS_Entities _db = new AEGIS_Entities();
-        public ActionResult Index()
+        public ActionResult JobDetail()
         {
             return View();
         }
 
-        public ActionResult AddEditTechnologyMaster(int Id = 0)
+        public ActionResult AddEditJobDetail(int Id = 0)
         {
-            TechnologyMasterViewModel model = new TechnologyMasterViewModel();
+            JobDetailsViewModel model = new JobDetailsViewModel();
+            var categoryList = _db.tblCategoryMasters.ToList();
+            List<SelectListItem> lstselectListItem = new List<SelectListItem>();
+
+            foreach (var category in categoryList)
+            {
+                SelectListItem selectListItem = new SelectListItem()
+                {
+                    Text = category.Name,
+                    Value = category.Id.ToString()
+                };
+                lstselectListItem.Add(selectListItem);
+            }
+            model.CategoryList = lstselectListItem;
             if (Id > 0)
             {
-                model = _db.tblTechnologyMasters.Where(x => x.Id == Id).Select(x => new TechnologyMasterViewModel { Id = x.Id, Name = x.Name, Image = x.Image }).FirstOrDefault();
+                var data = _db.tblJobDetails.Where(x => x.Id == Id).FirstOrDefault();
+
+                var cate = _db.tblCategoryMasters.Where(x => x.Id == data.CategoryId).FirstOrDefault();              
+                
+               
+                var subcate = _db.tblSubCategoryMasters.Where(x => x.Id == data.SubCategoryId).FirstOrDefault();
+                var country = _db.tblCountries.Where(x => x.Id == data.CountryId).FirstOrDefault();
+                var city = _db.tblCities.Where(x => x.Id == data.CityId).FirstOrDefault();
+                var state = _db.tblStates.Where(x => x.Id == data.StateId).FirstOrDefault();
+                var jobequcation = _db.tblJobEducations.Where(x => x.Education == data.JobEducation).FirstOrDefault();
+                var jobQualification = _db.tblJobQualifications.Where(x => x.Qualification == data.JobQualification).FirstOrDefault();
+
+                data.Title = model.Title;
+                data.Title = model.Title;
+                data.CompanyName = model.CompanyName;
+                data.CompanyLogo = model.CompanyLogo;
+                data.CategoryId = cate.Id;               
+                data.SubCategoryId = subcate.Id;
+                data.Profession = model.Profession;
+                data.CountryId = country.Id;
+                data.StateId = model.Id;
+                data.CityId = city.Id;
+                data.Location = model.Location;
+                data.Description = model.Description;
+                data.MinExperience = Convert.ToInt32(model.MinExperience);
+                data.MaxExperience = Convert.ToInt32(model.MaxExperience);
+                data.Type = model.Type;
+                data.MinSalary = Convert.ToInt32(model.MinSalary);
+                data.MaxSalary = Convert.ToInt32(model.MaxSalary);
+                data.JobEducation = jobequcation.Education;
+                data.JobQualification = jobQualification.Qualification;
+                data.IsVerified = Convert.ToBoolean(model.IsVerified);
+                data.ShowOnHome = model.ShowOnHome;
+
             }
-            return PartialView("_partialAddTechnologyMaster", model);
+            return PartialView("_partialAddEditJobDetail", model);
         }
 
         public ActionResult JobDetailsList()
@@ -37,7 +83,11 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 var cate = _db.tblCategoryMasters.Where(x => x.Id == item.CategoryId).FirstOrDefault();
                 var subcate = _db.tblSubCategoryMasters.Where(x => x.Id == item.SubCategoryId).FirstOrDefault();
                 var country = _db.tblCountries.Where(x => x.Id == item.CountryId).FirstOrDefault();
+                var city = _db.tblCities.Where(x => x.Id == item.CityId).FirstOrDefault();
                 var state = _db.tblStates.Where(x => x.Id == item.StateId).FirstOrDefault();
+                var jobequcation = _db.tblJobEducations.Where(x => x.Education == item.JobEducation).FirstOrDefault();
+                var jobQualification = _db.tblJobQualifications.Where(x => x.Qualification == item.JobQualification).FirstOrDefault();
+
                 m.Title = item.Title;
                 m.CompanyName = item.CompanyName;
                 m.CompanyLogo = item.CompanyLogo;
@@ -45,15 +95,21 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 m.SubCategoryName = subcate.SubCategory;
                 m.Profession = item.Profession;
                 m.CountryName = country.Name;
-                m.StateName = item.Title;
-                m.Title = item.Title;
-                m.Title = item.Title;
-                m.Title = item.Title;
-                m.Title = item.Title;
-                m.Title = item.Title;
-                m.Title = item.Title;
+                m.StateName = state.Name;
+                m.CityName = city.Name;
+                m.Location = item.Location;
+                m.Description = item.Description;
+                m.MinExperience = Convert.ToInt32(item.MinExperience);
+                m.MaxExperience = Convert.ToInt32(item.MaxExperience);
+                m.Type = item.Type;
+                m.MinSalary = Convert.ToInt32(item.MinSalary);
+                m.MaxSalary = Convert.ToInt32(item.MaxSalary);
+                m.JobEducation = jobequcation.Education;
+                m.JobQualification = jobQualification.Qualification;
+                m.IsVerified = Convert.ToBoolean(item.IsVerified);
+                m.ShowOnHome = item.ShowOnHome;
             }
-            return PartialView("_partialTechnologyMasterList", model);
+            return PartialView("_partialJobDetailsList", model);
         }
 
         public ActionResult DeleteTechnologyMaster(int Id)

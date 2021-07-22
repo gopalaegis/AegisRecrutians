@@ -1,0 +1,27 @@
+﻿@model CONSTRUCTION.Areas.Admin.Model.JobDetailsViewModel
+
+<input type="hidden" id="txt_Id" value="@Model.Id" />
+<div class="row formGroup">
+    <div class="col-sm-6">
+        <label>Title <span style="color:red">*</span></label>
+        <input type="text" id="txt_Title" value="@Model.Title" placeholder="Title" class="form-control" />
+        <label id="label_error_Title" class="errorMessage" style="display:none;">Title is required</label>
+    </div>
+    <div class="col-sm-6">
+        <label>Description <span style="color:red">*</span></label>
+        <input type="text" id="txt_Description" value="@Model.Description" placeholder="Description" class="form-control" />
+        <label id="label_error_Description" class="errorMessage" style="display:none;">Description is required</label>
+    </div>   
+</div>
+<div class="row formGroup">
+    <div class="col-sm-6">
+        <label>SubCategory <span style="color:red">*</span></label>
+        @Html.DropDownListFor(model => model.CategoryList, new SelectList(Model.CategoryList, "Value", "Text"), new { @class = "form-control" })
+        <label id="label_error_Category" class="errorMessage" style="display:none;">Category is required</label>
+    </div>
+    @*<div class="col-sm-6">
+        <label>Category <span style="color:red">*</span></label>
+        @Html.DropDownListFor(model => model.SubCategoryList, new SelectList(Model.SubCategoryList, "SubCategoryId", "SubCategoryName"), new { @class = "form-control" })
+    <label id="label_error_SubCategory" class="errorMessage" style="display:none;">SubCategory is required</label>
+    </div>*@       
+</div>

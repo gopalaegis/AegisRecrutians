@@ -17,6 +17,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateId" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblCountry">
@@ -49,6 +50,22 @@
           <Property Name="MaxSalary" Type="int" />
           <Property Name="JobEducation" Type="nvarchar(max)" />
           <Property Name="JobQualification" Type="nvarchar(max)" />
+          <Property Name="IsVerified" Type="bit" />
+          <Property Name="ShowOnHome" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblJobEducation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Education" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblJobQualification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblSkillMaster">
           <Key>
@@ -62,6 +79,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryId" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblSubCategoryMaster">
@@ -85,6 +103,8 @@
           <EntitySet Name="tblCity" EntityType="Self.tblCity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCountry" EntityType="Self.tblCountry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblJobDetails" EntityType="Self.tblJobDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblJobEducation" EntityType="Self.tblJobEducation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblJobQualification" EntityType="Self.tblJobQualification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSkillMaster" EntityType="Self.tblSkillMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblState" EntityType="Self.tblState" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSubCategoryMaster" EntityType="Self.tblSubCategoryMaster" Schema="dbo" store:Type="Tables" />
@@ -103,6 +123,8 @@
           <EntitySet Name="tblStates" EntityType="AEGIS_ConstructionModel.tblState" />
           <EntitySet Name="tblSubCategoryMasters" EntityType="AEGIS_ConstructionModel.tblSubCategoryMaster" />
           <EntitySet Name="tblTechnologyMasters" EntityType="AEGIS_ConstructionModel.tblTechnologyMaster" />
+          <EntitySet Name="tblJobEducations" EntityType="AEGIS_ConstructionModel.tblJobEducation" />
+          <EntitySet Name="tblJobQualifications" EntityType="AEGIS_ConstructionModel.tblJobQualification" />
         </EntityContainer>
         <EntityType Name="tblCategoryMaster">
           <Key>
@@ -117,6 +139,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StateId" Type="Int32" />
         </EntityType>
         <EntityType Name="tblCountry">
           <Key>
@@ -148,6 +171,8 @@
           <Property Name="MaxSalary" Type="Int32" />
           <Property Name="JobEducation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="JobQualification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsVerified" Type="Boolean" />
+          <Property Name="ShowOnHome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblSkillMaster">
           <Key>
@@ -162,6 +187,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int32" />
         </EntityType>
         <EntityType Name="tblSubCategoryMaster">
           <Key>
@@ -178,6 +204,20 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblJobEducation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Education" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblJobQualification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -196,6 +236,7 @@
           <EntitySetMapping Name="tblCities">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblCity">
               <MappingFragment StoreEntitySet="tblCity">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -212,6 +253,8 @@
           <EntitySetMapping Name="tblJobDetails">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobDetail">
               <MappingFragment StoreEntitySet="tblJobDetails">
+                <ScalarProperty Name="ShowOnHome" ColumnName="ShowOnHome" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
                 <ScalarProperty Name="JobQualification" ColumnName="JobQualification" />
                 <ScalarProperty Name="JobEducation" ColumnName="JobEducation" />
                 <ScalarProperty Name="MaxSalary" ColumnName="MaxSalary" />
@@ -245,6 +288,7 @@
           <EntitySetMapping Name="tblStates">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblState">
               <MappingFragment StoreEntitySet="tblState">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -264,6 +308,22 @@
               <MappingFragment StoreEntitySet="tblTechnologyMaster">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblJobEducations">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobEducation">
+              <MappingFragment StoreEntitySet="tblJobEducation">
+                <ScalarProperty Name="Education" ColumnName="Education" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblJobQualifications">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobQualification">
+              <MappingFragment StoreEntitySet="tblJobQualification">
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

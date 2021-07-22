@@ -130,9 +130,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\JobEducationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\JobqualificationController.cs" />
     <Compile Include="Areas\Admin\Controllers\SkillMasterController.cs" />
     <Compile Include="Areas\Admin\Controllers\JobDetailsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TechnologyMasterController.cs" />
+    <Compile Include="Areas\Admin\Model\JobEducationViewModel.cs" />
+    <Compile Include="Areas\Admin\Model\JobQualicationViewModel.cs" />
     <Compile Include="Areas\Admin\Model\SkillMasterViewModel.cs" />
     <Compile Include="Areas\Admin\Model\JobDetailsViewModel.cs" />
     <Compile Include="Areas\Admin\Model\TechnologyMasterViewModel.cs" />
@@ -165,6 +169,12 @@
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTable\tblJobDetail.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\tblJobEducation.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\tblJobQualification.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTable\tblSkillMaster.cs">
@@ -274,6 +284,15 @@
     <Content Include="Areas\Admin\Views\SkillMaster\_partialAddSkillMaster.cshtml" />
     <Content Include="Areas\Admin\Views\SkillMaster\_partialSkillMasterList.cshtml" />
     <Content Include="Areas\Admin\Views\SkillMaster\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\JobEducation\JobEducation.cshtml" />
+    <Content Include="Areas\Admin\Views\JobEducation\_partialJobEducationMasterList.cshtml" />
+    <Content Include="Areas\Admin\Views\JobEducation\_partialAddEducationMaster.cshtml" />
+    <Content Include="Areas\Admin\Views\Jobqualification\JobQualification.cshtml" />
+    <Content Include="Areas\Admin\Views\Jobqualification\_partialAddEditQualificationMaster.cshtml" />
+    <Content Include="Areas\Admin\Views\Jobqualification\_partialJobQualificationMasterList.cshtml" />
+    <Content Include="Areas\Admin\Views\JobDetails\JobDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\JobDetails\_partialAddEditJobDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\JobDetails\_partialJobDetailsList.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\functions.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
