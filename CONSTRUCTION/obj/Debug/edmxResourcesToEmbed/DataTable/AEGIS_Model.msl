@@ -1,31 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="AEGIS_ConstructionModelStoreContainer" CdmEntityContainer="AEGIS_Entities">
-    <EntitySetMapping Name="tblApplyJobEducations">
-      <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblApplyJobEducation">
-        <MappingFragment StoreEntitySet="tblApplyJobEducation">
-          <ScalarProperty Name="PassingYear" ColumnName="PassingYear" />
-          <ScalarProperty Name="Collage" ColumnName="Collage" />
-          <ScalarProperty Name="DegreeId" ColumnName="DegreeId" />
-          <ScalarProperty Name="ApplyJobDetailId" ColumnName="ApplyJobDetailId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblApplyJobExperiences">
-      <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblApplyJobExperience">
-        <MappingFragment StoreEntitySet="tblApplyJobExperience">
-          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-          <ScalarProperty Name="StateId" ColumnName="StateId" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="ActiveYear" ColumnName="ActiveYear" />
-          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
-          <ScalarProperty Name="Employer" ColumnName="Employer" />
-          <ScalarProperty Name="ApplyJobDetailId" ColumnName="ApplyJobDetailId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tblCategoryMasters">
       <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblCategoryMaster">
         <MappingFragment StoreEntitySet="tblCategoryMaster">
@@ -37,8 +12,8 @@
     <EntitySetMapping Name="tblCities">
       <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblCity">
         <MappingFragment StoreEntitySet="tblCity">
-          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -79,6 +54,41 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tblSkillMasters">
+      <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblSkillMaster">
+        <MappingFragment StoreEntitySet="tblSkillMaster">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblStates">
+      <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblState">
+        <MappingFragment StoreEntitySet="tblState">
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSubCategoryMasters">
+      <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblSubCategoryMaster">
+        <MappingFragment StoreEntitySet="tblSubCategoryMaster">
+          <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTechnologyMasters">
+      <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblTechnologyMaster">
+        <MappingFragment StoreEntitySet="tblTechnologyMaster">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tblJobEducations">
       <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobEducation">
         <MappingFragment StoreEntitySet="tblJobEducation">
@@ -99,97 +109,6 @@
       <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblProfession">
         <MappingFragment StoreEntitySet="tblProfession">
           <ScalarProperty Name="Profession" ColumnName="Profession" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblRefers">
-      <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblRefer">
-        <MappingFragment StoreEntitySet="tblRefer">
-          <ScalarProperty Name="JobId" ColumnName="JobId" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="FriendPhoneNo" ColumnName="FriendPhoneNo" />
-          <ScalarProperty Name="FriendEmail" ColumnName="FriendEmail" />
-          <ScalarProperty Name="FriendFullName" ColumnName="FriendFullName" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="FullName" ColumnName="FullName" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblSkillMasters">
-      <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblSkillMaster">
-        <MappingFragment StoreEntitySet="tblSkillMaster">
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblStates">
-      <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblState">
-        <MappingFragment StoreEntitySet="tblState">
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblSubCategoryMasters">
-      <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblSubCategoryMaster">
-        <MappingFragment StoreEntitySet="tblSubCategoryMaster">
-          <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
-          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblSuperAdmins">
-      <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblSuperAdmin">
-        <MappingFragment StoreEntitySet="tblSuperAdmin">
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblTechnologyMasters">
-      <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblTechnologyMaster">
-        <MappingFragment StoreEntitySet="tblTechnologyMaster">
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblApplyJobDetails">
-      <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblApplyJobDetail">
-        <MappingFragment StoreEntitySet="tblApplyJobDetails">
-          <ScalarProperty Name="Resume" ColumnName="Resume" />
-          <ScalarProperty Name="StateId" ColumnName="StateId" />
-          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="Street" ColumnName="Street" />
-          <ScalarProperty Name="HouseName" ColumnName="HouseName" />
-          <ScalarProperty Name="AddressType" ColumnName="AddressType" />
-          <ScalarProperty Name="Mobile1" ColumnName="Mobile1" />
-          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="DOB" ColumnName="DOB" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="JobId" ColumnName="JobId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblContectUs">
-      <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblContectU">
-        <MappingFragment StoreEntitySet="tblContectUs">
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
