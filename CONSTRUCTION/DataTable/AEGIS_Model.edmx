@@ -52,6 +52,7 @@
           <Property Name="JobQualification" Type="nvarchar(max)" />
           <Property Name="IsVerified" Type="bit" />
           <Property Name="ShowOnHome" Type="nvarchar" MaxLength="50" />
+          <Property Name="BriefDescription" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tblJobEducation">
           <Key>
@@ -66,6 +67,13 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblProfession">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Profession" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblSkillMaster">
           <Key>
@@ -105,6 +113,7 @@
           <EntitySet Name="tblJobDetails" EntityType="Self.tblJobDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblJobEducation" EntityType="Self.tblJobEducation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblJobQualification" EntityType="Self.tblJobQualification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProfession" EntityType="Self.tblProfession" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSkillMaster" EntityType="Self.tblSkillMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblState" EntityType="Self.tblState" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSubCategoryMaster" EntityType="Self.tblSubCategoryMaster" Schema="dbo" store:Type="Tables" />
@@ -125,6 +134,7 @@
           <EntitySet Name="tblTechnologyMasters" EntityType="AEGIS_ConstructionModel.tblTechnologyMaster" />
           <EntitySet Name="tblJobEducations" EntityType="AEGIS_ConstructionModel.tblJobEducation" />
           <EntitySet Name="tblJobQualifications" EntityType="AEGIS_ConstructionModel.tblJobQualification" />
+          <EntitySet Name="tblProfessions" EntityType="AEGIS_ConstructionModel.tblProfession" />
         </EntityContainer>
         <EntityType Name="tblCategoryMaster">
           <Key>
@@ -173,6 +183,7 @@
           <Property Name="JobQualification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsVerified" Type="Boolean" />
           <Property Name="ShowOnHome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblSkillMaster">
           <Key>
@@ -219,6 +230,13 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="tblProfession">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Profession" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -253,6 +271,7 @@
           <EntitySetMapping Name="tblJobDetails">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobDetail">
               <MappingFragment StoreEntitySet="tblJobDetails">
+                <ScalarProperty Name="BriefDescription" ColumnName="BriefDescription" />
                 <ScalarProperty Name="ShowOnHome" ColumnName="ShowOnHome" />
                 <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
                 <ScalarProperty Name="JobQualification" ColumnName="JobQualification" />
@@ -324,6 +343,14 @@
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobQualification">
               <MappingFragment StoreEntitySet="tblJobQualification">
                 <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProfessions">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblProfession">
+              <MappingFragment StoreEntitySet="tblProfession">
+                <ScalarProperty Name="Profession" ColumnName="Profession" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

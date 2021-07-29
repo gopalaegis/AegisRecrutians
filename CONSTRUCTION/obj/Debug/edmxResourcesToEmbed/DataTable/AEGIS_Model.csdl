@@ -11,6 +11,7 @@
     <EntitySet Name="tblTechnologyMasters" EntityType="AEGIS_ConstructionModel.tblTechnologyMaster" />
     <EntitySet Name="tblJobEducations" EntityType="AEGIS_ConstructionModel.tblJobEducation" />
     <EntitySet Name="tblJobQualifications" EntityType="AEGIS_ConstructionModel.tblJobQualification" />
+    <EntitySet Name="tblProfessions" EntityType="AEGIS_ConstructionModel.tblProfession" />
   </EntityContainer>
   <EntityType Name="tblCategoryMaster">
     <Key>
@@ -59,6 +60,7 @@
     <Property Name="JobQualification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="IsVerified" Type="Boolean" />
     <Property Name="ShowOnHome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BriefDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="tblSkillMaster">
     <Key>
@@ -104,5 +106,12 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblProfession">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Profession" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

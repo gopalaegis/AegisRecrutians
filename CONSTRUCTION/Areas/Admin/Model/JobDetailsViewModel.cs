@@ -19,6 +19,8 @@ namespace CONSTRUCTION.Areas.Admin.Model
         public string SubCategoryName { get; set; }
         public List<SelectListItem> SubCategoryList { get; set; }
         public string Profession { get; set; }
+        public List<SelectListItem> ProfessionList { get; set; }
+        public int professionId { get; set; }
         public int CountryId { get; set; }
         public string CountryName { get; set; }
         public List<SelectListItem> CountryList { get; set; }
@@ -35,6 +37,7 @@ namespace CONSTRUCTION.Areas.Admin.Model
         public int MaxExperience { get; set; }
         public int MinSalary { get; set; }
         public int MaxSalary { get; set; }
+        public string BriefDescription { get; set; }
         public string JobEducation { get; set; }
         public string JobQualification { get; set; }
         public Boolean IsVerified { get; set; }

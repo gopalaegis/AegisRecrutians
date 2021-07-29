@@ -29,6 +29,7 @@
     <EntitySetMapping Name="tblJobDetails">
       <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobDetail">
         <MappingFragment StoreEntitySet="tblJobDetails">
+          <ScalarProperty Name="BriefDescription" ColumnName="BriefDescription" />
           <ScalarProperty Name="ShowOnHome" ColumnName="ShowOnHome" />
           <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
           <ScalarProperty Name="JobQualification" ColumnName="JobQualification" />
@@ -100,6 +101,14 @@
       <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobQualification">
         <MappingFragment StoreEntitySet="tblJobQualification">
           <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProfessions">
+      <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblProfession">
+        <MappingFragment StoreEntitySet="tblProfession">
+          <ScalarProperty Name="Profession" ColumnName="Profession" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
