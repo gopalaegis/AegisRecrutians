@@ -2,21 +2,24 @@
 
 <input type="hidden" id="txt_Id" value="@Model.Id" />
 <div class="row formGroup">
-    <div class="col-sm-6">
+    <div class="col-sm-12">
         <label>Name <span style="color:red">*</span></label>
         <input type="text" id="txt_Name" value="@Model.Name" placeholder="Name" class="form-control" />
         <label id="label_error_Name" class="errorMessage" style="display:none;">Name is required</label>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-12 mt-30">
         <label>Image <span class="red">*</span></label>
-        <div class="upbtn">
-            <input autocomplete="off" id="image_browse" value="Upload a file from your computer" class="btn btn-sm btn-purple btn-upload" style="display: block;" accept=".jpg, .png, .jpeg,.bmp, .tif, .tiff|images/*" name="Image" type="file" />
-            <button type="button" class="btn btn-md btn-success btn-upload"><i class="fa fa-arrow-circle-o-up"></i> Select Image</button>
+        <div class="img-upload">
+            <div class="upbtn">
+                <input autocomplete="off" id="image_browse" value="Upload a file from your computer" class="btn-upload" style="display: block;" accept=".jpg, .png, .jpeg,.bmp, .tif, .tiff|images/*" name="Image" type="file" />
+                <button type="button" class="btn btn-md btn-success btn-upload mt-10"><i class="fa fa-arrow-circle-o-up"></i> Select Image</button>
+            </div>
+            <input type="hidden" id="file_HiddenName" value="@Model.Image" />
+            <label id="label_error_Image" class="errorMessage" style="display:none;">Image is required</label>
         </div>
-        <input type="hidden" id="file_HiddenName" value="@Model.Image" />
-        <label id="label_error_Image" class="errorMessage" style="display:none;">Image is required</label>
+        
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-12 mt-30">
         @{
             var finalPic = "/CommonImage/Technology/" + Model.Image;
         }

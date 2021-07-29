@@ -130,18 +130,29 @@ button, button:focus {
 
 .modal.fade .modal-body {
     padding: 0 1rem 1rem 1rem;
+    height: calc(100vh - 130px);
+    overflow:auto;
 }
 
 .modal.fade .modal-dialog {
     margin: 4rem auto;
 }
-
 .modal-body textarea {
     font-size: 14px;
     color: #999;
     width: 100%;
     border: 1px solid #CDD3DB;
     padding: 10px;
+}
+.modal-body .upbtn {
+    position:relative;
+}
+{
+    display: block;
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
 }
 
     .modal-body textarea:focus, .modal-body textarea:focus-visible {
@@ -701,7 +712,7 @@ button, button:focus {
         font-size: 14px;
         outline: 0;
         border-bottom: 1px solid #cdd3db !important;
-        background-color: transparent;
+        background-color: transparent!important;
         width: 100%;
         padding-bottom: 10px;
     }
@@ -725,8 +736,14 @@ button, button:focus {
 }
 
 .modal-dialog {
-    max-width: 500px;
     margin: 12rem auto;
+}
+.modal-dialog .modal-content {
+    height: calc(100vh - 130px)
+}
+.modal-body h2 {
+    margin-top:.5rem;
+    text-align:left;
 }
 
 .pos-relative {
