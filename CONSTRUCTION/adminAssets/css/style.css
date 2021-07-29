@@ -130,8 +130,6 @@ button, button:focus {
 
 .modal.fade .modal-body {
     padding: 0 1rem 1rem 1rem;
-    height: calc(100vh - 130px);
-    overflow:auto;
 }
 
 .modal.fade .modal-dialog {
@@ -144,10 +142,11 @@ button, button:focus {
     border: 1px solid #CDD3DB;
     padding: 10px;
 }
+
 .modal-body .upbtn {
-    position:relative;
+    position: relative;
 }
-{
+.img-upload .file-upload {
     display: block;
     position: absolute;
     opacity: 0;
@@ -737,9 +736,6 @@ button, button:focus {
 
 .modal-dialog {
     margin: 12rem auto;
-}
-.modal-dialog .modal-content {
-    height: calc(100vh - 130px)
 }
 .modal-body h2 {
     margin-top:.5rem;
@@ -3574,4 +3570,12 @@ button, button:focus {
 
 .errorMessage{
     color:red;
+}
+
+.modal-content.height-calc-100vh-130px {
+    height: calc(100vh - 130px);
+}
+.modal-body.app-body {
+    height: calc(100vh - 130px);
+    overflow: auto;
 }
