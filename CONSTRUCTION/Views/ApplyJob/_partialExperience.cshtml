@@ -1,0 +1,47 @@
+﻿@model CONSTRUCTION.Models.ApplyJobViewModel
+@{
+    Layout = null;
+}
+<div class="experienceDatas col-12 row">
+    <div class="col-4 col-sm-12">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Employer" id="employer">
+        </div>
+    </div>
+    <div class="col-4 col-sm-12">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Job Title" id="title">
+        </div>
+    </div>
+    <div class="col-4 col-sm-12">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Years of Active" id="activeYear">
+        </div>
+    </div>
+    <div class="col-4 col-sm-12">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="City" id="city">
+        </div>
+    </div>
+    <div class="col-4 col-sm-12">
+        <div class="form-group">
+            <div class="select-box">
+                <select class="form-control drpCountry">
+                    @foreach (var item in Model.drpCountry)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-4 col-sm-12">
+        <div class="form-group">
+            <div class="select-box">
+                <select class="form-control" id="drpState">
+                    <option value="0">State</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>

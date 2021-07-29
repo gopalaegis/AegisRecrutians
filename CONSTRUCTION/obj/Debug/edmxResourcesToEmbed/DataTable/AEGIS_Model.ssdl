@@ -1,5 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="AEGIS_ConstructionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblApplyJobDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobId" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="DOB" Type="datetime" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile1" Type="nvarchar" MaxLength="50" />
+    <Property Name="AddressType" Type="nvarchar" MaxLength="50" />
+    <Property Name="HouseName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Street" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="CountryId" Type="int" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="Resume" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblApplyJobEducation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplyJobDetailId" Type="int" />
+    <Property Name="DegreeId" Type="int" />
+    <Property Name="Collage" Type="nvarchar" MaxLength="50" />
+    <Property Name="PassingYear" Type="int" />
+  </EntityType>
+  <EntityType Name="tblApplyJobExperience">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplyJobDetailId" Type="int" />
+    <Property Name="Employer" Type="nvarchar" MaxLength="50" />
+    <Property Name="JobTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="ActiveYear" Type="int" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="CountryId" Type="int" />
+  </EntityType>
   <EntityType Name="tblCategoryMaster">
     <Key>
       <PropertyRef Name="Id" />
@@ -14,6 +57,16 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="StateId" Type="int" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblContectUs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="tblCountry">
     <Key>
@@ -47,6 +100,7 @@
     <Property Name="JobQualification" Type="nvarchar(max)" />
     <Property Name="IsVerified" Type="bit" />
     <Property Name="ShowOnHome" Type="nvarchar" MaxLength="50" />
+    <Property Name="BriefDescription" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="tblJobEducation">
     <Key>
@@ -61,6 +115,27 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblProfession">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Profession" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblRefer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="FriendFullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="FriendEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="FriendPhoneNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="JobId" Type="int" />
   </EntityType>
   <EntityType Name="tblSkillMaster">
     <Key>
@@ -85,6 +160,14 @@
     <Property Name="CategoryId" Type="int" />
     <Property Name="SubCategory" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="tblSuperAdmin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar(max)" />
+  </EntityType>
   <EntityType Name="tblTechnologyMaster">
     <Key>
       <PropertyRef Name="Id" />
@@ -94,15 +177,22 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityContainer Name="AEGIS_ConstructionModelStoreContainer">
+    <EntitySet Name="tblApplyJobDetails" EntityType="Self.tblApplyJobDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblApplyJobEducation" EntityType="Self.tblApplyJobEducation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblApplyJobExperience" EntityType="Self.tblApplyJobExperience" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblCategoryMaster" EntityType="Self.tblCategoryMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblCity" EntityType="Self.tblCity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblContectUs" EntityType="Self.tblContectUs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblCountry" EntityType="Self.tblCountry" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblJobDetails" EntityType="Self.tblJobDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblJobEducation" EntityType="Self.tblJobEducation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblJobQualification" EntityType="Self.tblJobQualification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProfession" EntityType="Self.tblProfession" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRefer" EntityType="Self.tblRefer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblSkillMaster" EntityType="Self.tblSkillMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblState" EntityType="Self.tblState" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblSubCategoryMaster" EntityType="Self.tblSubCategoryMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSuperAdmin" EntityType="Self.tblSuperAdmin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblTechnologyMaster" EntityType="Self.tblTechnologyMaster" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

@@ -33,5 +33,33 @@ namespace CONSTRUCTION.Controllers
 
             return View();
         }
+
+        public ActionResult JobDetails()
+        {
+            List<JobDetailViewModel> m = _db.tblJobDetails.Select(x => new JobDetailViewModel { Id = x.Id, Title = x.Title, CityId = (int)x.CityId, minExpirience = (int)x.MinExperience, maxExpirience = (int)x.MaxExperience, minSalary = (int)x.MinSalary, maxSalary = (int)x.MaxSalary, description = x.Description }).OrderByDescending(x => x.Id).ToList();
+            foreach (var item in m)
+            {
+                var cityData = _db.tblCities.Where(x => x.Id == item.CityId).FirstOrDefault();
+                if (cityData != null)
+                {
+                    item.City = cityData.Name;
+                }
+            }
+            return PartialView("_partialJobs", m);
+        }
+
+        [HttpPost]
+        public ActionResult SaveContectData(string Name, string Email, string Mobile, string Description = "")
+        {
+            tblContectU data = new tblContectU();
+            data.Name = Name;
+            data.Email = Email;
+            data.Mobile = Mobile;
+            data.Description = Description;
+            _db.tblContectUs.Add(data);
+            _db.SaveChanges();
+
+            return Json("Success", JsonRequestBehavior.AllowGet);
+        }
     }
 }
