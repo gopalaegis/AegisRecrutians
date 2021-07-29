@@ -136,13 +136,16 @@
     </div>
     <div class="col-sm-3">
         <label>Company Logo<span class="red">*</span></label>
-        <div class="upbtn">
-            <input autocomplete="off" id="image_browse" value="Upload a file from your computer" class="btn btn-sm btn-purple btn-upload"
-                   style="display: block;" accept=".jpg, .png, .jpeg,.bmp, .tif, .tiff|images/*" name="CompanyLogo" type="file" />
-            <button type="button" class="btn btn-md btn-success btn-upload"><i class="fa fa-arrow-circle-o-up"></i> Select Image</button>
+        <div class="img-upload">
+            <div class="upbtn">
+                <input autocomplete="off" id="image_browse" value="Upload a file from your computer" class="file-upload"
+                       style="display: block;" accept=".jpg, .png, .jpeg,.bmp, .tif, .tiff|images/*" name="CompanyLogo" type="file" />
+                <button type="button" class="btn btn-md btn-success btn-upload"><i class="fa fa-arrow-circle-o-up"></i> Select Image</button>
+                <input type="hidden" id="file_HiddenName" value="@Model.CompanyLogo" />
+                <label id="label_error_CompanyLogo" class="errorMessage" style="display: none; color: red">CompanyLogo is required</label>
+            </div>
         </div>
-        <input type="hidden" id="file_HiddenName" value="@Model.CompanyLogo" />
-        <label id="label_error_CompanyLogo" class="errorMessage" style="display: none; color: red">CompanyLogo is required</label>
+        
     </div>
     <div class="col-sm-3">
         @{
