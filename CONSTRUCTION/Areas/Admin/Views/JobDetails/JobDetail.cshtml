@@ -6,7 +6,7 @@
 <div id="addJobDetail" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
         <!-- Modal content-->
-        <div class="modal-content">
+        <div class="modal-content" style="height: 600px !important; overflow-y: scroll; width: 700px;">
             <div class="modal-header">
                 <h4 class="modal-title"> Job Detail</h4>
             </div>
@@ -42,6 +42,7 @@
         dataTableJobDetail();
     });
 
+
     function dataTableJobDetail() {
         $('#tableDiv').find('#tblJobDetails').DataTable({
             language: {
@@ -72,46 +73,138 @@
 
 
     $("#addJobDetail").on("click", ".btn_save", function (e) {
-        var Id = $("#addEducation").find('#txt_Id').val();
-        var Education = $("#addEducation").find('#Drop_Education').val();
-        var isError = false;
+        debugger
+        var Id = $("#addJobDetail").find('#txt_Id').val();
+        var Title = $("#addJobDetail").find('#txt_Title').val();
+        var Description = $("#addJobDetail").find('#txt_Description').val();
+        var CategoryId = $("#addJobDetail").find('.drp_categoryList').val();
+        var SubCategoryId = $("#addJobDetail").find('.drp_subcategory').val();
+        var Profession = $("#addJobDetail").find('.drp_profession').val();
+        var CountryId = $("#addJobDetail").find('.drp_country').val();
+        var CityId = $("#addJobDetail").find('.drp_city').val();
+        var CompanyName = $("#addJobDetail").find('#txt_CompanyName').val();
+      //  var experince = $("#addJobDetail").find('#drp_Experince').val();
+        var Type = $("#addJobDetail").find('#drp_Type').val();
+        var MinExperience = $("#addJobDetail").find('#txt_MinExperience').val();
+        var MaxExperience = $("#addJobDetail").find('#txt_MaxExperience').val();
+        var MinSalary = $("#addJobDetail").find('#txt_MinSalary').val();
+        var MaxSalary = $("#addJobDetail").find('#txt_MaxSalary').val();
+        var BriefDescription = $("#addJobDetail").find('#editor').val();
+        var Location = $("#addJobDetail").find('#txt_Location').val();
+        var IsVerified = $("#addJobDetail").find('#drp_IsVerified').val();
+        var ShowOnHome = $("#addJobDetail").find('#drp_ShowOnHome').val();
+        var CompanyLogo = $("#addJobDetail").find('#file_HiddenName').val();
 
-        if (Education == "") {
-            $("#addEducation").find('#label_error_education').show();
+        var isError = false;
+        debugger;
+        if (Title == "") {
+            $("#addJobDetail").find('#label_error_Title').show();
             isError = true;
         }
+        if (Description == "") {
+            $("#addJobDetail").find('#label_error_Description').show();
+            isError = true;
+        }
+        if (CategoryId == 0) {
+            $("#addJobDetail").find('#label_error_Category').show();
+            isError = true;
+        }
+        if (SubCategoryId == 0) {
+            $("#addJobDetail").find('#label_error_SubCategory').show();
+            isError = true;
+        }
+        if (Profession == 0) {
+            $("#addJobDetail").find('#label_error_Profession').show();
+            isError = true;
+        }
+        if (CountryId == 0) {
+            $("#addJobDetail").find('#label_error_Country').show();
+            isError = true;
+        }
+        if (CityId == 0) {
+            $("#addJobDetail").find('#label_error_City').show();
+            isError = true;
+        }
+        if (CompanyName == 0) {
+            $("#addJobDetail").find('#label_error_CompanyName').show();
+            isError = true;
+        }
+        if (Type == 0) {
+            $("#addJobDetail").find('#label_error_Type').show();
+            isError = true;
+        }
+        if (MinExperience == 0) {
+            $("#addJobDetail").find('#label_error_MinExperience').show();
+            isError = true;
+        }
+        if (MaxExperience == 0) {
+            $("#addJobDetail").find('#label_error_MaxExperience').show();
+            isError = true;
+        }
+        if (MinSalary == 0) {
+            $("#addJobDetail").find('#label_error_MinSalary').show();
+            isError = true;
+        }
+        if (MaxSalary == 0) {
+            $("#addJobDetail").find('#label_error_MaxSalary').show();
+            isError = true;
+        }
+        if (Location == 0) {
+            $("#addJobDetail").find('#label_error_Location').show();
+            isError = true;
+        }
+
 
         if (isError == true) {
             return false
         } else {
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("SaveJobEducationMaster", "JobEducation")',
+                url: '@Url.Action("SaveJobDetailMaster", "JobDetails")',
                 data: {
                     Id: Id,
-                    Education: Education,
+                    Title: Title,
+                    Description: Description,
+                    CategoryId: CategoryId,
+                    SubCategoryId: SubCategoryId,
+                    Profession: Profession,
+                    CountryId: CountryId,
+                    CityId: CityId,
+                    CompanyName: CompanyName,
+                    Type: Type,
+                    MinExperience: MinExperience,
+                    MaxExperience: MaxExperience,
+                    MinSalary: MinSalary,
+                    MaxSalary: MaxSalary,
+                    Description: Description,
+                    Location: Location,
+                    IsVerified: IsVerified,
+                    ShowOnHome: ShowOnHome,
+                    CompanyLogo: CompanyLogo,
+                    BriefDescription: BriefDescription
                 },
                 success: function (result) {
                     $("#tableDiv").html("");
                     $("#tableDiv").html(result);
-                    $("#addEducation").find('.btn_Close').click();
+                    $("#addJobDetail").find('.btn_Close').click();
                     dataTableJobEducation();
                 }
             });
         }
     });
 
-    $("#tableDiv").on("click", ".editRow", function () {
+    $("#tblJobDetails").on("click", ".editRow", function () {
         debugger
         var id = $(this).attr('data-id');
         $.ajax({
-            url: '@Url.Action("AddEditJobEducationMaster", "JobEducation")',
+            url: '@Url.Action("AddEditJobDetail", "JobDetails")',
             data: {
-                Id:id
+                Id: id
+
             },
             success: function (data) {
-                $("#addEducation").find(".modal-body").html("");
-                $("#addEducation").find(".modal-body").html(data);
+                $("#addJobDetail").find(".modal-body").html("");
+                $("#addJobDetail").find(".modal-body").html(data);
             }
         });
     });
@@ -129,5 +222,36 @@
                 dataTableJobEducation();
             }
         });
+    });
+    $("#addJobDetail").on("change", "#image_browse", function (e) {
+        var files = e.target.files;
+        var imageData = "";
+        if (files.length > 0) {
+            if (window.FormData !== undefined) {
+                imageData = new FormData();
+                for (var x = 0; x < files.length; x++) {
+                    imageData.append("file" + x, files[x]);
+                }
+                setTimeout(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("FileUplaod", "JobDetails")',
+                        contentType: false,
+                        processData: false,
+                        data: imageData,
+                        success: function (result) {
+                            debugger;
+                            $("#addJobDetail").find('#file_HiddenName').val(result);
+                            var Pic = "/CommonImage/CompanyLogo/" + result;
+                            $("#addJobDetail").find('#img_Profile_Pic').attr('src', Pic);
+                        }
+                    });
+                }, 500);
+            }
+        }
+        else {
+            $("#addJobDetail").find("#file_HiddenName").val("");
+            $("#addJobDetail").find("#img_Profile_Pic").val("");
+        }
     });
 </script>
