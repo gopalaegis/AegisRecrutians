@@ -217,7 +217,8 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 data.IsVerified = Convert.ToBoolean(model.IsVerified);
                 data.ShowOnHome = model.ShowOnHome;
                 data.BriefDescription = model.BriefDescription;
-
+                data.date = DateTime.Now;
+                _db.SaveChanges();
             }
             else
             {
@@ -243,6 +244,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 data.IsVerified = Convert.ToBoolean(model.IsVerified);
                 data.ShowOnHome = model.ShowOnHome;
                 data.BriefDescription = model.BriefDescription;
+                data.date = DateTime.Now;
                 _db.tblJobDetails.Add(data);
                 _db.SaveChanges();
             }

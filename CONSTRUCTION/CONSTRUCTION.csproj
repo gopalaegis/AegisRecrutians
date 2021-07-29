@@ -333,6 +333,8 @@
     <Content Include="Areas\Admin\Views\AppliedJobs\_partialAppliedJobList.cshtml" />
     <Content Include="Areas\Admin\Views\AppliedJobs\_partialAppliedJobDetail.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\custom.js" />
+    <Content Include="Scripts\custom.min.js" />
     <Content Include="Scripts\functions.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -372,8 +374,8 @@
     <Folder Include="adminAssets\img\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="CommonImage\Resume\" />
     <Folder Include="ckeditor\" />
+    <Folder Include="CommonImage\Resume\" />
     <Folder Include="CommonImage\Technology\" />
   </ItemGroup>
   <ItemGroup>

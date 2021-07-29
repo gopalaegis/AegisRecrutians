@@ -36,5 +36,6 @@ namespace CONSTRUCTION.DataTable
         public Nullable<bool> IsVerified { get; set; }
         public string ShowOnHome { get; set; }
         public string BriefDescription { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
     }
 }

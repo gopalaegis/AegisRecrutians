@@ -28,6 +28,6 @@ namespace CONSTRUCTION.Models
         public int minSalary { get; set; }
         public int maxSalary { get; set; }
         public string description { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
     }
 }

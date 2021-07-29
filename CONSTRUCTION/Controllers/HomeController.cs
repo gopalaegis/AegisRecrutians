@@ -36,16 +36,27 @@ namespace CONSTRUCTION.Controllers
 
         public ActionResult JobDetails()
         {
-            List<JobDetailViewModel> m = _db.tblJobDetails.Select(x => new JobDetailViewModel { Id = x.Id, Title = x.Title, CityId = (int)x.CityId, minExpirience = (int)x.MinExperience, maxExpirience = (int)x.MaxExperience, minSalary = (int)x.MinSalary, maxSalary = (int)x.MaxSalary, description = x.Description }).OrderByDescending(x => x.Id).ToList();
+            List<JobDetailViewModel> model = new List<JobDetailViewModel>();
+            var m = _db.tblJobDetails.OrderByDescending(x => x.Id).ToList();
             foreach (var item in m)
             {
                 var cityData = _db.tblCities.Where(x => x.Id == item.CityId).FirstOrDefault();
-                if (cityData != null)
+                JobDetailViewModel data = new JobDetailViewModel
                 {
-                    item.City = cityData.Name;
-                }
+                    Id = item.Id,
+                    Title = item.Title,
+                    CityId = (int)item.CityId,
+                    minExpirience = (int)item.MinExperience,
+                    maxExpirience = (int)item.MaxExperience,
+                    minSalary = (int)item.MinSalary,
+                    maxSalary = (int)item.MaxSalary,
+                    description = item.Description,
+                    Date = ((DateTime)item.date).ToString("MMM dd, yyyy"),
+                    City = cityData.Name
+                };
+                model.Add(data);
             }
-            return PartialView("_partialJobs", m);
+            return PartialView("_partialJobs", model);
         }
 
         [HttpPost]

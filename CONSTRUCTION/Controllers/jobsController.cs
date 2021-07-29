@@ -23,14 +23,22 @@ namespace CONSTRUCTION.Controllers
         public ActionResult List(int page = 1, string city = "", string title = "")
         {
             JobsViewModel model = new JobsViewModel();
-            List<JobDetailViewModel> m = _db.tblJobDetails.Select(x => new JobDetailViewModel { Id = x.Id, Title = x.Title, CityId = (int)x.CityId, minExpirience = (int)x.MinExperience, maxExpirience = (int)x.MaxExperience }).ToList();
-            foreach (var item in m)
+            List<JobDetailViewModel> m = new List<JobDetailViewModel>();
+            var d = _db.tblJobDetails.ToList();
+            foreach (var item in d)
             {
                 var cityData = _db.tblCities.Where(x => x.Id == item.CityId).FirstOrDefault();
-                if (cityData != null)
+                JobDetailViewModel data = new JobDetailViewModel
                 {
-                    item.City = cityData.Name;
-                }
+                    Id = item.Id,
+                    Title = item.Title,
+                    CityId = (int)item.CityId,
+                    minExpirience = (int)item.MinExperience,
+                    maxExpirience = (int)item.MaxExperience,
+                    Date = ((DateTime)item.date).ToString("MMM dd, yyyy"),
+                    City = cityData.Name
+                };
+                m.Add(data);
             }
             m = m.Where(x => x.City.ToLower().Contains(city.ToLower())&&x.Title.ToLower().Contains(title.ToLower())).ToList();
             model.currentPage = page;
