@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="~/Content/responsive.css">
     <link rel="stylesheet" href="~/Content/navigation.css">
     <link rel="stylesheet" href="~/Content/developer.css">
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/Validation.js"></script>
+    @RenderSection("scripts", required: false)
 </head>
 <body>
     <!-- Go to top -->
@@ -83,7 +87,7 @@
                 <div class="menu-collapse">
                     <div class="container">
                         <div class="aegis-navigation">
-                            <a class="navbar-brand" href="index.html">
+                            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
                                 <img src="~/images/logo.png" class="lazyload" alt="logo" />
                             </a>
                             <a class="menuswitch" href="javascript:;">
@@ -92,7 +96,7 @@
                                 <span class="menuline bar3"></span>
                             </a>
                             <ul class="navigation-menu menu">
-                                <li><a href="about.html" title="Home">About us</a></li>
+                                <li><a href="@Url.Action("About", "Home")" title="Home">About us</a></li>
                                 <li><a href="professionals.html">Professionals</a></li>
                                 <li><a href="students-graduates.html">Students and Graduates</a></li>
                                 <li><a href="articles">Blog</a></li>
@@ -124,9 +128,9 @@
                                 <a href="javascript:;" target="_blank"><i class="fa fa-twitter"></i></a>
                             </div>
                             <ul>
-                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="@Url.Action("About", "Home")">About Us</a></li>
                                 <li><a href="career.html">Career</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="@Url.Action("Contact", "Home")">Contact Us</a></li>
                                 <li><a href="articles/index.html">Articles</a></li>
                             </ul>
                         </div>
@@ -139,10 +143,22 @@
 
     @Scripts.Render("~/bundles/jquery")
     @*@Scripts.Render("~/bundles/bootstrap")*@
-    
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
     <script src="~/Scripts/lib.js"></script>
     <script src="~/Scripts/functions.js"></script>
-    @RenderSection("scripts", required: false)
+    <script>
+        $(".form-control").change(function () {
+            var value = $(this).val();
+            if (value != "" && value != null) {
+                $(this).parent().find(".errorMessage").hide();
+            }
+        })
+        $(".form-control").keyup(function () {
+            var value = $(this).val();
+            if (value != "" && value != null) {
+                $(this).parent().find(".errorMessage").hide();
+            }
+        })
+    </script>
 </body>
 </html>

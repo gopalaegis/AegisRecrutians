@@ -25,7 +25,7 @@
                                 <input type="text" class="form-control location autocomplete" placeholder="Location" />
                             </div>
                             <div class="form-group col-1">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                <button type="button" id="searchLocation" class="btn btn-primary"><i class="fa fa-search"></i></button>
                             </div>
                         </form>
                     </div>
@@ -277,82 +277,7 @@
             </div>
         </div>
         <div class="row mt-2">
-            <div class="col-6 col-sm-12">
-                <div class="job-type" data-aos="zoom-in" data-aos-duration="1000">
-                    <div class="left-detail">
-                        <h3>DevOps Developers</h3>
-                        <div class="work-experience">
-                            <p><i class="fa fa-clock-o"></i> Posted on 29th Oct. 2020</p>
-                            <p><i class="fa fa-suitcase"></i> 2 - 3 Year experince  |  Full Time</p>
-                        </div>
-                        <p>We are looking for a DevOps developers for Paris, France.</p>
-                    </div>
-                    <div class="right-apply">
-                        <div class="salary">
-                            <p>Salary</p>
-                            <p>&#8377; 10k - 30k p/m</p>
-                        </div>
-                        <a href="javascript:;">Apply Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-sm-12">
-                <div class="job-type" data-aos="zoom-in" data-aos-duration="1000">
-                    <div class="left-detail">
-                        <h3>Min Stack Programmers </h3>
-                        <div class="work-experience">
-                            <p><i class="fa fa-clock-o"></i> Posted on 29th Oct. 2020</p>
-                            <p><i class="fa fa-suitcase"></i> 2 - 3 Year experince  |  Full Time</p>
-                        </div>
-                        <p>We are looking for a Min Stack Programmers for Bangalore, Karnataka, India.</p>
-                    </div>
-                    <div class="right-apply">
-                        <div class="salary">
-                            <p>Salary</p>
-                            <p>&#8377; 10k - 30k p/m</p>
-                        </div>
-                        <a href="javascript:;">Apply Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-sm-12">
-                <div class="job-type" data-aos="zoom-in" data-aos-duration="1000">
-                    <div class="left-detail">
-                        <h3>Data Warehouse Architecture</h3>
-                        <div class="work-experience">
-                            <p><i class="fa fa-clock-o"></i> Posted on 29th Oct. 2020</p>
-                            <p><i class="fa fa-suitcase"></i> 2 - 3 Year experince  |  Full Time</p>
-                        </div>
-                        <p>We are looking for a Data Warehouse Architecture for Armonk, New York, United States.</p>
-                    </div>
-                    <div class="right-apply">
-                        <div class="salary">
-                            <p>Salary</p>
-                            <p>&#8377; 10k - 30k p/m</p>
-                        </div>
-                        <a href="javascript:;">Apply Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-sm-12">
-                <div class="job-type" data-aos="zoom-in" data-aos-duration="1000">
-                    <div class="left-detail">
-                        <h3>Blockchain Developers</h3>
-                        <div class="work-experience">
-                            <p><i class="fa fa-clock-o"></i> Posted on 29th Oct. 2020</p>
-                            <p><i class="fa fa-suitcase"></i> 2 - 3 Year experince  |  Full Time</p>
-                        </div>
-                        <p>We are looking for a medical representative for Teaneck, New Jersey, United States.</p>
-                    </div>
-                    <div class="right-apply">
-                        <div class="salary">
-                            <p>Salary</p>
-                            <p>&#8377; 10k - 30k p/m</p>
-                        </div>
-                        <a href="javascript:;">Apply Now</a>
-                    </div>
-                </div>
-            </div>
+            @Html.Action("JobDetails", "Home")
         </div>
     </div>
 </section>
@@ -388,22 +313,27 @@
                         </div>
                     </div>
                     <div class="col-6 col-sm-12">
-                        <div class="form-fill">
+                        <div class="form-fill" id="ContectUsDiv">
                             <form>
-                                <div class="form-group">
-                                    <input type="text" class="form-control name" placeholder="Name">
+                                <div class="form-group" style="margin-bottom:24px;">
+                                    <input type="text" class="form-control name" placeholder="Name" id="name" style="margin-bottom:0px;">
+                                    <label id="label_error_name" class="errorMessage" style="display:none;">Name is required</label>
+                                </div>
+                                <div class="form-group" style="margin-bottom:24px;">
+                                    <input type="email" class="form-control email" placeholder="Email Id" id="email" style="margin-bottom:0px;">
+                                    <label id="label_error_Email" class="errorMessage" style="display:none;">Email Id is required</label>
+                                    <label id="label_error_EmailFormat" class="errorMessage" style="display:none;">Email Id is not Valid</label>
+                                </div>
+                                <div class="form-group" style="margin-bottom:24px;">
+                                    <input type="text" class="form-control phone" placeholder="Phone Number" id="mobile" style="margin-bottom:0px;">
+                                    <label id="label_error_PN" class="errorMessage" style="display:none;">Phone Number is required</label>
+                                    <label id="label_error_PNFormat" class="errorMessage" style="display:none;">Phone Number is not Valid</label>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control email" placeholder="Email Id">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control phone" placeholder="Phone Number">
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-control project" placeholder="Describe your project" rows="3"></textarea>
+                                    <textarea class="form-control project" placeholder="Describe your project" rows="3" id="description"></textarea>
                                 </div>
                                 <div class="read-btn">
-                                    <a href="javascript:;" class="send-msg">Submit</a>
+                                    <a id="submitData" class="send-msg">Submit</a>
                                 </div>
                             </form>
                         </div>
@@ -413,3 +343,63 @@
         </div>
     </div>
 </section><!-- #  -->
+<script>
+    $("#searchLocation").click(function () {
+        var jobSearch = $(".job-search").val();
+        var city = $(".location").val();
+        window.location.href = '@Url.Action("Index", "jobs")?city=' + city + '&title=' + jobSearch;
+    })
+
+    $("#ContectUsDiv").on("click", "#submitData", function () {
+        var name = $("#ContectUsDiv").find("#name").val();
+        var email = $("#ContectUsDiv").find("#email").val();
+        var mobile = $("#ContectUsDiv").find("#mobile").val();
+        var description = $("#ContectUsDiv").find("#description").val();
+
+        var IsError = false;
+
+        if (name == null || name == "") {
+            IsError = true;
+            $("#ContectUsDiv").find("#label_error_name").show();
+        }
+
+        if (email == null || email == "") {
+            IsError = true;
+            $("#ContectUsDiv").find("#label_error_Email").show();
+        } else if (!EmailValidation(email)) {
+            IsError = true;
+            $("#ContectUsDiv").find("#label_error_EmailFormat").show();
+        }
+
+        if (mobile == null || mobile == "") {
+            IsError = true;
+            $("#ContectUsDiv").find("#label_error_PN").show();
+        } else if (!PhoneNumberValidation(mobile)) {
+            IsError = true;
+            $("#ContectUsDiv").find("#label_error_PNFormat").show();
+        }
+
+        if (IsError == true) {
+            return false;
+        } else {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SaveContectData", "Home")',
+                data: {
+                    Name: name,
+                    Email: email,
+                    Mobile: mobile,
+                    Description: description
+                },
+                success: function (result) {
+                    if (result == "Success") {
+                        $("#ContectUsDiv").find("#name").val("");
+                        $("#ContectUsDiv").find("#email").val("");
+                        $("#ContectUsDiv").find("#mobile").val("");
+                        $("#ContectUsDiv").find("#description").val("");
+                    }
+                }
+            });
+        }
+    });
+</script>

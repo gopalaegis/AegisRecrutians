@@ -1,0 +1,268 @@
+﻿@model CONSTRUCTION.Areas.Admin.Model.LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = null;
+}
+<html>
+<head>
+    <link href="~/adminAssets/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/adminAssets/js/jquery.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <input type="text" class="form-control" id="userName" placeholder="User Name" value="@Model.UserName" />
+        <label class="errorMessage" id="usernameerror" style="display:none;">User Name is Required!</label><br />
+    </div>
+    <div>
+        <input type="password" class="form-control" id="password" placeholder="Password" value="@Model.Password" />
+        <label class="errorMessage" id="passworderror" style="display:none;">Password is Required!</label><br />
+    </div>
+    <button id="submit">Login</button>
+    <label class="errorMessage" id="errorMsg" style="display:none;">Please Enter Valid User Name and Password!</label>
+    <label id="successMsg" style="display:none;">Login Successfully.</label>
+    <script>
+        $("#submit").click(function () {
+            var userName = $("#userName").val();
+            var password = $("#password").val();
+            IsError = false;
+            if (userName == null || userName == "") {
+                IsError = true;
+                $("#usernameerror").show();
+            }
+            if (password == null || password == "") {
+                IsError = true;
+                $("#passworderror").show();
+            }
+            if (IsError == true) {
+                return false;
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Index", "Login")',
+                    data: {
+                        UserName: userName,
+                        Password: password
+                    },
+                    success: function (result) {
+                        if (result == "Error") {
+                            $("#errorMsg").show();
+                        } else {
+                            $("#successMsg").show();
+                            window.location.href = '@Url.Action("Index", "SkillMaster")';
+                        }
+                    }
+                });
+            }
+        });
+
+        $(".form-control").change(function () {
+            var value = $(this).val();
+            if (value != "" && value != null) {
+                $(this).parent().find(".errorMessage").hide();
+            }
+        })
+        $(".form-control").keyup(function () {
+            var value = $(this).val();
+            if (value != "" && value != null) {
+                $(this).parent().find(".errorMessage").hide();
+            }
+        })
+    </script>
+</body>
+</html>
+@*<link rel="stylesheet" href="~/Template/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Template/css/fonts.googleapis.com.css" />
+    <link rel="stylesheet" href="~/Template/css/ace.min.css" />
+    <link rel="stylesheet" href="~/Template/css/ace-rtl.min.css" />
+    <link href="~/Zebra_Dialog/css/flat/zebra_dialog.css" rel="stylesheet" />*@
+@*<style>
+        .validation-summary-errors {
+            color: red !important;
+        }
+
+        .companyName {
+            color: white;
+            font-weight: bold;
+        }
+
+        #login-box {
+            top: 60px;
+        }
+
+        .chkcontainer {
+            display: block;
+            position: relative;
+            padding-left: 34px;
+            margin-bottom: 27px;
+            margin-top: 0px;
+            cursor: pointer;
+            font-size: 13px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+            /* Hide the browser's default checkbox */
+            .chkcontainer input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #ccc;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .chkcontainer:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .chkcontainer input:checked ~ .checkmark {
+            background-color: #993031;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .chkcontainer input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .chkcontainer .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        .field-validation-error {
+            color: red !important;
+        }
+    </style>*@
+
+<!--<div class="login-layout blur-login">
+    <div class="main-container">
+        <div class="main-content">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <div class="login-container">
+
+
+                        <div class="center">
+                            <h1 style="display:none;">
+                                <i class="ace-icon fa fa-leaf green"></i>
+                                <span class="red">Ace</span>
+                                <span class="white" id="id-text2">Application</span>
+                            </h1>-->
+@*<h4 class="blue" id="id-company-text">&copy; </h4>*@
+<!--</div>
+
+<div class="space-6"></div>
+
+<div class="position-relative">
+
+    <div id="login-box" class="login-box visible widget-box no-border">
+
+        <div class="widget-body">
+            <div class="widget-main">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h4 class="header blue lighter bigger" style="text-align: center; font-weight:bold;text-transform: uppercase;">
+                            Aegis
+                        </h4>
+                        <div class="space-6"></div>
+
+                        <section id="loginForm">
+                            using (Html.BeginForm("Index", "Login", FormMethod.Post, new { class = "form-horizontal", role = "form" }))
+                            {
+                                Html.AntiForgeryToken()
+
+                                Html.ValidationSummary(true)
+
+                                <label class="block clearfix">
+                                    <span class="block input-icon input-icon-right">
+                                        <input name="UserName" type="text" id="txt_username" tabindex="1" class="form-control" placeholder="Username" />
+                                        <i class="ace-icon fa fa-user"></i>
+                                    </span>
+                                </label>
+
+                                <label class="block clearfix">
+                                    <span class="block input-icon input-icon-right">
+                                        <input name="Password" type="Password" id="txt_password" tabindex="2" class="form-control" placeholder="Password" />
+                                        <i class="ace-icon fa fa-lock"></i>
+                                    </span>
+                                </label>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="submit" value="Log in" style="width:100%;" class="btn btn-default" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-6" style="text-align:left;">
+                                        <label class="chkcontainer">-->
+@*Remember me?
+    <input type="checkbox" class="chk_Assign" name="@Model.RememberMe" />
+    <span class="checkmark"></span>*@
+<!--</label>
+                </div>
+                <div class="col-md-6" style="text-align:right;">
+                    <a href="#">
+                        <span id="btnFogotPwd"> Forgot Password?</span>
+                    </a>
+                </div>
+            </div>
+        }
+    </section>
+    <div class="space-6">
+
+
+    </div>
+
+
+</div>-->
+<!-- /.widget-main -->
+<!--</div>--><!-- /.widget-body -->
+<!--</div>--><!-- /.login-box -->
+<!--</div>
+                            </div>
+                            <div class="alert alert-email alert-danger fixedPosition" style="margin-left:-50px;display:none;">
+                                <strong> Invalid Email Address.</strong>
+                            </div>
+                            <div style="text-align:center;">
+                                <a href="http://www.diyantechnologies.com/" target="_blank">
+                                    <img src="~/Images/Diyan-poweredBy.png" style="height: 66px; margin-top: 80px;" />
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Zebra_Dialog/javascript/zebra_dialog.js"></script>
+    <script src="~/Scripts/ValidationJS.js"></script>*@

@@ -132,17 +132,23 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AppliedJobsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ReferController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\JobEducationController.cs" />
     <Compile Include="Areas\Admin\Controllers\JobqualificationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\SkillMasterController.cs" />
     <Compile Include="Areas\Admin\Controllers\JobDetailsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TechnologyMasterController.cs" />
     <Compile Include="Areas\Admin\Model\JobEducationViewModel.cs" />
     <Compile Include="Areas\Admin\Model\JobQualicationViewModel.cs" />
+    <Compile Include="Areas\Admin\Model\LoginViewModel.cs" />
     <Compile Include="Areas\Admin\Model\SkillMasterViewModel.cs" />
     <Compile Include="Areas\Admin\Model\JobDetailsViewModel.cs" />
     <Compile Include="Areas\Admin\Model\TechnologyMasterViewModel.cs" />
+    <Compile Include="CommonMethods\CommonMethod.cs" />
+    <Compile Include="CommonMethods\CryptoMethod.cs" />
     <Compile Include="Controllers\ApplyJobController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\jobsController.cs" />
@@ -162,10 +168,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AEGIS_Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DataTable\tblApplyJobDetail.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\tblApplyJobEducation.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\tblApplyJobExperience.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataTable\tblCategoryMaster.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTable\tblCity.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\tblContectU.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTable\tblCountry.cs">
@@ -183,6 +201,9 @@
     <Compile Include="DataTable\tblProfession.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataTable\tblRefer.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataTable\tblSkillMaster.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
@@ -192,6 +213,9 @@
     <Compile Include="DataTable\tblSubCategoryMaster.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataTable\tblSuperAdmin.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataTable\tblTechnologyMaster.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
@@ -199,6 +223,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\ApplyJobViewModel.cs" />
+    <Compile Include="Models\ReferViewModel.cs" />
+    <Compile Include="Models\JobsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -299,6 +326,12 @@
     <Content Include="Areas\Admin\Views\JobDetails\JobDetail.cshtml" />
     <Content Include="Areas\Admin\Views\JobDetails\_partialAddEditJobDetail.cshtml" />
     <Content Include="Areas\Admin\Views\JobDetails\_partialJobDetailsList.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Refer\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Refer\_partialReferList.cshtml" />
+    <Content Include="Areas\Admin\Views\AppliedJobs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AppliedJobs\_partialAppliedJobList.cshtml" />
+    <Content Include="Areas\Admin\Views\AppliedJobs\_partialAppliedJobDetail.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\functions.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -312,6 +345,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\lib.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Validation.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -329,11 +363,16 @@
     <Content Include="Views\Refer\Index.cshtml" />
     <Content Include="Views\jobs\Index.cshtml" />
     <Content Include="Views\ApplyJob\Index.cshtml" />
+    <Content Include="Views\jobs\_partialJobList.cshtml" />
+    <Content Include="Views\ApplyJob\_partialEducation.cshtml" />
+    <Content Include="Views\ApplyJob\_partialExperience.cshtml" />
+    <Content Include="Views\Home\_partialJobs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="adminAssets\img\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="CommonImage\Resume\" />
     <Folder Include="ckeditor\" />
     <Folder Include="CommonImage\Technology\" />
   </ItemGroup>

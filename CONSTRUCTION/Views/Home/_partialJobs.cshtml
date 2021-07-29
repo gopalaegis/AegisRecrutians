@@ -1,0 +1,26 @@
+﻿@model List<CONSTRUCTION.Models.JobDetailViewModel>
+@{
+    Layout = null;
+}
+@foreach (var item in Model)
+{
+    <div class="col-6 col-sm-12">
+        <div class="job-type" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="left-detail">
+                <h3>@item.Title</h3>
+                <div class="work-experience">
+                    <p><i class="fa fa-clock-o"></i> Posted on @item.Date.ToString("MMM dd,yyyy")</p>
+                    <p><i class="fa fa-suitcase"></i> @item.minExpirience - @item.maxExpirience Year experince  |  Full Time</p>
+                </div>
+                <p>@item.description</p>
+            </div>
+            <div class="right-apply">
+                <div class="salary">
+                    <p>Salary</p>
+                    <p>&#8377; @(item.minSalary)k - @(item.maxSalary)k p/m</p>
+                </div>
+                <a href="@Url.Action("Index","ApplyJob",new { jobId = item.Id })">Apply Now</a>
+            </div>
+        </div>
+    </div>
+}

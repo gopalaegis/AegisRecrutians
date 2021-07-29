@@ -3554,3 +3554,7 @@ button, button:focus {
         padding: 10px;
     }
 }
+
+.errorMessage{
+    color:red;
+}

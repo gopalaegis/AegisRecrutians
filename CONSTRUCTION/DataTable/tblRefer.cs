@@ -12,10 +12,16 @@ namespace CONSTRUCTION.DataTable
     using System;
     using System.Collections.Generic;
     
-    public partial class tblCity
+    public partial class tblRefer
     {
         public int Id { get; set; }
-        public Nullable<int> StateId { get; set; }
-        public string Name { get; set; }
+        public string FullName { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string FriendFullName { get; set; }
+        public string FriendEmail { get; set; }
+        public string FriendPhoneNo { get; set; }
+        public string Description { get; set; }
+        public Nullable<int> JobId { get; set; }
     }
 }

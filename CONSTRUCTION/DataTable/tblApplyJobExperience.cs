@@ -12,10 +12,15 @@ namespace CONSTRUCTION.DataTable
     using System;
     using System.Collections.Generic;
     
-    public partial class tblCity
+    public partial class tblApplyJobExperience
     {
         public int Id { get; set; }
+        public Nullable<int> ApplyJobDetailId { get; set; }
+        public string Employer { get; set; }
+        public string JobTitle { get; set; }
+        public Nullable<int> ActiveYear { get; set; }
+        public string City { get; set; }
         public Nullable<int> StateId { get; set; }
-        public string Name { get; set; }
+        public Nullable<int> CountryId { get; set; }
     }
 }
