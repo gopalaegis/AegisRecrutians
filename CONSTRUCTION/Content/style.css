@@ -1008,6 +1008,24 @@ textarea.form-control {height: 100%;font-family: inherit;}
 .foot-social a { margin-right: 10px; background: #fff; color: #333; font-size: 24px; height: 42px; width: 42px; border-radius: 50%; padding-top: 7px; }
 .foot-social a:hover {background: #0aafce;color: #fff;}
 
-.errorMessage {
+
+.wrap-input100 .errorMessage {
+    margin-left: 65px;
     color: red;
+}
+
+.ac-login {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.ac-login .errorMessage {
+    color: red;
+}
+.ac-login .successMsg {
+    color: green;
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color:transparent!important;
 }

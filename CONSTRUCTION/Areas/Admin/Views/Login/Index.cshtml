@@ -5,12 +5,75 @@
 }
 <html>
 <head>
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/Template/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Template/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Template/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Template/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Template/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Template/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Template/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Template/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Template/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Template/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Template/css/main.css">
+    <!--===============================================================================================-->
+
+
+    <link href="~/Content/style.css" rel="stylesheet" />
     <link href="~/adminAssets/css/bootstrap.min.css" rel="stylesheet" />
     <script src="~/adminAssets/js/jquery.min.js"></script>
 </head>
 
 <body>
-    <div>
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('Template/images/bg-01.jpg');">
+            <div class="wrap-login100 p-t-30 p-b-50">
+                <span class="login100-form-title p-b-41">
+                    Account Login
+                </span>
+                <div class="login100-form validate-form p-b-33 p-t-5">
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter username">
+                        <input class="input100" type="text" name="username" placeholder="User name" id="userName" value="@Model.UserName">
+                        <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+                        <label class="errorMessage" id="usernameerror" style="display:none;">User Name is Required!</label><br />
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <input class="input100" type="password" name="pass" placeholder="Password" id="password" value="@Model.Password">
+                        <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+                        <label class="errorMessage" id="passworderror" style="display:none;">Password is Required!</label><br />
+                    </div>
+
+                    <div class="container-login100-form-btn m-t-32">
+                        <button class="login100-form-btn" id="submit">
+                            Login
+                        </button>
+                        <div class="ac-login">
+                            <label class="errorMessage" id="errorMsg" style="display:none;">Please Enter Valid User Name and Password!</label>
+                            <label class="successMsg" id="successMsg" style="display:none;">Login Successfully.</label>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dropDownSelect1"></div>
+
+    @*<div>
         <input type="text" class="form-control" id="userName" placeholder="User Name" value="@Model.UserName" />
         <label class="errorMessage" id="usernameerror" style="display:none;">User Name is Required!</label><br />
     </div>
@@ -20,7 +83,7 @@
     </div>
     <button id="submit">Login</button>
     <label class="errorMessage" id="errorMsg" style="display:none;">Please Enter Valid User Name and Password!</label>
-    <label id="successMsg" style="display:none;">Login Successfully.</label>
+    <label id="successMsg" style="display:none;">Login Successfully.</label>*@
     <script>
         $("#submit").click(function () {
             var userName = $("#userName").val();
@@ -69,6 +132,24 @@
             }
         })
     </script>
+
+    <!--===============================================================================================-->
+    <script src="~/Template/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Template/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Template/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Template/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Template/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Template/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/Template/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Template/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Template/js/main.js"></script>
+
 </body>
 </html>
 @*<link rel="stylesheet" href="~/Template/font-awesome/4.5.0/css/font-awesome.min.css" />
