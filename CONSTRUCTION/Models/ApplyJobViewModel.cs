@@ -52,6 +52,7 @@ namespace CONSTRUCTION.Models
         public string Resume { get; set; }
         public int JobId { get; set; }
         public string Job { get; set; }
+        public string URL { get; set; }
         public List<SelectListItem> drpDegree { get; set; }
         public List<SelectListItem> drpCountry { get; set; }
         public List<SelectListItem> drpState { get; set; }

@@ -18,8 +18,14 @@ namespace CONSTRUCTION.Controllers
         // GET: ApplyJob
         public ActionResult Index(int jobId)
         {
+            var job = _db.tblJobDetails.Where(x => x.Id == jobId).FirstOrDefault();
             ApplyJobViewModel model = new ApplyJobViewModel();
+            model.URL = Request.UrlReferrer.AbsoluteUri;
             model.JobId = jobId;
+            if (job != null)
+            {
+                model.Job = job.Title;
+            }
             model.drpCountry = _commonMethod.GetCountry();
             return View(model);
         }

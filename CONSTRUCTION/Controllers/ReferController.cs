@@ -13,8 +13,11 @@ namespace CONSTRUCTION.Controllers
         AEGIS_Entities _db = new AEGIS_Entities();
         public ActionResult Index(int jobId)
         {
+            var job = _db.tblJobDetails.Where(x => x.Id == jobId).FirstOrDefault();
             ReferViewModel model = new ReferViewModel();
             model.jobId = jobId;
+            model.Job = job.Title;
+            model.URL = Request.UrlReferrer.AbsoluteUri;
             return View(model);
         }
 

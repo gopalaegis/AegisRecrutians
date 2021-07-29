@@ -9,24 +9,7 @@
             <div class="total-job">
                 <p>@Model.fromtojob  @*1 - 5 of 20 Jobs In Rajkot*@</p>
             </div>
-            <div class="right-sorting">
-                <div class="job-sorting">
-                    <nav class="search_sorting">
-                        <a class="dropdown-toggle" href="JavaScript:;" data-toggle="dropdown"> Sort by: Recommended <i class="fa fa-angle-down"></i></a>
-                        <ul class="dropdown" style="display: none;">
-                            <li class="sorting_option">
-                                <a class="search_sorting" data-meta-key="eagle_booking_mtb_room_price_min" data-order="ASC">Sort by: Lowest Price</a>
-                            </li>
-                            <li class="sorting_option">
-                                <a class="search_sorting" data-meta-key="eagle_booking_mtb_room_price_min" data-order="DESC">Sort by: Highest Price</a>
-                            </li>
-                            <li class="sorting_option">
-                                <a class="search_sorting" data-meta-key="" data-order="">Sort by: Default</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+
         </div>
         <div class="job-details">
             @foreach (var item in Model.jobDetailViewModels)
@@ -45,7 +28,7 @@
                         <p>25/06/2021</p>
                     </div>
                     <div class="action col-2">
-                        <a href="@Url.Action("Index","Refer",new { jobId = item.Id })">Refer a friend</a>
+                        <a href="@Url.Action("Index","Refer",new { jobId = item.Id, Area = "" })">Refer a friend</a>
                         <a href="@Url.Action("Index","ApplyJob",new { jobId = item.Id })">Apply Now</a>
                     </div>
                 </div>
@@ -69,7 +52,7 @@
                     {
                         if (i == Model.currentPage)
                         {
-                            <li class="page-item"><a class="page-link" href="#" data-page="@i" style="background-color:blue;">@i</a></li>
+                            <li class="page-item"><a class="page-link" href="#" data-page="@i" style="background-color:#0aafce;color:black;">@i</a></li>
                         }
                         else
                         {

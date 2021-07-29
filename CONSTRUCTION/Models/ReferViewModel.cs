@@ -17,5 +17,6 @@ namespace CONSTRUCTION.Models
         public string Description { get; set; }
         public int jobId { get; set; }
         public string Job { get; set; }
+        public string URL { get; set; }
     }
 }

@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace CONSTRUCTION.Areas.Admin.Controllers
 {
-    public class ReferController : Controller
+    public class ReferDetailsController : Controller
     {
         AEGIS_Entities _db = new AEGIS_Entities();
         public ActionResult Index()

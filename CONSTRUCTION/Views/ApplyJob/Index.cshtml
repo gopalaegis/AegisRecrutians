@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-header text-center">
-                    <h1>Min Stack and Unified Governance</h1>
+                    <h1>@Model.Job</h1>
                 </div>
             </div>
         </div>
@@ -22,12 +22,15 @@
         <div class="row top-bar">
             <div class="col-6 col-sm-12">
                 <div class="left-side">
-                    <p>Apply for “Min Stack and Unified Governance”</p>
+                    @if (Model.Job != null && Model.Job != "")
+                    {
+                        <p>Apply for “@Model.Job”</p>
+                    }
                 </div>
             </div>
             <div class="col-6 col-sm-12">
                 <div class="back-link">
-                    <p><a href="result.html"><i class="fa fa-angle-left"></i>   Back to Results</a></p>
+                    <p><a href="@Model.URL"><i class="fa fa-angle-left"></i>   Back to Results</a></p>
                 </div>
             </div>
         </div>
