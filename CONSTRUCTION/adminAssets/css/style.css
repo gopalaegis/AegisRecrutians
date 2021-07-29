@@ -2606,7 +2606,7 @@ button, button:focus {
         right: 15px;
         top: 12px;
         font-size: 14px;
-        content: '\f105';
+        /*content: '\f105';*/
         color: #5C2F91;
         float: right;
         margin-left: 5px;
