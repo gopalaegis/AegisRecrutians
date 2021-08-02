@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Applied Jobs";
+}
+<div id="applicantDetails" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg  mx-hight">
+        <!-- Modal content-->
+        <div class="modal-content height-calc-100vh-130px">
+            <div class="modal-header">
+                <h4 class="modal-title"> Applicant Details</h4>
+            </div>
+            <div class="modal-body app-body">
+
+            </div>
+            <div class="modal-footer">
+                @*<button type="button" class="btn btn-primary btn_save">Save</button>*@
+                <button type="button" class="btn btn-default btn_Close" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="right-side">
+    <div class="heading">Applied Jobs</div>
+
+    <div class="data-table style-1">
+        <div class="box-table">
+            <div class="skill-table">
+                <div id="tableDiv">
+                    @Html.Action("AppliedJobList", "AppliedJobs")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        dataTableAppliedJob();
+    });
+
+    function dataTableAppliedJob() {
+        $('#tableDiv').find('#tblAppliedJob').DataTable({
+            language: {
+                searchPlaceholder: "Search",
+                search: "<button class='btn search-btn2' type='button'><i class='fa fa-search' ></i></button >",
+                "paginate": {
+                    "previous": "<i class='fa fa-angle-left' aria-hidden='true'></i>",
+                    "next": "<i class='fa fa-angle-right' aria-hidden='true'></i>"
+                }
+            },
+            columnDefs: [
+                {
+                    orderable: false, targets: -1
+                }
+            ]
+        });
+    }
+
+    $("#tableDiv").on("click", ".detailRow", function () {
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url: '@Url.Action("AddEditAppliedJob", "AppliedJobs")',
+            data: {
+                Id:id
+            },
+            success: function (data) {
+                $("#applicantDetails").find(".modal-body").html("");
+                $("#applicantDetails").find(".modal-body").html(data);
+                $("#applicantDetails").find(".modal-body").find('input[type="text"]').attr("disabled", "disabled");
+            }
+        });
+    });
+
+</script>

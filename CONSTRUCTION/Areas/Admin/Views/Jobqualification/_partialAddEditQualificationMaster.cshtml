@@ -1,0 +1,25 @@
+﻿@model CONSTRUCTION.Areas.Admin.Model.JobQualicationViewModel
+
+<input type="hidden" id="txt_Id" value="@Model.Id" />
+<div class="row formGroup">
+    <div class="col-sm-6">
+        <label>Qualification :<span style="color:red">*</span></label>
+        <select class="form-control requiredField inputstyle errBox" id="Drop_Qualification" name="JobQualificationId" title="Qualification">
+            @if (Model.Qualification != null)
+            {
+                <option value="@Model.Qualification">@Model.Qualification</option>
+                <option value="Phd">Phd</option>
+                <option value="Masters">Masters</option>
+                <option value="B.com.">B.com.</option>
+            }
+            else
+            {
+                <option value="">-- SELECT --</option>
+                <option value="Phd">Phd</option>
+                <option value="Masters">Masters</option>
+                <option value="B.com.">B.com.</option>
+            }
+        </select>
+        <label id="label_error_qualification" class="errorMessage" style="display:none;">Qualification is required</label>
+    </div>
+</div>

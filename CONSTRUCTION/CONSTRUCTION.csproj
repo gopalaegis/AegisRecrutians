@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CKEditor.NET, Version=3.6.6.2, Culture=neutral, PublicKeyToken=e379cdf2f8354999, processorArchitecture=MSIL">
+      <HintPath>..\packages\CKEditor.net.1.0.0\lib\CKEditor.NET.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -129,13 +132,23 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AppliedJobsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ReferDetailsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\JobEducationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\JobqualificationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\SkillMasterController.cs" />
     <Compile Include="Areas\Admin\Controllers\JobDetailsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TechnologyMasterController.cs" />
+    <Compile Include="Areas\Admin\Model\JobEducationViewModel.cs" />
+    <Compile Include="Areas\Admin\Model\JobQualicationViewModel.cs" />
+    <Compile Include="Areas\Admin\Model\LoginViewModel.cs" />
     <Compile Include="Areas\Admin\Model\SkillMasterViewModel.cs" />
     <Compile Include="Areas\Admin\Model\JobDetailsViewModel.cs" />
     <Compile Include="Areas\Admin\Model\TechnologyMasterViewModel.cs" />
+    <Compile Include="CommonMethods\CommonMethod.cs" />
+    <Compile Include="CommonMethods\CryptoMethod.cs" />
     <Compile Include="Controllers\ApplyJobController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\jobsController.cs" />
@@ -155,16 +168,40 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AEGIS_Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DataTable\tblApplyJobDetail.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\tblApplyJobEducation.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\tblApplyJobExperience.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataTable\tblCategoryMaster.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTable\tblCity.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataTable\tblContectU.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataTable\tblCountry.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTable\tblJobDetail.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\tblJobEducation.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\tblJobQualification.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\tblProfession.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\tblRefer.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTable\tblSkillMaster.cs">
@@ -176,6 +213,9 @@
     <Compile Include="DataTable\tblSubCategoryMaster.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataTable\tblSuperAdmin.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataTable\tblTechnologyMaster.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
@@ -183,6 +223,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\ApplyJobViewModel.cs" />
+    <Compile Include="Models\ReferViewModel.cs" />
+    <Compile Include="Models\JobsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -274,7 +317,24 @@
     <Content Include="Areas\Admin\Views\SkillMaster\_partialAddSkillMaster.cshtml" />
     <Content Include="Areas\Admin\Views\SkillMaster\_partialSkillMasterList.cshtml" />
     <Content Include="Areas\Admin\Views\SkillMaster\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\JobEducation\JobEducation.cshtml" />
+    <Content Include="Areas\Admin\Views\JobEducation\_partialJobEducationMasterList.cshtml" />
+    <Content Include="Areas\Admin\Views\JobEducation\_partialAddEducationMaster.cshtml" />
+    <Content Include="Areas\Admin\Views\Jobqualification\JobQualification.cshtml" />
+    <Content Include="Areas\Admin\Views\Jobqualification\_partialAddEditQualificationMaster.cshtml" />
+    <Content Include="Areas\Admin\Views\Jobqualification\_partialJobQualificationMasterList.cshtml" />
+    <Content Include="Areas\Admin\Views\JobDetails\JobDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\JobDetails\_partialAddEditJobDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\JobDetails\_partialJobDetailsList.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ReferDetails\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ReferDetails\_partialReferList.cshtml" />
+    <Content Include="Areas\Admin\Views\AppliedJobs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AppliedJobs\_partialAppliedJobList.cshtml" />
+    <Content Include="Areas\Admin\Views\AppliedJobs\_partialAppliedJobDetail.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\custom.js" />
+    <Content Include="Scripts\custom.min.js" />
     <Content Include="Scripts\functions.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -287,6 +347,52 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\lib.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Validation.js" />
+    <Content Include="Template\css\main.css" />
+    <Content Include="Template\css\util.css" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Template\fonts\iconic\css\material-design-iconic-font.css" />
+    <Content Include="Template\fonts\iconic\css\material-design-iconic-font.min.css" />
+    <Content Include="Template\fonts\iconic\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Template\fonts\Linearicons-Free-v1.0.0\icon-font.min.css" />
+    <Content Include="Template\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.svg" />
+    <Content Include="Template\fonts\ubuntu\UFL.txt" />
+    <Content Include="Template\images\bg-01.jpg" />
+    <Content Include="Template\images\icons\favicon.ico" />
+    <Content Include="Template\js\main.js" />
+    <Content Include="Template\vendor\animate\animate.css" />
+    <Content Include="Template\vendor\animsition\css\animsition.css" />
+    <Content Include="Template\vendor\animsition\css\animsition.min.css" />
+    <Content Include="Template\vendor\animsition\js\animsition.js" />
+    <Content Include="Template\vendor\animsition\js\animsition.min.js" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Template\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Template\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Template\vendor\bootstrap\js\popper.js" />
+    <Content Include="Template\vendor\bootstrap\js\popper.min.js" />
+    <Content Include="Template\vendor\bootstrap\js\tooltip.js" />
+    <Content Include="Template\vendor\countdowntime\countdowntime.js" />
+    <Content Include="Template\vendor\css-hamburgers\hamburgers.css" />
+    <Content Include="Template\vendor\css-hamburgers\hamburgers.min.css" />
+    <Content Include="Template\vendor\daterangepicker\daterangepicker.css" />
+    <Content Include="Template\vendor\daterangepicker\daterangepicker.js" />
+    <Content Include="Template\vendor\daterangepicker\moment.js" />
+    <Content Include="Template\vendor\daterangepicker\moment.min.js" />
+    <Content Include="Template\vendor\jquery\jquery-3.2.1.min.js" />
+    <Content Include="Template\vendor\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="Template\vendor\perfect-scrollbar\perfect-scrollbar.min.js" />
+    <Content Include="Template\vendor\select2\select2.css" />
+    <Content Include="Template\vendor\select2\select2.js" />
+    <Content Include="Template\vendor\select2\select2.min.css" />
+    <Content Include="Template\vendor\select2\select2.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -304,11 +410,90 @@
     <Content Include="Views\Refer\Index.cshtml" />
     <Content Include="Views\jobs\Index.cshtml" />
     <Content Include="Views\ApplyJob\Index.cshtml" />
+    <Content Include="Views\jobs\_partialJobList.cshtml" />
+    <Content Include="Views\ApplyJob\_partialEducation.cshtml" />
+    <Content Include="Views\ApplyJob\_partialExperience.cshtml" />
+    <Content Include="Views\Home\_partialJobs.cshtml" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\less\core.less" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\less\list.less" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\less\path.less" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="Template\fonts\font-awesome-4.7.0\scss\_variables.scss" />
+    <Content Include="Template\fonts\iconic\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Template\fonts\iconic\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Template\fonts\iconic\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Template\fonts\iconic\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="Template\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.eot" />
+    <Content Include="Template\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.ttf" />
+    <Content Include="Template\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff" />
+    <Content Include="Template\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff2" />
+    <Content Include="Template\fonts\poppins\Poppins-Black.ttf" />
+    <Content Include="Template\fonts\poppins\Poppins-BlackItalic.ttf" />
+    <Content Include="Template\fonts\poppins\Poppins-Bold.ttf" />
+    <Content Include="Template\fonts\poppins\Poppins-BoldItalic.ttf" />
+    <Content Include="Template\fonts\poppins\Poppins-ExtraBold.ttf" />
+    <Content Include="Template\fonts\poppins\Poppins-ExtraBoldItalic.ttf" />
+    <Content Include="Template\fonts\poppins\Poppins-ExtraLight.ttf" />
+    <Content Include="Template\fonts\poppins\Poppins-ExtraLightItalic.ttf" />
+    <Content Include="Template\fonts\poppins\Poppins-Italic.ttf" />
+    <Content Include="Template\fonts\poppins\Poppins-Light.ttf" />
+    <Content Include="Template\fonts\poppins\Poppins-LightItalic.ttf" />
+    <Content Include="Template\fonts\poppins\Poppins-Medium.ttf" />
+    <Content Include="Template\fonts\poppins\Poppins-MediumItalic.ttf" />
+    <Content Include="Template\fonts\poppins\Poppins-Regular.ttf" />
+    <Content Include="Template\fonts\poppins\Poppins-SemiBold.ttf" />
+    <Content Include="Template\fonts\poppins\Poppins-SemiBoldItalic.ttf" />
+    <Content Include="Template\fonts\poppins\Poppins-Thin.ttf" />
+    <Content Include="Template\fonts\poppins\Poppins-ThinItalic.ttf" />
+    <Content Include="Template\fonts\ubuntu\Ubuntu-Bold.ttf" />
+    <Content Include="Template\fonts\ubuntu\Ubuntu-BoldItalic.ttf" />
+    <Content Include="Template\fonts\ubuntu\Ubuntu-Italic.ttf" />
+    <Content Include="Template\fonts\ubuntu\Ubuntu-Light.ttf" />
+    <Content Include="Template\fonts\ubuntu\Ubuntu-LightItalic.ttf" />
+    <Content Include="Template\fonts\ubuntu\Ubuntu-Medium.ttf" />
+    <Content Include="Template\fonts\ubuntu\Ubuntu-MediumItalic.ttf" />
+    <Content Include="Template\fonts\ubuntu\Ubuntu-Regular.ttf" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap.min.css.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="adminAssets\img\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="ckeditor\" />
+    <Folder Include="CommonImage\Resume\" />
     <Folder Include="CommonImage\Technology\" />
   </ItemGroup>
   <ItemGroup>

@@ -12,6 +12,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StateId" Type="int" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="tblCountry">
@@ -44,6 +45,30 @@
     <Property Name="MaxSalary" Type="int" />
     <Property Name="JobEducation" Type="nvarchar(max)" />
     <Property Name="JobQualification" Type="nvarchar(max)" />
+    <Property Name="IsVerified" Type="bit" />
+    <Property Name="ShowOnHome" Type="nvarchar" MaxLength="50" />
+    <Property Name="BriefDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblJobEducation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Education" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblJobQualification">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblProfession">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Profession" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="tblSkillMaster">
     <Key>
@@ -57,6 +82,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryId" Type="int" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="tblSubCategoryMaster">
@@ -80,6 +106,9 @@
     <EntitySet Name="tblCity" EntityType="Self.tblCity" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblCountry" EntityType="Self.tblCountry" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblJobDetails" EntityType="Self.tblJobDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblJobEducation" EntityType="Self.tblJobEducation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblJobQualification" EntityType="Self.tblJobQualification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProfession" EntityType="Self.tblProfession" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblSkillMaster" EntityType="Self.tblSkillMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblState" EntityType="Self.tblState" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblSubCategoryMaster" EntityType="Self.tblSubCategoryMaster" Schema="dbo" store:Type="Tables" />

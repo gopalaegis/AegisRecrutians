@@ -32,7 +32,7 @@
     <div class="nav-section1">
         <div class="">
             <div class="dash-nav">
-                <div><a class="navbar-brand" href="index.html"><div class="nav-flex">@*<img src="images/logo-icon-w.png" class="pr-3 img-fluid" alt="image">*@ Health Recrutians</div></a></div>
+                <div><a class="navbar-brand" href="index.html"><div class="nav-flex">@*<img src="images/logo-icon-w.png" class="pr-3 img-fluid" alt="image">*@ Aegis Recrutians</div></a></div>
                 <div class="dropdown">
                     <button class="nav-prof-btn1" type="button" id="dropdownMenuButton" data-toggle="dropdown">
                         @*<img src="images/user-pro.jpg" class="prof-img img-fluid" alt="image">*@ Admin <i class="fa fa-angle-down" aria-hidden="true"></i>
@@ -55,53 +55,98 @@
                     <div class="left-side">
                         <div class="back-btn"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
                         <div class="back-btn1"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
-                        <div class="dashboard-head"><a href="dashboard.html"><i class="fa fa-th-large d-gray" aria-hidden="true"></i> Dashboard</a></div>
-
+                        <div class="dashboard-head"><a href="@Url.Action("Index","Dashboard")"><i class="fa fa-th-large d-gray" aria-hidden="true"></i> Dashboard</a></div>
                         <div class="accordion_box1">
-                            <div class="accordion1">
-                                <span class="dash-menu-item2"><i class="fa fa-bars" aria-hidden="true"></i> Masters</span>
-                            </div>
-                            <div class="panel1">
-                                <div class="panel1-list">
-                                    <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Category</div>
-                                    <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Job Qualifications</div>
-                                    <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Profession</div>
-                                    <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Job Type</div>
-                                    <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Country</div>
-                                    <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Experience</div>
-                                    <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> City</div>
+                            <a href="@Url.Action("Index","AppliedJobs")">
+                                <div class="accordion1">
+                                    <span class="dash-menu-item2">
+                                        <i class="fa fa-bars" aria-hidden="true"></i> Applied Jobs
+                                    </span>
                                 </div>
-                            </div>
+                            </a>
+                            <a href="@Url.Action("JobDetail","JobDetails")">
+                                <div class="accordion1">
+                                    <span class="dash-menu-item2">
+                                        <i class="fa fa-bars" aria-hidden="true"></i> Job Detail
+                                    </span>
+                                </div>
+                            </a>
+                            <a href="@Url.Action("JobEducation","JobEducation")">
+                                <div class="accordion1">
+                                    <span class="dash-menu-item2">
+                                        <i class="fa fa-bars" aria-hidden="true"></i> Job Education
+                                    </span>
+                                </div>
+                            </a>
+                            <a href="@Url.Action("JobQualification","JobQualification")">
+                                <div class="accordion1">
+                                    <span class="dash-menu-item2">
+                                        <i class="fa fa-bars" aria-hidden="true"></i> Job Qualification
+                                    </span>
+                                </div>
+                            </a>
+                            <a href="@Url.Action("Index","ReferDetails")">
+                                <div class="accordion1">
+                                    <span class="dash-menu-item2">
+                                        <i class="fa fa-bars" aria-hidden="true"></i> Refer Details
+                                    </span>
+                                </div>
+                            </a>
+                            <a href="@Url.Action("Index","SkillMaster")">
+                                <div class="accordion1">
+                                    <span class="dash-menu-item2">
+                                        <i class="fa fa-bars" aria-hidden="true"></i> Skill Master
+                                    </span>
+                                </div>
+                            </a>
+                            <a href="@Url.Action("Index","TechnologyMaster")">
+                                <div class="accordion1">
+                                    <span class="dash-menu-item2">
+                                        <i class="fa fa-bars" aria-hidden="true"></i> Technology Master
+                                    </span>
+                                </div>
+                            </a>
+                            @*<div class="panel1">
+            <div class="panel1-list">
+                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Category</div>
+                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Job Qualifications</div>
+                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Profession</div>
+                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Job Type</div>
+                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Country</div>
+                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Experience</div>
+                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> City</div>
+            </div>
+        </div>
 
-                            <div class="accordion1">
-                                <span class="dash-menu-item2"><i class="fa fa-suitcase" aria-hidden="true"></i> Job Post</span>
-                            </div>
-                            <div class="panel1">
-                                <div class="panel1-list">
-                                    <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
-                                    <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
-                                </div>
-                            </div>
+        <div class="accordion1">
+            <span class="dash-menu-item2"><i class="fa fa-suitcase" aria-hidden="true"></i> Job Post</span>
+        </div>
+        <div class="panel1">
+            <div class="panel1-list">
+                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
+                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
+            </div>
+        </div>
 
-                            <div class="accordion1">
-                                <span class="dash-menu-item2"><i class="fa fa-user ppl-2" aria-hidden="true"></i> User</span>
-                            </div>
-                            <div class="panel1">
-                                <div class="panel1-list">
-                                    <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
-                                    <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
-                                </div>
-                            </div>
+        <div class="accordion1">
+            <span class="dash-menu-item2"><i class="fa fa-user ppl-2" aria-hidden="true"></i> User</span>
+        </div>
+        <div class="panel1">
+            <div class="panel1-list">
+                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
+                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
+            </div>
+        </div>
 
-                            <div class="accordion1">
-                                <span class="dash-menu-item2"><i class="fa fa-users pmin-2" aria-hidden="true"></i> Job Seeker</span>
-                            </div>
-                            <div class="panel1">
-                                <div class="panel1-list">
-                                    <div class="dash-menu-list1"><a href="JobApplicant.html"><i class="fa fa-angle-right" aria-hidden="true"></i> JobApplicant </a></div>
-                                    <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
-                                </div>
-                            </div>
+        <div class="accordion1">
+            <span class="dash-menu-item2"><i class="fa fa-users pmin-2" aria-hidden="true"></i> Job Seeker</span>
+        </div>
+        <div class="panel1">
+            <div class="panel1-list">
+                <div class="dash-menu-list1"><a href="JobApplicant.html"><i class="fa fa-angle-right" aria-hidden="true"></i> JobApplicant </a></div>
+                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
+            </div>
+        </div>*@
                         </div>
                     </div>
                 </div>
@@ -117,7 +162,10 @@
     </div>
 
     <div class="dash-foot-bg">
-        <div class="copyright">Copyright &copy; @DateTime.Now.Year Health Recrutians All rights reserved</div>
+        <div class="copyright">Copyright &copy; @DateTime.Now.Year Aegis Recrutians All rights reserved</div>
     </div>
+
+    @*<script type="text/javascript" src="~/Scripts/custom.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/custom.js"></script>*@
 </body>
 </html>

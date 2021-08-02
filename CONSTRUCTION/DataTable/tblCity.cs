@@ -15,6 +15,7 @@ namespace CONSTRUCTION.DataTable
     public partial class tblCity
     {
         public int Id { get; set; }
+        public Nullable<int> StateId { get; set; }
         public string Name { get; set; }
     }
 }

@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Refer";
+}
+<div class="right-side">
+    <div class="heading">Refer Master</div>
+
+    <div class="data-table style-1">
+        <div class="box-table">
+            <div class="skill-table">
+                <div id="tableDiv">
+                    @Html.Action("ReferList", "ReferDetails")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        dataTableRefer();
+    });
+
+    function dataTableRefer() {
+        $('#tableDiv').find('#tblRefer').DataTable({
+            language: {
+                searchPlaceholder: "Search",
+                search: "<button class='btn search-btn2' type='button'><i class='fa fa-search' ></i></button >",
+                "paginate": {
+                    "previous": "<i class='fa fa-angle-left' aria-hidden='true'></i>",
+                    "next": "<i class='fa fa-angle-right' aria-hidden='true'></i>"
+                }
+            },
+            columnDefs: [
+                {
+                    orderable: false, targets: -1
+                }
+            ]
+        });
+    };
+</script>

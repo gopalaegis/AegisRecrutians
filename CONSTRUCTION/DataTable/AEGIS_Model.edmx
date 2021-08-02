@@ -5,6 +5,49 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="AEGIS_ConstructionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblApplyJobDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile1" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddressType" Type="nvarchar" MaxLength="50" />
+          <Property Name="HouseName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Street" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="Resume" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblApplyJobEducation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplyJobDetailId" Type="int" />
+          <Property Name="DegreeId" Type="int" />
+          <Property Name="Collage" Type="nvarchar" MaxLength="50" />
+          <Property Name="PassingYear" Type="int" />
+        </EntityType>
+        <EntityType Name="tblApplyJobExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplyJobDetailId" Type="int" />
+          <Property Name="Employer" Type="nvarchar" MaxLength="50" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="ActiveYear" Type="int" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="CountryId" Type="int" />
+        </EntityType>
         <EntityType Name="tblCategoryMaster">
           <Key>
             <PropertyRef Name="Id" />
@@ -17,7 +60,18 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateId" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblContectUs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tblCountry">
           <Key>
@@ -49,6 +103,45 @@
           <Property Name="MaxSalary" Type="int" />
           <Property Name="JobEducation" Type="nvarchar(max)" />
           <Property Name="JobQualification" Type="nvarchar(max)" />
+          <Property Name="IsVerified" Type="bit" />
+          <Property Name="ShowOnHome" Type="nvarchar" MaxLength="50" />
+          <Property Name="BriefDescription" Type="nvarchar(max)" />
+          <Property Name="date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblJobEducation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Education" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblJobQualification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblProfession">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Profession" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblRefer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="FriendFullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FriendEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="FriendPhoneNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="JobId" Type="int" />
         </EntityType>
         <EntityType Name="tblSkillMaster">
           <Key>
@@ -62,6 +155,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryId" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblSubCategoryMaster">
@@ -72,6 +166,14 @@
           <Property Name="CategoryId" Type="int" />
           <Property Name="SubCategory" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="tblSuperAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="tblTechnologyMaster">
           <Key>
             <PropertyRef Name="Id" />
@@ -81,13 +183,22 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="AEGIS_ConstructionModelStoreContainer">
+          <EntitySet Name="tblApplyJobDetails" EntityType="Self.tblApplyJobDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblApplyJobEducation" EntityType="Self.tblApplyJobEducation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblApplyJobExperience" EntityType="Self.tblApplyJobExperience" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCategoryMaster" EntityType="Self.tblCategoryMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCity" EntityType="Self.tblCity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblContectUs" EntityType="Self.tblContectUs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCountry" EntityType="Self.tblCountry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblJobDetails" EntityType="Self.tblJobDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblJobEducation" EntityType="Self.tblJobEducation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblJobQualification" EntityType="Self.tblJobQualification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProfession" EntityType="Self.tblProfession" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRefer" EntityType="Self.tblRefer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSkillMaster" EntityType="Self.tblSkillMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblState" EntityType="Self.tblState" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSubCategoryMaster" EntityType="Self.tblSubCategoryMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSuperAdmin" EntityType="Self.tblSuperAdmin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblTechnologyMaster" EntityType="Self.tblTechnologyMaster" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -95,15 +206,67 @@
     <edmx:ConceptualModels>
       <Schema Namespace="AEGIS_ConstructionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="AEGIS_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblApplyJobDetails" EntityType="AEGIS_ConstructionModel.tblApplyJobDetail" />
+          <EntitySet Name="tblApplyJobEducations" EntityType="AEGIS_ConstructionModel.tblApplyJobEducation" />
+          <EntitySet Name="tblApplyJobExperiences" EntityType="AEGIS_ConstructionModel.tblApplyJobExperience" />
           <EntitySet Name="tblCategoryMasters" EntityType="AEGIS_ConstructionModel.tblCategoryMaster" />
           <EntitySet Name="tblCities" EntityType="AEGIS_ConstructionModel.tblCity" />
+          <EntitySet Name="tblContectUs" EntityType="AEGIS_ConstructionModel.tblContectU" />
           <EntitySet Name="tblCountries" EntityType="AEGIS_ConstructionModel.tblCountry" />
           <EntitySet Name="tblJobDetails" EntityType="AEGIS_ConstructionModel.tblJobDetail" />
+          <EntitySet Name="tblJobEducations" EntityType="AEGIS_ConstructionModel.tblJobEducation" />
+          <EntitySet Name="tblJobQualifications" EntityType="AEGIS_ConstructionModel.tblJobQualification" />
+          <EntitySet Name="tblProfessions" EntityType="AEGIS_ConstructionModel.tblProfession" />
+          <EntitySet Name="tblRefers" EntityType="AEGIS_ConstructionModel.tblRefer" />
           <EntitySet Name="tblSkillMasters" EntityType="AEGIS_ConstructionModel.tblSkillMaster" />
           <EntitySet Name="tblStates" EntityType="AEGIS_ConstructionModel.tblState" />
           <EntitySet Name="tblSubCategoryMasters" EntityType="AEGIS_ConstructionModel.tblSubCategoryMaster" />
+          <EntitySet Name="tblSuperAdmins" EntityType="AEGIS_ConstructionModel.tblSuperAdmin" />
           <EntitySet Name="tblTechnologyMasters" EntityType="AEGIS_ConstructionModel.tblTechnologyMaster" />
         </EntityContainer>
+        <EntityType Name="tblApplyJobDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HouseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="Resume" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblApplyJobEducation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplyJobDetailId" Type="Int32" />
+          <Property Name="DegreeId" Type="Int32" />
+          <Property Name="Collage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassingYear" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblApplyJobExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplyJobDetailId" Type="Int32" />
+          <Property Name="Employer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="JobTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActiveYear" Type="Int32" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="CountryId" Type="Int32" />
+        </EntityType>
         <EntityType Name="tblCategoryMaster">
           <Key>
             <PropertyRef Name="Id" />
@@ -116,7 +279,18 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateId" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblContectU">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblCountry">
           <Key>
@@ -148,6 +322,45 @@
           <Property Name="MaxSalary" Type="Int32" />
           <Property Name="JobEducation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="JobQualification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsVerified" Type="Boolean" />
+          <Property Name="ShowOnHome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblJobEducation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Education" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblJobQualification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblProfession">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Profession" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblRefer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FriendFullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FriendEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FriendPhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="JobId" Type="Int32" />
         </EntityType>
         <EntityType Name="tblSkillMaster">
           <Key>
@@ -161,6 +374,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryId" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblSubCategoryMaster">
@@ -170,6 +384,14 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryId" Type="Int32" />
           <Property Name="SubCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblSuperAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblTechnologyMaster">
           <Key>
@@ -185,6 +407,52 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="AEGIS_ConstructionModelStoreContainer" CdmEntityContainer="AEGIS_Entities">
+          <EntitySetMapping Name="tblApplyJobDetails">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblApplyJobDetail">
+              <MappingFragment StoreEntitySet="tblApplyJobDetails">
+                <ScalarProperty Name="Resume" ColumnName="Resume" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="HouseName" ColumnName="HouseName" />
+                <ScalarProperty Name="AddressType" ColumnName="AddressType" />
+                <ScalarProperty Name="Mobile1" ColumnName="Mobile1" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblApplyJobEducations">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblApplyJobEducation">
+              <MappingFragment StoreEntitySet="tblApplyJobEducation">
+                <ScalarProperty Name="PassingYear" ColumnName="PassingYear" />
+                <ScalarProperty Name="Collage" ColumnName="Collage" />
+                <ScalarProperty Name="DegreeId" ColumnName="DegreeId" />
+                <ScalarProperty Name="ApplyJobDetailId" ColumnName="ApplyJobDetailId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblApplyJobExperiences">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblApplyJobExperience">
+              <MappingFragment StoreEntitySet="tblApplyJobExperience">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ActiveYear" ColumnName="ActiveYear" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="Employer" ColumnName="Employer" />
+                <ScalarProperty Name="ApplyJobDetailId" ColumnName="ApplyJobDetailId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblCategoryMasters">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblCategoryMaster">
               <MappingFragment StoreEntitySet="tblCategoryMaster">
@@ -196,6 +464,18 @@
           <EntitySetMapping Name="tblCities">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblCity">
               <MappingFragment StoreEntitySet="tblCity">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblContectUs">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblContectU">
+              <MappingFragment StoreEntitySet="tblContectUs">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -212,6 +492,10 @@
           <EntitySetMapping Name="tblJobDetails">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobDetail">
               <MappingFragment StoreEntitySet="tblJobDetails">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="BriefDescription" ColumnName="BriefDescription" />
+                <ScalarProperty Name="ShowOnHome" ColumnName="ShowOnHome" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
                 <ScalarProperty Name="JobQualification" ColumnName="JobQualification" />
                 <ScalarProperty Name="JobEducation" ColumnName="JobEducation" />
                 <ScalarProperty Name="MaxSalary" ColumnName="MaxSalary" />
@@ -234,6 +518,45 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tblJobEducations">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobEducation">
+              <MappingFragment StoreEntitySet="tblJobEducation">
+                <ScalarProperty Name="Education" ColumnName="Education" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblJobQualifications">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobQualification">
+              <MappingFragment StoreEntitySet="tblJobQualification">
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProfessions">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblProfession">
+              <MappingFragment StoreEntitySet="tblProfession">
+                <ScalarProperty Name="Profession" ColumnName="Profession" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRefers">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblRefer">
+              <MappingFragment StoreEntitySet="tblRefer">
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FriendPhoneNo" ColumnName="FriendPhoneNo" />
+                <ScalarProperty Name="FriendEmail" ColumnName="FriendEmail" />
+                <ScalarProperty Name="FriendFullName" ColumnName="FriendFullName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblSkillMasters">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblSkillMaster">
               <MappingFragment StoreEntitySet="tblSkillMaster">
@@ -246,6 +569,7 @@
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblState">
               <MappingFragment StoreEntitySet="tblState">
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -255,6 +579,15 @@
               <MappingFragment StoreEntitySet="tblSubCategoryMaster">
                 <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSuperAdmins">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblSuperAdmin">
+              <MappingFragment StoreEntitySet="tblSuperAdmin">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

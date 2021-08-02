@@ -12,6 +12,7 @@
     <EntitySetMapping Name="tblCities">
       <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblCity">
         <MappingFragment StoreEntitySet="tblCity">
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
@@ -28,6 +29,9 @@
     <EntitySetMapping Name="tblJobDetails">
       <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobDetail">
         <MappingFragment StoreEntitySet="tblJobDetails">
+          <ScalarProperty Name="BriefDescription" ColumnName="BriefDescription" />
+          <ScalarProperty Name="ShowOnHome" ColumnName="ShowOnHome" />
+          <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
           <ScalarProperty Name="JobQualification" ColumnName="JobQualification" />
           <ScalarProperty Name="JobEducation" ColumnName="JobEducation" />
           <ScalarProperty Name="MaxSalary" ColumnName="MaxSalary" />
@@ -61,6 +65,7 @@
     <EntitySetMapping Name="tblStates">
       <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblState">
         <MappingFragment StoreEntitySet="tblState">
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
@@ -80,6 +85,30 @@
         <MappingFragment StoreEntitySet="tblTechnologyMaster">
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblJobEducations">
+      <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobEducation">
+        <MappingFragment StoreEntitySet="tblJobEducation">
+          <ScalarProperty Name="Education" ColumnName="Education" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblJobQualifications">
+      <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobQualification">
+        <MappingFragment StoreEntitySet="tblJobQualification">
+          <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProfessions">
+      <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblProfession">
+        <MappingFragment StoreEntitySet="tblProfession">
+          <ScalarProperty Name="Profession" ColumnName="Profession" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

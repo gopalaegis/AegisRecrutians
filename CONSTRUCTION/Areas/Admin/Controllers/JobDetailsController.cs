@@ -12,19 +12,116 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
     public class JobDetailsController : Controller
     {
         AEGIS_Entities _db = new AEGIS_Entities();
-        public ActionResult Index()
+        public ActionResult JobDetail()
         {
             return View();
         }
 
-        public ActionResult AddEditTechnologyMaster(int Id = 0)
+        public ActionResult AddEditJobDetail(int Id = 0)
         {
-            TechnologyMasterViewModel model = new TechnologyMasterViewModel();
+            JobDetailsViewModel model = new JobDetailsViewModel();
+            var categoryList = _db.tblCategoryMasters.ToList();
+            var subCategoryList = _db.tblSubCategoryMasters.ToList();
+            var countryList = _db.tblCountries.ToList();
+            var cityList = _db.tblCities.ToList();
+            var professionList = _db.tblProfessions.ToList();
+
+
+            List<SelectListItem> lstselectListItem = new List<SelectListItem>();
+            List<SelectListItem> subCategoryListItem  = new List<SelectListItem>();
+            List<SelectListItem> countryListItem  = new List<SelectListItem>();
+            List<SelectListItem> cityListItem  = new List<SelectListItem>();
+            List<SelectListItem> professionListItem  = new List<SelectListItem>();
+
+            //For Category List Item
+            foreach (var category in categoryList)
+            {
+                SelectListItem selectListItem = new SelectListItem()
+                {
+                    Text = category.Name,
+                    Value = category.Id.ToString()
+                };
+                lstselectListItem.Add(selectListItem);
+            }
+            model.CategoryList = lstselectListItem;
+
+            //For SubCategory List Item
+            foreach (var subCategory in subCategoryList)
+            {
+                SelectListItem selectListItem = new SelectListItem()
+                {
+                    Text = subCategory.SubCategory,
+                    Value = subCategory.Id.ToString()
+                };
+                subCategoryListItem.Add(selectListItem);
+            }
+            model.SubCategoryList = subCategoryListItem;
+
+            //For Country List Item
+            foreach (var country in countryList)
+            {
+                SelectListItem selectListItem = new SelectListItem()
+                {
+                    Text = country.Name,
+                    Value = country.Id.ToString()
+                };
+                countryListItem.Add(selectListItem);
+            }
+            model.CountryList = countryListItem;
+
+            //For CityListItem
+            foreach (var city in cityList)
+            {
+                SelectListItem selectListItem = new SelectListItem()
+                {
+                    Text = city.Name,
+                    Value = city.Id.ToString()
+                };
+                cityListItem.Add(selectListItem);
+            }
+            model.CityList = cityListItem;
+
+            //For Profession
+            foreach (var profession in professionList)
+            {
+                SelectListItem selectListItem = new SelectListItem()
+                {
+                    Text = profession.Profession,
+                    Value = profession.Id.ToString()
+                };
+                professionListItem.Add(selectListItem);
+            }
+            model.ProfessionList = professionListItem;
+
+
             if (Id > 0)
             {
-                model = _db.tblTechnologyMasters.Where(x => x.Id == Id).Select(x => new TechnologyMasterViewModel { Id = x.Id, Name = x.Name, Image = x.Image }).FirstOrDefault();
+                var data = _db.tblJobDetails.Where(x => x.Id == Id).FirstOrDefault();
+
+                model.Title = data.Title;
+                model.Title = data.Title;
+                model.CompanyName = data.CompanyName;
+                model.CompanyLogo = data.CompanyLogo;
+                model.CategoryId = Convert.ToInt32(data.CategoryId);
+                model.SubCategoryId = Convert.ToInt32(data.SubCategoryId);
+                model.Profession = data.Profession;
+                model.CountryId = Convert.ToInt32(data.CountryId);
+                model.CityId = Convert.ToInt32(data.CityId);
+                model.Location = data.Location;
+                model.Description = data.Description;
+                model.MinExperience = Convert.ToInt32(data.MinExperience);
+                model.MaxExperience = Convert.ToInt32(data.MaxExperience);
+                model.Type = data.Type;
+                model.MinSalary = Convert.ToInt32(data.MinSalary);
+                model.MaxSalary = Convert.ToInt32(data.MaxSalary);
+                model.JobEducation = data.JobEducation;
+                model.JobQualification = data.JobQualification;
+                model.IsVerified = Convert.ToBoolean(data.IsVerified);
+                model.ShowOnHome = data.ShowOnHome;
+                model.BriefDescription = data.BriefDescription;
+
             }
-            return PartialView("_partialAddTechnologyMaster", model);
+            return PartialView("_partialAddEditJobDetail", model);
         }
 
         public ActionResult JobDetailsList()
@@ -37,23 +134,51 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 var cate = _db.tblCategoryMasters.Where(x => x.Id == item.CategoryId).FirstOrDefault();
                 var subcate = _db.tblSubCategoryMasters.Where(x => x.Id == item.SubCategoryId).FirstOrDefault();
                 var country = _db.tblCountries.Where(x => x.Id == item.CountryId).FirstOrDefault();
-                var state = _db.tblStates.Where(x => x.Id == item.StateId).FirstOrDefault();
+                var city = _db.tblCities.Where(x => x.Id == item.CityId).FirstOrDefault();
+                var jobequcation = _db.tblJobEducations.Where(x => x.Education == item.JobEducation).FirstOrDefault();
+                var jobQualification = _db.tblJobQualifications.Where(x => x.Qualification == item.JobQualification).FirstOrDefault();
+
                 m.Title = item.Title;
+                m.Id = item.Id;
                 m.CompanyName = item.CompanyName;
                 m.CompanyLogo = item.CompanyLogo;
-                m.CategoryName = cate.Name;
-                m.SubCategoryName = subcate.SubCategory;
-                m.Profession = item.Profession;
-                m.CountryName = country.Name;
-                m.StateName = item.Title;
-                m.Title = item.Title;
-                m.Title = item.Title;
-                m.Title = item.Title;
-                m.Title = item.Title;
-                m.Title = item.Title;
-                m.Title = item.Title;
+                if (cate != null)
+                {
+                    m.CategoryName = cate.Name;
+                }
+                if (subcate != null)
+                {
+                    m.SubCategoryName = subcate.SubCategory;
+                }
+                if(country!= null)
+                {
+                    m.CountryName = country.Name;
+                }
+                if (city != null)
+                {
+                    m.CityName = city.Name;
+                }
+                m.Profession = item.Profession;                
+                m.Location = item.Location;
+                m.Description = item.Description;
+                m.MinExperience = Convert.ToInt32(item.MinExperience);
+                m.MaxExperience = Convert.ToInt32(item.MaxExperience);
+                m.Type = item.Type;
+                m.MinSalary = Convert.ToInt32(item.MinSalary);
+                m.MaxSalary = Convert.ToInt32(item.MaxSalary);
+                if (jobequcation != null)
+                {
+                    m.JobEducation = jobequcation.Education;
+                }
+                if (jobQualification != null)
+                {
+                    m.JobQualification = jobQualification.Qualification;
+                }               
+                m.IsVerified = Convert.ToBoolean(item.IsVerified);
+                m.ShowOnHome = item.ShowOnHome;
+                model.Add(m);
             }
-            return PartialView("_partialTechnologyMasterList", model);
+            return PartialView("_partialJobDetailsList", model);
         }
 
         public ActionResult DeleteTechnologyMaster(int Id)
@@ -65,24 +190,65 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveTechnologyMaster(TechnologyMasterViewModel model)
+        public ActionResult SaveJobDetailMaster(JobDetailsViewModel model)
         {
             if (model.Id > 0)
             {
-                var data = _db.tblTechnologyMasters.Where(x => x.Id == model.Id).FirstOrDefault();
-                data.Image = model.Image;
-                data.Name = model.Name;
+                var data = _db.tblJobDetails.Where(x => x.Id == model.Id).FirstOrDefault();
+
+                data.Title = model.Title;
+                data.Title = model.Title;
+                data.CompanyName = model.CompanyName;
+                data.CompanyLogo = model.CompanyLogo;
+                data.CategoryId = model.CategoryId;
+                data.SubCategoryId = model.SubCategoryId;
+                data.Profession = model.Profession;
+                data.CountryId = model.CountryId;
+                data.CityId = model.CityId;
+                data.Location = model.Location;
+                data.Description = model.Description;
+                data.MinExperience = Convert.ToInt32(model.MinExperience);
+                data.MaxExperience = Convert.ToInt32(model.MaxExperience);
+                data.Type = model.Type;
+                data.MinSalary = Convert.ToInt32(model.MinSalary);
+                data.MaxSalary = Convert.ToInt32(model.MaxSalary);
+                data.JobEducation = model.JobEducation;
+                data.JobQualification = model.JobQualification;
+                data.IsVerified = Convert.ToBoolean(model.IsVerified);
+                data.ShowOnHome = model.ShowOnHome;
+                data.BriefDescription = model.BriefDescription;
+                data.date = DateTime.Now;
                 _db.SaveChanges();
             }
             else
             {
-                tblTechnologyMaster data = new tblTechnologyMaster();
-                data.Name = model.Name;
-                data.Image = model.Image;
-                _db.tblTechnologyMasters.Add(data);
+                tblJobDetail data = new tblJobDetail();
+                data.Title = model.Title;
+                data.Title = model.Title;
+                data.CompanyName = model.CompanyName;
+                data.CompanyLogo = model.CompanyLogo;
+                data.CategoryId = model.CategoryId;
+                data.SubCategoryId = model.SubCategoryId;
+                data.Profession = model.Profession;
+                data.CountryId = model.CountryId;
+                data.CityId = model.CityId;
+                data.Location = model.Location;
+                data.Description = model.Description;
+                data.MinExperience = Convert.ToInt32(model.MinExperience);
+                data.MaxExperience = Convert.ToInt32(model.MaxExperience);
+                data.Type = model.Type;
+                data.MinSalary = Convert.ToInt32(model.MinSalary);
+                data.MaxSalary = Convert.ToInt32(model.MaxSalary);
+                data.JobEducation = model.JobEducation;
+                data.JobQualification = model.JobQualification;
+                data.IsVerified = Convert.ToBoolean(model.IsVerified);
+                data.ShowOnHome = model.ShowOnHome;
+                data.BriefDescription = model.BriefDescription;
+                data.date = DateTime.Now;
+                _db.tblJobDetails.Add(data);
                 _db.SaveChanges();
             }
-            return RedirectToAction("TechnologyMasterList");
+            return RedirectToAction("JobDetailsList");
         }
 
         public ActionResult FileUplaod()
@@ -95,7 +261,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 HttpPostedFile uploadFile = hfc[i];
                 fileName = Path.GetExtension(uploadFile.FileName);
                 fileName = Guid.NewGuid() + fileName;
-                uploadFile.SaveAs(Server.MapPath("~/CommonImage/Technology/") + fileName);
+                uploadFile.SaveAs(Server.MapPath("~/CommonImage/CompanyLogo/") + fileName);
             }
             return Json(fileName, JsonRequestBehavior.AllowGet);
         }

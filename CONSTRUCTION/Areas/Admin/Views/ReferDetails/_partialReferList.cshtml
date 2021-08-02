@@ -1,0 +1,31 @@
+﻿@model List<CONSTRUCTION.Models.ReferViewModel>
+
+<table id="tblRefer">
+    <thead>
+        <tr>
+            <th>Job Title</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone No</th>
+            <th>Friend Name</th>
+            <th>Friend Email</th>
+            <th>Friend Phone No</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Job</td>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td>@item.PhoneNo</td>
+                <td>@item.FriendName</td>
+                <td>@item.FriendEmail</td>
+                <td>@item.FriendPhoneNo</td>
+                <td>@item.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
