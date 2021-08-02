@@ -15,8 +15,8 @@ namespace CONSTRUCTION
 
             routes.MapRoute(
             name: "Jobs",
-            url: "jobs/{city}/{title}",
-            defaults: new { controller = "jobs", action = "Index", city = UrlParameter.Optional, title = UrlParameter.Optional }
+            url: "jobs/{city}",
+            defaults: new { controller = "jobs", action = "Index", city = UrlParameter.Optional}
         );
 
             routes.MapRoute(

@@ -12,6 +12,7 @@ namespace CONSTRUCTION.Controllers
     public class HomeController : Controller
     {
         AEGIS_Entities _db = new AEGIS_Entities();
+
         public ActionResult Index()
         {
             HomeViewModel model = new HomeViewModel();

@@ -62,7 +62,7 @@
                     </ul>
                 </div>
                 <div class="read-btn text-center mt-2">
-                    <a href="signin.html">Confused? We’ve right solution for you!</a>
+                    <a href="#">Confused? We’ve right solution for you!</a>
                 </div>
             </div>
         </div>
@@ -258,7 +258,7 @@
         <div class="row mt-2">
             <div class="col-12">
                 <div class="read-btn text-center">
-                    <a href="signin.html">Didn’t get your skill?, Click here!</a>
+                    <a href="#">Didn’t get your skill?, Click here!</a>
                 </div>
             </div>
         </div>
@@ -309,7 +309,7 @@
                             <h2>Talk to our experts about your JOB requirements</h2>
                             <p>Contact us and know more about how our experts can help your business grow. Contact us and know more about how our experts can help your business grow. Contact us and know more about how our experts can help your business grow.</p>
                             <p>Contact us and know more about how our experts can help your business grow. Contact us and know more about how our experts can help your business grow.</p>
-                            <div class="read-btn"><a href="javascript:;" class="send-msg">Let’s Talk</a></div>
+                            <div class="read-btn"><a href="#" class="send-msg">Let’s Talk</a></div>
                         </div>
                     </div>
                     <div class="col-6 col-sm-12">
@@ -347,7 +347,16 @@
     $("#searchLocation").click(function () {
         var jobSearch = $(".job-search").val();
         var city = $(".location").val();
-        window.location.href = '@Url.Action("Index", "jobs")?city=' + city + '&title=' + jobSearch;
+        var data = "";
+        //if (city != "" && city != null && jobSearch != "" && jobSearch != null) {
+        //    data = city+/+ti
+        //}
+        //if (city == "" || city == null || city == undefined) {
+        //    data = jobSearch;
+        //}
+        /*if (jobSearch == "" || jobSearch == null || jobSearch == undefined) {*/
+        window.location.href = 'jobs/' + city + '_' + jobSearch;
+        @*window.location.href = '@Url.Action("Index", "jobs")?city=' + city + '&title=' + jobSearch;*@
     })
 
     $("#ContectUsDiv").on("click", "#submitData", function () {
