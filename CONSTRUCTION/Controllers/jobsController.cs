@@ -12,11 +12,13 @@ namespace CONSTRUCTION.Controllers
     {
         AEGIS_Entities _db = new AEGIS_Entities();
         // GET: jobs
-        public ActionResult Index(string city="", string title = "")
+        //[Route("jobs/Index/{city}/{title}")]
+        public ActionResult Index(string city = "", string title = "")
         {
+            var data = city.Split('_');
             JobDetailViewModel model = new JobDetailViewModel();
-            model.City = city;
-            model.Title = title;
+            model.City = data.FirstOrDefault();
+            model.Title = data.LastOrDefault();
             return View(model);
         }
 
@@ -40,7 +42,7 @@ namespace CONSTRUCTION.Controllers
                 };
                 m.Add(data);
             }
-            m = m.Where(x => x.City.ToLower().Contains(city.ToLower())&&x.Title.ToLower().Contains(title.ToLower())).ToList();
+            m = m.Where(x => x.City.ToLower().Contains(city.ToLower()) && x.Title.ToLower().Contains(title.ToLower())).ToList();
             model.currentPage = page;
             var pageCount = (double)m.Count / (double)5;
             model.totalPage = (int)Math.Ceiling(pageCount);
