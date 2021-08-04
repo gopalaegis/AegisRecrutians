@@ -19,5 +19,6 @@ namespace CONSTRUCTION.DataTable
         public string Email { get; set; }
         public string Mobile { get; set; }
         public string Description { get; set; }
+        public string Skype { get; set; }
     }
 }

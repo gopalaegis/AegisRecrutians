@@ -98,7 +98,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             {
                 var data = _db.tblJobDetails.Where(x => x.Id == Id).FirstOrDefault();
 
-                model.Title = data.Title;
+                model.Id = data.Id;
                 model.Title = data.Title;
                 model.CompanyName = data.CompanyName;
                 model.CompanyLogo = data.CompanyLogo;

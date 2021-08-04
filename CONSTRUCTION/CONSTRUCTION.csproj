@@ -239,6 +239,7 @@
     <Content Include="adminAssets\js\jquery.min.js" />
     <Content Include="adminAssets\js\popper.min.js" />
     <Content Include="adminAssets\js\UploadDocs.js" />
+    <Content Include="CommonImage\capcha.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

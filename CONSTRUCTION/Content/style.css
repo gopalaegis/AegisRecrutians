@@ -1029,3 +1029,6 @@ textarea.form-control {height: 100%;font-family: inherit;}
 .form-control:disabled, .form-control[readonly] {
     background-color:transparent!important;
 }
+.errorMessage {
+    color: red;
+}

@@ -4,7 +4,10 @@ using CONSTRUCTION.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace CONSTRUCTION.Controllers
@@ -61,10 +64,39 @@ namespace CONSTRUCTION.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveContectData(string Name, string Email, string Mobile, string Description = "")
+        public ActionResult SaveContectData(string Email, string Mobile, string Description = "", string Skype = "", string Name = "")
         {
+            string from = WebConfigurationManager.AppSettings["SMTPMailFrom"];
+            string pass = WebConfigurationManager.AppSettings["SMTPPassword"];
+            string to = WebConfigurationManager.AppSettings["SMTPMailTo"];
+            int port = Convert.ToInt32(WebConfigurationManager.AppSettings["SMTPPort"]);
+            bool ssl = Convert.ToBoolean(WebConfigurationManager.AppSettings["SMTPEnableSSL"]);
+
+            SmtpClient client = new SmtpClient();
+            client.Credentials = new NetworkCredential(from, pass);
+            client.Port = port;
+            client.Host = "smtp.gmail.com";
+            client.EnableSsl = ssl;
+            string str = string.Empty;
+            str = "Hi <br /> <br /> ";
+            if (Name != "")
+            {
+                str = str + "Name :- " + Name + " <br />";
+            }
+            if (Skype != "")
+            {
+                str = str + "Skype :- " + Skype + " <br />";
+            }
+            str = str + " Email : " + Email + "<br /> Mobile " + Mobile + "  <br />";
+            str = str + "Description :- " + Description;
+            MailMessage message = new MailMessage(from, to, " Your Review ", str);
+            message.IsBodyHtml = true;
+            //message.Headers.Add("Content-Type", "text/html");
+            client.Send(message);
+
             tblContectU data = new tblContectU();
             data.Name = Name;
+            data.Skype = Skype;
             data.Email = Email;
             data.Mobile = Mobile;
             data.Description = Description;

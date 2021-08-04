@@ -73,7 +73,6 @@
 
 
     $("#addJobDetail").on("click", ".btn_save", function (e) {
-        debugger
         var Id = $("#addJobDetail").find('#txt_Id').val();
         var Title = $("#addJobDetail").find('#txt_Title').val();
         var Description = $("#addJobDetail").find('#txt_Description').val();
@@ -96,7 +95,6 @@
         var CompanyLogo = $("#addJobDetail").find('#file_HiddenName').val();
 
         var isError = false;
-        debugger;
         if (Title == "") {
             $("#addJobDetail").find('#label_error_Title').show();
             isError = true;
@@ -184,10 +182,11 @@
                     BriefDescription: BriefDescription
                 },
                 success: function (result) {
+                    debugger
                     $("#tableDiv").html("");
                     $("#tableDiv").html(result);
                     $("#addJobDetail").find('.btn_Close').click();
-                    dataTableJobEducation();
+                    dataTableJobDetail();
                 }
             });
         }

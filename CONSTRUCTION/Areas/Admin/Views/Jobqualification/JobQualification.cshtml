@@ -103,7 +103,6 @@
     });
 
     $("#tableDiv").on("click", ".editRow", function () {
-        debugger
         var id = $(this).attr('data-id');
         $.ajax({
             url: '@Url.Action("AddEditJobQualification", "Jobqualification")',

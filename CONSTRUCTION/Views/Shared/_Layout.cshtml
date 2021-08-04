@@ -47,14 +47,13 @@
                 <div class="info-box inq">
                     <a href="javascript:;"><i class="fa fa-close closeInquiry"></i></a>
                     <strong class="title">Fill the details and We’ll get back to you soon</strong>
-                    <form>
                         <div class="inquiry-box">
                             <div class="form-group fullwidth">
                                 <textarea class="form-control" id="txtcomments" placeholder="Tell us your requirements"></textarea>
                             </div>
                             <div class="form-group-block">
                                 <div class="form-group">
-                                    <input class="form-control" id="txtphone" placeholder="Phone" type="text" onKeyPress="return checkIt(event);">
+                                    <input class="form-control" id="txtphone" placeholder="Phone" type="text">
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" id="txtemail" placeholder="Email" type="email">
@@ -62,19 +61,20 @@
                                 <div class="form-group">
                                     <input class="form-control" id="txtskype" placeholder="Skype" type="text">
                                 </div>
-                                <div class="form-group">
-                                    <img id="imgCaptcha" alt="captcha" src="Captcha.ashx" />
+                                <div class="form-group row">
+                                    <div id="divGenerateRandomValues"></div>
+                                    &ensp;
                                     <input class="form-control" type="text" placeholder="Captcha" id="txtCaptcha" name="txtCaptcha" />
+                                    <label id="label_error_capcha" class="errorMessage" style="display:none;">Capcha is Incorrect !</label>
                                 </div>
                                 <div class="form-group Clear">
-                                    <button type="button" id="btnSubmit" value="Submit" name="Submit" class="btn-submit">Submit</button>
+                                    <button type="button" id="btnSubmit" value="Submit" name="Submit" class="btn-submit" onclick="">Submit</button>
                                 </div>
                                 <div class="form-group Clear">
                                     <span id="lblInfo"> </span>
                                 </div>
                             </div>
                         </div>
-                    </form>
                 </div>
             </li>
         </ul>
@@ -147,6 +147,7 @@
     <script src="~/Scripts/lib.js"></script>
     <script src="~/Scripts/functions.js"></script>
     <script>
+        var iNumber = null;
         $(".form-control").change(function () {
             var value = $(this).val();
             if (value != "" && value != null) {
@@ -159,6 +160,103 @@
                 $(this).parent().find(".errorMessage").hide();
             }
         })
+        $(document).ready(function () {
+            sendEmail();
+        });
+        function sendEmail() {
+            $("#btnSubmit").prop("disabled", true);
+            iNumber = Math.floor(Math.random() * 10000);
+            $("#divGenerateRandomValues").css({ "background-image": 'url(../../CommonImage/capcha.png)', 'width': '82px', 'height': '45px' });
+            $("#divGenerateRandomValues").html("<input id='txtNewInput'></input>");
+            $("#txtNewInput").css({ 'background': 'transparent', 'font-family': 'Arial', 'font-style': 'bold', 'font-size': '35px' });
+            $("#txtNewInput").css({ 'width': '78px', 'border': 'none', 'color': 'black' });
+            $("#txtNewInput").val(iNumber);
+            $("#txtNewInput").prop('disabled', true);
+
+            var wrongInput = function () {
+                if ($("#txtCaptcha").val() != iNumber) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            };
+            $("#txtCaptcha").bind('input', function () {
+                $("#btnSubmit").prop('disabled', wrongInput);
+            });
+        }
+        $("#btnSubmit").click(function () {
+            $("#txtphone").css('border-color', '');
+            $("#txtemail").css('border-color', '');
+            $("#txtskype").css('border-color', '');
+            $("#txtcomments").css('border-color', '');
+            var phone = $("#txtphone").val();
+            var email = $("#txtemail").val();
+            var skype = $("#txtskype").val();
+            var description = $("#txtcomments").val();
+
+            var IsError = false;
+
+            if (phone == null || phone == "") {
+                IsError = true;
+                $("#txtphone").css('border-color', 'red');
+            } else if (!PhoneNumberValidation(phone)) {
+                IsError = true;
+                $("#txtphone").css('border-color', 'red');
+            }
+
+            if (email == null || email == "") {
+                IsError = true;
+                $("#txtemail").css('border-color', 'red');
+            } else if (!EmailValidation(email)) {
+                IsError = true;
+                $("#txtemail").css('border-color', 'red');
+            }
+
+            if (skype == "") {
+                IsError = true;
+                $("#txtskype").css('border-color', 'red');
+            }
+
+            if (description == "") {
+                IsError = true;
+                $("#txtcomments").css('border-color', 'red');
+            }
+
+            if ($("#txtCaptcha").val() != iNumber) {
+                IsError = true;
+                $("#txtCaptcha").css('border-color', 'red');
+            }
+
+            if (IsError == false) {
+                return false;
+            }
+            else {
+              $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("SaveContectData", "Home")',
+                    data: {
+                        Skype: skype,
+                        Email: email,
+                        Mobile: phone,
+                        Description: description
+                    },
+                    success: function (result) {
+                        if (result == "Success") {
+                            $("#txtphone").val('');
+                            $("#txtemail").val('');
+                            $("#txtskype").val('');
+                            $("#txtcomments").val('');
+                            $("#txtphone").css('border-color', 'red');
+                            $("#txtemail").css('border-color', 'red');
+                            $("#txtskype").css('border-color', 'red');
+                            $("#txtcomments").css('border-color', 'red');
+                            sendEmail();
+                        }
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
