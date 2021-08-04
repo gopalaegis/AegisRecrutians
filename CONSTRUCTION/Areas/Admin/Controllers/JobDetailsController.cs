@@ -25,13 +25,14 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             var countryList = _db.tblCountries.ToList();
             var cityList = _db.tblCities.ToList();
             var professionList = _db.tblProfessions.ToList();
-
+            var technologyList = _db.tblTechnologyMasters.ToList();
 
             List<SelectListItem> lstselectListItem = new List<SelectListItem>();
-            List<SelectListItem> subCategoryListItem  = new List<SelectListItem>();
-            List<SelectListItem> countryListItem  = new List<SelectListItem>();
-            List<SelectListItem> cityListItem  = new List<SelectListItem>();
-            List<SelectListItem> professionListItem  = new List<SelectListItem>();
+            List<SelectListItem> subCategoryListItem = new List<SelectListItem>();
+            List<SelectListItem> countryListItem = new List<SelectListItem>();
+            List<SelectListItem> cityListItem = new List<SelectListItem>();
+            List<SelectListItem> professionListItem = new List<SelectListItem>();
+            List<SelectListItem> TechnologyItem = new List<SelectListItem>();
 
             //For Category List Item
             foreach (var category in categoryList)
@@ -93,6 +94,17 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             }
             model.ProfessionList = professionListItem;
 
+            foreach (var tech in technologyList)
+            {
+                SelectListItem selectListItem = new SelectListItem()
+                {
+                    Text = tech.Name,
+                    Value = tech.Id.ToString()
+                };
+                TechnologyItem.Add(selectListItem);
+            }
+            model.technologyList = TechnologyItem;
+
 
             if (Id > 0)
             {
@@ -119,7 +131,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 model.IsVerified = Convert.ToBoolean(data.IsVerified);
                 model.ShowOnHome = data.ShowOnHome;
                 model.BriefDescription = data.BriefDescription;
-
+                model.SelectedTechnology = _db.JobWiseTechnologies.Where(x => x.JobId == Id).Select(x => (int)x.TechnologyId).ToList();
             }
             return PartialView("_partialAddEditJobDetail", model);
         }
@@ -150,7 +162,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 {
                     m.SubCategoryName = subcate.SubCategory;
                 }
-                if(country!= null)
+                if (country != null)
                 {
                     m.CountryName = country.Name;
                 }
@@ -158,7 +170,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 {
                     m.CityName = city.Name;
                 }
-                m.Profession = item.Profession;                
+                m.Profession = item.Profession;
                 m.Location = item.Location;
                 m.Description = item.Description;
                 m.MinExperience = Convert.ToInt32(item.MinExperience);
@@ -173,7 +185,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 if (jobQualification != null)
                 {
                     m.JobQualification = jobQualification.Qualification;
-                }               
+                }
                 m.IsVerified = Convert.ToBoolean(item.IsVerified);
                 m.ShowOnHome = item.ShowOnHome;
                 model.Add(m);
@@ -192,6 +204,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult SaveJobDetailMaster(JobDetailsViewModel model)
         {
+
             if (model.Id > 0)
             {
                 var data = _db.tblJobDetails.Where(x => x.Id == model.Id).FirstOrDefault();
@@ -219,6 +232,33 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 data.BriefDescription = model.BriefDescription;
                 data.date = DateTime.Now;
                 _db.SaveChanges();
+
+                var removeoldData = _db.JobWiseTechnologies.Where(x => x.JobId == data.Id).ToList();
+                _db.JobWiseTechnologies.RemoveRange(removeoldData);
+                _db.SaveChanges();
+
+                if (!string.IsNullOrEmpty(model.SelectedTechnologyString))
+                {
+                    if (model.SelectedTechnologyString.IndexOf(',') > -1)
+                    {
+                        foreach (var item in model.SelectedTechnologyString.Split(','))
+                        {
+                            JobWiseTechnology ip = new JobWiseTechnology();
+                            ip.TechnologyId = Convert.ToInt32(item);
+                            ip.JobId = data.Id;
+                            _db.JobWiseTechnologies.Add(ip);
+                            _db.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        JobWiseTechnology ip = new JobWiseTechnology();
+                        ip.TechnologyId = Convert.ToInt32(model.SelectedTechnologyString);
+                        ip.JobId = data.Id;
+                        _db.JobWiseTechnologies.Add(ip);
+                        _db.SaveChanges();
+                    }
+                }
             }
             else
             {
@@ -247,6 +287,29 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 data.date = DateTime.Now;
                 _db.tblJobDetails.Add(data);
                 _db.SaveChanges();
+
+                if (!string.IsNullOrEmpty(model.SelectedTechnologyString))
+                {
+                    if (model.SelectedTechnologyString.IndexOf(',') > -1)
+                    {
+                        foreach (var item in model.SelectedTechnologyString.Split(','))
+                        {
+                            JobWiseTechnology ip = new JobWiseTechnology();
+                            ip.TechnologyId = Convert.ToInt32(item);
+                            ip.JobId = data.Id;
+                            _db.JobWiseTechnologies.Add(ip);
+                            _db.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        JobWiseTechnology ip = new JobWiseTechnology();
+                        ip.TechnologyId = Convert.ToInt32(model.SelectedTechnologyString);
+                        ip.JobId = data.Id;
+                        _db.JobWiseTechnologies.Add(ip);
+                        _db.SaveChanges();
+                    }
+                }
             }
             return RedirectToAction("JobDetailsList");
         }

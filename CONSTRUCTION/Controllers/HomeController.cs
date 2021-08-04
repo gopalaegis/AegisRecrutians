@@ -65,45 +65,53 @@ namespace CONSTRUCTION.Controllers
 
         [HttpPost]
         public ActionResult SaveContectData(string Email, string Mobile, string Description = "", string Skype = "", string Name = "")
-        {
-            string from = WebConfigurationManager.AppSettings["SMTPMailFrom"];
-            string pass = WebConfigurationManager.AppSettings["SMTPPassword"];
-            string to = WebConfigurationManager.AppSettings["SMTPMailTo"];
-            int port = Convert.ToInt32(WebConfigurationManager.AppSettings["SMTPPort"]);
-            bool ssl = Convert.ToBoolean(WebConfigurationManager.AppSettings["SMTPEnableSSL"]);
-
-            SmtpClient client = new SmtpClient();
-            client.Credentials = new NetworkCredential(from, pass);
-            client.Port = port;
-            client.Host = "smtp.gmail.com";
-            client.EnableSsl = ssl;
-            string str = string.Empty;
-            str = "Hi <br /> <br /> ";
-            if (Name != "")
             {
-                str = str + "Name :- " + Name + " <br />";
-            }
-            if (Skype != "")
+            try
             {
-                str = str + "Skype :- " + Skype + " <br />";
+                string from = WebConfigurationManager.AppSettings["SMTPMailFrom"];
+                string pass = WebConfigurationManager.AppSettings["SMTPPassword"];
+                string to = WebConfigurationManager.AppSettings["SMTPMailTo"];
+                int port = Convert.ToInt32(WebConfigurationManager.AppSettings["SMTPPort"]);
+                bool ssl = Convert.ToBoolean(WebConfigurationManager.AppSettings["SMTPEnableSSL"]);
+                string host = Convert.ToString(WebConfigurationManager.AppSettings["SMTPHost"]);
+
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new NetworkCredential(from, pass);
+                client.Port = port;
+                client.Host = host;
+                client.EnableSsl = ssl;
+                string str = string.Empty;
+                str = "Hi <br /> <br /> ";
+                if (Name != "")
+                {
+                    str = str + "Name :- " + Name + " <br />";
+                }
+                if (Skype != "")
+                {
+                    str = str + "Skype :- " + Skype + " <br />";
+                }
+                str = str + " Email : " + Email + "<br /> Mobile " + Mobile + "  <br />";
+                str = str + "Description :- " + Description;
+                MailMessage message = new MailMessage(from, to, " Your Review ", str);
+                message.IsBodyHtml = true;
+                //message.Headers.Add("Content-Type", "text/html");
+                client.Send(message);
+
+                tblContectU data = new tblContectU();
+                data.Name = Name;
+                data.Skype = Skype;
+                data.Email = Email;
+                data.Mobile = Mobile;
+                data.Description = Description;
+                _db.tblContectUs.Add(data);
+                _db.SaveChanges();
+
+                return Json("Success", JsonRequestBehavior.AllowGet);
             }
-            str = str + " Email : " + Email + "<br /> Mobile " + Mobile + "  <br />";
-            str = str + "Description :- " + Description;
-            MailMessage message = new MailMessage(from, to, " Your Review ", str);
-            message.IsBodyHtml = true;
-            //message.Headers.Add("Content-Type", "text/html");
-            client.Send(message);
-
-            tblContectU data = new tblContectU();
-            data.Name = Name;
-            data.Skype = Skype;
-            data.Email = Email;
-            data.Mobile = Mobile;
-            data.Description = Description;
-            _db.tblContectUs.Add(data);
-            _db.SaveChanges();
-
-            return Json("Success", JsonRequestBehavior.AllowGet);
+            catch (Exception ex)
+            {
+                return Json("Error", JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

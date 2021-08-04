@@ -22,6 +22,7 @@
         <EntityTypeShape EntityType="AEGIS_ConstructionModel.tblSubCategoryMaster" Width="1.5" PointX="0.75" PointY="10.75" />
         <EntityTypeShape EntityType="AEGIS_ConstructionModel.tblSuperAdmin" Width="1.5" PointX="10.75" PointY="3.75" />
         <EntityTypeShape EntityType="AEGIS_ConstructionModel.tblTechnologyMaster" Width="1.5" PointX="10.75" PointY="6.75" />
+        <EntityTypeShape EntityType="AEGIS_ConstructionModel.JobWiseTechnology" Width="1.5" PointX="7.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

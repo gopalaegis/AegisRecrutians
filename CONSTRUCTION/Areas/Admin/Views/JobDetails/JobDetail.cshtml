@@ -1,41 +1,41 @@
 ﻿
 @{
-    ViewBag.Title = "JobDetail";
+        ViewBag.Title = "JobDetail";
 }
 
 <div id="addJobDetail" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <!-- Modal content-->
-        <div class="modal-content" style="height: 600px !important; overflow-y: scroll; width: 700px;">
-            <div class="modal-header">
-                <h4 class="modal-title"> Job Detail</h4>
-            </div>
-            <div class="modal-body">
+        <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content" style="height: 600px !important; overflow-y: scroll; width: 700px;">
+                        <div class="modal-header">
+                                <h4 class="modal-title"> Job Detail</h4>
+                        </div>
+                        <div class="modal-body">
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary btn_save">Save</button>
-                <button type="button" class="btn btn-default btn_Close" data-dismiss="modal">Close</button>
-            </div>
+                        </div>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-primary btn_save">Save</button>
+                                <button type="button" class="btn btn-default btn_Close" data-dismiss="modal">Close</button>
+                        </div>
+                </div>
         </div>
-    </div>
 </div>
 <div class="right-side">
-    <div class="heading">Job Detail</div>
-    <div class="data-table style-1">
-        <div class="box-table">
-            <div class="skill-table">
-                <div class="catagory-detail">
-                    <div class="catagory-flex1">
-                        <div><span class="add-catagory-btn" id="btnJobDetail" data-toggle="modal" data-target="#addJobDetail"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
-                    </div>
+        <div class="heading">Job Detail</div>
+        <div class="data-table style-1">
+                <div class="box-table">
+                        <div class="skill-table">
+                                <div class="catagory-detail">
+                                        <div class="catagory-flex1">
+                                                <div><span class="add-catagory-btn" id="btnJobDetail" data-toggle="modal" data-target="#addJobDetail"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
+                                        </div>
+                                </div>
+                                <div id="tableDiv">
+                                        @Html.Action("JobDetailsList", "JobDetails")
+                                </div>
+                        </div>
                 </div>
-                <div id="tableDiv">
-                    @Html.Action("JobDetailsList", "JobDetails")
-                </div>
-            </div>
         </div>
-    </div>
 </div>
 <script>
     $(document).ready(function () {
@@ -92,7 +92,8 @@
         var Location = $("#addJobDetail").find('#txt_Location').val();
         var IsVerified = $("#addJobDetail").find('#drp_IsVerified').val();
         var ShowOnHome = $("#addJobDetail").find('#drp_ShowOnHome').val();
-        var CompanyLogo = $("#addJobDetail").find('#file_HiddenName').val();
+            var CompanyLogo = $("#addJobDetail").find('#file_HiddenName').val();
+            var Selectedtechnology = $("#addJobDetail").find("#checkbox:checked").map(function () { return this.value; }).get().join(',');
 
         var isError = false;
         if (Title == "") {
@@ -179,7 +180,8 @@
                     IsVerified: IsVerified,
                     ShowOnHome: ShowOnHome,
                     CompanyLogo: CompanyLogo,
-                    BriefDescription: BriefDescription
+                        BriefDescription: BriefDescription,
+                        SelectedTechnologyString: Selectedtechnology
                 },
                 success: function (result) {
                     debugger

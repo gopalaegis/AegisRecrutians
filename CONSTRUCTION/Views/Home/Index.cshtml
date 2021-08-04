@@ -401,12 +401,27 @@
                     Description: description
                 },
                 success: function (result) {
-                    if (result == "Success") {
-                        $("#ContectUsDiv").find("#name").val("");
-                        $("#ContectUsDiv").find("#email").val("");
-                        $("#ContectUsDiv").find("#mobile").val("");
-                        $("#ContectUsDiv").find("#description").val("");
-                    }
+                        if (result == "Success") {
+                                $("#ContectUsDiv").find("#name").val("");
+                                $("#ContectUsDiv").find("#email").val("");
+                                $("#ContectUsDiv").find("#mobile").val("");
+                                $("#ContectUsDiv").find("#description").val("");
+
+                                $("#alert_inquiry_success").html("Inquiry genrated successfully");
+                                $("#alert_inquiry_success").show();
+                                setTimeout(function () { $("#alert_inquiry_success").hide(); }, 2000);
+                        }
+                        else {
+                                $("#ContectUsDiv").find("#name").val("");
+                                $("#ContectUsDiv").find("#email").val("");
+                                $("#ContectUsDiv").find("#mobile").val("");
+                                $("#ContectUsDiv").find("#description").val("");
+
+                                $("#alert_inquiry_error").html("Error, Please try again after some time.");
+                                $("#alert_inquiry_error").show();
+                                $(".closeInquiry").click();
+                                setTimeout(function () { $("#alert_inquiry_error").hide(); }, 2000);
+                        }
                 }
             });
         }

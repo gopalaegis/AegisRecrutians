@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="AEGIS_ConstructionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="JobWiseTechnology">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobId" Type="int" />
+          <Property Name="TechnologyId" Type="int" />
+        </EntityType>
         <EntityType Name="tblApplyJobDetails">
           <Key>
             <PropertyRef Name="Id" />
@@ -184,6 +192,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="AEGIS_ConstructionModelStoreContainer">
+          <EntitySet Name="JobWiseTechnology" EntityType="Self.JobWiseTechnology" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblApplyJobDetails" EntityType="Self.tblApplyJobDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblApplyJobEducation" EntityType="Self.tblApplyJobEducation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblApplyJobExperience" EntityType="Self.tblApplyJobExperience" Schema="dbo" store:Type="Tables" />
@@ -224,6 +233,7 @@
           <EntitySet Name="tblSubCategoryMasters" EntityType="AEGIS_ConstructionModel.tblSubCategoryMaster" />
           <EntitySet Name="tblSuperAdmins" EntityType="AEGIS_ConstructionModel.tblSuperAdmin" />
           <EntitySet Name="tblTechnologyMasters" EntityType="AEGIS_ConstructionModel.tblTechnologyMaster" />
+          <EntitySet Name="JobWiseTechnologies" EntityType="AEGIS_ConstructionModel.JobWiseTechnology" />
         </EntityContainer>
         <EntityType Name="tblApplyJobDetail">
           <Key>
@@ -402,6 +412,14 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="JobWiseTechnology">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobId" Type="Int32" />
+          <Property Name="TechnologyId" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -600,6 +618,15 @@
               <MappingFragment StoreEntitySet="tblTechnologyMaster">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobWiseTechnologies">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.JobWiseTechnology">
+              <MappingFragment StoreEntitySet="JobWiseTechnology">
+                <ScalarProperty Name="TechnologyId" ColumnName="TechnologyId" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
