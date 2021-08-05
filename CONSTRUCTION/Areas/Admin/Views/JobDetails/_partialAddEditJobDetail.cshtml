@@ -16,17 +16,17 @@
         </div>
 </div>
 @*<div class="row formGroup">
-        <div class="col-sm-6">
-                <label>Category <span style="color:red">*</span></label>
-                @Html.DropDownListFor(model => model.CategoryList, new SelectList(Model.CategoryList, "Value", "Text"), new { @class = "form-control drp_categoryList" })
-                <label id="label_error_Category" class="errorMessage" style="display: none; color: red">Category is required</label>
-        </div>
-        <div class="col-sm-6">
-                <label>Sub Category <span style="color:red">*</span></label>
-                @Html.DropDownListFor(model => model.SubCategoryList, new SelectList(Model.SubCategoryList, "Value", "Text"), new { @class = "form-control drp_subcategory" })
-                <label id="label_error_SubCategory" class="errorMessage" style="display: none; color: red">SubCategory is required</label>
-        </div>
-</div>*@
+                <div class="col-sm-6">
+                        <label>Category <span style="color:red">*</span></label>
+                        @Html.DropDownListFor(model => model.CategoryList, new SelectList(Model.CategoryList, "Value", "Text"), new { @class = "form-control drp_categoryList" })
+                        <label id="label_error_Category" class="errorMessage" style="display: none; color: red">Category is required</label>
+                </div>
+                <div class="col-sm-6">
+                        <label>Sub Category <span style="color:red">*</span></label>
+                        @Html.DropDownListFor(model => model.SubCategoryList, new SelectList(Model.SubCategoryList, "Value", "Text"), new { @class = "form-control drp_subcategory" })
+                        <label id="label_error_SubCategory" class="errorMessage" style="display: none; color: red">SubCategory is required</label>
+                </div>
+        </div>*@
 <div class="row formGroup">
         @*<div class="col-sm-6">
                         <label>Profession <span style="color:red">*</span></label>
@@ -44,7 +44,7 @@
                 <label id="label_error_City" class="errorMessage" style="display: none; color: red">City is required</label>
         </div>
 </div>
-<div class="row formGroup">       
+<div class="row formGroup">
         <div class="col-sm-6">
                 <label>Company Name <span style="color:red">*</span></label>
                 <input type="text" id="txt_CompanyName" value="@Model.CompanyName" placeholder="CompanyName" class="form-control" />
@@ -163,7 +163,14 @@
                         {
                                 <tr>
                                         <td>
-                                                <input type="checkbox" id="checkbox" value="@item.Value" @(Model.SelectedTechnology.Contains(Convert.ToInt32(item.Value)) ? "checked='checked'" : "") />
+                                                @if (Model.SelectedTechnology != null)
+                                                {
+                                                        <input type="checkbox" id="checkbox" value="@item.Value" @(Model.SelectedTechnology.Contains(Convert.ToInt32(item.Value)) ? "checked='checked'" : "") />
+                                                }
+                                                else
+                                                {
+                                                        <input type="checkbox" id="checkbox" value="@item.Value" ) />
+                                                }
                                         </td>
                                         <td>
                                                 @item.Text
