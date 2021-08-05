@@ -41,7 +41,7 @@ namespace CONSTRUCTION.Controllers
         public ActionResult JobDetails()
         {
             List<JobDetailViewModel> model = new List<JobDetailViewModel>();
-            var m = _db.tblJobDetails.OrderByDescending(x => x.Id).ToList();
+            var m = _db.tblJobDetails.Where(x=>x.ShowOnHome == "Yes").OrderByDescending(x => x.Id).ToList();
             foreach (var item in m)
             {
                 var cityData = _db.tblCities.Where(x => x.Id == item.CityId).FirstOrDefault();
