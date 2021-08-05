@@ -68,8 +68,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StateId" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="StateId" Type="int" />
         </EntityType>
         <EntityType Name="tblContectUs">
           <Key>
@@ -87,7 +87,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sortname" Type="nvarchar" MaxLength="50" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="phonecode" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblJobDetails">
           <Key>
@@ -164,8 +166,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CountryId" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryId" Type="int" />
         </EntityType>
         <EntityType Name="tblSubCategoryMaster">
           <Key>
@@ -216,6 +218,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="AEGIS_ConstructionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="AEGIS_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="JobWiseTechnologies" EntityType="AEGIS_ConstructionModel.JobWiseTechnology" />
           <EntitySet Name="tblApplyJobDetails" EntityType="AEGIS_ConstructionModel.tblApplyJobDetail" />
           <EntitySet Name="tblApplyJobEducations" EntityType="AEGIS_ConstructionModel.tblApplyJobEducation" />
           <EntitySet Name="tblApplyJobExperiences" EntityType="AEGIS_ConstructionModel.tblApplyJobExperience" />
@@ -233,8 +236,15 @@
           <EntitySet Name="tblSubCategoryMasters" EntityType="AEGIS_ConstructionModel.tblSubCategoryMaster" />
           <EntitySet Name="tblSuperAdmins" EntityType="AEGIS_ConstructionModel.tblSuperAdmin" />
           <EntitySet Name="tblTechnologyMasters" EntityType="AEGIS_ConstructionModel.tblTechnologyMaster" />
-          <EntitySet Name="JobWiseTechnologies" EntityType="AEGIS_ConstructionModel.JobWiseTechnology" />
         </EntityContainer>
+        <EntityType Name="JobWiseTechnology">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobId" Type="Int32" />
+          <Property Name="TechnologyId" Type="Int32" />
+        </EntityType>
         <EntityType Name="tblApplyJobDetail">
           <Key>
             <PropertyRef Name="Id" />
@@ -290,8 +300,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StateId" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StateId" Type="Int32" />
         </EntityType>
         <EntityType Name="tblContectU">
           <Key>
@@ -309,7 +319,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sortname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phonecode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblJobDetail">
           <Key>
@@ -386,8 +398,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CountryId" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int32" />
         </EntityType>
         <EntityType Name="tblSubCategoryMaster">
           <Key>
@@ -413,20 +425,21 @@
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="JobWiseTechnology">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="JobId" Type="Int32" />
-          <Property Name="TechnologyId" Type="Int32" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="AEGIS_ConstructionModelStoreContainer" CdmEntityContainer="AEGIS_Entities">
+          <EntitySetMapping Name="JobWiseTechnologies">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.JobWiseTechnology">
+              <MappingFragment StoreEntitySet="JobWiseTechnology">
+                <ScalarProperty Name="TechnologyId" ColumnName="TechnologyId" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblApplyJobDetails">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblApplyJobDetail">
               <MappingFragment StoreEntitySet="tblApplyJobDetails">
@@ -484,8 +497,8 @@
           <EntitySetMapping Name="tblCities">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblCity">
               <MappingFragment StoreEntitySet="tblCity">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -505,7 +518,9 @@
           <EntitySetMapping Name="tblCountries">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblCountry">
               <MappingFragment StoreEntitySet="tblCountry">
+                <ScalarProperty Name="phonecode" ColumnName="phonecode" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="sortname" ColumnName="sortname" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -589,8 +604,8 @@
           <EntitySetMapping Name="tblStates">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblState">
               <MappingFragment StoreEntitySet="tblState">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -618,15 +633,6 @@
               <MappingFragment StoreEntitySet="tblTechnologyMaster">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="JobWiseTechnologies">
-            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.JobWiseTechnology">
-              <MappingFragment StoreEntitySet="JobWiseTechnology">
-                <ScalarProperty Name="TechnologyId" ColumnName="TechnologyId" />
-                <ScalarProperty Name="JobId" ColumnName="JobId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

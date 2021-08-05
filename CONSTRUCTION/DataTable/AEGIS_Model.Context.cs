@@ -25,6 +25,7 @@ namespace CONSTRUCTION.DataTable
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<JobWiseTechnology> JobWiseTechnologies { get; set; }
         public virtual DbSet<tblApplyJobDetail> tblApplyJobDetails { get; set; }
         public virtual DbSet<tblApplyJobEducation> tblApplyJobEducations { get; set; }
         public virtual DbSet<tblApplyJobExperience> tblApplyJobExperiences { get; set; }
@@ -42,6 +43,5 @@ namespace CONSTRUCTION.DataTable
         public virtual DbSet<tblSubCategoryMaster> tblSubCategoryMasters { get; set; }
         public virtual DbSet<tblSuperAdmin> tblSuperAdmins { get; set; }
         public virtual DbSet<tblTechnologyMaster> tblTechnologyMasters { get; set; }
-        public virtual DbSet<JobWiseTechnology> JobWiseTechnologies { get; set; }
     }
 }

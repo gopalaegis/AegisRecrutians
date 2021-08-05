@@ -282,7 +282,7 @@
                                                         $("#txtcomments").val('');
                                                         $("#txtCaptcha").val('');
                                                         sendEmail();
-
+                                                        $(".closeInquiry").click();
                                                         $("#alert_inquiry_success").html("Inquiry genrated successfully");
                                                         $("#alert_inquiry_success").show();
                                                         setTimeout(function () { $("#alert_inquiry_success").hide(); }, 2000);
