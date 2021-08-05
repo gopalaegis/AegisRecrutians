@@ -30,7 +30,10 @@
             </div>
             <div class="col-6 col-sm-12">
                 <div class="back-link">
-                    <p><a href="@Model.URL"><i class="fa fa-angle-left"></i>   Back to Results</a></p>
+                    @if (!string.IsNullOrEmpty(Model.URL) && Model.URL != "")
+                    {
+                        <p><a href="@Model.URL"><i class="fa fa-angle-left"></i>   Back to Results</a></p>
+                    }
                 </div>
             </div>
         </div>

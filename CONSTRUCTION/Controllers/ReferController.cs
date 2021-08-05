@@ -55,7 +55,7 @@ namespace CONSTRUCTION.Controllers
             client.EnableSsl = ssl;
             string str = string.Empty;
             str = "Hi " + model.FriendName;
-            str = str + "<br />You are refered for below job by your friend" + model.Name + "<br />";
+            str = str + "<br />You are refered for below job by your friend " + model.Name + "<br />";
             str = str + "<a href ='" + urlforApply + "' title='Apply Job'> Click here to Apply </a><br />";
             str = str + "Thanks & Regards <br /> Aegis Team";
             MailMessage message = new MailMessage(from, model.FriendEmail, " Aegis Portal - Refer friend for job ", str);
