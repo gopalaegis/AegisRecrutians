@@ -20,7 +20,15 @@ namespace CONSTRUCTION.Controllers
         {
             var job = _db.tblJobDetails.Where(x => x.Id == jobId).FirstOrDefault();
             ApplyJobViewModel model = new ApplyJobViewModel();
-            model.URL = Request.UrlReferrer.AbsoluteUri;
+
+            if (Request.UrlReferrer != null)
+                if (!string.IsNullOrEmpty(Request.UrlReferrer.AbsoluteUri))
+                    model.URL = Request.UrlReferrer.AbsoluteUri;
+                else
+                    model.URL = "";
+            else
+                model.URL = "";
+
             model.JobId = jobId;
             if (job != null)
             {
@@ -88,20 +96,20 @@ namespace CONSTRUCTION.Controllers
             }
 
             tblApplyJobDetail data = new tblApplyJobDetail();
-            data.Name= model.Name;
-            data.DOB= Convert.ToDateTime(model.DOB);
-            data.Gender= model.Gender;
-            data.Email= model.Email;
-            data.Mobile= model.PhoneNo1;
-            data.Mobile1= model.PhoneNo2;
-            data.AddressType= model.AddressType;
-            data.HouseName= model.BlockNo;
-            data.Street= model.Street;
-            data.City= model.City;
-            data.CountryId= model.CountryId;
-            data.StateId= model.StateId;
-            data.JobId= model.JobId;
-            data.Resume= model.Resume;
+            data.Name = model.Name;
+            data.DOB = Convert.ToDateTime(model.DOB);
+            data.Gender = model.Gender;
+            data.Email = model.Email;
+            data.Mobile = model.PhoneNo1;
+            data.Mobile1 = model.PhoneNo2;
+            data.AddressType = model.AddressType;
+            data.HouseName = model.BlockNo;
+            data.Street = model.Street;
+            data.City = model.City;
+            data.CountryId = model.CountryId;
+            data.StateId = model.StateId;
+            data.JobId = model.JobId;
+            data.Resume = model.Resume;
             _db.tblApplyJobDetails.Add(data);
             _db.SaveChanges();
 

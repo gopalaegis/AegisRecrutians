@@ -14,6 +14,12 @@ namespace CONSTRUCTION
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+           name: "JobsList",
+           url: "jobs/List",
+           defaults: new { controller = "jobs", action = "List"}
+       );
+
+            routes.MapRoute(
             name: "Jobs",
             url: "jobs/{city}",
             defaults: new { controller = "jobs", action = "Index", city = UrlParameter.Optional }

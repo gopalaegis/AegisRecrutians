@@ -13,6 +13,7 @@ namespace CONSTRUCTION.Models
         }
         public int currentPage { get; set; }
         public int totalPage { get; set; }
+        public int totalRecord { get; set; }
         public string fromtojob { get; set; }
         public List<JobDetailViewModel> jobDetailViewModels { get; set; }
     }
