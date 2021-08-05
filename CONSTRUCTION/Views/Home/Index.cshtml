@@ -1,347 +1,347 @@
 ﻿@model CONSTRUCTION.Models.HomeViewModel
 @{
-    ViewBag.Title = "Home Page";
+        ViewBag.Title = "Home Page";
 }
 <style>
-    .footer_section {
-        padding: 8.5rem 0 3rem !important;
-    }
+        .footer_section {
+                padding: 8.5rem 0 3rem !important;
+        }
 </style>
 <!-- Slider Section -->
 <section class="slider-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-7 col-sm-12">
-                <div class="inner-content">
-                    <h1>Start your springful <span class="d-block">career with us.</span></h1>
-                    <p>Imagine, Believe & Achieve progressive careers with us because you deserve the best</p>
-                    <div class="serch-form">
-                        <form class="form-inline">
-                            <div class="form-group col-7">
-                                <input type="text" name="country" class="form-control job-search " placeholder="Search by job title (Ex. Resident Medical Officer/RMO)" />
-                                <!-- <input type="text" class="" placeholder="" /> -->
-                            </div>
-                            <div class="form-group col-4">
-                                <input type="text" class="form-control location " placeholder="Location" />
-                            </div>
-                            <div class="form-group col-1">
-                                <button type="button" id="searchLocation" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                            </div>
-                        </form>
-                    </div>
+        <div class="container">
+                <div class="row">
+                        <div class="col-7 col-sm-12">
+                                <div class="inner-content">
+                                        <h1>Start your springful <span class="d-block">career with us.</span></h1>
+                                        <p>Imagine, Believe & Achieve progressive careers with us because you deserve the best</p>
+                                        <div class="serch-form">
+                                                <form class="form-inline">
+                                                        <div class="form-group col-7">
+                                                                <input type="text" name="country" class="form-control job-search " placeholder="Search by job title (Ex. Resident Medical Officer/RMO)" />
+                                                                <!-- <input type="text" class="" placeholder="" /> -->
+                                                        </div>
+                                                        <div class="form-group col-4">
+                                                                <input type="text" class="form-control location " placeholder="Location" />
+                                                        </div>
+                                                        <div class="form-group col-1">
+                                                                <button type="button" id="searchLocation" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                                        </div>
+                                                </form>
+                                        </div>
+                                </div>
+                        </div>
                 </div>
-            </div>
         </div>
-    </div>
 </section>
 
 <!-- Technology Stack -->
 <section class="tech_stack pt-3 pb-3 sky_light">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-header text-center">
-                    <h2>Browse by technology</h2>
-                    <p>We offers complete job posting services to ensure that your opportunities are seen by qualified candidates. Thousands of new candidates register every week, allowing you to reach the right candidates quickly and affordably.</p>
+        <div class="container">
+                <div class="row">
+                        <div class="col-12">
+                                <div class="section-header text-center">
+                                        <h2>Browse by technology</h2>
+                                        <p>We offers complete job posting services to ensure that your opportunities are seen by qualified candidates. Thousands of new candidates register every week, allowing you to reach the right candidates quickly and affordably.</p>
+                                </div>
+                        </div>
                 </div>
-            </div>
+                <div class="row mt-2">
+                        <div class="col-12">
+                                <div class="list-tech">
+                                        <ul>
+                                                @foreach (var item in Model.technologyMasterViewModels)
+                                                {
+                                                        <li data-aos="zoom-in" data-aos-duration="1000">
+                                                                <a href="@Url.Action("Index","Jobs",new { TechnologyId = item.Id})">
+                                                                        <aside><img src="~/CommonImage/Technology/@item.Image" class="lazyload" alt="@item.Name" /></aside>
+                                                                        <h3>@item.Name</h3>
+                                                                </a>
+                                                        </li>
+                                                }
+                                        </ul>
+                                </div>
+                                <div class="read-btn text-center mt-2">
+                                        <a href="#">Confused? We’ve right solution for you!</a>
+                                </div>
+                        </div>
+                </div>
         </div>
-        <div class="row mt-2">
-            <div class="col-12">
-                <div class="list-tech">
-                    <ul>
-                        @foreach (var item in Model.technologyMasterViewModels)
-                        {
-                            <li data-aos="zoom-in" data-aos-duration="1000">
-                                <a href="javascript:;">
-                                    <aside><img src="~/CommonImage/Technology/@item.Image" class="lazyload" alt="@item.Name" /></aside>
-                                    <h3>@item.Name</h3>
-                                </a>
-                            </li>
-                        }
-                    </ul>
-                </div>
-                <div class="read-btn text-center mt-2">
-                    <a href="#">Confused? We’ve right solution for you!</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 
 <!-- explore -->
 <section class="explore">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-6 col-sm-12">
-                <div class="bg-img"></div>
-            </div>
-            <div class="col-6 col-sm-12">
-                <div class="inner-box">
-                    <div class="section-header text-center">
-                        <h2>Explore Opportunities</h2>
-                    </div>
-                    <div class="content text-center">
-                        <p>What’s destination next? Is it better technology? A better you? Or a better community of makers? Wherever you desire to go, we give you the tools, the techniques, and the teams to navigate the journey. So you’re inspired to build what’s next, ensure your career never stands still, & navigate further together. Take the world with you.</p>
-                        <div class="round">
-                            <div class="media bg1" data-aos="zoom-in" data-aos-duration="1000">
-                                <aside><img src="~/images/icons/e1.png" /></aside>
-                                <div class="media-body">
-                                    <h3>Graduates</h3>
-                                </div>
-                            </div>
-                            <div class="media bg2" data-aos="zoom-in" data-aos-duration="1200">
-                                <aside><img src="~/images/icons/e2.png" /></aside>
-                                <div class="media-body">
-                                    <h3>Professionals</h3>
-                                </div>
-                            </div>
-                            <div class="media bg3" data-aos="zoom-in" data-aos-duration="1400">
-                                <aside><img src="~/images/icons/e3.png" /></aside>
-                                <div class="media-body">
-                                    <h3>Students / Internships</h3>
-                                </div>
-                            </div>
+        <div class="container-fluid">
+                <div class="row">
+                        <div class="col-6 col-sm-12">
+                                <div class="bg-img"></div>
                         </div>
-                    </div>
+                        <div class="col-6 col-sm-12">
+                                <div class="inner-box">
+                                        <div class="section-header text-center">
+                                                <h2>Explore Opportunities</h2>
+                                        </div>
+                                        <div class="content text-center">
+                                                <p>What’s destination next? Is it better technology? A better you? Or a better community of makers? Wherever you desire to go, we give you the tools, the techniques, and the teams to navigate the journey. So you’re inspired to build what’s next, ensure your career never stands still, & navigate further together. Take the world with you.</p>
+                                                <div class="round">
+                                                        <div class="media bg1" data-aos="zoom-in" data-aos-duration="1000">
+                                                                <aside><img src="~/images/icons/e1.png" /></aside>
+                                                                <div class="media-body">
+                                                                        <h3>Graduates</h3>
+                                                                </div>
+                                                        </div>
+                                                        <div class="media bg2" data-aos="zoom-in" data-aos-duration="1200">
+                                                                <aside><img src="~/images/icons/e2.png" /></aside>
+                                                                <div class="media-body">
+                                                                        <h3>Professionals</h3>
+                                                                </div>
+                                                        </div>
+                                                        <div class="media bg3" data-aos="zoom-in" data-aos-duration="1400">
+                                                                <aside><img src="~/images/icons/e3.png" /></aside>
+                                                                <div class="media-body">
+                                                                        <h3>Students / Internships</h3>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
                 </div>
-            </div>
         </div>
-    </div>
 </section>
 
 <!-- why aegis -->
 <section class="why_aegis pt-3 pb-3 titan">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-header text-center">
-                    <h2>Why Aegis</h2>
-                    <p>We offers complete job posting services to ensure that your opportunities are seen by qualified candidates. Thousands of new candidates register every week, allowing you to reach the right candidates quickly and affordably.</p>
+        <div class="container">
+                <div class="row">
+                        <div class="col-12">
+                                <div class="section-header text-center">
+                                        <h2>Why Aegis</h2>
+                                        <p>We offers complete job posting services to ensure that your opportunities are seen by qualified candidates. Thousands of new candidates register every week, allowing you to reach the right candidates quickly and affordably.</p>
+                                </div>
+                        </div>
                 </div>
-            </div>
-        </div>
-        <!--  -->
-        <div class="row mt-2">
-            <div class="col-12">
-                <div class="owl-slider">
-                    <div id="solutions-box" class="owl-carousel owl-theme">
-                        <div class="item">
-                            <div class="inner-box">
-                                <div class="img-box">
-                                    <img src="~/images/thumb/why-aegis/1.jpg" class="lazyload" />
+                <!--  -->
+                <div class="row mt-2">
+                        <div class="col-12">
+                                <div class="owl-slider">
+                                        <div id="solutions-box" class="owl-carousel owl-theme">
+                                                <div class="item">
+                                                        <div class="inner-box">
+                                                                <div class="img-box">
+                                                                        <img src="~/images/thumb/why-aegis/1.jpg" class="lazyload" />
+                                                                </div>
+                                                                <div class="overlay">
+                                                                        <h4>Inclusion and Diversity</h4>
+                                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <div class="item">
+                                                        <div class="inner-box">
+                                                                <div class="img-box">
+                                                                        <img src="~/images/thumb/why-aegis/2.jpg" class="lazyload" />
+                                                                </div>
+                                                                <div class="overlay">
+                                                                        <h4>Benefits</h4>
+                                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <div class="item">
+                                                        <div class="inner-box">
+                                                                <div class="img-box">
+                                                                        <img src="~/images/thumb/why-aegis/3.jpg" class="lazyload" />
+                                                                </div>
+                                                                <div class="overlay">
+                                                                        <h4>Who We Are</h4>
+                                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <div class="item">
+                                                        <div class="inner-box">
+                                                                <div class="img-box">
+                                                                        <img src="~/images/thumb/why-aegis/1.jpg" class="lazyload" />
+                                                                </div>
+                                                                <div class="overlay">
+                                                                        <h4>Inclusion and Diversity</h4>
+                                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <div class="item">
+                                                        <div class="inner-box">
+                                                                <div class="img-box">
+                                                                        <img src="~/images/thumb/why-aegis/2.jpg" class="lazyload" />
+                                                                </div>
+                                                                <div class="overlay">
+                                                                        <h4>Benefits</h4>
+                                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <div class="item">
+                                                        <div class="inner-box">
+                                                                <div class="img-box">
+                                                                        <img src="~/images/thumb/why-aegis/3.jpg" class="lazyload" />
+                                                                </div>
+                                                                <div class="overlay">
+                                                                        <h4>Who We Are</h4>
+                                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <div class="item">
+                                                        <div class="inner-box">
+                                                                <div class="img-box">
+                                                                        <img src="~/images/thumb/why-aegis/1.jpg" class="lazyload" />
+                                                                </div>
+                                                                <div class="overlay">
+                                                                        <h4>Inclusion and Diversity</h4>
+                                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <div class="item">
+                                                        <div class="inner-box">
+                                                                <div class="img-box">
+                                                                        <img src="~/images/thumb/why-aegis/2.jpg" class="lazyload" />
+                                                                </div>
+                                                                <div class="overlay">
+                                                                        <h4>Benefits</h4>
+                                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <div class="item">
+                                                        <div class="inner-box">
+                                                                <div class="img-box">
+                                                                        <img src="~/images/thumb/why-aegis/3.jpg" class="lazyload" />
+                                                                </div>
+                                                                <div class="overlay">
+                                                                        <h4>Who We Are</h4>
+                                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
                                 </div>
-                                <div class="overlay">
-                                    <h4>Inclusion and Diversity</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                </div>
-                            </div>
                         </div>
-                        <div class="item">
-                            <div class="inner-box">
-                                <div class="img-box">
-                                    <img src="~/images/thumb/why-aegis/2.jpg" class="lazyload" />
-                                </div>
-                                <div class="overlay">
-                                    <h4>Benefits</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="inner-box">
-                                <div class="img-box">
-                                    <img src="~/images/thumb/why-aegis/3.jpg" class="lazyload" />
-                                </div>
-                                <div class="overlay">
-                                    <h4>Who We Are</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="inner-box">
-                                <div class="img-box">
-                                    <img src="~/images/thumb/why-aegis/1.jpg" class="lazyload" />
-                                </div>
-                                <div class="overlay">
-                                    <h4>Inclusion and Diversity</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="inner-box">
-                                <div class="img-box">
-                                    <img src="~/images/thumb/why-aegis/2.jpg" class="lazyload" />
-                                </div>
-                                <div class="overlay">
-                                    <h4>Benefits</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="inner-box">
-                                <div class="img-box">
-                                    <img src="~/images/thumb/why-aegis/3.jpg" class="lazyload" />
-                                </div>
-                                <div class="overlay">
-                                    <h4>Who We Are</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="inner-box">
-                                <div class="img-box">
-                                    <img src="~/images/thumb/why-aegis/1.jpg" class="lazyload" />
-                                </div>
-                                <div class="overlay">
-                                    <h4>Inclusion and Diversity</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="inner-box">
-                                <div class="img-box">
-                                    <img src="~/images/thumb/why-aegis/2.jpg" class="lazyload" />
-                                </div>
-                                <div class="overlay">
-                                    <h4>Benefits</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="inner-box">
-                                <div class="img-box">
-                                    <img src="~/images/thumb/why-aegis/3.jpg" class="lazyload" />
-                                </div>
-                                <div class="overlay">
-                                    <h4>Who We Are</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </div>
         </div>
-    </div>
 </section>
 
 <!-- job skill -->
 <section class="why_aegis pt-3 pb-3 titan">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-header text-center">
-                    <h2>Find jobs by skill</h2>
-                    <p>We offers complete job posting services to ensure that your opportunities are seen by qualified candidates. Thousands of new candidates register every week, allowing you to reach the right candidates quickly and affordably.</p>
+        <div class="container">
+                <div class="row">
+                        <div class="col-12">
+                                <div class="section-header text-center">
+                                        <h2>Find jobs by skill</h2>
+                                        <p>We offers complete job posting services to ensure that your opportunities are seen by qualified candidates. Thousands of new candidates register every week, allowing you to reach the right candidates quickly and affordably.</p>
+                                </div>
+                        </div>
                 </div>
-            </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col-12">
-                <div class="list-skill">
-                    <ul>
-                        @foreach (var item in Model.skillMasterViewModels)
-                        {
-                            <li><a href="JavaScript:;">@item.Name</a></li>
-                        }
-                    </ul>
+                <div class="row mt-2">
+                        <div class="col-12">
+                                <div class="list-skill">
+                                        <ul>
+                                                @foreach (var item in Model.skillMasterViewModels)
+                                                {
+                                                        <li><a href="JavaScript:;">@item.Name</a></li>
+                                                }
+                                        </ul>
+                                </div>
+                        </div>
                 </div>
-            </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col-12">
-                <div class="read-btn text-center">
-                    <a href="#">Didn’t get your skill?, Click here!</a>
+                <div class="row mt-2">
+                        <div class="col-12">
+                                <div class="read-btn text-center">
+                                        <a href="#">Didn’t get your skill?, Click here!</a>
+                                </div>
+                        </div>
                 </div>
-            </div>
         </div>
-    </div>
 </section>
 
 <!-- job list -->
 <section class="joblist_section pt-3 pb-3 titan">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-header text-center">
-                    <h2>Grab This Exciting Job Opportunities</h2>
-                    <p>We offers complete job posting services to ensure that your opportunities are seen by qualified candidates. Thousands of new candidates register every week, allowing you to reach the right candidates quickly and affordably.</p>
+        <div class="container">
+                <div class="row">
+                        <div class="col-12">
+                                <div class="section-header text-center">
+                                        <h2>Grab This Exciting Job Opportunities</h2>
+                                        <p>We offers complete job posting services to ensure that your opportunities are seen by qualified candidates. Thousands of new candidates register every week, allowing you to reach the right candidates quickly and affordably.</p>
+                                </div>
+                        </div>
                 </div>
-            </div>
+                <div class="row mt-2">
+                        @Html.Action("JobDetails", "Home")
+                </div>
         </div>
-        <div class="row mt-2">
-            @Html.Action("JobDetails", "Home")
-        </div>
-    </div>
 </section>
 
 <!-- account box -->
 <section class="account_section pt-2 pb-3 titan">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="inner-box">
-                    <h3>Join our Talent Network <span class="d-block">to start your career with us.</span></h3>
-                    <div class="read-btn">
-                        <a href="JavaScript:;">Join Now</a>
-                    </div>
+        <div class="container">
+                <div class="row">
+                        <div class="col-12">
+                                <div class="inner-box">
+                                        <h3>Join our Talent Network <span class="d-block">to start your career with us.</span></h3>
+                                        <div class="read-btn">
+                                                <a href="JavaScript:;">Join Now</a>
+                                        </div>
+                                </div>
+                        </div>
                 </div>
-            </div>
         </div>
-    </div>
 </section>
 
 <!-- job form -->
 <section class="form_section">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="job-req row">
-                    <div class="col-6 col-sm-12">
-                        <div class="talk">
-                            <h2>Talk to our experts about your JOB requirements</h2>
-                            <p>Contact us and know more about how our experts can help your business grow. Contact us and know more about how our experts can help your business grow. Contact us and know more about how our experts can help your business grow.</p>
-                            <p>Contact us and know more about how our experts can help your business grow. Contact us and know more about how our experts can help your business grow.</p>
-                            <div class="read-btn"><a href="#" class="send-msg">Let’s Talk</a></div>
+        <div class="container">
+                <div class="row">
+                        <div class="col-12">
+                                <div class="job-req row">
+                                        <div class="col-6 col-sm-12">
+                                                <div class="talk">
+                                                        <h2>Talk to our experts about your JOB requirements</h2>
+                                                        <p>Contact us and know more about how our experts can help your business grow. Contact us and know more about how our experts can help your business grow. Contact us and know more about how our experts can help your business grow.</p>
+                                                        <p>Contact us and know more about how our experts can help your business grow. Contact us and know more about how our experts can help your business grow.</p>
+                                                        <div class="read-btn"><a href="#" class="send-msg">Let’s Talk</a></div>
+                                                </div>
+                                        </div>
+                                        <div class="col-6 col-sm-12">
+                                                <div class="form-fill" id="ContectUsDiv">
+                                                        <form>
+                                                                <div class="form-group" style="margin-bottom:24px;">
+                                                                        <input type="text" class="form-control name" placeholder="Name" id="name" style="margin-bottom:0px;">
+                                                                        <label id="label_error_name" class="errorMessage" style="display:none;">Name is required</label>
+                                                                </div>
+                                                                <div class="form-group" style="margin-bottom:24px;">
+                                                                        <input type="email" class="form-control email" placeholder="Email Id" id="email" style="margin-bottom:0px;">
+                                                                        <label id="label_error_Email" class="errorMessage" style="display:none;">Email Id is required</label>
+                                                                        <label id="label_error_EmailFormat" class="errorMessage" style="display:none;">Email Id is not Valid</label>
+                                                                </div>
+                                                                <div class="form-group" style="margin-bottom:24px;">
+                                                                        <input type="text" class="form-control phone" placeholder="Phone Number" id="mobile" style="margin-bottom:0px;">
+                                                                        <label id="label_error_PN" class="errorMessage" style="display:none;">Phone Number is required</label>
+                                                                        <label id="label_error_PNFormat" class="errorMessage" style="display:none;">Phone Number is not Valid</label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                        <textarea class="form-control project" placeholder="Describe your project" rows="3" id="description"></textarea>
+                                                                </div>
+                                                                <div class="read-btn">
+                                                                        <a id="submitData" class="send-msg">Submit</a>
+                                                                </div>
+                                                        </form>
+                                                </div>
+                                        </div>
+                                </div>
                         </div>
-                    </div>
-                    <div class="col-6 col-sm-12">
-                        <div class="form-fill" id="ContectUsDiv">
-                            <form>
-                                <div class="form-group" style="margin-bottom:24px;">
-                                    <input type="text" class="form-control name" placeholder="Name" id="name" style="margin-bottom:0px;">
-                                    <label id="label_error_name" class="errorMessage" style="display:none;">Name is required</label>
-                                </div>
-                                <div class="form-group" style="margin-bottom:24px;">
-                                    <input type="email" class="form-control email" placeholder="Email Id" id="email" style="margin-bottom:0px;">
-                                    <label id="label_error_Email" class="errorMessage" style="display:none;">Email Id is required</label>
-                                    <label id="label_error_EmailFormat" class="errorMessage" style="display:none;">Email Id is not Valid</label>
-                                </div>
-                                <div class="form-group" style="margin-bottom:24px;">
-                                    <input type="text" class="form-control phone" placeholder="Phone Number" id="mobile" style="margin-bottom:0px;">
-                                    <label id="label_error_PN" class="errorMessage" style="display:none;">Phone Number is required</label>
-                                    <label id="label_error_PNFormat" class="errorMessage" style="display:none;">Phone Number is not Valid</label>
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-control project" placeholder="Describe your project" rows="3" id="description"></textarea>
-                                </div>
-                                <div class="read-btn">
-                                    <a id="submitData" class="send-msg">Submit</a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
-            </div>
         </div>
-    </div>
 </section><!-- #  -->
 <script>
     $("#searchLocation").click(function () {

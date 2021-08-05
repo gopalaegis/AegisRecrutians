@@ -20,7 +20,9 @@ namespace CONSTRUCTION.Models
     public class JobDetailViewModel
     {
         public int Id { get; set; }
+        public int TechnologyId { get; set; }
         public string Title { get; set; }
+        public string TechnologyTitle { get; set; }
         public int CityId { get; set; }
         public string City { get; set; }
         public int minExpirience { get; set; }

@@ -1,77 +1,77 @@
 ﻿@model CONSTRUCTION.Models.JobsViewModel
 
 @{
-    Layout = null;
+        Layout = null;
 }
 <div class="EducationDatas">
-    <div class="job-list">
-        <div class="job-bar">
-            <div class="total-job">
-                <p>@Model.fromtojob  @*1 - 5 of 20 Jobs In Rajkot*@</p>
-            </div>
+        <div class="job-list" style="border-top:none;">
+                <div class="job-bar">
+                        <div class="total-job">
+                                <p>@Model.fromtojob  @*1 - 5 of 20 Jobs In Rajkot*@</p>
+                        </div>
 
-        </div>
-        <div class="job-details">
-            @foreach (var item in Model.jobDetailViewModels)
-            {
-                <div class="tab-box">
-                    <div class="tech-name col-4">
-                        <p>@item.Title</p>
-                    </div>
-                    <div class="exp col-2">
-                        <p>@item.minExpirience-@item.maxExpirience Years</p>
-                    </div>
-                    <div class="location col-2">
-                        <p>@item.City .</p>
-                    </div>
-                    <div class="time col-2">
-                        <p>@item.Date</p>
-                    </div>
-                    <div class="action col-2">
-                        <a href="@Url.Action("Index","Refer",new { jobId = item.Id, Area = "" })">Refer a friend</a>
-                        <a href="@Url.Action("Index","ApplyJob",new { jobId = item.Id })">Apply Now</a>
-                    </div>
                 </div>
-            }
-        </div>
-    </div>
-    <div class="bottom-info mt-3">
-        <nav>
-            <ul class="pagination">
-                @if (Model.jobDetailViewModels.Count > 0)
-                {
-                    if (Model.currentPage > 1)
-                    {
-                        <li class="page-item">
-                            <a class="page-link pageList" href="#" data-page="@(Model.currentPage - 1)" aria-label="Previous">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                        </li>
-                    }
-                    for (int i = 1; i <= Model.totalPage; i++)
-                    {
-                        if (i == Model.currentPage)
+                <div class="job-details">
+                        @foreach (var item in Model.jobDetailViewModels)
                         {
-                            <li class="page-item"><a class="page-link" href="#" data-page="@i" style="background-color:#0aafce;color:black;">@i</a></li>
+                                <div class="tab-box">
+                                        <div class="tech-name col-4">
+                                                <p>@item.Title</p>
+                                        </div>
+                                        <div class="exp col-2">
+                                                <p>@item.minExpirience-@item.maxExpirience Years</p>
+                                        </div>
+                                        <div class="location col-2">
+                                                <p>@item.City .</p>
+                                        </div>
+                                        <div class="time col-2">
+                                                <p>@item.Date</p>
+                                        </div>
+                                        <div class="action col-2">
+                                                <a href="@Url.Action("Index","Refer",new { jobId = item.Id, Area = "" })">Refer a friend</a>
+                                                <a href="@Url.Action("Index","ApplyJob",new { jobId = item.Id })">Apply Now</a>
+                                        </div>
+                                </div>
                         }
-                        else
-                        {
-                            <li class="page-item"><a class="page-link pageList" href="#" data-page="@i">@i</a></li>
-                        }
-                    }
-                    if (Model.totalPage < Model.currentPage)
-                    {
-                        <li class="page-item">
-                            <a class="page-link pageList" href="#" data-page="@(Model.currentPage - 1)" aria-label="Next">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    }
-                }
-            </ul>
-        </nav>
-        <div class="content text-center mt-3">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                </div>
         </div>
-    </div>
+        <div class="bottom-info mt-3">
+                <nav>
+                        <ul class="pagination">
+                                @if (Model.jobDetailViewModels.Count > 0)
+                                {
+                                        if (Model.currentPage > 1)
+                                        {
+                                                <li class="page-item">
+                                                        <a class="page-link pageList" href="#" data-page="@(Model.currentPage - 1)" aria-label="Previous">
+                                                                <i class="fa fa-angle-left"></i>
+                                                        </a>
+                                                </li>
+                                        }
+                                        for (int i = 1; i <= Model.totalPage; i++)
+                                        {
+                                                if (i == Model.currentPage)
+                                                {
+                                                        <li class="page-item"><a class="page-link" href="#" data-page="@i" style="background-color:#0aafce;color:black;">@i</a></li>
+                                                }
+                                                else
+                                                {
+                                                        <li class="page-item"><a class="page-link pageList" href="#" data-page="@i">@i</a></li>
+                                                }
+                                        }
+                                        if (Model.totalPage < Model.currentPage)
+                                        {
+                                                <li class="page-item">
+                                                        <a class="page-link pageList" href="#" data-page="@(Model.currentPage - 1)" aria-label="Next">
+                                                                <i class="fa fa-angle-right"></i>
+                                                        </a>
+                                                </li>
+                                        }
+                                }
+                        </ul>
+                </nav>
+                @*<div class="content text-center mt-3">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        </div>*@
+        </div>
 </div>

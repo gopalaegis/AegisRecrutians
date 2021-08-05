@@ -16,14 +16,26 @@ namespace CONSTRUCTION
             routes.MapRoute(
             name: "Jobs",
             url: "jobs/{city}",
-            defaults: new { controller = "jobs", action = "Index", city = UrlParameter.Optional}
+            defaults: new { controller = "jobs", action = "Index", city = UrlParameter.Optional }
         );
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+               name: "Default",
+               url: "{controller}/{action}/{id}",
+               defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+           );
+
+            //  routes.MapRoute(
+            //    name: "JobTechnology",
+            //    url: "{controller}/{TechnologyId}",
+            //    defaults: new { controller = "jobs", action = "JobMain", TechnologyId = UrlParameter.Optional }
+            //);
+
+         //   routes.MapRoute(
+         //    name: "JobList",
+         //    url: "{controller}/{City}/{Title}/{Technology}",
+         //    defaults: new { controller = "jobs", action = "Index", City = UrlParameter.Optional, Title = UrlParameter.Optional, Technology = UrlParameter.Optional }
+         //);
         }
     }
 }
