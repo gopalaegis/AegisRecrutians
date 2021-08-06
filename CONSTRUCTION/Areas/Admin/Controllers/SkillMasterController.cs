@@ -56,6 +56,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             {
                 tblSkillMaster data = new tblSkillMaster();
                 data.Name = model.Name;
+                data.isActive = true;
                 _db.tblSkillMasters.Add(data);
                 _db.SaveChanges();
             }

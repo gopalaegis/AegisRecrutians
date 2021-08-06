@@ -22,7 +22,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             JobQualicationViewModel model = new JobQualicationViewModel();
             if (Id > 0)
             {
-                model = _db.tblJobQualifications.Where(x => x.Id == Id).Select(x => new JobQualicationViewModel{ Id = x.Id, Qualification= x.Qualification}).FirstOrDefault();
+                model = _db.tblJobQualifications.Where(x => x.Id == Id).Select(x => new JobQualicationViewModel{ Id = x.Id, Qualification= x.Qualification, isactive = (bool)x.isActive }).FirstOrDefault();
             }
             return PartialView("_partialAddEditQualificationMaster", model);
         }
@@ -69,6 +69,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             {
                 tblJobQualification data = new tblJobQualification();
                 data.Qualification = model.Qualification;
+                data.isActive = true;
                 _db.tblJobQualifications.Add(data);
                 _db.SaveChanges();
             }

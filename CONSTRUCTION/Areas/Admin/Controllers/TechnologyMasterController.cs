@@ -51,7 +51,6 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 var data = _db.tblTechnologyMasters.Where(x => x.Id == model.Id).FirstOrDefault();
                 data.Image = model.Image;
                 data.Name = model.Name;
-                data.isActive = true;
                 _db.SaveChanges();
             }
             else

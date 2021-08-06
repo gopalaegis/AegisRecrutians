@@ -45,5 +45,6 @@ namespace CONSTRUCTION.Areas.Admin.Model
         public string JobQualification { get; set; }
         public Boolean IsVerified { get; set; }
         public string ShowOnHome { get; set; }
+        public bool isactive { get; set; }
     }
 }

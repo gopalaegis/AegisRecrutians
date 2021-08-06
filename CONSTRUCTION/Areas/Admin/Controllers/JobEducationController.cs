@@ -29,7 +29,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
         public ActionResult JobEducationMasterList()
         {
             List<JobEducationViewModel> model = new List<JobEducationViewModel>();
-            model = _db.tblJobEducations.Select(x => new JobEducationViewModel { Id = x.Id, Education = x.Education }).ToList();
+            model = _db.tblJobEducations.Select(x => new JobEducationViewModel { Id = x.Id, Education = x.Education,isactive=(bool)x.isActive }).ToList();
             return PartialView("_partialJobEducationMasterList", model);
         }
         //public ActionResult DeleteJobEducationMaster(int Id)
@@ -68,6 +68,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             {
                 tblJobEducation data = new tblJobEducation();
                 data.Education = model.Education;
+                data.isActive = true;
                 _db.tblJobEducations.Add(data);
                 _db.SaveChanges();
             }

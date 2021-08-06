@@ -188,17 +188,34 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 }
                 m.IsVerified = Convert.ToBoolean(item.IsVerified);
                 m.ShowOnHome = item.ShowOnHome;
+                m.isactive = (bool)item.isActive;
                 model.Add(m);
             }
             return PartialView("_partialJobDetailsList", model);
         }
 
-        public ActionResult DeleteTechnologyMaster(int Id)
+        //public ActionResult DeletejobDeatilMaster(int Id)
+        //{
+        //    var data = _db.tblJobDetails.Where(x => x.Id == Id).FirstOrDefault();
+        //    _db.tblJobDetails.Remove(data);
+        //    _db.SaveChanges();
+        //    return RedirectToAction("JobDetailsList");
+        //}
+        public ActionResult isDeactive(int Id, string value)
         {
-            var data = _db.tblTechnologyMasters.Where(x => x.Id == Id).FirstOrDefault();
-            _db.tblTechnologyMasters.Remove(data);
-            _db.SaveChanges();
-            return RedirectToAction("TechnologyMasterList");
+            if (value == "deactive")
+            {
+                var record = _db.tblJobDetails.Where(x => x.Id == Id).FirstOrDefault();
+                record.isActive = false;
+                _db.SaveChanges();
+            }
+            else
+            {
+                var record = _db.tblJobDetails.Where(x => x.Id == Id).FirstOrDefault();
+                record.isActive = true;
+                _db.SaveChanges();
+            }
+            return RedirectToAction("JobDetailsList");
         }
 
         [HttpPost]
@@ -285,6 +302,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 data.ShowOnHome = model.ShowOnHome;
                 data.BriefDescription = model.BriefDescription;
                 data.date = DateTime.Now;
+                data.isActive = true;
                 _db.tblJobDetails.Add(data);
                 _db.SaveChanges();
 

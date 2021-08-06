@@ -222,18 +222,19 @@
         });
     });
 
-    $("#tableDiv").on("click", ".deleteRow", function () {
+    @*$("#tableDiv").on("click", ".deleteRow", function () {
         $("#preloader").show();
         var id = $(this).attr('data-id');
         $.ajax({
-            url: '@Url.Action("DeleteJobEducationMaster", "JobEducation")',
+            url: '@Url.Action("DeletejobDeatilMaster", "JobDetails")',
             data: {
                 Id: id
             },
             success: function (data) {
+                debugger
                 $("#tableDiv").html("");
                 $("#tableDiv").html(data);
-                dataTableJobEducation();
+                dataTableJobDetail();
                 $("#preloader").hide();
                 $("#alert_inquiry_success").html("Deactive Sussesfully");
                 $("#alert_inquiry_success").show();
@@ -242,7 +243,7 @@
                 }, 2000);
             }
         });
-    });
+    });*@
     $("#addJobDetail").on("change", "#image_browse", function (e) {
         var files = e.target.files;
         var imageData = "";
@@ -273,5 +274,49 @@
             $("#addJobDetail").find("#file_HiddenName").val("");
             $("#addJobDetail").find("#img_Profile_Pic").val("");
         }
+    });
+     $("#tableDiv").on("click", ".Deactive", function () {
+            debugger
+                var Id = $(this).attr("data-id");
+                var parentTr = $(this).parent().parent();
+                var btn = '<i class="fa fa-check-square fa-check-css Active" data-id="' + Id + '" title="Active"></i>';
+
+                   $("#preloader").show();
+                   $.ajax({
+                           url: '@Url.Action("isDeactive", "JobDetails")',
+                           data: { Id: Id, value: "deactive" },
+                           success: function (data) {
+                                   $(parentTr).find("td:eq(8)").find(".Deactive").remove();
+                                   $(parentTr).find("td:eq(8)").append(btn);
+                               $("#preloader").hide();
+                               $("#alert_inquiry_success").html("Deactive Sussesfully");
+                               $("#alert_inquiry_success").show();
+                               setTimeout(function () {
+                                   $("#alert_inquiry_success").hide();
+                               }, 2000);
+                           }
+                   });
+     });
+
+    $("#tableDiv").on("click", ".Active", function () {
+          debugger
+                var Id = $(this).attr("data-id");
+                var parentTr = $(this).parent().parent();
+                var btn = '<i class="fa fa-ban fa-ban-css Deactive" data-id="' + Id + '" title="De-Active"></i>';
+                 $("#preloader").show();
+                 $.ajax({
+                         url: '@Url.Action("isDeactive", "JobDetails")',
+                         data: { Id: Id, value: "active" },
+                         success: function (data) {
+                                 $(parentTr).find("td:eq(8)").find(".Active").remove();
+                                 $(parentTr).find("td:eq(8)").append(btn);
+                             $("#preloader").hide();
+                             $("#alert_inquiry_success").html("Active Sussesfully");
+                             $("#alert_inquiry_success").show();
+                             setTimeout(function () {
+                                 $("#alert_inquiry_success").hide();
+                             }, 2000);
+                         }
+                 });
     });
 </script>
