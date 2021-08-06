@@ -4,32 +4,7 @@
 <div class="row formGroup">
     <div class="col-sm-6">
         <label>Education :<span style="color:red">*</span></label>
-        <select class="form-control requiredField inputstyle errBox" id="Drop_Education" name="JobEducationId" title="Education">
-            @if (Model.Education != null)
-            {
-                <option value="@Model.Education">@Model.Education</option>
-                <option value="Associate Degree">Associate Degree</option>
-                <option value="BTech">BTech</option>
-                <option value="High School">High School</option>
-                <option value="M.D">M.D.</option>
-                <option value="MBBS">MBBS</option>
-                <option value="Professional">Professional</option>
-                <option value="MCA">MCA</option>
-                <option value="BSC">BSC</option>
-            }
-            else
-            {
-                <option value="">-- SELECT --</option>
-                <option value="Associate Degree">Associate Degree</option>
-                <option value="BTech">BTech</option>
-                <option value="High School">High School</option>
-                <option value="M.D">M.D.</option>
-                <option value="MBBS">MBBS</option>
-                <option value="Professional">Professional</option>
-                <option value="MCA">MCA</option>
-                <option value="BSC">BSC</option>
-            }
-        </select>
+        <input type="text" id="txt_Education" value="@Model.Education" placeholder="Education" class="form-control" />
         <label id="label_error_education" class="errorMessage" style="display:none;">Education is required</label>
     </div>
 </div>

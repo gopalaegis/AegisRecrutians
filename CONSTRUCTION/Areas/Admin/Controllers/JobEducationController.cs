@@ -32,11 +32,27 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             model = _db.tblJobEducations.Select(x => new JobEducationViewModel { Id = x.Id, Education = x.Education }).ToList();
             return PartialView("_partialJobEducationMasterList", model);
         }
-        public ActionResult DeleteJobEducationMaster(int Id)
+        //public ActionResult DeleteJobEducationMaster(int Id)
+        //{
+        //    var data = _db.tblJobEducations.Where(x => x.Id == Id).FirstOrDefault();
+        //    _db.tblJobEducations.Remove(data);
+        //    _db.SaveChanges();
+        //    return RedirectToAction("JobEducationMasterList");
+        //}
+        public ActionResult isDeactive(int Id, string value)
         {
-            var data = _db.tblJobEducations.Where(x => x.Id == Id).FirstOrDefault();
-            _db.tblJobEducations.Remove(data);
-            _db.SaveChanges();
+            if (value == "deactive")
+            {
+                var record = _db.tblJobEducations.Where(x => x.Id == Id).FirstOrDefault();
+                record.isActive = false;
+                _db.SaveChanges();
+            }
+            else
+            {
+                var record = _db.tblJobEducations.Where(x => x.Id == Id).FirstOrDefault();
+                record.isActive = true;
+                _db.SaveChanges();
+            }
             return RedirectToAction("JobEducationMasterList");
         }
         [HttpPost]

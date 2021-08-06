@@ -61,18 +61,21 @@
         });
     }
 
-    $("#btnJobDetail").click(function(){
+    $("#btnJobDetail").click(function () {
+        $("#preloader").show();
         $.ajax({
             url: '@Url.Action("AddEditJobDetail", "JobDetails")',
             success: function (data) {
                 $("#addJobDetail").find(".modal-body").html("");
                 $("#addJobDetail").find(".modal-body").html(data);
+                $("#preloader").hide();
             }
         });
     });
 
 
-        $("#addJobDetail").on("click", ".btn_save", function (e) {
+    $("#addJobDetail").on("click", ".btn_save", function (e) {
+        $("#preloader").show();
                 var Id = $("#addJobDetail").find('#txt_Id').val();
                 var Title = $("#addJobDetail").find('#txt_Title').val();
                 var Description = $("#addJobDetail").find('#txt_Description').val();
@@ -189,7 +192,13 @@
                                         $("#tableDiv").html(result);
                                         $("#addJobDetail").find('.btn_Close').click();
                                         dataTableJobDetail();
-                                        window.location.reload();
+                                    window.location.reload();
+                                    $("#preloader").hide();
+                                    $("#alert_inquiry_success").html("Save successfully");
+                                    $("#alert_inquiry_success").show();
+                                    setTimeout(function () {
+                                        $("#alert_inquiry_success").hide();
+                                    }, 2000);
                                 }
                         });
                 }
@@ -197,6 +206,7 @@
 
     $("#tblJobDetails").on("click", ".editRow", function () {
         debugger
+        $("#preloader").show();
         var id = $(this).attr('data-id');
         $.ajax({
             url: '@Url.Action("AddEditJobDetail", "JobDetails")',
@@ -207,11 +217,13 @@
             success: function (data) {
                 $("#addJobDetail").find(".modal-body").html("");
                 $("#addJobDetail").find(".modal-body").html(data);
+                $("#preloader").hide();
             }
         });
     });
 
-    $("#tableDiv").on("click",".deleteRow",function () {
+    $("#tableDiv").on("click", ".deleteRow", function () {
+        $("#preloader").show();
         var id = $(this).attr('data-id');
         $.ajax({
             url: '@Url.Action("DeleteJobEducationMaster", "JobEducation")',
@@ -222,6 +234,12 @@
                 $("#tableDiv").html("");
                 $("#tableDiv").html(data);
                 dataTableJobEducation();
+                $("#preloader").hide();
+                $("#alert_inquiry_success").html("Deactive Sussesfully");
+                $("#alert_inquiry_success").show();
+                setTimeout(function () {
+                    $("#alert_inquiry_success").hide();
+                }, 2000);
             }
         });
     });

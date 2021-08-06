@@ -2,12 +2,12 @@
 
 <input type="hidden" id="txt_Id" value="@Model.Id" />
 <div class="row formGroup">
-    <div class="col-sm-12">
+    <div class="col-sm-4">
         <label>Name <span style="color:red">*</span></label>
         <input type="text" id="txt_Name" value="@Model.Name" placeholder="Name" class="form-control" />
         <label id="label_error_Name" class="errorMessage" style="display:none;">Name is required</label>
     </div>
-    <div class="col-sm-12 mt-30">
+    <div class="col-sm-4 mt-30">
         <label>Image <span class="red">*</span></label>
         <div class="img-upload">
             <div class="upbtn">
@@ -19,7 +19,7 @@
         </div>
         
     </div>
-    <div class="col-sm-12 mt-30">
+    <div class="col-sm-4 mt-30">
         @{
             var finalPic = "/CommonImage/Technology/" + Model.Image;
         }

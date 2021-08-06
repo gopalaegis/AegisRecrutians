@@ -125,6 +125,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Education" Type="nvarchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" />
         </EntityType>
         <EntityType Name="tblJobQualification">
           <Key>
@@ -132,6 +133,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" />
         </EntityType>
         <EntityType Name="tblProfession">
           <Key>
@@ -160,6 +162,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
         </EntityType>
         <EntityType Name="tblState">
           <Key>
@@ -192,6 +195,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Image" Type="nvarchar(max)" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" />
         </EntityType>
         <EntityContainer Name="AEGIS_ConstructionModelStoreContainer">
           <EntitySet Name="JobWiseTechnology" EntityType="Self.JobWiseTechnology" Schema="dbo" store:Type="Tables" />
@@ -357,6 +361,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Education" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="tblJobQualification">
           <Key>
@@ -364,6 +369,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="tblProfession">
           <Key>
@@ -392,6 +398,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="tblState">
           <Key>
@@ -424,6 +431,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -557,6 +565,7 @@
           <EntitySetMapping Name="tblJobEducations">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobEducation">
               <MappingFragment StoreEntitySet="tblJobEducation">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="Education" ColumnName="Education" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -565,6 +574,7 @@
           <EntitySetMapping Name="tblJobQualifications">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobQualification">
               <MappingFragment StoreEntitySet="tblJobQualification">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="Qualification" ColumnName="Qualification" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -596,6 +606,7 @@
           <EntitySetMapping Name="tblSkillMasters">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblSkillMaster">
               <MappingFragment StoreEntitySet="tblSkillMaster">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -631,6 +642,7 @@
           <EntitySetMapping Name="tblTechnologyMasters">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblTechnologyMaster">
               <MappingFragment StoreEntitySet="tblTechnologyMaster">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

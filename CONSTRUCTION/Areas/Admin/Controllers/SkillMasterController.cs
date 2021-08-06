@@ -31,17 +31,17 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
         public ActionResult SkillMasterList()
         {
             List<SkillMasterViewModel> model = new List<SkillMasterViewModel>();
-            model = _db.tblSkillMasters.Select(x => new SkillMasterViewModel { Id = x.Id, Name = x.Name }).ToList();
+            model = _db.tblSkillMasters.Select(x => new SkillMasterViewModel { Id = x.Id, Name = x.Name,isactive=(bool)x.isActive }).ToList();
             return PartialView("_partialSkillMasterList", model);
         }
 
-        public ActionResult DeleteSkillMaster(int Id)
-        {
-            var data = _db.tblSkillMasters.Where(x => x.Id == Id).FirstOrDefault();
-            _db.tblSkillMasters.Remove(data);
-            _db.SaveChanges();
-            return RedirectToAction("SkillMasterList");
-        }
+        //public ActionResult DeleteSkillMaster(int Id)
+        //{
+        //    var data = _db.tblSkillMasters.Where(x => x.Id == Id).FirstOrDefault();
+        //    _db.tblSkillMasters.Remove(data);
+        //    _db.SaveChanges();
+        //    return RedirectToAction("SkillMasterList");
+        //}
 
         [HttpPost]
         public ActionResult SaveSkillMaster(SkillMasterViewModel model)
@@ -75,6 +75,22 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 uploadFile.SaveAs(Server.MapPath("~/CommonImage/Skill/") + fileName);
             }
             return Json(fileName, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult isDeactive(int Id, string value)
+        {
+            if (value == "deactive")
+            {
+                var record = _db.tblSkillMasters.Where(x => x.Id == Id).FirstOrDefault();
+                record.isActive = false;
+                _db.SaveChanges();
+            }
+            else
+            {
+                var record = _db.tblSkillMasters.Where(x => x.Id == Id).FirstOrDefault();
+                record.isActive = true;
+                _db.SaveChanges();
+            }
+            return RedirectToAction("SkillMasterList");
         }
     }
 }

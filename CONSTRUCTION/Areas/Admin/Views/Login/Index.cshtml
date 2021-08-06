@@ -84,6 +84,7 @@
     <label id="successMsg" style="display:none;">Login Successfully.</label>*@
     <script>
         $("#submit").click(function () {
+            $("#preloader").show();
             var userName = $("#userName").val();
             var password = $("#password").val();
             IsError = false;
@@ -112,6 +113,7 @@
                             $("#successMsg").show();
                             window.location.href = '@Url.Action("Index", "SkillMaster")';
                         }
+                        $("#preloader").hide();
                     }
                 });
             }

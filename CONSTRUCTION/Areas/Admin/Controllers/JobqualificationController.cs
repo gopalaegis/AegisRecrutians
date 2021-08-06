@@ -29,16 +29,33 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
         public ActionResult JobQualificationMasterList()
         {
             List<JobQualicationViewModel> model = new List<JobQualicationViewModel>();
-            model = _db.tblJobQualifications.Select(x => new JobQualicationViewModel { Id = x.Id, Qualification= x.Qualification}).ToList();
+            model = _db.tblJobQualifications.Select(x => new JobQualicationViewModel { Id = x.Id, Qualification= x.Qualification,isactive=(bool)x.isActive}).ToList();
             return PartialView("_partialJobQualificationMasterList", model);
         }
-        public ActionResult DeleteJobQualificationMaster(int Id)
+        //public ActionResult DeleteJobQualificationMaster(int Id)
+        //{
+        //    var data = _db.tblJobQualifications.Where(x => x.Id == Id).FirstOrDefault();
+        //    _db.tblJobQualifications.Remove(data);
+        //    _db.SaveChanges();
+        //    return RedirectToAction("JobQualificationMasterList");
+        //}
+        public ActionResult isDeactive(int Id, string value)
         {
-            var data = _db.tblJobQualifications.Where(x => x.Id == Id).FirstOrDefault();
-            _db.tblJobQualifications.Remove(data);
-            _db.SaveChanges();
+            if (value == "deactive")
+            {
+                var record = _db.tblJobQualifications.Where(x => x.Id == Id).FirstOrDefault();
+                record.isActive = false;
+                _db.SaveChanges();
+            }
+            else
+            {
+                var record = _db.tblJobQualifications.Where(x => x.Id == Id).FirstOrDefault();
+                record.isActive = true;
+                _db.SaveChanges();
+            }
             return RedirectToAction("JobQualificationMasterList");
         }
+
         [HttpPost]
         public ActionResult SaveJobQualificationMaster(JobQualicationViewModel model)
         {
