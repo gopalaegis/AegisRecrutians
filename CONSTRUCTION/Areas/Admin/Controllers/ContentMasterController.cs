@@ -23,7 +23,21 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             ContentMasterViewModel model = new ContentMasterViewModel();
             if (Id > 0)
             {
-                model = _db.tblContentMasters.Where(x => x.Id == Id).Select(x => new ContentMasterViewModel { Id = x.Id, Title = x.Title, Controller = x.Controller, ActionResult = x.ActionResult, FocusKeyphrase = x.FocusKeyphrase, SEOtitle = x.SEOtitle, Slug = x.Slug, MetaDescription = x.MetaDescription, IsCrawl = (bool)x.IsCrawl, CanonicalURL = x.CanonicalURL, SchemaTags = x.SchemaTags }).FirstOrDefault();
+                var data = _db.tblContentMasters.Where(x => x.Id == Id).Select(x => new ContentMasterViewModel { Id = x.Id, Title = x.Title, Controller = x.Controller, ActionResult = x.ActionResult, FocusKeyphrase = x.FocusKeyphrase, SEOtitle = x.SEOtitle, Slug = x.Slug, MetaDescription = x.MetaDescription, IsCrawl = (bool)x.IsCrawl, CanonicalURL = x.CanonicalURL, SchemaTags = x.SchemaTags }).FirstOrDefault();
+                if (data != null)
+                {
+                    model.Id = data.Id;
+                    model.Title = data.Title;
+                    model.Controller = data.Controller;
+                    model.ActionResult = data.ActionResult;
+                    model.FocusKeyphrase = data.FocusKeyphrase;
+                    model.SEOtitle = data.SEOtitle;
+                    model.Slug = data.Slug;
+                    model.MetaDescription = data.MetaDescription;
+                    model.IsCrawl = (bool)data.IsCrawl;
+                    model.CanonicalURL = data.CanonicalURL;
+                    model.SchemaTags = data.SchemaTags;
+                }
             }
             return PartialView("_partialAddContentMaster", model);
         }
@@ -31,7 +45,17 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
         public ActionResult ContentMasterList()
         {
             List<ContentMasterViewModel> model = new List<ContentMasterViewModel>();
-            model = _db.tblContentMasters.Select(x => new ContentMasterViewModel { Id = x.Id, Title = x.Title, Controller = x.Controller,ActionResult=x.ActionResult,isactive=(bool)x.isActive }).ToList();
+            var data = _db.tblContentMasters.ToList();
+            foreach (var item in data)
+            {
+                ContentMasterViewModel m = new ContentMasterViewModel();
+                m.Id = item.Id;
+                m.Title = item.Title;
+                m.Controller = item.Controller;
+                m.ActionResult = item.ActionResult;
+                m.isactive = (bool)item.isActive;
+                model.Add(m);
+            }
             return PartialView("_partialContentMasterList", model);
         }
 

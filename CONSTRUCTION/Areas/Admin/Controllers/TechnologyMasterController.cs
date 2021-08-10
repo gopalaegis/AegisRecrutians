@@ -44,14 +44,14 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
         public ActionResult TechnologyMasterList()
         {
             List<TechnologyMasterViewModel> model = new List<TechnologyMasterViewModel>();
-            var data = _db.tblTechnologyMasters.Select(x => new TechnologyMasterViewModel {  }).ToList();
+            var data = _db.tblTechnologyMasters.ToList();
             foreach (var item in data)
             {
                 TechnologyMasterViewModel m = new TechnologyMasterViewModel();
                 m.Id = item.Id;
                 m.Name = item.Name; 
                 m.Image = item.Image;
-                m.isactive = (bool)item.isactive;
+                m.isactive = (bool)item.isActive;
                 model.Add(m);
             }
             return PartialView("_partialTechnologyMasterList", model);
