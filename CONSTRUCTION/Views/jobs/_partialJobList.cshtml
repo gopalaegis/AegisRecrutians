@@ -31,7 +31,7 @@
                         </div>
                         <div class="action col-2">
                             <a href="@Url.Action("Index", "Refer", new { jobId = item.Id, Area = "" })">Refer a friend</a>
-                            <a href="@Url.Action("Index", "ApplyJob", new { jobId = item.Id })">Apply Now</a>
+                            <a data-jobId="@item.Id" class="ApplyJob" href="@Url.Action("Index", "ApplyJob", new { jobId = item.Id })">Apply Now</a>
                         </div>
                     </div>
                 }

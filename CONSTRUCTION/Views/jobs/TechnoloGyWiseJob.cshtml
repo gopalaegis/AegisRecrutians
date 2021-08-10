@@ -1,6 +1,11 @@
-﻿@model CONSTRUCTION.Models.JobDetailViewModel
+﻿@model Tuple<int, CONSTRUCTION.Models.SEOModel>
 @{
-        ViewBag.Title = "Jobs";
+    ViewBag.Title = Model.Item2.SEOtitle;
+    ViewBag.MetaDescription = Model.Item2.MetaDescription;
+    ViewBag.MetaKeywords = Model.Item2.FocusKeyphrase;
+    ViewBag.IsCrawlString = Model.Item2.IsCrawlString;
+    ViewBag.CanonicalURL = Model.Item2.CanonicalURL;
+    ViewBag.SchemaTags = Model.Item2.SchemaTags;
 }
 
 <!-- heading section -->
@@ -28,7 +33,7 @@
                         </div>*@
                 <div class="row mt-2">
                         <div class="col-12" id="jobDiv">
-                                @Html.Action("List", "jobs", new { city = Model.City, title = Model.Title, TechnologyId = Model.TechnologyId })
+                                @Html.Action("List", "jobs", new { TechnologyId = Model.Item1})
                         </div>
                 </div>
         </div>
@@ -37,15 +42,11 @@
 
     $("#jobDiv").on("click", ".pageList", function () {
                 var page = $(this).attr("data-page");
-                var city = '@(Model.City)';
-                var title = '@(Model.Title)';
-                var technology = '@(Model.TechnologyId)';
+                var technology = '@(Model)';
                 $.ajax({
                         url: '@Url.Action("List", "jobs")',
                         data: {
-                                page: page,
-                                city: city,
-                                title: title,
+                                page: page,                               
                                 TechnologyId: technology
                         },
                         success: function (result) {
@@ -53,6 +54,5 @@
                                 $("#jobDiv").html(result);
                         }
                 });
-    });
-              
+        });
 </script>

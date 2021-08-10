@@ -20,7 +20,7 @@ namespace CONSTRUCTION.Controllers
         {
             HomeViewModel model = new HomeViewModel();
             model.skillMasterViewModels = _db.tblSkillMasters.Select(x => new SkillMasterViewModel { Id = x.Id, Name = x.Name }).ToList();
-            model.technologyMasterViewModels = _db.tblTechnologyMasters.Select(x => new TechnologyMasterViewModel { Id = x.Id, Name = x.Name, Image = x.Image }).ToList();
+            model.technologyMasterViewModels = _db.tblTechnologyMasters.Select(x => new TechnologyMasterViewModel { Id = x.Id, Name = x.Name, Image = x.Image, Slug = x.Slug }).ToList();
             return View(model);
         }
 
@@ -41,7 +41,7 @@ namespace CONSTRUCTION.Controllers
         public ActionResult JobDetails()
         {
             List<JobDetailViewModel> model = new List<JobDetailViewModel>();
-            var m = _db.tblJobDetails.Where(x=>x.ShowOnHome == "1").OrderByDescending(x => x.Id).ToList();
+            var m = _db.tblJobDetails.Where(x => x.ShowOnHome == "1").OrderByDescending(x => x.Id).ToList();
             foreach (var item in m)
             {
                 var cityData = _db.tblCities.Where(x => x.Id == item.CityId).FirstOrDefault();
@@ -65,7 +65,7 @@ namespace CONSTRUCTION.Controllers
 
         [HttpPost]
         public ActionResult SaveContectData(string Email, string Mobile, string Description = "", string Skype = "", string Name = "")
-            {
+        {
             try
             {
                 string from = WebConfigurationManager.AppSettings["SMTPMailFrom"];

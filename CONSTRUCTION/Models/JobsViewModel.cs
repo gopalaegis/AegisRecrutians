@@ -33,4 +33,16 @@ namespace CONSTRUCTION.Models
         public string description { get; set; }
         public string Date { get; set; }
     }
+
+    public class SEOModel
+    {
+        public string FocusKeyphrase { get; set; }
+        public string SEOtitle { get; set; }
+        public string Slug { get; set; }
+        public string MetaDescription { get; set; }
+        public bool IsCrawl { get; set; }
+        public string IsCrawlString { get; set; }
+        public string CanonicalURL { get; set; }
+        public string SchemaTags { get; set; }
+    }
 }

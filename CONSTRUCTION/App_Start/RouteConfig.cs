@@ -14,16 +14,48 @@ namespace CONSTRUCTION
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-           name: "JobsList",
-           url: "jobs/List",
-           defaults: new { controller = "jobs", action = "List"}
-       );
+               name: "ReferJobs",
+               url: "ReferJob/{jobId}",
+               defaults: new { controller = "Refer", action = "Index", jobId = UrlParameter.Optional }
+           );
 
             routes.MapRoute(
-            name: "Jobs",
-            url: "jobs/{city}",
-            defaults: new { controller = "jobs", action = "Index", city = UrlParameter.Optional }
-        );
+                 name: "ApplyJobs",
+                 url: "ApplyJob/{jobId}",
+                 defaults: new { controller = "ApplyJob", action = "Index", jobId = UrlParameter.Optional }
+             );
+
+
+            routes.MapRoute(
+              name: "bothSearchJobs",
+              url: "{q}-Jobs-in-{l}",
+              defaults: new { controller = "jobs", action = "Index" }
+          );
+
+            routes.MapRoute(
+              name: "SearchJobsbytitle",
+              url: "{q}-Jobs",
+              defaults: new { controller = "jobs", action = "Index" }
+          );
+
+            routes.MapRoute(
+              name: "SearchJobsbyCity",
+              url: "Jobs-in-{l}",
+              defaults: new { controller = "jobs", action = "Index" }
+          );
+
+            routes.MapRoute(
+               name: "SearchJobs",
+               url: "Jobs",
+               defaults: new { controller = "jobs", action = "Index" }
+           );
+
+            routes.MapRoute(
+                name: "SlugURL",
+                url: "{slugURL}",
+                defaults: new { controller = "jobs", action = "TechnoloGyWiseJob" }
+            );
+         
 
             routes.MapRoute(
                name: "Default",
@@ -31,17 +63,6 @@ namespace CONSTRUCTION
                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
            );
 
-            //  routes.MapRoute(
-            //    name: "JobTechnology",
-            //    url: "{controller}/{TechnologyId}",
-            //    defaults: new { controller = "jobs", action = "JobMain", TechnologyId = UrlParameter.Optional }
-            //);
-
-         //   routes.MapRoute(
-         //    name: "JobList",
-         //    url: "{controller}/{City}/{Title}/{Technology}",
-         //    defaults: new { controller = "jobs", action = "Index", City = UrlParameter.Optional, Title = UrlParameter.Optional, Technology = UrlParameter.Optional }
-         //);
         }
     }
 }

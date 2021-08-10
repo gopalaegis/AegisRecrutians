@@ -53,7 +53,7 @@
                                                 @foreach (var item in Model.technologyMasterViewModels)
                                                 {
                                                         <li data-aos="zoom-in" data-aos-duration="1000">
-                                                                <a href="@Url.Action("Index","Jobs",new { TechnologyId = item.Id})">
+                                                                <a href="@Url.Action("TechnoloGyWiseJob","Jobs",new { slugURL = item.Slug})">
                                                                         <aside><img src="~/CommonImage/Technology/@item.Image" class="lazyload" alt="@item.Name" /></aside>
                                                                         <h3>@item.Name</h3>
                                                                 </a>
@@ -344,20 +344,26 @@
         </div>
 </section><!-- #  -->
 <script>
-    $("#searchLocation").click(function () {
-        var jobSearch = $(".job-search").val();
-        var city = $(".location").val();
-        var data = "";
-        //if (city != "" && city != null && jobSearch != "" && jobSearch != null) {
-        //    data = city+/+ti
-        //}
-        //if (city == "" || city == null || city == undefined) {
-        //    data = jobSearch;
-        //}
-        /*if (jobSearch == "" || jobSearch == null || jobSearch == undefined) {*/
-        window.location.href = 'jobs/' + city + '_' + jobSearch;
-        @*window.location.href = '@Url.Action("Index", "jobs")?city=' + city + '&title=' + jobSearch;*@
-    })
+        $("#searchLocation").click(function () {
+                debugger;
+                var jobSearch = $(".job-search").val();
+                var city = $(".location").val();
+                if (jobSearch.trim() == "" && city.trim() == "") {
+                        window.location.href = '@Url.Action("Index", "jobs")';
+                }
+                if (jobSearch.trim() == "" && city.trim() != "") {
+                        var searchKey = 'Jobs-in-' + city.replace(' ', '-');
+                        window.location.href = '/' + searchKey + '?l=' + city;
+                }
+                if (jobSearch.trim() != "" && city.trim() == "") {
+                        var searchKey = jobSearch.replace(' ', '-')+'-Jobs' ;
+                        window.location.href = '/' + searchKey + '?q=' + jobSearch;
+                }
+                if (jobSearch.trim() != "" && city.trim() != "") {
+                        var searchKey = jobSearch.replace(' ', '-') + '-Jobs-in-' + city.replace(' ', '-');
+                        window.location.href = '/' + searchKey +'?l=' + city + '&q=' + jobSearch;
+                }
+        });
 
     $("#ContectUsDiv").on("click", "#submitData", function () {
         var name = $("#ContectUsDiv").find("#name").val();
