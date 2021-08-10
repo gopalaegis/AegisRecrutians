@@ -1,0 +1,193 @@
+﻿
+@{
+    ViewBag.Title = "Content Master";
+}
+<div id="addContent" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> Content Detail</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn_save">Save</button>
+                <button type="button" class="btn btn-default btn_Close" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="right-side">
+    <div class="heading">Content Master</div>
+
+    <div class="data-table style-1">
+        <div class="box-table">
+            <div class="skill-table">
+                <div class="catagory-detail">
+                    <div class="catagory-flex1">
+                        <div><span class="add-catagory-btn" id="btnAddTech" data-toggle="modal" data-target="#addContent"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
+                    </div>
+                </div>
+                <div id="tableDiv">
+                    @Html.Action("ContentMasterList", "ContentMaster")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        dataTableContent();
+    });
+
+    function dataTableContent() {
+        $('#tableDiv').find('#tblContentmaster').DataTable({
+            language: {
+                searchPlaceholder: "Search",
+                search: "<button class='btn search-btn2' type='button'><i class='fa fa-search' ></i></button >",
+                "paginate": {
+                    "previous": "<i class='fa fa-angle-left' aria-hidden='true'></i>",
+                    "next": "<i class='fa fa-angle-right' aria-hidden='true'></i>"
+                }
+            },
+            columnDefs: [
+                {
+                    orderable: false, targets: -1
+                }
+            ]
+        });
+    }
+
+    $("#btnAddTech").click(function () {
+        $("#preloader").show();
+        $.ajax({
+            url: '@Url.Action("AddEditContentMaster", "ContentMaster")',
+            success: function (data) {
+                $("#addContent").find(".modal-body").html("");
+                $("#addContent").find(".modal-body").html(data);
+                $("#preloader").hide();
+            }
+        });
+    });
+
+    $("#addContent").on("click", ".btn_save", function (e) {
+        $("#preloader").show();
+        var Id = $("#addContent").find('#txt_Id').val();
+        var Title = $("#addContent").find('#txt_Title').val();
+        var Controller = $("#addContent").find('#txt_Controller').val();
+        var ActionResult = $("#addContent").find('#txt_ActionResult').val();
+        var key = $("#addContent").find('#txt_FKeyphrase').val();
+        var seo = $("#addContent").find('#txt_Seotitle').val();
+        var slug = $("#addContent").find('#txt_Slug').val();
+        var crawl = $("#addContent").find('#chk_Crawl').is(":checked");
+        var url = $("#addContent").find('#txt_URL').val();
+        var tag = $("#addContent").find('#txt_Tags').val();
+        var description = $("#addContent").find('#txt_description').val();
+
+        var isError = false;
+        if (Title == "") {
+            $("#addContent").find('#label_error_Title').show();
+            isError = true;
+        }
+        if (Controller == "") {
+            $("#addContent").find('#label_error_Controller').show();
+            isError = true;
+        }
+        if (ActionResult == "") {
+            $("#addContent").find('#label_error_ActionResult').show();
+            isError = true;
+        }
+        if (isError == true) {
+            return false
+        } else {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SaveContentMaster", "ContentMaster")',
+                data: {
+                    Id: Id,
+                    Title: Title,
+                    Controller: Controller,
+                    ActionResult: ActionResult,
+                    FocusKeyphrase: key,
+                    SEOtitle: seo,
+                    Slug: slug,
+                    MetaDescription: description,
+                    IsCrawl: crawl,
+                    CanonicalURL: url,
+                    SchemaTags: tag
+                },
+                success: function (result) {
+                    $("#tableDiv").html("");
+                    $("#tableDiv").html(result);
+                    $("#addContent").find('.btn_Close').click();
+                    dataTableContent();
+                    $("#preloader").hide();
+                    $("#alert_inquiry_success").html("Save successfully");
+                    $("#alert_inquiry_success").show();
+                    setTimeout(function () {
+                            $("#alert_inquiry_success").hide();
+                    }, 2000);
+                }
+            });
+        }
+    });
+
+    $("#tableDiv").on("click", ".editRow", function () {
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url: '@Url.Action("AddEditContentMaster", "ContentMaster")',
+            data: {
+                Id:id
+            },
+            success: function (data) {
+                $("#addContent").find(".modal-body").html("");
+                $("#addContent").find(".modal-body").html(data);
+            }
+        });
+    });
+
+    $("#tableDiv").on("click", ".Deactive", function () {
+        var Id = $(this).attr("data-id");
+        var parentTr = $(this).parent().parent();
+        var btn = '<i class="fa fa-check-square fa-check-css Active" data-id="' + Id + '" title="Active"></i>';
+
+        $("#preloader").show();
+        $.ajax({
+            url: '@Url.Action("isDeactive", "ContentMaster")',
+            data: { Id: Id, value: "deactive" },
+            success: function (data) {
+                $(parentTr).find("td:eq(8)").find(".Deactive").remove();
+                $(parentTr).find("td:eq(8)").append(btn);
+                $("#preloader").hide();
+                $("#alert_inquiry_success").html("Deactive Sussesfully");
+                $("#alert_inquiry_success").show();
+                setTimeout(function () {
+                    $("#alert_inquiry_success").hide();
+                }, 2000);
+            }
+        });
+    });
+
+    $("#tableDiv").on("click", ".Active", function () {
+        var Id = $(this).attr("data-id");
+        var parentTr = $(this).parent().parent();
+        var btn = '<i class="fa fa-ban fa-ban-css Deactive" data-id="' + Id + '" title="De-Active"></i>';
+        $("#preloader").show();
+        $.ajax({
+            url: '@Url.Action("isDeactive", "ContentMaster")',
+            data: { Id: Id, value: "active" },
+            success: function (data) {
+                $(parentTr).find("td:eq(8)").find(".Active").remove();
+                $(parentTr).find("td:eq(8)").append(btn);
+                $("#preloader").hide();
+                $("#alert_inquiry_success").html("Active Sussesfully");
+                $("#alert_inquiry_success").show();
+                setTimeout(function () {
+                    $("#alert_inquiry_success").hide();
+                }, 2000);
+            }
+        });
+    });
+</script>

@@ -109,6 +109,14 @@
         var Id = $("#addTechnology").find('#txt_Id').val();
         var Name = $("#addTechnology").find('#txt_Name').val();
         var Image = $("#addTechnology").find('#file_HiddenName').val();
+        var key = $("#addTechnology").find('#txt_FKeyphrase').val();
+        var seo = $("#addTechnology").find('#txt_Seotitle').val();
+        var slug = $("#addTechnology").find('#txt_Slug').val();
+        var crawl = $("#addTechnology").find('#chk_Crawl').is(":checked");
+        var url = $("#addTechnology").find('#txt_URL').val();
+        var tag = $("#addTechnology").find('#txt_Tags').val();
+        var description = $("#addTechnology").find('#txt_description').val();
+        debugger
         var isError = false;
 
         if (Name == "") {
@@ -129,7 +137,14 @@
                 data: {
                     Id: Id,
                     Image: Image,
-                    Name: Name
+                    Name: Name,
+                    FocusKeyphrase: key,
+                    SEOtitle: seo,
+                    Slug: slug,
+                    MetaDescription: description,
+                    IsCrawl: crawl,
+                    CanonicalURL: url,
+                    SchemaTags: tag
                 },
                 success: function (result) {
                     $("#tableDiv").html("");
@@ -137,7 +152,6 @@
                     $("#addTechnology").find('.btn_Close').click();
                     dataTableTechnology();
                     $("#preloader").hide();
-                    debugger
                     $("#alert_inquiry_success").html("Save successfully");
                     $("#alert_inquiry_success").show();
                     setTimeout(function () {

@@ -32,6 +32,7 @@ namespace CONSTRUCTION.DataTable
         public virtual DbSet<tblCategoryMaster> tblCategoryMasters { get; set; }
         public virtual DbSet<tblCity> tblCities { get; set; }
         public virtual DbSet<tblContectU> tblContectUs { get; set; }
+        public virtual DbSet<tblContentMaster> tblContentMasters { get; set; }
         public virtual DbSet<tblCountry> tblCountries { get; set; }
         public virtual DbSet<tblJobDetail> tblJobDetails { get; set; }
         public virtual DbSet<tblJobEducation> tblJobEducations { get; set; }

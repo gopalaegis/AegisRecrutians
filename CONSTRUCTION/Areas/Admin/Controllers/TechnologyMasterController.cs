@@ -23,7 +23,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             TechnologyMasterViewModel model = new TechnologyMasterViewModel();
             if (Id > 0)
             {
-                model = _db.tblTechnologyMasters.Where(x => x.Id == Id).Select(x => new TechnologyMasterViewModel { Id = x.Id, Name = x.Name, Image = x.Image }).FirstOrDefault();
+                model = _db.tblTechnologyMasters.Where(x => x.Id == Id).Select(x => new TechnologyMasterViewModel { Id = x.Id, Name = x.Name, Image = x.Image, FocusKeyphrase = x.FocusKeyphrase, SEOtitle = x.SEOtitle, Slug = x.Slug, MetaDescription = x.MetaDescription, IsCrawl = (bool)x.IsCrawl, CanonicalURL = x.CanonicalURL, SchemaTags = x.SchemaTags }).FirstOrDefault();
             }
             return PartialView("_partialAddTechnologyMaster", model);
         }
@@ -51,6 +51,13 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 var data = _db.tblTechnologyMasters.Where(x => x.Id == model.Id).FirstOrDefault();
                 data.Image = model.Image;
                 data.Name = model.Name;
+                data.FocusKeyphrase = model.FocusKeyphrase;
+                data.SEOtitle = model.SEOtitle;
+                data.Slug = model.Slug;
+                data.MetaDescription = model.MetaDescription;
+                data.IsCrawl = model.IsCrawl;
+                data.CanonicalURL = model.CanonicalURL;
+                data.SchemaTags = model.SchemaTags;
                 _db.SaveChanges();
             }
             else
@@ -58,6 +65,13 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 tblTechnologyMaster data = new tblTechnologyMaster();
                 data.Name = model.Name;
                 data.Image = model.Image;
+                data.FocusKeyphrase = model.FocusKeyphrase;
+                data.SEOtitle = model.SEOtitle;
+                data.Slug = model.Slug;
+                data.MetaDescription = model.MetaDescription;
+                data.IsCrawl = model.IsCrawl;
+                data.CanonicalURL = model.CanonicalURL;
+                data.SchemaTags = model.SchemaTags;
                 data.isActive = true;
                 _db.tblTechnologyMasters.Add(data);
                 _db.SaveChanges();

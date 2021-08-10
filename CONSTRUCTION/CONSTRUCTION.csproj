@@ -140,12 +140,14 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\SkillMasterController.cs" />
     <Compile Include="Areas\Admin\Controllers\JobDetailsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContentMasterController.cs" />
     <Compile Include="Areas\Admin\Controllers\TechnologyMasterController.cs" />
     <Compile Include="Areas\Admin\Model\JobEducationViewModel.cs" />
     <Compile Include="Areas\Admin\Model\JobQualicationViewModel.cs" />
     <Compile Include="Areas\Admin\Model\LoginViewModel.cs" />
     <Compile Include="Areas\Admin\Model\SkillMasterViewModel.cs" />
     <Compile Include="Areas\Admin\Model\JobDetailsViewModel.cs" />
+    <Compile Include="Areas\Admin\Model\ContentMasterViewModel.cs" />
     <Compile Include="Areas\Admin\Model\TechnologyMasterViewModel.cs" />
     <Compile Include="CommonMethods\CommonMethod.cs" />
     <Compile Include="CommonMethods\CryptoMethod.cs" />
@@ -187,6 +189,9 @@
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTable\tblContectU.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\tblContentMaster.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTable\tblCountry.cs">
@@ -337,6 +342,9 @@
     <Content Include="Areas\Admin\Views\AppliedJobs\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AppliedJobs\_partialAppliedJobList.cshtml" />
     <Content Include="Areas\Admin\Views\AppliedJobs\_partialAppliedJobDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentMaster\_partialAddContentMaster.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentMaster\_partialContentMasterList.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentMaster\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\custom.min.js" />

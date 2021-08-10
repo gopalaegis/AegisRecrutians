@@ -195,7 +195,7 @@
                         <div class="row mt-3 upload-doc">
                             <div class="col-7 col-sm-12">
                                 <div class="fill-upload">
-                                    <input id="file-upload" type="file" name="fileUpload" accept="pdf/*" />
+                                    <input id="file-upload" type="file" name="fileUpload" accept=".pdf,.doc, .docx,.rtf" />
                                     <label for="file-upload" id="file-drag">
                                         <img id="file-image" src="#" alt="Preview" class="hidden" />
                                         <div id="start">
@@ -206,10 +206,12 @@
                                             </div>
                                         </div>
                                     </label>
+                                    <label id="filename"></label>
+                                    <label id="label_error_FileSize" class="errorMessage" style="display:none;">RESUME is not less then 2 mb.</label>
+                                    <label id="label_error_FileFormat" class="errorMessage" style="display:none;">RESUME should be doc, docx, rtf, pdf.</label>
+                                    <label id="label_error_File" class="errorMessage" style="display: none;">RESUME is required</label>
                                 </div>
                                 <input id="hiddenFilename" type="hidden" value="" />
-
-                                <label id="label_error_File" class="errorMessage" style="display:none;">RESUME is required</label>
                             </div>
                         </div>
                         <div class="row pt-3 submit-box">
@@ -232,29 +234,47 @@
         var imageData = "";
         if (files.length > 0) {
             $("#label_error_File").hide();
-            if (window.FormData !== undefined) {
-                imageData = new FormData();
-                for (var x = 0; x < files.length; x++) {
-                    imageData.append("file" + x, files[x]);
-                }
-                setTimeout(function () {
-                    $.ajax({
-                        type: "POST",
-                        url: '@Url.Action("FileUplaod", "ApplyJob")',
-                        contentType: false,
-                        processData: false,
-                        data: imageData,
-                        success: function (result) {
-                            $("#hiddenFilename").val(result);
-                            var Pic = "/CommonImage/Resume/" + result;
-                            $("#file-image").attr('src', Pic);
+            if ((files[0].size / 1024) <= 2000) {
+                $("#label_error_FileSize").hide();
+                var ext = files[0].name.substr((files[0].name.lastIndexOf('.') + 1));
+                if (ext == 'doc' || ext == 'docx' || ext == 'rtf' || ext == 'pdf') {
+                    $("#label_error_FileFormat").hide();
+                    if (window.FormData !== undefined) {
+                        imageData = new FormData();
+                        for (var x = 0; x < files.length; x++) {
+                            imageData.append("file" + x, files[x]);
                         }
-                    });
-                }, 500);
+                        setTimeout(function () {
+                            $.ajax({
+                                type: "POST",
+                                url: '@Url.Action("FileUplaod", "ApplyJob")',
+                                contentType: false,
+                                processData: false,
+                                data: imageData,
+                                success: function (result) {
+                                    $("#hiddenFilename").val(result);
+                                    var Pic = "/CommonImage/Resume/" + result;
+                                    $("#file-image").attr('src', Pic);
+                                    $("#filename").text(files[0].name);
+                                }
+                            });
+                        }, 500);
+                    }
+                } else {
+                    $("#filename").text("");
+                    $("#hiddenFilename").val("");
+                    $("#label_error_FileFormat").show();
+                }
+            } else {
+                $("#filename").text("");
+                $("#hiddenFilename").val("");
+                $("#label_error_FileSize").show();
             }
         }
         else {
+            $("#filename").text("");
             $("#hiddenFilename").val("");
+            $("#label_error_File").show();
         }
     });
 
@@ -315,153 +335,153 @@
         });
     });
 
-        $(".send_btn").click(function () {
-                var jobId = $("#jobId").val();
-                var name = $("#fullName").val();
-                var dob = $("#DOB").val();
-                var gender = $('input[name="gender"]:checked').val();
-                var email = $("#email").val();
-                var mobile = $("#mobile").val();
-                var mobile1 = $("#mobile1").val();
-                var addressType = $("#addressType").val();
-                var fno = $("#fNo").val();
-                var area = $("#area").val();
-                var city = $("#city").val();
-                var country = $(".country").val();
-                var state = $(".state").val();
-                var file = $("#hiddenFilename").val();
-                var IsError = false;
+    $(".send_btn").click(function () {
+        var jobId = $("#jobId").val();
+        var name = $("#fullName").val();
+        var dob = $("#DOB").val();
+        var gender = $('input[name="gender"]:checked').val();
+        var email = $("#email").val();
+        var mobile = $("#mobile").val();
+        var mobile1 = $("#mobile1").val();
+        var addressType = $("#addressType").val();
+        var fno = $("#fNo").val();
+        var area = $("#area").val();
+        var city = $("#city").val();
+        var country = $(".country").val();
+        var state = $(".state").val();
+        var file = $("#hiddenFilename").val();
+        var IsError = false;
 
-                var assignEducation = [];
-                $.each($("#educationDiv").find(".educationDatas"), function () {
-                        var value = parseInt($(this).find("#degree").val());
-                        if (value > 0) {
-                                var details = {
-                                        DegreeId: parseInt($(this).find("#degree").val()),
-                                        Collage: $(this).find("#collage").val(),
-                                        PassingYear: parseInt($(this).find("#year").val())
-                                }
-                                assignEducation.push(details);
-                        }
-                });
-
-                var assignExperience = [];
-                $.each($("#experienceDiv").find(".experienceDatas"), function () {
-                        var value = $(this).find("#employer").val();
-                        if (value != null && value != "") {
-                                var details = {
-                                        Employer: $(this).find("#employer").val(),
-                                        JobTitle: $(this).find("#title").val(),
-                                        ActiveYear: parseInt($(this).find("#activeYear").val()),
-                                        City: $(this).find("#city").val(),
-                                        Country: parseInt($(this).find(".drpCountry").val()),
-                                        State: parseInt($(this).find("#drpState").val())
-                                }
-                                assignExperience.push(details);
-                        }
-                });
-
-                if (name == null || name == "") {
-                        IsError = true;
-                        $("#label_error_FN").show();
+        var assignEducation = [];
+        $.each($("#educationDiv").find(".educationDatas"), function () {
+            var value = parseInt($(this).find("#degree").val());
+            if (value > 0) {
+                var details = {
+                    DegreeId: parseInt($(this).find("#degree").val()),
+                    Collage: $(this).find("#collage").val(),
+                    PassingYear: parseInt($(this).find("#year").val())
                 }
-
-                if (dob == null || dob == "") {
-                        IsError = true;
-                        $("#label_error_DOB").show();
-                }
-
-                if (gender == null || gender == "") {
-                        IsError = true;
-                        $("#label_error_Gender").show();
-                }
-
-                if (email == null || email == "") {
-                        IsError = true;
-                        $("#label_error_Email").show();
-                } else if (!EmailValidation(email)) {
-                        IsError = true;
-                        $("#label_error_EmailFormat").show();
-                }
-
-                if (mobile == null || mobile == "") {
-                        IsError = true;
-                        $("#label_error_PN").show();
-                } else if (!PhoneNumberValidation(mobile)) {
-                        IsError = true;
-                        $("#label_error_PNFormat").show();
-                }
-
-                if (addressType == null || addressType == "0") {
-                        IsError = true;
-                        $("#label_error_addressType").show();
-                }
-
-                if (fno == null || fno == "") {
-                        IsError = true;
-                        $("#label_error_FNo").show();
-                }
-
-                if (area == null || area == "") {
-                        IsError = true;
-                        $("#label_error_area").show();
-                }
-
-                if (city == null || city == "") {
-                        IsError = true;
-                        $("#label_error_city").show();
-                }
-
-                if (country == null || country == "0") {
-                        IsError = true;
-                        $("#label_error_Country").show();
-                }
-
-                if (state == null || state == "0") {
-                        IsError = true;
-                        $("#label_error_State").show();
-                }
-
-                if (file == null || file == "0") {
-                        IsError = true;
-                        $("#label_error_File").show();
-                }
-
-                if (IsError == true) {
-                        return false;
-                } else {
-                        $.ajax({
-                                type: "POST",
-                                url: '@Url.Action("SaveData", "ApplyJob")',
-                                data: {
-                                        Name: name,
-                                        DOB: dob,
-                                        Gender: gender,
-                                        Email: email,
-                                        PhoneNo1: mobile,
-                                        PhoneNo2: mobile1,
-                                        AddressType: addressType,
-                                        BlockNo: fno,
-                                        Street: area,
-                                        City: city,
-                                        CountryId: country,
-                                        StateId: state,
-                                        JobId: jobId,
-                                        jsonEducation: JSON.stringify(assignEducation),
-                                        jsonExperience: JSON.stringify(assignExperience),
-                                        Resume: file
-                                },
-                                success: function (result) {
-                                        if (result == "Success") {
-                                                $("#alert_inquiry_success").html("Apply job successfully");
-                                                $("#alert_inquiry_success").show();
-                                                setTimeout(function () {
-                                                        $("#alert_inquiry_success").hide();
-                                                        window.location.href = '@Url.Action("Index", "jobs")';
-                                                }, 2000);
-                                        }
-                                }
-                        });
-                }
+                assignEducation.push(details);
+            }
         });
+
+        var assignExperience = [];
+        $.each($("#experienceDiv").find(".experienceDatas"), function () {
+            var value = $(this).find("#employer").val();
+            if (value != null && value != "") {
+                var details = {
+                    Employer: $(this).find("#employer").val(),
+                    JobTitle: $(this).find("#title").val(),
+                    ActiveYear: parseInt($(this).find("#activeYear").val()),
+                    City: $(this).find("#city").val(),
+                    Country: parseInt($(this).find(".drpCountry").val()),
+                    State: parseInt($(this).find("#drpState").val())
+                }
+                assignExperience.push(details);
+            }
+        });
+
+        if (name == null || name == "") {
+            IsError = true;
+            $("#label_error_FN").show();
+        }
+
+        if (dob == null || dob == "") {
+            IsError = true;
+            $("#label_error_DOB").show();
+        }
+
+        if (gender == null || gender == "") {
+            IsError = true;
+            $("#label_error_Gender").show();
+        }
+
+        if (email == null || email == "") {
+            IsError = true;
+            $("#label_error_Email").show();
+        } else if (!EmailValidation(email)) {
+            IsError = true;
+            $("#label_error_EmailFormat").show();
+        }
+
+        if (mobile == null || mobile == "") {
+            IsError = true;
+            $("#label_error_PN").show();
+        } else if (!PhoneNumberValidation(mobile)) {
+            IsError = true;
+            $("#label_error_PNFormat").show();
+        }
+
+        if (addressType == null || addressType == "0") {
+            IsError = true;
+            $("#label_error_addressType").show();
+        }
+
+        if (fno == null || fno == "") {
+            IsError = true;
+            $("#label_error_FNo").show();
+        }
+
+        if (area == null || area == "") {
+            IsError = true;
+            $("#label_error_area").show();
+        }
+
+        if (city == null || city == "") {
+            IsError = true;
+            $("#label_error_city").show();
+        }
+
+        if (country == null || country == "0") {
+            IsError = true;
+            $("#label_error_Country").show();
+        }
+
+        if (state == null || state == "0") {
+            IsError = true;
+            $("#label_error_State").show();
+        }
+
+        if (file == null || file == "") {
+            IsError = true;
+            $("#label_error_File").show();
+        }
+
+        if (IsError == true) {
+            return false;
+        } else {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SaveData", "ApplyJob")',
+                data: {
+                    Name: name,
+                    DOB: dob,
+                    Gender: gender,
+                    Email: email,
+                    PhoneNo1: mobile,
+                    PhoneNo2: mobile1,
+                    AddressType: addressType,
+                    BlockNo: fno,
+                    Street: area,
+                    City: city,
+                    CountryId: country,
+                    StateId: state,
+                    JobId: jobId,
+                    jsonEducation: JSON.stringify(assignEducation),
+                    jsonExperience: JSON.stringify(assignExperience),
+                    Resume: file
+                },
+                success: function (result) {
+                    if (result == "Success") {
+                        $("#alert_inquiry_success").html("Apply job successfully");
+                        $("#alert_inquiry_success").show();
+                        setTimeout(function () {
+                            $("#alert_inquiry_success").hide();
+                            window.location.href = '@Url.Action("Index", "jobs")';
+                        }, 2000);
+                    }
+                }
+            });
+        }
+    });
 </script>

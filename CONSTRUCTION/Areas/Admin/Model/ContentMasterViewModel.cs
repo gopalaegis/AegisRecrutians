@@ -5,10 +5,12 @@ using System.Web;
 
 namespace CONSTRUCTION.Areas.Admin.Model
 {
-    public class TechnologyMasterViewModel
+    public class ContentMasterViewModel
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Title { get; set; }
+        public string Controller { get; set; }
+        public string ActionResult { get; set; }
         public string Image { get; set; }
         public string FocusKeyphrase { get; set; }
         public string SEOtitle { get; set; }
