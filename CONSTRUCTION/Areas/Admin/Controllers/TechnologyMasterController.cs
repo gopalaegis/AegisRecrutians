@@ -23,7 +23,20 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             TechnologyMasterViewModel model = new TechnologyMasterViewModel();
             if (Id > 0)
             {
-                model = _db.tblTechnologyMasters.Where(x => x.Id == Id).Select(x => new TechnologyMasterViewModel { Id = x.Id, Name = x.Name, Image = x.Image, FocusKeyphrase = x.FocusKeyphrase, SEOtitle = x.SEOtitle, Slug = x.Slug, MetaDescription = x.MetaDescription, IsCrawl = (bool)x.IsCrawl, CanonicalURL = x.CanonicalURL, SchemaTags = x.SchemaTags }).FirstOrDefault();
+                var data = _db.tblTechnologyMasters.Where(x => x.Id == Id).FirstOrDefault();
+                if (data!=null)
+                {
+                    model.Id = data.Id;
+                    model.Name = data.Name;
+                    model.Image = data.Image;
+                    model.FocusKeyphrase = data.FocusKeyphrase;
+                    model.SEOtitle = data.SEOtitle; 
+                    model.Slug = data.Slug; 
+                    model.MetaDescription = data.MetaDescription;
+                    model.IsCrawl = (bool)data.IsCrawl;
+                    model.CanonicalURL = data.CanonicalURL;
+                    model.SchemaTags = data.SchemaTags;
+                }
             }
             return PartialView("_partialAddTechnologyMaster", model);
         }
@@ -31,7 +44,16 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
         public ActionResult TechnologyMasterList()
         {
             List<TechnologyMasterViewModel> model = new List<TechnologyMasterViewModel>();
-            model = _db.tblTechnologyMasters.Select(x => new TechnologyMasterViewModel { Id = x.Id, Name = x.Name, Image = x.Image,isactive=(bool)x.isActive }).ToList();
+            var data = _db.tblTechnologyMasters.Select(x => new TechnologyMasterViewModel {  }).ToList();
+            foreach (var item in data)
+            {
+                TechnologyMasterViewModel m = new TechnologyMasterViewModel();
+                m.Id = item.Id;
+                m.Name = item.Name; 
+                m.Image = item.Image;
+                m.isactive = (bool)item.isactive;
+                model.Add(m);
+            }
             return PartialView("_partialTechnologyMasterList", model);
         }
 
