@@ -16,6 +16,18 @@ namespace CONSTRUCTION.Controllers
     {
         AEGIS_Entities _db = new AEGIS_Entities();
 
+
+        public ActionResult autoCompleteDemo() {
+            return View();
+        }
+
+        public ActionResult BindAutoComplete()
+        {
+            var cityData = _db.tblCities.Select(x => x.Name).Distinct().ToList();
+            var jobTitle = _db.tblJobDetails.Select(x => x.Title).Distinct().ToList();
+            Tuple<List<string>, List<string>> tuple = new Tuple<List<string>, List<string>>(cityData, jobTitle);
+            return Json(tuple, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult Index()
         {
             HomeViewModel model = new HomeViewModel();

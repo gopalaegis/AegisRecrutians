@@ -37,8 +37,8 @@ namespace CONSTRUCTION.Controllers
         public ActionResult Index(string l = "", string q = "")
         {
             JobDetailViewModel model = new JobDetailViewModel();
-            model.City = l;
-            model.Title = q;
+            model.City = l.Replace('-', ' '); ;
+            model.Title = q.Replace('-',' ');
             return View(model);
         }
 

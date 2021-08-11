@@ -267,6 +267,8 @@
       <DependentUpon>AEGIS_Model.edmx</DependentUpon>
       <LastGenOutput>AEGIS_Model.cs</LastGenOutput>
     </Content>
+    <Content Include="EasyAutocomplete\autoComplete.css" />
+    <Content Include="EasyAutocomplete\autoComplete.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -345,14 +347,16 @@
     <Content Include="Areas\Admin\Views\ContentMaster\_partialAddContentMaster.cshtml" />
     <Content Include="Areas\Admin\Views\ContentMaster\_partialContentMasterList.cshtml" />
     <Content Include="Areas\Admin\Views\ContentMaster\Index.cshtml" />
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\custom.min.js" />
     <Content Include="Scripts\functions.js" />
-    <Content Include="Scripts\jquery-3.4.1.js" />
-    <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.6.0.js" />
+    <Content Include="Scripts\jquery-3.6.0.min.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.6.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -501,6 +505,7 @@
     <Content Include="Template\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Template\vendor\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="Views\jobs\TechnoloGyWiseJob.cshtml" />
+    <Content Include="Views\Home\autoCompleteDemo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="adminAssets\img\" />
@@ -520,8 +525,6 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
