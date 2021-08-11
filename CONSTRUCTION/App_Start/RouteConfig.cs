@@ -14,6 +14,36 @@ namespace CONSTRUCTION
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+           name: "SaveDataJob",
+           url: "ApplyJob/SaveData",
+           defaults: new { controller = "ApplyJob", action = "SaveData" }
+       );
+
+            routes.MapRoute(
+            name: "GetStateByCountry",
+            url: "ApplyJob/GetStateByCountry",
+            defaults: new { controller = "ApplyJob", action = "GetStateByCountry" }
+        );
+
+            routes.MapRoute(
+         name: "ExperienceData",
+         url: "ApplyJob/ExperienceData",
+         defaults: new { controller = "ApplyJob", action = "ExperienceData" }
+     );
+
+            routes.MapRoute(
+         name: "EducationData",
+         url: "ApplyJob/EducationData",
+         defaults: new { controller = "ApplyJob", action = "EducationData" }
+     );
+
+            routes.MapRoute(
+             name: "ApplyjobresumeUpload",
+             url: "ApplyJob/FileUplaod",
+             defaults: new { controller = "ApplyJob", action = "FileUplaod" }
+         );
+
+            routes.MapRoute(
                name: "ReferJobs",
                url: "ReferJob/{jobId}",
                defaults: new { controller = "Refer", action = "Index", jobId = UrlParameter.Optional }

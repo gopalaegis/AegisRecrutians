@@ -60,6 +60,7 @@ namespace CONSTRUCTION.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
         public ActionResult FileUplaod()
         {
             System.Web.HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
