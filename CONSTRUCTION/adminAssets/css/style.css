@@ -3648,3 +3648,10 @@ button, button:focus {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+.table thead th {
+    vertical-align: bottom;
+    border: none !important;
+}
+.mb-20 {
+    margin-bottom:20px;
+}
