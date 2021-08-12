@@ -41,6 +41,28 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             return PartialView("_partialAddTechnologyMaster", model);
         }
 
+        public ActionResult AddEditCityMaster(int Id = 0)
+        {
+            TechnologyMasterViewModel model = new TechnologyMasterViewModel();
+            if (Id > 0)
+            {
+                var data = _db.tblTechnologyMasters.Where(x => x.Id == Id).FirstOrDefault();
+                if (data != null)
+                {
+                    model.Id = data.Id;
+                    model.Name = data.Name;
+                    model.Image = data.Image;
+                    model.FocusKeyphrase = data.FocusKeyphrase;
+                    model.SEOtitle = data.SEOtitle;
+                    model.Slug = data.Slug;
+                    model.MetaDescription = data.MetaDescription;
+                    model.IsCrawl = (bool)data.IsCrawl;
+                    model.CanonicalURL = data.CanonicalURL;
+                    model.SchemaTags = data.SchemaTags;
+                }
+            }
+            return PartialView("_partialAddCityMaster", model);
+        }
         public ActionResult TechnologyMasterList()
         {
             List<TechnologyMasterViewModel> model = new List<TechnologyMasterViewModel>();
@@ -56,7 +78,24 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             }
             return PartialView("_partialTechnologyMasterList", model);
         }
-
+        public ActionResult TechnologyCitylist()
+        {
+            List<TechnologyMasterViewModel> model = new List<TechnologyMasterViewModel>();
+            var data = _db.tblTechnologyMasters.ToList();
+            foreach (var item in data)
+            {
+                TechnologyMasterViewModel m = new TechnologyMasterViewModel();
+                m.FocusKeyphrase = item.FocusKeyphrase;
+                m.SEOtitle = item.SEOtitle;
+                m.Slug = item.Slug;
+                m.MetaDescription = item.MetaDescription;
+                m.IsCrawl = (bool)item.IsCrawl;
+                m.CanonicalURL = item.CanonicalURL;
+                m.SchemaTags = item.SchemaTags;
+                model.Add(m);
+            }
+            return PartialView("_partialTechnologyCityList", model);
+        }
         //public ActionResult DeleteTechnologyMaster(int Id)
         //{
         //    var data = _db.tblTechnologyMasters.Where(x => x.Id == Id).FirstOrDefault();

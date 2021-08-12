@@ -18,5 +18,6 @@ namespace CONSTRUCTION.Areas.Admin.Model
         public string CanonicalURL { get; set; }
         public string SchemaTags { get; set; }
         public bool isactive { get; set; }
+        public string city { get; set; }
     }
 }

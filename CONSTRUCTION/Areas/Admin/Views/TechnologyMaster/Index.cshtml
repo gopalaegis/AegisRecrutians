@@ -19,6 +19,51 @@
         </div>
     </div>
 </div>
+@*--------------------Add city Popup------------------*@
+<div id="AddTeckCity" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> Technology Detail</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn_save">Save</button>
+                <button type="button" class="btn btn-default btn_Close" data-dismiss="modal">Close</button>
+                <br />
+                <table>
+                    <thead>
+                        <tr>
+                            <th>City</th>
+                            <th>FocusKeyphrase</th>
+                            <th>SEOtitle</th>
+                            <th>Slug</th>
+                            <th>IsCrawl</th>
+                            <th>CanonicalURL</th>
+                            <th>SchemaTags</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mehsana</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>7</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="right-side">
     <div class="heading">Technology Master</div>
 
@@ -176,12 +221,27 @@
         });
     });
 
+    $("#tableDiv").on("click", ".editcity", function () {
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url: '@Url.Action("AddEditCityMaster", "TechnologyMaster")',
+            data: {
+                Id:id
+            },
+            success: function (data) {
+                $("#AddTeckCity").find(".modal-body").html("");
+                $("#AddTeckCity").find(".modal-body").html(data);
+            }
+        });
+    });
+
+
     $("#tableDiv").on("click", ".Deactive", function () {
             debugger
                 var Id = $(this).attr("data-id");
                 var parentTr = $(this).parent().parent();
                 var btn = '<i class="fa fa-check-square fa-check-css Active" data-id="' + Id + '" title="Active"></i>';
-               
+
                    $("#preloader").show();
                    $.ajax({
                            url: '@Url.Action("isDeactive", "TechnologyMaster")',
