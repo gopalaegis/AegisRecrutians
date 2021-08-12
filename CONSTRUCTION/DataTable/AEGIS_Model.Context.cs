@@ -26,6 +26,7 @@ namespace CONSTRUCTION.DataTable
         }
     
         public virtual DbSet<JobWiseTechnology> JobWiseTechnologies { get; set; }
+        public virtual DbSet<tblAddCityTechMaster> tblAddCityTechMasters { get; set; }
         public virtual DbSet<tblApplyJobDetail> tblApplyJobDetails { get; set; }
         public virtual DbSet<tblApplyJobEducation> tblApplyJobEducations { get; set; }
         public virtual DbSet<tblApplyJobExperience> tblApplyJobExperiences { get; set; }

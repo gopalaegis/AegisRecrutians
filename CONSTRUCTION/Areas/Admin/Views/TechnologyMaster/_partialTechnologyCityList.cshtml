@@ -1,2 +1,19 @@
-﻿
+﻿@model List<CONSTRUCTION.Areas.Admin.Model.AddcityViewModel>
 
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.city</td>
+        <td>@item.FocusKeyphrase</td>
+        <td>@item.SEOtitle</td>
+        <td>@item.Slug</td>
+        <td>@item.IsCrawl</td>
+        <td>@item.CanonicalURL</td>
+        <td>@item.SchemaTags</td>
+        <td class="light-gray text-right d-flex align-items-center">
+            <i class="fa fa-ban fa-trash red Delete" data-id="@item.id" title="Delete"></i>
+            <i class="editRow fa fa-pencil creamy ml-2 pr-2" aria-hidden="true" id="edit_city" data-id="@item.id"></i>
+            @*<i class="fa fa-times red ml-2 pr-2" aria-hidden="true"></i>*@
+        </td>
+    </tr>
+}

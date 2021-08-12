@@ -1,0 +1,28 @@
+﻿@model CONSTRUCTION.Areas.Admin.Model.AddcityViewModel
+
+<div id="CityDiv">
+    @Html.Action("EditCityMaster", "TechnologyMaster", new { id = Model.id, teckId = Model.teckmasterId })
+</div>
+<div class="mb-20 mt-10 float-right">
+    <button type="button" class="btn btn-primary btn_save">Save</button>
+    <button type="button" class="btn btn-default btn_Close" data-dismiss="modal">Close</button>
+</div>
+<div class="table">
+    <table class="t-body" id="myTable">
+        <thead>
+            <tr>
+                <th>City</th>
+                <th>FocusKeyphrase</th>
+                <th>SEOtitle</th>
+                <th>Slug</th>
+                <th>IsCrawl</th>
+                <th>CanonicalURL</th>
+                <th>SchemaTags</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="city_list">
+            @Html.Action("TechnologyCitylist", "TechnologyMaster")
+        </tbody>
+    </table>
+</div>

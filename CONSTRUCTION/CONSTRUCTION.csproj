@@ -142,6 +142,7 @@
     <Compile Include="Areas\Admin\Controllers\JobDetailsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentMasterController.cs" />
     <Compile Include="Areas\Admin\Controllers\TechnologyMasterController.cs" />
+    <Compile Include="Areas\Admin\Model\AddcityViewModel.cs" />
     <Compile Include="Areas\Admin\Model\JobEducationViewModel.cs" />
     <Compile Include="Areas\Admin\Model\JobQualicationViewModel.cs" />
     <Compile Include="Areas\Admin\Model\LoginViewModel.cs" />
@@ -171,6 +172,9 @@
       <DependentUpon>AEGIS_Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="DataTable\JobWiseTechnology.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\tblAddCityTechMaster.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTable\tblApplyJobDetail.cs">
@@ -350,8 +354,9 @@
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\custom.min.js" />
     <Content Include="Scripts\functions.js" />
-    <Content Include="Areas\Admin\Views\TechnologyMaster\_partialAddCityMaster.cshtml" />
+    <Content Include="Areas\Admin\Views\TechnologyMaster\_partialCityMaster.cshtml" />
     <Content Include="Areas\Admin\Views\TechnologyMaster\_partialTechnologyCityList.cshtml" />
+    <Content Include="Areas\Admin\Views\TechnologyMaster\_partialEditCityMaster.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />

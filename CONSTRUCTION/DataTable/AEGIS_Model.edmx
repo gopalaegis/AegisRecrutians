@@ -13,6 +13,22 @@
           <Property Name="JobId" Type="int" />
           <Property Name="TechnologyId" Type="int" />
         </EntityType>
+        <EntityType Name="tblAddCityTechMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TechMasterId" Type="int" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="FocusKeyphrase" Type="nvarchar(max)" />
+          <Property Name="SEOtitle" Type="nvarchar(max)" />
+          <Property Name="Slug" Type="nvarchar(max)" />
+          <Property Name="MetaDescription" Type="nvarchar(max)" />
+          <Property Name="IsCrawl" Type="bit" />
+          <Property Name="CanonicalURL" Type="nvarchar(max)" />
+          <Property Name="SchemaTags" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
         <EntityType Name="tblApplyJobDetails">
           <Key>
             <PropertyRef Name="Id" />
@@ -224,6 +240,7 @@
         </EntityType>
         <EntityContainer Name="AEGIS_ConstructionModelStoreContainer">
           <EntitySet Name="JobWiseTechnology" EntityType="Self.JobWiseTechnology" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAddCityTechMaster" EntityType="Self.tblAddCityTechMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblApplyJobDetails" EntityType="Self.tblApplyJobDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblApplyJobEducation" EntityType="Self.tblApplyJobEducation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblApplyJobExperience" EntityType="Self.tblApplyJobExperience" Schema="dbo" store:Type="Tables" />
@@ -249,6 +266,7 @@
       <Schema Namespace="AEGIS_ConstructionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="AEGIS_Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="JobWiseTechnologies" EntityType="AEGIS_ConstructionModel.JobWiseTechnology" />
+          <EntitySet Name="tblAddCityTechMasters" EntityType="AEGIS_ConstructionModel.tblAddCityTechMaster" />
           <EntitySet Name="tblApplyJobDetails" EntityType="AEGIS_ConstructionModel.tblApplyJobDetail" />
           <EntitySet Name="tblApplyJobEducations" EntityType="AEGIS_ConstructionModel.tblApplyJobEducation" />
           <EntitySet Name="tblApplyJobExperiences" EntityType="AEGIS_ConstructionModel.tblApplyJobExperience" />
@@ -275,6 +293,22 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="JobId" Type="Int32" />
           <Property Name="TechnologyId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblAddCityTechMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TechMasterId" Type="Int32" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FocusKeyphrase" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SEOtitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Slug" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsCrawl" Type="Boolean" />
+          <Property Name="CanonicalURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SchemaTags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="tblApplyJobDetail">
           <Key>
@@ -496,6 +530,23 @@
               <MappingFragment StoreEntitySet="JobWiseTechnology">
                 <ScalarProperty Name="TechnologyId" ColumnName="TechnologyId" />
                 <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAddCityTechMasters">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblAddCityTechMaster">
+              <MappingFragment StoreEntitySet="tblAddCityTechMaster">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="SchemaTags" ColumnName="SchemaTags" />
+                <ScalarProperty Name="CanonicalURL" ColumnName="CanonicalURL" />
+                <ScalarProperty Name="IsCrawl" ColumnName="IsCrawl" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="SEOtitle" ColumnName="SEOtitle" />
+                <ScalarProperty Name="FocusKeyphrase" ColumnName="FocusKeyphrase" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="TechMasterId" ColumnName="TechMasterId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

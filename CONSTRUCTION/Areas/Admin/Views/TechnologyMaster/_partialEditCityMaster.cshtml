@@ -1,0 +1,52 @@
+﻿@model CONSTRUCTION.Areas.Admin.Model.AddcityViewModel
+
+
+<input type="hidden" id="txt_Id" value="@Model.id" />
+<input type="hidden" id="txt_techId" value="@Model.teckmasterId" />
+<div class="row formGroup">
+    <div class="col-sm-4">
+        <label>City</label>
+        <input type="text" id="txt_city" value="@Model.city" placeholder="City" class="form-control" />
+        <label id="label_error_City" class="errorMessage" style="display:none;">City is required</label>
+    </div>
+    <div class="col-sm-4">
+        <label>Focus Keyphrase</label>
+        <input type="text" id="txt_FKeyphrase" value="@Model.FocusKeyphrase" placeholder="Focus Keyphrase" class="formcontrol">
+    </div>
+    <div class="col-sm-4">
+        <label>SEO title</label>
+        <input type="text" id="txt_Seotitle" value="@Model.SEOtitle" placeholder="SEO title" class="form-control" />
+    </div>
+</div>
+<div class="row formGroup">
+    <div class="col-sm-4">
+        <label>Slug</label>
+        <input type="text" id="txt_Slug" value="@Model.Slug" placeholder="Slug" class="form-control" />
+    </div>
+    <div class="col-sm-4">
+        <label>IsCrawl</label>
+        @if (Model.IsCrawl)
+        {
+            <input type="checkbox" id="chk_Crawl" name="IsCrawl" class="form-control" checked="checked" />
+        }
+        else
+        {
+            <input type="checkbox" id="chk_Crawl" name="IsCrawl" class="form-control" />
+        }
+    </div>
+    <div class="col-sm-4">
+        <label>Canonical URL</label>
+        <input type="text" id="txt_URL" value="@Model.CanonicalURL " placeholder="Canonical URL" class="form-control" />
+    </div>
+
+</div>
+<div class="row formGroup">
+    <div class="col-sm-4">
+        <label>Schema Tags</label>
+        <input type="text" id="txt_Tags" value="@Model.SchemaTags" placeholder="Schema Tags" class="form-control" />
+    </div>
+    <div class="col-sm-8">
+        <label>Meta Description</label>
+        <textarea id="txt_description" placeholder="Meta Description" class="form-control">@Model.MetaDescription</textarea>
+    </div>
+</div>
