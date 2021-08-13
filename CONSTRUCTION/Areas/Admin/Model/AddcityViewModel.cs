@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace CONSTRUCTION.Areas.Admin.Model
 {
     public class AddcityViewModel
     {
+        public AddcityViewModel()
+        {
+            drpcity = new List<SelectListItem>();
+        }
         public int id { get; set; }
         public int teckmasterId { get; set; }
         public string FocusKeyphrase { get; set; }
@@ -18,5 +23,7 @@ namespace CONSTRUCTION.Areas.Admin.Model
         public string SchemaTags { get; set; }
         public bool isactive { get; set; }
         public string city { get; set; }
+        public int cityId { get; set; }
+        public List<SelectListItem> drpcity { get; set; }
     }
 }
