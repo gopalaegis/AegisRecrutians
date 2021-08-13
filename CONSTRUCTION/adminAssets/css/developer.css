@@ -124,7 +124,10 @@ div.dataTables_wrapper {
     justify-content: space-between;
     margin-left: 100px;
 }
-
+.dashboard .allied-job-main.right-side .data-table.style-1 .box-table .dataTables_length,
+.dashboard .Refer-Master-main.right-side .data-table.style-1 .box-table .dataTables_length {
+    margin-left: 0;
+}
     .dashboard .right-side .data-table.style-1 .box-table select {
         padding: 5px;
         border-radius: 0 !important;
@@ -419,4 +422,7 @@ div.dataTables_wrapper {
 
 .cursor-pointer {
     cursor: pointer;
+}
+.ml-100 {
+    margin-left:100px;
 }

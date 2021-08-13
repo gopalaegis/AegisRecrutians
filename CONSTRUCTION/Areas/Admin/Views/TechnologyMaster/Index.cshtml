@@ -41,13 +41,13 @@
     <div class="heading">Technology Master</div>
 
     <div class="data-table style-1">
+        <div class="catagory-detail mt-10">
+            <div class="catagory-flex1">
+                <div><span class="add-catagory-btn" id="btnAddTech" data-toggle="modal" data-target="#addTechnology"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
+            </div>
+        </div>
         <div class="box-table">
             <div class="skill-table">
-                <div class="catagory-detail">
-                    <div class="catagory-flex1">
-                        <div><span class="add-catagory-btn" id="btnAddTech" data-toggle="modal" data-target="#addTechnology"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
-                    </div>
-                </div>
                 <div id="tableDiv">
                     @Html.Action("TechnologyMasterList", "TechnologyMaster")
                 </div>
@@ -226,6 +226,7 @@
     });
 
     $("#AddTeckCity").on("click", ".btn_save", function (e) {
+        debugger
         var Id = $("#AddTeckCity").find('#txt_Id').val();
         var techId = $("#AddTeckCity").find('#txt_techId').val();
         var City = $("#AddTeckCity").find('#txt_city').val();
