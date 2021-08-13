@@ -45,46 +45,47 @@ namespace CONSTRUCTION
 
             routes.MapRoute(
                name: "ReferJobs",
-               url: "ReferJob/{jobId}",
+               url: "referjob/{jobId}",
                defaults: new { controller = "Refer", action = "Index", jobId = UrlParameter.Optional }
            );
 
             routes.MapRoute(
                  name: "ApplyJobs",
-                 url: "ApplyJob/{jobId}",
+                 url: "applyjob/{jobId}",
                  defaults: new { controller = "ApplyJob", action = "Index", jobId = UrlParameter.Optional }
              );
 
+            routes.MapRoute(
+              name: "SlugURL",
+              url: "{slugURL}",
+              defaults: new { controller = "jobs", action = "TechnoloGyWiseJob" }
+          );
 
             routes.MapRoute(
               name: "bothSearchJobs",
-              url: "{q}-Jobs-in-{l}",
+              url: "{q}-jobs-in-{l}",
               defaults: new { controller = "jobs", action = "Index" }
           );
 
             routes.MapRoute(
               name: "SearchJobsbytitle",
-              url: "{q}-Jobs",
+              url: "{q}-jobs",
               defaults: new { controller = "jobs", action = "Index" }
           );
 
             routes.MapRoute(
               name: "SearchJobsbyCity",
-              url: "Jobs-in-{l}",
+              url: "jobs-in-{l}",
               defaults: new { controller = "jobs", action = "Index" }
           );
 
             routes.MapRoute(
                name: "SearchJobs",
-               url: "Jobs",
+               url: "jobs",
                defaults: new { controller = "jobs", action = "Index" }
            );
 
-            routes.MapRoute(
-                name: "SlugURL",
-                url: "{slugURL}",
-                defaults: new { controller = "jobs", action = "TechnoloGyWiseJob" }
-            );
+          
          
 
             routes.MapRoute(

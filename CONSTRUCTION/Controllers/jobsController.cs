@@ -29,7 +29,21 @@ namespace CONSTRUCTION.Controllers
                 seo.SchemaTags = technologyName.SchemaTags;
                 seo.FocusKeyphrase = technologyName.FocusKeyphrase;
             }
-
+            else {
+                var technologyNameCity = _db.tblAddCityTechMasters.Where(x => x.Slug == slugURL).FirstOrDefault();
+                if (technologyNameCity != null)
+                {
+                    technologyId = Convert.ToInt32(technologyNameCity.TechMasterId);
+                    seo.SEOtitle = technologyNameCity.SEOtitle;
+                    seo.Slug = technologyNameCity.Slug;
+                    seo.MetaDescription = technologyNameCity.MetaDescription;
+                    seo.IsCrawl = Convert.ToBoolean(technologyNameCity.IsCrawl);
+                    seo.IsCrawlString = Convert.ToBoolean(technologyNameCity.IsCrawl) == true ? "index, follow" : "noindex, nofollow";
+                    seo.CanonicalURL = technologyNameCity.CanonicalURL;
+                    seo.SchemaTags = technologyNameCity.SchemaTags;
+                    seo.FocusKeyphrase = technologyNameCity.FocusKeyphrase;
+                }
+            }
             Tuple<int, SEOModel> tuple = new Tuple<int, SEOModel>(technologyId, seo);
             return View(tuple);
         }
