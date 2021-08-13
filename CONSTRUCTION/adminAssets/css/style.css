@@ -3648,9 +3648,11 @@ button, button:focus {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-.table thead th {
-    vertical-align: bottom;
+.table thead th, .table td {
     border: none !important;
+}
+table tr {
+    border-bottom: 1px solid #CDD3DB;
 }
 .mb-20 {
     margin-bottom:20px;
