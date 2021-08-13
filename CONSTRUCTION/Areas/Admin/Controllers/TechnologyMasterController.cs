@@ -1,4 +1,5 @@
 ﻿using CONSTRUCTION.Areas.Admin.Model;
+using CONSTRUCTION.CommonMethods;
 using CONSTRUCTION.DataTable;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
     public class TechnologyMasterController : Controller
     {
         AEGIS_Entities _db = new AEGIS_Entities();
+        CommonMethod _commonMethod = new CommonMethod();
         // GET: Admin/TechnologyMaster
         public ActionResult Index()
         {
@@ -58,7 +60,8 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 if (data != null)
                 {
                     model.id = data.Id;
-                    model.city = data.City;
+                    model.cityId = (int)data.CityId;
+                    model.drpcity = _commonMethod.GetCity();
                     model.teckmasterId = (int)data.TechMasterId;
                     model.FocusKeyphrase = data.FocusKeyphrase;
                     model.SEOtitle = data.SEOtitle;
@@ -72,6 +75,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             }
             else
             {
+                 model.drpcity = _commonMethod.GetCity();
                 model.teckmasterId = teckId;
             }
             return PartialView("_partialEditCityMaster", model);
@@ -100,7 +104,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 AddcityViewModel m = new AddcityViewModel();
                 m.id = item.Id;
                 m.teckmasterId = (int)item.TechMasterId;
-                m.city = item.City;
+                m.city = _db.tblCities.Where(x => x.Id == item.CityId).Select(x => x.Name).FirstOrDefault();
                 m.FocusKeyphrase = item.FocusKeyphrase;
                 m.SEOtitle = item.SEOtitle;
                 m.Slug = item.Slug;
@@ -118,7 +122,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             if (model.id > 0)
             {
                 var data = _db.tblAddCityTechMasters.Where(x => x.Id == model.id).FirstOrDefault();
-                data.City = model.city;
+                data.CityId = model.cityId;
                 data.FocusKeyphrase = model.FocusKeyphrase;
                 data.SEOtitle = model.SEOtitle;
                 data.Slug = model.Slug;
@@ -131,7 +135,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             else
             {
                 tblAddCityTechMaster data = new tblAddCityTechMaster();
-                data.City = model.city;
+                data.CityId = model.cityId;
                 data.TechMasterId = model.teckmasterId;
                 data.FocusKeyphrase = model.FocusKeyphrase;
                 data.SEOtitle = model.SEOtitle;

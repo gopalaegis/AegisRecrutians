@@ -16,7 +16,7 @@ namespace CONSTRUCTION.DataTable
     {
         public int Id { get; set; }
         public Nullable<int> TechMasterId { get; set; }
-        public string City { get; set; }
+        public Nullable<int> CityId { get; set; }
         public string FocusKeyphrase { get; set; }
         public string SEOtitle { get; set; }
         public string Slug { get; set; }

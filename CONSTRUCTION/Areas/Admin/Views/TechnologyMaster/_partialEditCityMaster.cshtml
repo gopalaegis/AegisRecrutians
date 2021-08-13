@@ -6,7 +6,22 @@
 <div class="row formGroup">
     <div class="col-sm-4">
         <label>City</label>
-        <input type="text" id="txt_city" value="@Model.city" placeholder="City" class="form-control" />
+        <div class="select-box">
+            <select class="form-control" id="txt_city">
+                @foreach (var item in Model.drpcity)
+                {
+                    if (Model.cityId.ToString() == item.Value)
+                    {
+                        <option value="@item.Value" selected="selected">@item.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+
+                }
+            </select>
+        </div>
         <label id="label_error_City" class="errorMessage" style="display:none;">City is required</label>
     </div>
     <div class="col-sm-4">

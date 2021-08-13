@@ -19,7 +19,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TechMasterId" Type="int" />
-          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityId" Type="int" />
           <Property Name="FocusKeyphrase" Type="nvarchar(max)" />
           <Property Name="SEOtitle" Type="nvarchar(max)" />
           <Property Name="Slug" Type="nvarchar(max)" />
@@ -300,7 +300,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TechMasterId" Type="Int32" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityId" Type="Int32" />
           <Property Name="FocusKeyphrase" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SEOtitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Slug" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -545,7 +545,7 @@
                 <ScalarProperty Name="Slug" ColumnName="Slug" />
                 <ScalarProperty Name="SEOtitle" ColumnName="SEOtitle" />
                 <ScalarProperty Name="FocusKeyphrase" ColumnName="FocusKeyphrase" />
-                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
                 <ScalarProperty Name="TechMasterId" ColumnName="TechMasterId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
