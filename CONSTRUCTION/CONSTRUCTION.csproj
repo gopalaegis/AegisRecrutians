@@ -152,6 +152,7 @@
     <Compile Include="Areas\Admin\Model\TechnologyMasterViewModel.cs" />
     <Compile Include="CommonMethods\CommonMethod.cs" />
     <Compile Include="CommonMethods\CryptoMethod.cs" />
+    <Compile Include="CommonMethods\UserLoginCheck.cs" />
     <Compile Include="Controllers\ApplyJobController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\jobsController.cs" />

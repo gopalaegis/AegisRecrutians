@@ -1,4 +1,5 @@
 ﻿using CONSTRUCTION.Areas.Admin.Model;
+using CONSTRUCTION.CommonMethods;
 using CONSTRUCTION.DataTable;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
     {
         // GET: Admin/Jobqualification
         AEGIS_Entities _db = new AEGIS_Entities();
+        [UserLoginCheck]
         public ActionResult JobQualification()
         {
             return View();

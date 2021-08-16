@@ -15,6 +15,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
         AEGIS_Entities _db = new AEGIS_Entities();
         CommonMethod _commonMethod = new CommonMethod();
         // GET: Admin/TechnologyMaster
+        [UserLoginCheck]
         public ActionResult Index()
         {
             return View();
@@ -90,7 +91,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 m.Id = item.Id;
                 m.Name = item.Name; 
                 m.Image = item.Image;
-                m.isactive = (bool)item.isActive;
+                m.isactive = Convert.ToBoolean(item.isActive);
                 model.Add(m);
             }
             return PartialView("_partialTechnologyMasterList", model);
@@ -111,7 +112,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 m.IsCrawl = (bool)item.IsCrawl;
                 m.CanonicalURL = item.CanonicalURL;
                 m.SchemaTags = item.SchemaTags;
-                m.isactive = (bool)item.isActive;
+                m.isactive = Convert.ToBoolean(item.isActive);
                 model.Add(m);
             }
             return PartialView("_partialTechnologyCityList", model);

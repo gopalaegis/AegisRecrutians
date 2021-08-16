@@ -14,6 +14,7 @@ namespace CONSTRUCTION.Areas.Admin.Model
         }
         public int id { get; set; }
         public int teckmasterId { get; set; }
+        public string teckmaster { get; set; }
         public string FocusKeyphrase { get; set; }
         public string SEOtitle { get; set; }
         public string Slug { get; set; }

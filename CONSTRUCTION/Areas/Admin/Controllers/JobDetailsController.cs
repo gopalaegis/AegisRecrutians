@@ -1,4 +1,5 @@
 ﻿using CONSTRUCTION.Areas.Admin.Model;
+using CONSTRUCTION.CommonMethods;
 using CONSTRUCTION.DataTable;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
     public class JobDetailsController : Controller
     {
         AEGIS_Entities _db = new AEGIS_Entities();
+        [UserLoginCheck]
         public ActionResult JobDetail()
         {
             return View();
