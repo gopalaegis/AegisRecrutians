@@ -3,19 +3,19 @@
     ViewBag.Title = "Technology Master";
 }
 <div id="addTechnology" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"> Technology Detail</h4>
+                <h4 class="modal-title modal_text"> Technology Detail</h4>
             </div> 
             <div class="modal-body">
 
             </div>
-            <div class="modal-footer">
+            @*<div class="modal-footer">
                 <button type="button" class="btn btn-primary btn_save">Save</button>
                 <button type="button" class="btn btn-default btn_Close" data-dismiss="modal">Close</button>
-            </div>
+            </div>*@
         </div>
     </div>
 </div>
@@ -47,13 +47,14 @@
     <div class="heading">Technology Master</div>
 
     <div class="data-table style-1">
-        <div class="catagory-detail mt-10">
-            <div class="catagory-flex1">
-                <div><span class="add-catagory-btn" id="btnAddTech" data-toggle="modal" data-target="#addTechnology"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
-            </div>
-        </div>
+        
         <div class="box-table">
             <div class="skill-table">
+                <div class="catagory-detail">
+                    <div class="catagory-flex1">
+                        <div><span class="add-catagory-btn" id="btnAddTech" data-toggle="modal" data-target="#addTechnology"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
+                    </div>
+                </div>
                 <div id="tableDiv">
                     @Html.Action("TechnologyMasterList", "TechnologyMaster")
                 </div>

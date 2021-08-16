@@ -1,10 +1,18 @@
 ﻿@model CONSTRUCTION.Areas.Admin.Model.JobQualicationViewModel
 
 <input type="hidden" id="txt_Id" value="@Model.Id" />
-<div class="row formGroup">
-    <div class="col-sm-6">
-        <label>Qualification :<span style="color:red">*</span></label>
-        <input type="text" id="txt_Qualification" value="@Model.Qualification" placeholder="Qualification" class="form-control" />
-        <label id="label_error_qualification" class="errorMessage" style="display:none;">Qualification is required</label>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card profile-card mb-3">
+            <div class="card-body">
+                <div class="row formGroup">
+                    <div class="col-sm-6">
+                        <label>Qualification :<span style="color:red">*</span></label>
+                        <input type="text" id="txt_Qualification" value="@Model.Qualification" placeholder="Qualification" class="form-control" />
+                        <label id="label_error_qualification" class="errorMessage" style="display:none;">Qualification is required</label>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

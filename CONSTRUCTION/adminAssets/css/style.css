@@ -12,8 +12,15 @@
 
 @font-face {
     font-family: 'Roboto-b';
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
     src: url('../fonts/Roboto-Bold.ttf') format('truetype');
     font-style: normal;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog-scrollable {
+        max-height: calc(100% - 5.5rem);
+    }
 }
 
 
@@ -128,9 +135,9 @@ button, button:focus {
     margin-top: 15px;
 }
 
-.modal.fade .modal-body {
+/*.modal.fade .modal-body {
     padding: 0 1rem 1rem 1rem;
-}
+}*/
 
 .modal.fade .modal-dialog {
     margin: 4rem auto;
@@ -168,6 +175,9 @@ button, button:focus {
     border-radius: 0px !important;
 }
 
+select.form-control {
+    border-radius: 5px !important;
+}
 
 
 /* Nav-Section */
@@ -699,7 +709,7 @@ button, button:focus {
     .modal .close {
         opacity: 1;
         color: #5E3192;
-        border: 1px solid #ccc !important;
+        /*border: 1px solid #ccc !important;*/
         font-family: 'Roboto-m';
         padding: 3px 8px;
         margin-top: 5px;
@@ -716,9 +726,6 @@ button, button:focus {
         padding-bottom: 10px;
     }
 
-    .modal .modal-footer, .modal .modal-header {
-        border: none;
-    }
 
 .get-opt-area {
     padding: 15px;
@@ -892,7 +899,6 @@ button, button:focus {
     width: 16px;
     background-color: #fff;
     border: 2.5px solid #999;
-    border-radius: 50%;
 }
 
 .gender .checkmark:after {
@@ -2458,7 +2464,7 @@ button, button:focus {
     position: fixed;
     bottom: 0;
     width: 100%;
-    z-index: 9999;
+    z-index: 1;
 }
 
     .dash-foot-bg .copyright {
@@ -3606,11 +3612,11 @@ button, button:focus {
 /* Create a custom checkbox */
     .container .checkmark {
         position: absolute;
-        top: -20px;
+        top: -15px;
         left: 0;
-        height: 25px;
-        width: 25px;
-        /*background-color: transparent !important;*/
+        /* height: 25px; */
+        /* width: 25px; */
+        /* background-color: transparent !important; */
         border: 2px solid #2196F3 !important;
     }
 
@@ -3638,8 +3644,8 @@ button, button:focus {
 
 /* Style the checkmark/indicator */
 .container .checkmark:after {
-    left: 8px;
-    top: 5px;
+    left: 4px;
+    top: 0px;
     width: 5px;
     height: 10px;
     border: solid white;
@@ -3656,4 +3662,24 @@ table tr {
 }
 .mb-20 {
     margin-bottom:20px;
+}
+.p-10-9 {
+     padding:10px 9px;
+ }
+.card-header {
+    background-color: rgba(0, 0, 0, 0.03);
+    font-size: 18px;
+    font-weight: 700;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    color: #5C2F91;
+}
+.card-body {
+    line-height: 20px;
+    color: #000000;
+}
+.modal-title.modal_text {
+    font-size: 22px;
+    color: #000000;
+    font-weight: 500;
 }

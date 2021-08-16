@@ -2,79 +2,91 @@
 
 <script src="~/ckeditor/ckeditor.js"></script>
 <input type="hidden" id="txt_Id" value="@Model.Id" />
-<div class="row formGroup">
-    <div class="col-sm-4">
-        <label>Name <span style="color:red">*</span></label>
-        <input type="text" id="txt_Name" value="@Model.Name" placeholder="Name" class="form-control" />
-        <label id="label_error_Name" class="errorMessage" style="display:none;">Name is required</label>
-    </div>
-    <div class="col-sm-4">
-        <label>Image <span class="red">*</span></label>
-        <div class="img-upload">
-            <div class="upbtn">
-                <input autocomplete="off" id="image_browse" value="Upload a file from your computer" class="file-upload" style="display: block;" accept=".jpg, .png, .jpeg,.bmp, .tif, .tiff|images/*" name="Image" type="file" />
-                <button type="button" class="btn btn-md btn-success btn-upload mt-10"><i class="fa fa-arrow-circle-o-up"></i> Select Image</button>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card profile-card mb-3">
+            <div class="card-header">Technology Information </div>
+            <div class="card-body">
+                <div class="row formGroup">
+                    <div class="col-sm-4">
+                        <label>Name <span style="color:red">*</span></label>
+                        <input type="text" id="txt_Name" value="@Model.Name" placeholder="Name" class="form-control" />
+                        <label id="label_error_Name" class="errorMessage" style="display:none;">Name is required</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Image <span class="red">*</span></label>
+                        <div class="img-upload">
+                            <div class="upbtn">
+                                <input autocomplete="off" id="image_browse" value="Upload a file from your computer" class="file-upload" style="display: block;" accept=".jpg, .png, .jpeg,.bmp, .tif, .tiff|images/*" name="Image" type="file" />
+                                <button type="button" class="btn btn-md btn-success btn-upload mt-10"><i class="fa fa-arrow-circle-o-up"></i> Select Image</button>
+                            </div>
+                            <input type="hidden" id="file_HiddenName" value="@Model.Image" />
+                            <label id="label_error_Image" class="errorMessage" style="display:none;">Image is required</label>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4 align-self-end">
+                        @{
+                            var finalPic = "/CommonImage/Technology/" + Model.Image;
+                        }
+                        <img id="img_Profile_Pic" src="@finalPic" style="height:80px;width:80px;" />
+                    </div>
+                </div>
+                <div class="row formGroup">
+                    <div class="col-sm-4">
+                        <label>Focus Keyphrase</label>
+                        <input type="text" id="txt_FKeyphrase" value="@Model.FocusKeyphrase" placeholder="Focus Keyphrase" class="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label>SEO title</label>
+                        <input type="text" id="txt_Seotitle" value="@Model.SEOtitle" placeholder="SEO title" class="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Slug</label>
+                        <input type="text" id="txt_Slug" value="@Model.Slug" placeholder="Slug" class="form-control" />
+                    </div>
+                </div>
+                <div class="row formGroup">
+                    <div class="col-sm-4">
+                        <label>IsCrawl</label>
+                        @if (Model.IsCrawl)
+                        {
+                            <input type="checkbox" id="chk_Crawl" name="IsCrawl" class="form-control" checked="checked" />
+                        }
+                        else
+                        {
+                            <input type="checkbox" id="chk_Crawl" name="IsCrawl" class="form-control" />
+                        }
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Canonical URL</label>
+                        <input type="text" id="txt_URL" value="@Model.CanonicalURL" placeholder="Canonical URL" class="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Schema Tags</label>
+                        <input type="text" id="txt_Tags" value="@Model.SchemaTags" placeholder="Schema Tags" class="form-control" />
+                    </div>
+                </div>
+                <div class="row formGroup">
+                    <div class="col-sm-12">
+                        <label>Meta Description</label>
+                        <textarea id="txt_description" placeholder="Meta Description" class="form-control">@Model.MetaDescription</textarea>
+                    </div>
+                </div>
+                <div class="row formGroup">
+                    <div class="col-sm-12">
+                        <label>Brief Description</label>
+                        <textarea id="editor" name="editor"></textarea>
+                    </div>
+                </div>
             </div>
-            <input type="hidden" id="file_HiddenName" value="@Model.Image" />
-            <label id="label_error_Image" class="errorMessage" style="display:none;">Image is required</label>
         </div>
-
-    </div>
-    <div class="col-sm-4">
-        @{
-            var finalPic = "/CommonImage/Technology/" + Model.Image;
-        }
-        <img id="img_Profile_Pic" src="@finalPic" style="height:100px;width:100px;" />
+        <div class="float-right">
+            <button type="button" class="btn btn-primary btn_save">Save</button>
+            <button type="button" class="btn btn-default btn_Close" data-dismiss="modal">Close</button>
+        </div>
     </div>
 </div>
-<div class="row formGroup">
-    <div class="col-sm-4">
-        <label>Focus Keyphrase</label>
-        <input type="text" id="txt_FKeyphrase" value="@Model.FocusKeyphrase" placeholder="Focus Keyphrase" class="form-control" />
-    </div>
-    <div class="col-sm-4">
-        <label>SEO title</label>
-        <input type="text" id="txt_Seotitle" value="@Model.SEOtitle" placeholder="SEO title" class="form-control" />
-    </div>
-    <div class="col-sm-4">
-        <label>Slug</label>
-        <input type="text" id="txt_Slug" value="@Model.Slug" placeholder="Slug" class="form-control" />
-    </div>
-</div>
-<div class="row formGroup">
-    <div class="col-sm-4">
-        <label>IsCrawl</label>
-        @if (Model.IsCrawl)
-        {
-            <input type="checkbox" id="chk_Crawl" name="IsCrawl" class="form-control" checked="checked" />
-        }
-        else
-        {
-            <input type="checkbox" id="chk_Crawl" name="IsCrawl" class="form-control" />
-        }
-    </div>
-    <div class="col-sm-4">
-        <label>Canonical URL</label>
-        <input type="text" id="txt_URL" value="@Model.CanonicalURL" placeholder="Canonical URL" class="form-control" />
-    </div>
-    <div class="col-sm-4">
-        <label>Schema Tags</label>
-        <input type="text" id="txt_Tags" value="@Model.SchemaTags" placeholder="Schema Tags" class="form-control" />
-    </div>
-</div>
-<div class="row formGroup">
-    <div class="col-sm-12">
-        <label>Meta Description</label>
-        <textarea id="txt_description" placeholder="Meta Description" class="form-control" >@Model.MetaDescription</textarea>
-    </div>
-</div>
-<div class="row formGroup">
-    <div class="col-sm-12">
-        <label>Brief Description</label>
-        <textarea id="editor" name="editor"></textarea>
-    </div>
-</div>
-
 <script>
     CKEDITOR.replace('editor');
 </script>
