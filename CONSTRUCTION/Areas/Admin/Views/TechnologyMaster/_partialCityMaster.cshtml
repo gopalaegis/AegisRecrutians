@@ -3,22 +3,3 @@
 <div id="CityDiv">
     @Html.Action("EditCityMaster", "TechnologyMaster", new { id = Model.id, teckId = Model.teckmasterId })
 </div>
-
-<div class="table" >
-    <table class="t-body" id="myTable" style="width:100%">
-        <thead>
-            <tr>
-                <th>City</th>
-                <th>FocusKeyphrase</th>
-                <th>SEOtitle</th>
-                <th>Slug</th>
-                <th>IsCrawl</th>
-                <th>CanonicalURL</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody id="city_list">
-            @Html.Action("TechnologyCitylist", "TechnologyMaster")
-        </tbody>
-    </table>
-</div>

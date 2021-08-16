@@ -1,18 +1,38 @@
 ﻿@model List<CONSTRUCTION.Areas.Admin.Model.AddcityViewModel>
 
-@foreach (var item in Model)
-{
-    <tr>
-        <td>@item.city</td>
-        <td>@item.FocusKeyphrase</td>
-        <td>@item.SEOtitle</td>
-        <td>@item.Slug</td>
-        <td>@item.IsCrawl</td>
-        <td>@item.CanonicalURL</td>
-        <td class="light-gray text-right d-flex align-items-center">
-            <i class="fa fa-ban fa-trash red Delete" data-id="@item.id" title="Delete"></i>
-            <i class="editRow fa fa-pencil creamy ml-2 pr-2" aria-hidden="true" id="edit_city" data-id="@item.id"></i>
-            @*<i class="fa fa-times red ml-2 pr-2" aria-hidden="true"></i>*@
-        </td>
-    </tr>
-}
+
+<div class="table">
+    <table class="t-body" id="myTable" style="width:100%">
+        <thead>
+            <tr>
+                <th>City</th>
+                <th>FocusKeyphrase</th>
+                <th>SEOtitle</th>
+                <th>Slug</th>
+                <th>IsCrawl</th>
+                <th>CanonicalURL</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="city_list">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.city</td>
+                    <td>@item.FocusKeyphrase</td>
+                    <td>@item.SEOtitle</td>
+                    <td>@item.Slug</td>
+                    <td>@item.IsCrawl</td>
+                    <td>@item.CanonicalURL</td>
+                    <td class="light-gray text-right d-flex align-items-center">
+                        <i class="fa fa-ban fa-trash red Delete" data-id="@item.id" title="Delete"></i>
+                        <i class="editRow fa fa-pencil creamy ml-2 pr-2" aria-hidden="true" id="edit_city" data-id="@item.id"></i>
+                        @*<i class="fa fa-times red ml-2 pr-2" aria-hidden="true"></i>*@
+                        <input type="hidden" id="txt_techId" value="@item.teckmasterId" />
+                        <input type="hidden" id="txt_tech" value="@item.teckmaster" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
