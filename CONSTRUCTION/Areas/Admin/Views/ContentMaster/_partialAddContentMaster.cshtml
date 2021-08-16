@@ -41,19 +41,14 @@
                 <div class="row formGroup">
                     <div class="col-sm-4">
                         <label>IsCrawl</label>
-                        <div class="container">
-                            @if (Model.IsCrawl)
-                            {
-                                <input type="checkbox" id="chk_Crawl" name="IsCrawl" class="form-control" checked="checked" />
-                                <span class="checkmark"></span>
-                            }
-                            else
-                            {
-                                <input type="checkbox" id="chk_Crawl" name="IsCrawl" class="form-control" />
-                                <span class="checkmark"></span>
-                            }
-                        </div>
-
+                        @if (Model.IsCrawl)
+                        {
+                            <input type="checkbox" id="chk_Crawl" name="IsCrawl" class="form-control" checked="checked" style="width:20px"/>
+                        }
+                        else
+                        {
+                            <input type="checkbox" id="chk_Crawl" name="IsCrawl" class="form-control" style="width:20px"/>
+                        }
                     </div>
                     <div class="col-sm-4">
                         <label>Canonical URL</label>
