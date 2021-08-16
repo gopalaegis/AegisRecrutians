@@ -237,6 +237,7 @@
           <Property Name="CanonicalURL" Type="nvarchar(max)" />
           <Property Name="SchemaTags" Type="nvarchar(max)" />
           <Property Name="isActive" Type="bit" />
+          <Property Name="BriefDescription" Type="nvarchar(max)" />
         </EntityType>
         <EntityContainer Name="AEGIS_ConstructionModelStoreContainer">
           <EntitySet Name="JobWiseTechnology" EntityType="Self.JobWiseTechnology" Schema="dbo" store:Type="Tables" />
@@ -518,6 +519,7 @@
           <Property Name="CanonicalURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SchemaTags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="isActive" Type="Boolean" />
+          <Property Name="BriefDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -764,6 +766,7 @@
           <EntitySetMapping Name="tblTechnologyMasters">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblTechnologyMaster">
               <MappingFragment StoreEntitySet="tblTechnologyMaster">
+                <ScalarProperty Name="BriefDescription" ColumnName="BriefDescription" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="SchemaTags" ColumnName="SchemaTags" />
                 <ScalarProperty Name="CanonicalURL" ColumnName="CanonicalURL" />

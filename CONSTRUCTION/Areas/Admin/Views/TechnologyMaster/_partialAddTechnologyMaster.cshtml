@@ -1,5 +1,6 @@
 ﻿@model CONSTRUCTION.Areas.Admin.Model.TechnologyMasterViewModel
 
+<script src="~/ckeditor/ckeditor.js"></script>
 <input type="hidden" id="txt_Id" value="@Model.Id" />
 <div class="row formGroup">
     <div class="col-sm-4">
@@ -67,3 +68,13 @@
         <textarea id="txt_description" placeholder="Meta Description" class="form-control" >@Model.MetaDescription</textarea>
     </div>
 </div>
+<div class="row formGroup">
+    <div class="col-sm-12">
+        <label>Brief Description</label>
+        <textarea id="editor" name="editor"></textarea>
+    </div>
+</div>
+
+<script>
+    CKEDITOR.replace('editor');
+</script>

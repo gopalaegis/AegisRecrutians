@@ -140,6 +140,7 @@
         var url = $("#addTechnology").find('#txt_URL').val();
         var tag = $("#addTechnology").find('#txt_Tags').val();
         var description = $("#addTechnology").find('#txt_description').val();
+        var briefDescription = $("#addTechnology").find('#editor').val();
 
         var isError = false;
 
@@ -166,6 +167,7 @@
                     SEOtitle: seo,
                     Slug: slug,
                     MetaDescription: description,
+                    BriefDescription: briefDescription,
                     IsCrawl: crawl,
                     CanonicalURL: url,
                     SchemaTags: tag
@@ -202,6 +204,7 @@
 
     $("#tableDiv").on("click", ".editcity", function () {
         var id = $(this).attr('data-id');
+        var title = $(this).attr('data-title');
         $.ajax({
             url: '@Url.Action("TechnologyCitylist", "TechnologyMaster")',
             data: {
@@ -210,6 +213,7 @@
             success: function (data) {
                 $("#AddTeckCity").find(".modal-body").html("");
                 $("#AddTeckCity").find(".modal-body").html(data);
+                $("#AddTeckCity").find(".modal-header").find(".heading").html(title +' Jobs');
             }
         });
     });

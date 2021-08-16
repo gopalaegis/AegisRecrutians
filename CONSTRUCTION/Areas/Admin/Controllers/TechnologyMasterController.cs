@@ -36,6 +36,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                     model.SEOtitle = data.SEOtitle; 
                     model.Slug = data.Slug; 
                     model.MetaDescription = data.MetaDescription;
+                    model.BriefDescription = data.BriefDescription;
                     model.IsCrawl = (bool)data.IsCrawl;
                     model.CanonicalURL = data.CanonicalURL;
                     model.SchemaTags = data.SchemaTags;
@@ -172,6 +173,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 data.SEOtitle = model.SEOtitle;
                 data.Slug = model.Slug;
                 data.MetaDescription = model.MetaDescription;
+                data.BriefDescription = model.BriefDescription;
                 data.IsCrawl = model.IsCrawl;
                 data.CanonicalURL = model.CanonicalURL;
                 data.SchemaTags = model.SchemaTags;
@@ -186,6 +188,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 data.SEOtitle = model.SEOtitle;
                 data.Slug = model.Slug;
                 data.MetaDescription = model.MetaDescription;
+                data.BriefDescription = model.BriefDescription;
                 data.IsCrawl = model.IsCrawl;
                 data.CanonicalURL = model.CanonicalURL;
                 data.SchemaTags = model.SchemaTags;

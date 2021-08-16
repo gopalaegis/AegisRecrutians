@@ -18,10 +18,13 @@
             @foreach (var item in Model)
             {
                 <tr>
+                    @{ 
+                        var URL = "/Jobs-in-" + item.Slug + "?l=" + item.Slug;
+                    }
                     <td>@item.city</td>
                     <td>@item.FocusKeyphrase</td>
                     <td>@item.SEOtitle</td>
-                    <td>@item.Slug</td>
+                    <td><a href="@URL">@item.Slug</a></td>
                     <td>@item.IsCrawl</td>
                     <td>@item.CanonicalURL</td>
                     <td class="light-gray text-right d-flex align-items-center">
