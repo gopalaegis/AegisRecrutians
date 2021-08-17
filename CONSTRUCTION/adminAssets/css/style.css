@@ -949,9 +949,10 @@ select.form-control {
 .nav-prof-btn1 {
     background-color: #5C2F91;
     color: #fff;
-    padding: 0;
+    /*padding: 0;*/
     font-size: 16px;
     border: 2px solid #AC95C8 !important;
+    border-radius:5px;
 }
 
     .nav-prof-btn1 .fa-angle-down {
@@ -2389,7 +2390,7 @@ select.form-control {
 
 .dashboard .right-side .form-control {
     padding: 5px;
-    border-radius: 0px !important;
+    border-radius: 0px;
 }
 
     .dashboard .right-side .form-control:focus {
@@ -3663,6 +3664,9 @@ table tr {
 .mb-20 {
     margin-bottom:20px;
 }
+.m-10 {
+    margin:10px;
+}
 .p-10-9 {
      padding:10px 9px;
  }
@@ -3690,4 +3694,7 @@ table tr {
     overflow: auto;
     border: none !important;
     padding: 10px 0 20px;
+}
+.dashboard .card-body .title-heding h5 {
+    margin-top:.5rem;
 }
