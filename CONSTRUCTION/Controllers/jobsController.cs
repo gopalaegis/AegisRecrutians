@@ -28,12 +28,15 @@ namespace CONSTRUCTION.Controllers
                 seo.CanonicalURL = technologyName.CanonicalURL;
                 seo.SchemaTags = technologyName.SchemaTags;
                 seo.FocusKeyphrase = technologyName.FocusKeyphrase;
+                seo.jobDescription = technologyName.BriefDescription;
+                seo.cityId = 0;
             }
             else {
                 var technologyNameCity = _db.tblAddCityTechMasters.Where(x => x.Slug == slugURL).FirstOrDefault();
                 if (technologyNameCity != null)
                 {
                     technologyId = Convert.ToInt32(technologyNameCity.TechMasterId);
+                    var technologyData = _db.tblTechnologyMasters.Where(x => x.Id == technologyId).FirstOrDefault();
                     seo.SEOtitle = technologyNameCity.SEOtitle;
                     seo.Slug = technologyNameCity.Slug;
                     seo.MetaDescription = technologyNameCity.MetaDescription;
@@ -42,6 +45,8 @@ namespace CONSTRUCTION.Controllers
                     seo.CanonicalURL = technologyNameCity.CanonicalURL;
                     seo.SchemaTags = technologyNameCity.SchemaTags;
                     seo.FocusKeyphrase = technologyNameCity.FocusKeyphrase;
+                    seo.jobDescription = technologyData.BriefDescription;
+                    seo.cityId = Convert.ToInt32(technologyNameCity.CityId);
                 }
             }
             Tuple<int, SEOModel> tuple = new Tuple<int, SEOModel>(technologyId, seo);
@@ -56,7 +61,7 @@ namespace CONSTRUCTION.Controllers
             return View(model);
         }
 
-        public ActionResult List(int page = 1, string city = "", string title = "", int TechnologyId = 0)
+        public ActionResult List(int page = 1, string city = "", string title = "", int TechnologyId = 0,int technologyCityId = 0)
         {
             JobsViewModel model = new JobsViewModel();
             List<JobDetailViewModel> m = new List<JobDetailViewModel>();
@@ -78,7 +83,13 @@ namespace CONSTRUCTION.Controllers
                 data.minExpirience = (int)item.MinExperience;
                 data.maxExpirience = (int)item.MaxExperience;
                 data.Date = ((DateTime)item.date).ToString("MMM dd, yyyy");
-                data.City = cityData.Name.ToLower().Contains(city.ToLower()) ? cityData.Name : "Work From Home";
+                if (TechnologyId > 0) {
+                    data.City = item.CityId == technologyCityId ? cityData.Name : "Work From Home";
+                }
+                else
+                {
+                    data.City = cityData.Name.ToLower().Contains(city.ToLower()) ? cityData.Name : "Work From Home";
+                }
                 m.Add(data);
             }
             m = m.Where(x => x.Title.ToLower().Contains(title.ToLower())).ToList();

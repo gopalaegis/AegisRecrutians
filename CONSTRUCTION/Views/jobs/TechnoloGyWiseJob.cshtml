@@ -1,11 +1,11 @@
 ﻿@model Tuple<int, CONSTRUCTION.Models.SEOModel>
 @{
-    ViewBag.Title = Model.Item2.SEOtitle;
-    ViewBag.MetaDescription = Model.Item2.MetaDescription;
-    ViewBag.MetaKeywords = Model.Item2.FocusKeyphrase;
-    ViewBag.IsCrawlString = Model.Item2.IsCrawlString;
-    ViewBag.CanonicalURL = Model.Item2.CanonicalURL;
-    ViewBag.SchemaTags = Model.Item2.SchemaTags;
+        ViewBag.Title = Model.Item2.SEOtitle;
+        ViewBag.MetaDescription = Model.Item2.MetaDescription;
+        ViewBag.MetaKeywords = Model.Item2.FocusKeyphrase;
+        ViewBag.IsCrawlString = Model.Item2.IsCrawlString;
+        ViewBag.CanonicalURL = Model.Item2.CanonicalURL;
+        ViewBag.SchemaTags = Model.Item2.SchemaTags;
 }
 
 <!-- heading section -->
@@ -14,7 +14,7 @@
                 <div class="row">
                         <div class="col-12">
                                 <div class="section-header text-center">
-                                        <h1>Recent most popular jobs</h1>
+                                        <h1>@Model.Item2.SEOtitle</h1>
                                 </div>
                         </div>
                 </div>
@@ -23,17 +23,15 @@
 
 <!-- show list -->
 <section class="show_list pt-3 pb-3 titan">
-        <div class="container">
-                @*<div class="row">
-                                <div class="col-12">
-                                        <div class="section-header text-center">
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                        </div>
-                                </div>
-                        </div>*@
+        <div class="container">               
                 <div class="row mt-2">
                         <div class="col-12" id="jobDiv">
-                                @Html.Action("List", "jobs", new { TechnologyId = Model.Item1})
+                                @Html.Action("List", "jobs", new { TechnologyId = Model.Item1, technologyCityId = Model.Item2.cityId })
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-12">
+                                @Html.Raw(Model.Item2.jobDescription)
                         </div>
                 </div>
         </div>
@@ -46,7 +44,7 @@
                 $.ajax({
                         url: '@Url.Action("List", "jobs")',
                         data: {
-                                page: page,                               
+                                page: page,
                                 TechnologyId: technology
                         },
                         success: function (result) {

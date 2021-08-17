@@ -93,6 +93,8 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 m.Name = item.Name; 
                 m.Image = item.Image;
                 m.isactive = Convert.ToBoolean(item.isActive);
+                m.Slug = item.Slug;
+                m.SEOtitle = item.SEOtitle;
                 model.Add(m);
             }
             return PartialView("_partialTechnologyMasterList", model);
