@@ -83,8 +83,15 @@ namespace CONSTRUCTION.Controllers
                 data.minExpirience = (int)item.MinExperience;
                 data.maxExpirience = (int)item.MaxExperience;
                 data.Date = ((DateTime)item.date).ToString("MMM dd, yyyy");
-                if (TechnologyId > 0) {
-                    data.City = item.CityId == technologyCityId ? cityData.Name : "Work From Home";
+                if (TechnologyId > 0)
+                {
+                    if (technologyCityId > 0)
+                    {
+                        data.City = item.CityId == technologyCityId ? cityData.Name : "Work From Home";
+                    }
+                    else {
+                        data.City = cityData.Name;
+                    }
                 }
                 else
                 {
