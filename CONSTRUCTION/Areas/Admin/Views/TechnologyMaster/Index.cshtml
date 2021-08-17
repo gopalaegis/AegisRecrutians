@@ -160,8 +160,7 @@
         var url = $("#addTechnology").find('#txt_URL').val();
         var tag = $("#addTechnology").find('#txt_Tags').val();
         var description = $("#addTechnology").find('#txt_description').val();
-        var briefDescription = $("#addTechnology").find('#editor').val();
-
+        var briefDescription = CKEDITOR.instances['editor'].getData();
         var isError = false;
 
         if (Name == "") {
@@ -173,25 +172,16 @@
             isError = true;
         }
 
+        var bDescription = JSON.stringify({ BriefDescription: briefDescription });
+
         if (isError == true) {
             return false
         } else {
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("SaveTechnologyMaster", "TechnologyMaster")',
-                data: {
-                    Id: Id,
-                    Image: Image,
-                    Name: Name,
-                    FocusKeyphrase: key,
-                    SEOtitle: seo,
-                    Slug: slug,
-                    MetaDescription: description,
-                    BriefDescription: briefDescription,
-                    IsCrawl: crawl,
-                    CanonicalURL: url,
-                    SchemaTags: tag
-                },
+                contentType: "application/json; charset=utf-8",
+                url: '@Url.Action("SaveTechnologyMaster", "TechnologyMaster")?Id=' + Id + '&Image=' + Image + '&Name=' + Name + '&FocusKeyphrase=' + key + '&SEOtitle=' + seo + '&Slug=' + slug + '&MetaDescription=' + description + '&IsCrawl=' + crawl + '&CanonicalURL=' + url + '&SchemaTags=' + tag,
+                data: bDescription,
                 success: function (result) {
                     $("#tableDiv").html("");
                     $("#tableDiv").html(result);
