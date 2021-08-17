@@ -1,38 +1,42 @@
 ﻿@model List<CONSTRUCTION.Areas.Admin.Model.TechnologyMasterViewModel>
 
 <table id="tbltechnologymaster">
-    <thead>
-        <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td><img src="~/CommonImage/Technology/@item.Image" style="height:70px;width:70px;"/></td>
-                <td>@item.Name</td>
-                <td>
-                    <button type="button" class="btn btn_save editcity common-btn" data-backdrop="static" data-keyboard="false" aria-hidden="true" data-id="@item.Id" data-title="@item.Name" data-toggle="modal" data-target="#AddTeckCity">City SEO</button>
-                </td>
-                <td class="light-gray text-right d-flex align-items-center">
-                    <i class="editRow fa fa-pencil creamy ml-2 pr-2" aria-hidden="true" data-id="@item.Id" data-toggle="modal" data-target="#addTechnology"></i>
-                    @if (item.isactive == true)
-                    {
-                        <i class="fa fa-ban fa-ban-css red Deactive" data-id="@item.Id" title="De-Active"></i>
-                    }
-                    else
-                    {
-                        <i class="fa fa-check-square fa-check-css green Active" data-id="@item.Id" title="Active"></i>
-                    }
+        <thead>
+                <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>SEO Title</th>
+                        <th>Slug URL</th>
+                        <th></th>
+                        <th></th>
+                </tr>
+        </thead>
+        <tbody>
+                @foreach (var item in Model)
+                {
+                        <tr>
+                                <td><img src="~/CommonImage/Technology/@item.Image" style="height:70px;width:70px;" /></td>
+                                <td>@item.Name</td>
+                                <td>@item.SEOtitle</td>
+                                <td><a href="@Url.Action("TechnoloGyWiseJob","Jobs",new { slugURL = item.Slug,area = ""})" target="_blank">@item.Slug</a></td>
+                                <td>
+                                        <button type="button" class="btn btn_save editcity common-btn" data-backdrop="static" data-keyboard="false" aria-hidden="true" data-id="@item.Id" data-title="@item.Name" data-toggle="modal" data-target="#AddTeckCity">City SEO</button>
+                                </td>
+                                <td class="light-gray text-right d-flex align-items-center">
+                                        <i class="editRow fa fa-pencil creamy ml-2 pr-2" aria-hidden="true" data-id="@item.Id" data-toggle="modal" data-target="#addTechnology"></i>
+                                        @if (item.isactive == true)
+                                        {
+                                                <i class="fa fa-ban fa-ban-css red Deactive" data-id="@item.Id" title="De-Active"></i>
+                                        }
+                                        else
+                                        {
+                                                <i class="fa fa-check-square fa-check-css green Active" data-id="@item.Id" title="Active"></i>
+                                        }
 
-                    @*<i class="fa fa-times red ml-2 pr-2" aria-hidden="true"></i>*@
-                </td>
-            </tr>
-        }
-    </t
-        >
+                                        @*<i class="fa fa-times red ml-2 pr-2" aria-hidden="true"></i>*@
+                                </td>
+                        </tr>
+                }
+                </t
+                >
 </table>

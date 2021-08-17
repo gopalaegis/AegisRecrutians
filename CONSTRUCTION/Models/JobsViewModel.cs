@@ -44,5 +44,7 @@ namespace CONSTRUCTION.Models
         public string IsCrawlString { get; set; }
         public string CanonicalURL { get; set; }
         public string SchemaTags { get; set; }
+        public string jobDescription { get; set; }
+        public int cityId { get; set; }
     }
 }
