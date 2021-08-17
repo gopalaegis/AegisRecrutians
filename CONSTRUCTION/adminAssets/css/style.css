@@ -78,10 +78,14 @@ h2 {
 .bold {
     font-weight: bold
 }
+.common-btn.btn:hover {
+    color: #fff !important;
+}
 
 button, button:focus {
     border: none !important;
-    outline: none !important
+    outline: none !important;
+    box-shadow:none!important;
 }
 
 .black {
@@ -3697,4 +3701,15 @@ table tr {
 }
 .dashboard .card-body .title-heding h5 {
     margin-top:.5rem;
+}
+
+.common-btn {
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 28px;
+    color: #ffffff;
+    background-color: #5c2f91;
+    font-weight: 400;
+    cursor: pointer;
+    min-width: 100px;
 }
