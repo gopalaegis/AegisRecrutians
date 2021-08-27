@@ -553,8 +553,8 @@
     <Content Include="Template\images\icons\e3.png" />
     <Content Include="Template\images\icons\favicon.ico" />
     <Content Include="Template\images\join-bg.jpg" />
-    <Content Include="Template\images\join-bg1.jpg" />
-    <Content Include="Template\images\join-bg2.jpg" />
+    <Content Include="Template\images\join-bg1.png" />
+    <Content Include="Template\images\join-bg2.png" />
     <Content Include="Template\images\professionals\1.jpg" />
     <Content Include="Template\images\professionals\1.png" />
     <Content Include="Template\images\professionals\1_11zon.jpg" />
@@ -566,7 +566,7 @@
     <Content Include="Template\images\students\2.jpg" />
     <Content Include="Template\images\students\3.jpg" />
     <Content Include="Template\images\students\students.jpg" />
-    <Content Include="Template\images\students\students_11zon.jpg" />
+    <Content Include="Template\images\students\students_11zon.png" />
     <Content Include="Template\images\tech-img\1.png" />
     <Content Include="Template\images\tech-img\10.png" />
     <Content Include="Template\images\tech-img\11.png" />
