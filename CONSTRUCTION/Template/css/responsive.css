@@ -1,0 +1,355 @@
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+	.container {max-width: 960px;}
+	.pt-3{padding-top: 4rem;}
+	.pt-1{padding-top: 1.5rem;}
+	.pt-2{padding-top: 2rem;}
+	.pb-3{padding-bottom: 4rem;}
+	.pb-2{padding-bottom: 2rem;}
+	.mt-3{margin-top: 4rem;}
+	.mt-2{margin-top: 2rem;}
+	.mb-3{margin-bottom: 4rem;}
+	.mb-2{margin-bottom: 2rem;}
+	.menuswitch, .mobile-sticky-footer, .desktop-hide, .mobile {display: none;}
+	.menu-collapse .aegis-navigation {
+	    display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+	}
+	.floats {
+	    position: fixed;
+	    width: 40px;
+	    height: 40px;
+	    bottom: 75px;
+	    right: 20px;
+	    background-color: #13990a;
+	    color: #fff;
+	    border-radius: 50px;
+	    text-align: center;
+	    font-size: 30px;
+	    box-shadow: 2px 2px 3px #999;
+	    z-index: 100;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    padding: 9px;
+	}
+	.svg-inline--fa {
+	    font-size: inherit;
+	    height: 1em;transition: all 0.5s ease;
+	    color: #fff;
+	}
+	.svg-inline--fa:hover {color: #fff;}
+
+	/*===========*/
+	.explore .inner-box {max-width: 560px;padding: 3rem 0 1rem;}
+	.about-sidebyside .inner-box {padding: 0 2rem;}
+	.about-sidebyside .col-revs .inner-box {margin: 0 1rem 0 auto;}
+	.about-sidebyside .col-6 {padding-right: 0;padding-left: 0;}
+	.about-sidebyside .row {margin: 0;}
+	.team-list ul {display: flex;}
+	.btn_width {width: calc(100% - 70%);text-align: center;}
+	.join .main-box {margin: 0;}
+	.join .main-box .img-box {transform: scale(1.2);}
+	.article_listing .left-side {padding-right: 1.5rem;}
+}	
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+	.col-lg-6 {
+	    -ms-flex: 0 0 50%;
+	    flex: 0 0 50%;
+	    max-width: 50%;
+	}
+	.menu-block .navigation-menu li {margin: 0 3px;}
+	.sliderbanner-content h2 {font-size: 2.188em;}
+	.sliderbanner-content h3 {font-size: 1.2em;}
+	.footer_section .foot-link ul li {padding: 0 5px;margin: 0 5px;}
+	.explore .container-fluid {margin: 0 -15px;}
+	.join .main-box .img-box {transform: scale(1.1);}
+}
+
+/* - Max Width: 991 */
+@media (max-width: 991px) {
+	body {overflow-x: hidden;}
+	.pt-3{padding-top: 2rem;}
+	.pt-1{padding-top: 1.5rem;}
+	.pt-2{padding-top: 20px;}
+	.pb-3{padding-bottom: 2rem;}
+	.pb-2{padding-bottom: 20px;}
+	.mt-3{margin-top: 2rem;}
+	.mt-2{margin-top: 20px;}
+	.mb-3{margin-bottom: 2rem;}
+	.mb-2{margin-bottom: 20px;}
+	
+	/* - Ages Navigation */	
+	.header_s {
+		padding: 0;
+	}
+	.top-header, .desktop-view, .whatsapp, .b-notification-bar  {
+		display: none;
+	}	
+	.logo-block {
+		width: auto;
+		float: none;
+	}
+	.logo-block .navbar-brand > img {
+		margin-bottom: 0;
+		margin-top: 0;
+		max-width: 90px;
+		padding: 5px 0;
+		position: relative;
+		top: 0;
+	}	
+	.menu-block {
+		float:none;
+		width: 100%;
+	}		
+	/* - Slider Section */
+	.sliderbanner-content {
+		top: 30px;
+	}
+	.sliderbanner-content p {
+		font-size: 20px;
+	}
+	.sliderbanner-content h3 {
+		font-size: 20px;
+		line-height: normal;
+		margin-bottom: 0;
+	}
+	ul.social-menu, .menu-collapse .navigation-menu a.social-link {
+		display: none;
+	}	
+	.menu-block .navigation-menu > li > a::after{
+		color: transparent;
+	}
+	.menu-block .navigation-menu > li > a:hover::after{
+		color: transparent;
+	}
+	/*.slider-section .sliderbanner-content.container{display: none;}*/
+	.head_banner .section_header h2, .tabs-panel .candidate h3 {font-size: 2rem;}
+	.head_banner .section_header h3 {font-size: 1.2rem;}
+	
+	.slider-section .inner-content h1 {font-size: 30px;}
+	#return-to-top {bottom: 50px;right: 20px;}
+	.form_section {margin-bottom: 4rem;}
+	.apply_form {margin-bottom: 3rem;}
+	.form_section .job-req {padding-bottom: 2rem;}
+	.form_section .read-btn {text-align: center;}
+	.show_list .tab-box {display: block;}
+	.show_list .tab-box .col-4, .tab-box .col-2 {flex: 0 0 100% !important;max-width: 100% !important;margin-bottom: 10px;}
+	.second-ac .col-9 {flex: 0 0 100%;max-width: 100%;}
+	.show_list .tab-box .action a:first-child {margin-bottom: 0;}
+	.show_list .tab-box .action {display: flex;align-items: center;justify-content: space-evenly;margin-top: 1rem;}
+	.show_list .bottom-info {margin-bottom: 2rem;}
+	.join .main-box {padding: 1.5rem 10px;margin: 0;}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	.col-lg-6, .apply_form .col-4 {
+	    -ms-flex: 0 0 50%;
+	    flex: 0 0 50%;
+	    max-width: 50%;
+	}
+	.col-lg-12, .joblist_section .col-6, .form_section .col-6 {
+	    -ms-flex: 0 0 100%;
+	    flex: 0 0 100%;
+	    max-width: 100%;
+	}
+	.category_section .col-2, .user_data_section .left-box ul li  {
+	    flex: 0 0 33.33%;
+	    max-width: 33.33%;
+	}
+	.explore .round .media-body h3 {font-size: 18px;}
+	.tech_stack ul li, .why_aegis .list-skill ul li {flex: 0 0 33.33%;max-width: 33.33%;}
+	.header_s .container {position: relative;}
+	.menu-navigation .menuswitch {top: 8px;}
+
+	.mobile, .category_section .list-jobs, .howtowork_section .steps, .joblist_section .job-type {margin-bottom: 2rem;}
+	.account_section .inner-box {padding: 2rem 1rem;text-align: center;background-image: none;}
+	.account_section .inner-box h3 {font-size: 30px;}
+	.account_section .inner-box a {font-size: 1rem;text-align: center;}	
+	.form_section {margin-bottom: 4rem}
+	.form_section .talk h2 {font-size: 2.1em;}
+	.explore .round {padding: 2rem 0;}
+	.form_section .form-fill {margin-top: 3rem;}
+	.fill-upload {padding: 15px;}	
+	.job-site .col-4 {padding: 0 6px;}
+	.job-site .inner-box {padding: 2rem 15px;}
+	.about-sidebyside .row {margin: 2rem 0;}
+	.team-list ul {display: flex;flex-wrap: wrap;}
+	.team-list li {flex: 0 0 50%;max-width: 50%;}
+	.second-ac .inner-box {padding: 2rem;background-image: none;text-align: center;}
+}
+
+@media (max-width: 767px) {
+	.heading_section .head-title h1 {font-size: 36px;}
+	.section-heading h2 {
+		font-size: 28px;
+	}
+	.section-header h3 {
+		font-size: 26px;
+		line-height: 35px;
+		margin-bottom: 12px;
+	}
+	.col-md-1 {
+	    -ms-flex: 0 0 8.333333%;
+	    flex: 0 0 8.333333%;
+	    max-width: 8.333333%;
+	}
+	.col-md-2 {
+	    -ms-flex: 0 0 16.666667%;
+	    flex: 0 0 16.666667%;
+	    max-width: 16.666667%;
+	}
+	.col-md-3 {
+	    -ms-flex: 0 0 25%;
+	    flex: 0 0 25%;
+	    max-width: 25%;
+	}
+	.col-md-4 {
+	    -ms-flex: 0 0 33.333333%;
+	    flex: 0 0 33.333333%;
+	    max-width: 33.333333%;
+	}
+	.col-md-5 {
+	    -ms-flex: 0 0 41.666667%;
+	    flex: 0 0 41.666667%;
+	    max-width: 41.666667%;
+	}
+	.col-md-6 {
+	    -ms-flex: 0 0 50%;
+	    flex: 0 0 50%;
+	    max-width: 50%;
+	}
+	.col-md-7 {
+	    -ms-flex: 0 0 58.333333%;
+	    flex: 0 0 58.333333%;
+	    max-width: 58.333333%;
+	}
+	.col-md-8 {
+	    -ms-flex: 0 0 66.666667%;
+	    flex: 0 0 66.666667%;
+	    max-width: 66.666667%;
+	}
+	.col-md-9 {
+	    -ms-flex: 0 0 75%;
+	    flex: 0 0 75%;
+	    max-width: 75%;
+	}
+	.col-md-10 {
+	    -ms-flex: 0 0 83.333333%;
+	    flex: 0 0 83.333333%;
+	    max-width: 83.333333%;
+	}
+	.col-md-11 {
+	    -ms-flex: 0 0 91.666667%;
+	    flex: 0 0 91.666667%;
+	    max-width: 91.666667%;
+	}
+	.col-md-12,  .joblist_section .job-type .left-detail, .joblist_section .job-type .right-apply {
+	    -ms-flex: 0 0 100%;
+	    flex: 0 0 100%;
+	    max-width: 100%;
+	}
+	.menu-collapse {padding: 20px 0;}
+	.account_section .inner-box, .second-ac .inner-box {padding: 2rem;text-align: center;background-image: none;}
+	.joblist_section .job-type {padding: 2rem;display: block;text-align: center;}
+	.form_section .talk h2 {font-size: 2em;}
+	.joblist_section .job-type .right-apply {padding-left: 0;padding-top: 2rem;}
+	.form_section .form-fill {margin-top: 3rem;}	
+	.joblist_section .job-type .right-apply {padding-top: 0;}
+	.explore .bg-img {background-position: center;}	
+	.explore .inner-box {padding: 2rem 0;}
+	.explore .container-fluid {padding: 0 15px;margin: auto;}
+	.account_section .inner-box h3 span.d-block {display: unset;}
+	.apply_form .top-bar, .apply_form .top-bar .back-link {text-align: center !important;}
+	.apply_form .fill-data {padding-left: 1rem;padding-right: 1rem;}	
+	.fill-upload {padding: 15px 2rem;}
+	.apply_form .join, .apply_form .join .bd-example {justify-content: start;}
+	.heading_section .head-title .inner-box {width: 100%;}
+	.about-sidebyside .col-revs {flex-direction: column-reverse;align-items: unset;}
+	.team-list ul, .article_blog .blog-img {text-align: center;}
+	.article_listing .right-side {margin-top: 1.5rem;text-align: center;}
+}
+
+@media only screen and (min-width: 640px) and (max-width: 767px){
+	.service-box ul li {
+	    flex: 0 0 25%;
+		max-width: 25%;
+	}
+	.category_section .col-2, .canidate .col-4, .article_blog .col-4 {
+	    flex: 0 0 50%;
+		max-width: 50%;
+	}
+	.explore .col-6, .form_section .col-6, .apply_form .col-4, .job-site .col-4, .article_listing .article_row .col-sm-12 {
+	    flex: 0 0 100%;
+	    max-width: 100%;
+	}
+	.tech_stack ul li, .why_aegis .list-skill ul li {flex: 0 0 33.33%;max-width: 33.33%;}
+	.team-list ul {display: flex;flex-wrap: wrap;}
+	.team-list li {flex: 0 0 50%;max-width: 50%;}
+}
+
+/* - Max Width: 639 */
+@media (max-width: 639px) {	
+	.col-sm-12 {
+	    -ms-flex: 0 0 100%;
+	    flex: 0 0 100%;
+	    max-width: 100%;
+	}
+	.slider-section {padding: 3rem 0;}
+	.tech_stack ul li, .why_aegis .list-skill ul li {flex: 0 0 50%;max-width: 50%;}
+	.explore .round {padding: 2rem 0;}
+	.form_section .job-req {padding: 3rem 1rem;}
+	.slider-section .form-inline .form-group {flex: 33.33%;max-width: 33.33%;}
+	.account_section .inner-box a, .second-ac .inner-box a {padding: 10px 3rem;}
+	.show_list .job-bar {display: block;text-align: center;}
+	.show_list .total-job {margin-bottom: 1rem;}
+	.join .content {padding-top: 1rem;text-align: center;}
+
+}
+
+@media screen and (min-width: 530px) and (max-width: 767px) and (orientation:landscape) {
+	.team-list ul {display: flex;flex-wrap: wrap;}
+	.team-list li {flex: 0 0 50%;max-width: 50%;}
+}
+
+/* - Max Width: 479 */
+@media only screen and (max-width : 479px) {
+	
+	/* - Section Header */
+	.section-header h3 {
+		font-size: 24px;
+		line-height: 30px;
+		margin-bottom: 10px;
+	}	
+	/* - Slider Section */
+	.sliderbanner-content {
+		top: 15px;
+	}
+	.sliderbanner-content p {
+		font-size: 15px;
+		line-height: normal;
+	}
+	.sliderbanner-content h3 {
+		font-size: 16px;
+		line-height: 20px;
+	}
+}
