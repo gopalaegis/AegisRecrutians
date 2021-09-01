@@ -730,7 +730,7 @@ p {
 .joblist_section .job-type .right-apply a:hover {background: #000;}
 
 /* --- join --- */
-.account_section .inner-box {background-color: #ffcb5f;border-radius: 20px;padding: 5rem 4rem 4.5rem;background-image: url(../images/join-bg.jpg);background-repeat: no-repeat;background-position: right;}
+.account_section .inner-box {background-color: #ffcb5f;border-radius: 20px;padding: 5rem 4rem 4.5rem;background-image: url(../images/join-bg.png);background-repeat: no-repeat;background-position: right;}
 .account_section .inner-box h3, .second-ac .inner-box h3 {font-size: 30px;color: #000;font-weight: 400;}
 .account_section .inner-box a, .second-ac .inner-box a {padding: 10px 5rem;margin-top: 20px;}
 .second-ac .inner-box {background-color: #d6f2ff;border-radius: 20px;padding: 5rem 4rem 4.5rem;background-image: url(../images/join-bg1.png);background-repeat: no-repeat;background-position: 94% 38px;}
