@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="AEGIS_ConstructionModel.JobWiseTechnology" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="AEGIS_ConstructionModel.tblAddCityTechMaster" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="AEGIS_ConstructionModel.tblApplyJobDetail" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="AEGIS_ConstructionModel.tblApplyJobEducation" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="AEGIS_ConstructionModel.tblApplyJobEducation" Width="1.5" PointX="0.75" PointY="5.75" />
         <EntityTypeShape EntityType="AEGIS_ConstructionModel.tblApplyJobExperience" Width="1.5" PointX="2.75" PointY="5.75" />
         <EntityTypeShape EntityType="AEGIS_ConstructionModel.tblCategoryMaster" Width="1.5" PointX="4.75" PointY="5.75" />
         <EntityTypeShape EntityType="AEGIS_ConstructionModel.tblCity" Width="1.5" PointX="6.75" PointY="0.75" />

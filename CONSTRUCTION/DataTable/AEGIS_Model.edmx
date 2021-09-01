@@ -28,6 +28,7 @@
           <Property Name="CanonicalURL" Type="nvarchar(max)" />
           <Property Name="SchemaTags" Type="nvarchar(max)" />
           <Property Name="isActive" Type="bit" />
+          <Property Name="BriefDescription" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tblApplyJobDetails">
           <Key>
@@ -310,6 +311,7 @@
           <Property Name="CanonicalURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SchemaTags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="isActive" Type="Boolean" />
+          <Property Name="BriefDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblApplyJobDetail">
           <Key>
@@ -539,6 +541,7 @@
           <EntitySetMapping Name="tblAddCityTechMasters">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblAddCityTechMaster">
               <MappingFragment StoreEntitySet="tblAddCityTechMaster">
+                <ScalarProperty Name="BriefDescription" ColumnName="BriefDescription" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="SchemaTags" ColumnName="SchemaTags" />
                 <ScalarProperty Name="CanonicalURL" ColumnName="CanonicalURL" />

@@ -1,6 +1,7 @@
 ﻿@model CONSTRUCTION.Areas.Admin.Model.AddcityViewModel
 
 
+<script src="~/ckeditor/ckeditor.js"></script>
 <input type="hidden" id="txt_Id" value="@Model.id" />
 <input type="hidden" id="txt_techId" value="@Model.teckmasterId" />
 <input type="hidden" id="txt_tech" value="@Model.teckmaster" />
@@ -68,6 +69,14 @@
                 <textarea id="txt_description" placeholder="Meta Description" class="form-control">@Model.MetaDescription</textarea>
             </div>
         </div>
+        <div class="row formGroup">
+            <div class="col-sm-12">
+                <label>Brief Description</label>
+                <textarea id="editor" name="editor">@Model.BriefDescription</textarea>
+            </div>
+        </div>
     </div>
 </div>
-
+<script>
+    CKEDITOR.replace('editor');
+</script>

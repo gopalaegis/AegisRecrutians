@@ -19,6 +19,7 @@ namespace CONSTRUCTION.Areas.Admin.Model
         public string SEOtitle { get; set; }
         public string Slug { get; set; }
         public string MetaDescription { get; set; }
+        public string BriefDescription { get; set; }
         public bool IsCrawl { get; set; }
         public string CanonicalURL { get; set; }
         public string SchemaTags { get; set; }

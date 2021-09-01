@@ -224,6 +224,9 @@
                 $("#AddTeckCity").find(".modal-body").html("");
                 $("#AddTeckCity").find(".modal-body").html(data);
                 $("#AddTeckCity").find(".modal-header").find(".heading").html(title + ' Jobs');
+                $("#AddTeckCity").find("#btnAddcity").show();
+                $("#AddTeckCity").find(".btn_save").hide();
+                $("#AddTeckCity").find("#btn_List").hide();
                 dataTableCityTech();
             }
         });
@@ -295,31 +298,24 @@
         var url = $("#AddTeckCity").find('#txt_URL').val();
         var tag = $("#AddTeckCity").find('#txt_Tags').val();
         var description = $("#AddTeckCity").find('#txt_description').val();
+        var briefDescription = CKEDITOR.instances['editor'].getData();
         var isError = false;
 
         if (City == 0) {
             $("#AddTeckCity").find('#label_error_City').show();
             isError = true;
         }
-
+        debugger
+        var bDescription = JSON.stringify({ BriefDescription: briefDescription });
         if (isError == true) {
             return false
         } else {
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("SaveCityMaster", "TechnologyMaster")',
-                data: {
-                    Id: Id,
-                    cityId: City,
-                    teckmasterId: techId,
-                    FocusKeyphrase: key,
-                    SEOtitle: seo,
-                    Slug: slug,
-                    MetaDescription: description,
-                    IsCrawl: crawl,
-                    CanonicalURL: url,
-                    SchemaTags: tag
-                },
+                contentType: "application/json; charset=utf-8",
+                url: '@Url.Action("SaveCityMaster", "TechnologyMaster")?Id=' + Id + '&cityId=' + City + '&teckmasterId=' + techId + '&FocusKeyphrase=' + key + '&SEOtitle=' + seo + '&Slug=' + slug +
+                    '&MetaDescription=' + description + '&IsCrawl=' + crawl + '&CanonicalURL=' + url + '&SchemaTags=' + tag,
+                data: bDescription,
                 success: function (result) {
                     $("#AddTeckCity").find("#btnAddcity").show();
                     $("#AddTeckCity").find(".btn_save").hide();
@@ -331,7 +327,7 @@
                     $("#alert_inquiry_success").html("Save successfully");
                     $("#alert_inquiry_success").show();
                     setTimeout(function () {
-                            $("#alert_inquiry_success").hide();
+                        $("#alert_inquiry_success").hide();
                     }, 2000);
                 }
             });

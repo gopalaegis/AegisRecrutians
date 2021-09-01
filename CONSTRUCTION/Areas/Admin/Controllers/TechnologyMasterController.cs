@@ -69,6 +69,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                     model.SEOtitle = data.SEOtitle;
                     model.Slug = data.Slug;
                     model.MetaDescription = data.MetaDescription;
+                    model.BriefDescription = data.BriefDescription;
                     model.IsCrawl = (bool)data.IsCrawl;
                     model.CanonicalURL = data.CanonicalURL;
                     model.SchemaTags = data.SchemaTags;
@@ -134,6 +135,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 data.IsCrawl = model.IsCrawl;
                 data.CanonicalURL = model.CanonicalURL;
                 data.SchemaTags = model.SchemaTags;
+                data.BriefDescription = model.BriefDescription;
                 _db.SaveChanges();
             }
             else
@@ -149,6 +151,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 data.CanonicalURL = model.CanonicalURL;
                 data.SchemaTags = model.SchemaTags;
                 data.isActive = true;
+                data.BriefDescription = model.BriefDescription;
                 _db.tblAddCityTechMasters.Add(data);
                 _db.SaveChanges();
             }

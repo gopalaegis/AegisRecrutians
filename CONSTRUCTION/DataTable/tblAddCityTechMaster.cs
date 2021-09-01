@@ -25,5 +25,6 @@ namespace CONSTRUCTION.DataTable
         public string CanonicalURL { get; set; }
         public string SchemaTags { get; set; }
         public Nullable<bool> isActive { get; set; }
+        public string BriefDescription { get; set; }
     }
 }
