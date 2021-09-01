@@ -45,7 +45,7 @@ namespace CONSTRUCTION.Controllers
                     seo.CanonicalURL = technologyNameCity.CanonicalURL;
                     seo.SchemaTags = technologyNameCity.SchemaTags;
                     seo.FocusKeyphrase = technologyNameCity.FocusKeyphrase;
-                    seo.jobDescription = technologyData.BriefDescription;
+                    seo.jobDescription = technologyNameCity.BriefDescription;
                     seo.cityId = Convert.ToInt32(technologyNameCity.CityId);
                 }
             }
