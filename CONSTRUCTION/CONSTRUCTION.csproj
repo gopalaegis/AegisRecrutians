@@ -552,7 +552,7 @@
     <Content Include="Template\images\icons\e2.png" />
     <Content Include="Template\images\icons\e3.png" />
     <Content Include="Template\images\icons\favicon.ico" />
-    <Content Include="Template\images\join-bg.jpg" />
+    <Content Include="Template\images\join-bg.png" />
     <Content Include="Template\images\join-bg1.png" />
     <Content Include="Template\images\join-bg2.png" />
     <Content Include="Template\images\professionals\1.jpg" />

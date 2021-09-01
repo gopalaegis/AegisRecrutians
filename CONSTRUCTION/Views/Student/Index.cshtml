@@ -187,28 +187,104 @@
                         </div>
                     </div>
                     <div class="col-6 col-sm-12">
-                        <div class="form-fill">
-                            <form>
-                                <div class="form-group">
-                                    <input type="text" class="form-control name" placeholder="Name">
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control email" placeholder="Email Id">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control phone" placeholder="Phone Number">
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-control project" placeholder="Describe your project" rows="3"></textarea>
-                                </div>
-                                <div class="read-btn">
-                                    <a href="javascript:;" class="send-msg">Submit</a>
-                                </div>
-                            </form>
-                        </div>
+                            <div class="form-fill" id="ContectUsDiv">
+                                <form>
+                                    <div class="form-group" style="margin-bottom:24px;">
+                                        <input type="text" class="form-control name" placeholder="Name" id="name" style="margin-bottom:0px;">
+                                        <label id="label_error_name" class="errorMessage" style="display:none;">Name is required</label>
+                                    </div>
+                                    <div class="form-group" style="margin-bottom:24px;">
+                                        <input type="email" class="form-control email" placeholder="Email Id" id="email" style="margin-bottom:0px;">
+                                        <label id="label_error_Email" class="errorMessage" style="display:none;">Email Id is required</label>
+                                        <label id="label_error_EmailFormat" class="errorMessage" style="display:none;">Email Id is not Valid</label>
+                                    </div>
+                                    <div class="form-group" style="margin-bottom:24px;">
+                                        <input type="text" class="form-control phone" placeholder="Phone Number" id="mobile" style="margin-bottom:0px;">
+                                        <label id="label_error_PN" class="errorMessage" style="display:none;">Phone Number is required</label>
+                                        <label id="label_error_PNFormat" class="errorMessage" style="display:none;">Phone Number is not Valid</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control project" placeholder="Describe your project" rows="3" id="description"></textarea>
+                                    </div>
+                                    <div class="read-btn">
+                                        <a id="submitData" class="send-msg">Submit</a>
+                                    </div>
+                                </form>
+                            </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<script>
+    $("#ContectUsDiv").on("click", "#submitData", function () {
+        var name = $("#ContectUsDiv").find("#name").val();
+        var email = $("#ContectUsDiv").find("#email").val();
+        var mobile = $("#ContectUsDiv").find("#mobile").val();
+        var description = $("#ContectUsDiv").find("#description").val();
+        debugger
+
+        var IsError = false;
+
+        if (name == null || name == "") {
+            IsError = true;
+            $("#ContectUsDiv").find("#label_error_name").show();
+        }
+
+        if (email == null || email == "") {
+            IsError = true;
+            $("#ContectUsDiv").find("#label_error_Email").show();
+        } else if (!EmailValidation(email)) {
+            IsError = true;
+            $("#ContectUsDiv").find("#label_error_EmailFormat").show();
+        }
+
+        if (mobile == null || mobile == "") {
+            IsError = true;
+            $("#ContectUsDiv").find("#label_error_PN").show();
+        } else if (!PhoneNumberValidation(mobile)) {
+            IsError = true;
+            $("#ContectUsDiv").find("#label_error_PNFormat").show();
+        }
+
+        if (IsError == true) {
+            return false;
+        } else {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SaveContectData", "Home")',
+                data: {
+                    Name: name,
+                    Email: email,
+                    Mobile: mobile,
+                    Description: description
+                },
+                success: function (result) {
+                    if (result == "Success") {
+                            debugger
+                                $("#ContectUsDiv").find("#name").val("");
+                                $("#ContectUsDiv").find("#email").val("");
+                                $("#ContectUsDiv").find("#mobile").val("");
+                                $("#ContectUsDiv").find("#description").val("");
+
+                                $("#alert_inquiry_success").html("Inquiry genrated successfully");
+                                $("#alert_inquiry_success").show();
+                                setTimeout(function () { $("#alert_inquiry_success").hide(); }, 2000);
+                        }
+                        else {
+                                $("#ContectUsDiv").find("#name").val("");
+                                $("#ContectUsDiv").find("#email").val("");
+                                $("#ContectUsDiv").find("#mobile").val("");
+                                $("#ContectUsDiv").find("#description").val("");
+
+                                $("#alert_inquiry_error").html("Error, Please try again after some time.");
+                                $("#alert_inquiry_error").show();
+                                $(".closeInquiry").click();
+                                setTimeout(function () { $("#alert_inquiry_error").hide(); }, 2000);
+                        }
+                }
+            });
+        }
+    });
+</script>
