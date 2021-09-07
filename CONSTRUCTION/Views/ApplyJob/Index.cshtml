@@ -61,6 +61,7 @@
                             <div class="col-4 col-sm-12">
                                 <div class="form-group">
                                     <input type="date" class="form-control" placeholder="DOB" id="DOB">
+                                    <i class="fa fa-calendar calendar-1"></i>
                                     <label id="label_error_DOB" class="errorMessage" style="display:none;">DOB is required</label>
                                 </div>
                             </div>
@@ -103,6 +104,7 @@
                             <div class="col-4 col-sm-12">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Phone Number" id="mobile1">
+                                    <label id="label_error_PNFormat2" class="errorMessage" style="display:none;">Phone Number is not Valid</label>
                                 </div>
                             </div>
                         </div>
@@ -355,6 +357,11 @@
         var assignEducation = [];
         $.each($("#educationDiv").find(".educationDatas"), function () {
             var value = parseInt($(this).find("#degree").val());
+            var year = parseInt($(this).find("#year").val());
+            if (year < 0) {
+                parseInt($(this).find("#label_error_Year").show());
+                IsError = true;
+            }
             if (value > 0) {
                 var details = {
                     DegreeId: parseInt($(this).find("#degree").val()),
@@ -368,6 +375,11 @@
         var assignExperience = [];
         $.each($("#experienceDiv").find(".experienceDatas"), function () {
             var value = $(this).find("#employer").val();
+            var year = parseInt($(this).find("#activeYear").val());
+            if (year < 0) {
+                parseInt($(this).find("#label_error_activeYear").show());
+                IsError = true;
+            }
             if (value != null && value != "") {
                 var details = {
                     Employer: $(this).find("#employer").val(),
@@ -399,7 +411,8 @@
         if (email == null || email == "") {
             IsError = true;
             $("#label_error_Email").show();
-        } else if (!EmailValidation(email)) {
+        }
+        if (!EmailValidation(email)) {
             IsError = true;
             $("#label_error_EmailFormat").show();
         }
@@ -407,9 +420,16 @@
         if (mobile == null || mobile == "") {
             IsError = true;
             $("#label_error_PN").show();
-        } else if (!PhoneNumberValidation(mobile)) {
+        }
+        if (!PhoneNumberValidation(mobile)) {
             IsError = true;
             $("#label_error_PNFormat").show();
+        }
+        if (mobile2 != null || mobile2 != "") {
+            if (!PhoneNumberValidation(mobile1)) {
+                IsError = true;
+                $("#label_error_PNFormat2").show();
+            }
         }
 
         if (addressType == null || addressType == "0") {

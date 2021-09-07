@@ -61,7 +61,7 @@
                                 <li class="page-item"><a class="page-link pageList" href="#" data-page="@i">@i</a></li>
                             }
                         }
-                        if (Model.totalPage < Model.currentPage)
+                        if (Model.totalPage > Model.currentPage)
                         {
                             <li class="page-item">
                                 <a class="page-link pageList" href="#" data-page="@(Model.currentPage - 1)" aria-label="Next">

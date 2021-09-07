@@ -79,6 +79,7 @@
 
         if (Name == "") {
             $("#addSkill").find('#label_error_Name').show();
+            $("#preloader").hide();
             return false
         } else {
             $.ajax({
@@ -91,9 +92,9 @@
                 success: function (result) {
                     $("#tableDiv").html("");
                     $("#tableDiv").html(result);
+                    $("#preloader").hide();
                     $("#addSkill").find('.btn_Close').click();
                     dataTableSkill();
-                    $("#preloader").hide();
 
                     $("#alert_inquiry_success").html("Save successfully");
                     $("#alert_inquiry_success").show();

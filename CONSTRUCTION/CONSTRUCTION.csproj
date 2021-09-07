@@ -258,6 +258,16 @@
     <Content Include="adminAssets\js\popper.min.js" />
     <Content Include="adminAssets\js\UploadDocs.js" />
     <Content Include="CommonImage\capcha.png" />
+    <Content Include="CommonImage\CompanyLogo\0173cf8a-71fc-4c0b-bac0-b77c076be1e3.png" />
+    <Content Include="CommonImage\CompanyLogo\300f27f6-44c7-436a-8e7b-4be488e7fba2.png" />
+    <Content Include="CommonImage\CompanyLogo\32af5a2d-1bab-4dea-a8b4-cba27d25882c.png" />
+    <Content Include="CommonImage\CompanyLogo\3cf27b5f-4664-4189-9db8-7795cfd3f0fe.png" />
+    <Content Include="CommonImage\CompanyLogo\3d747002-3594-48a1-84f7-ffd2603fb216.png" />
+    <Content Include="CommonImage\CompanyLogo\58495f1f-1ab8-423b-b5ff-60ed4630dc67.jpg" />
+    <Content Include="CommonImage\CompanyLogo\956a14dc-11db-4834-86bc-b7aa769c29c9.png" />
+    <Content Include="CommonImage\CompanyLogo\9a7f567c-641e-4a6b-952b-5a375d88859a.png" />
+    <Content Include="CommonImage\CompanyLogo\ac3a05c8-5b84-442c-a678-764f13edf130.png" />
+    <Content Include="CommonImage\CompanyLogo\feeb8f62-b58d-43ba-a5f0-65d86b95b39b.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

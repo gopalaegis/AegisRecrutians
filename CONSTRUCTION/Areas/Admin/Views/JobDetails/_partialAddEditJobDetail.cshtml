@@ -111,7 +111,7 @@
                 </div>
                 <div class="row formGroup">
                     <div class="col-sm-12">
-                        <label>BriefDescription</label>
+                        <label>Brief Description</label>
                         <textarea id="editor" name="editor"></textarea>
                         <label id="label_error_MinSalary" class="errorMessage" style="display: none; color: red">MinSalary is required</label>
                     </div>
@@ -154,10 +154,7 @@
 
                     </div>
                     <div class="col-sm-3 align-self-end">
-                        @{
-                            var finalPic = "/CommonImage/CompanyLogo/" + Model.CompanyLogo;
-                        }
-                        <img id="img_Profile_Pic" src="@finalPic" style="height:70px;width:70px;" />
+                        <img id="img_Profile_Pic" src="~/CommonImage/CompanyLogo/@Model.CompanyLogo" style="height: 80px; width: 80px;" />
                     </div>
                 </div>
                 <div class="row formGroup">

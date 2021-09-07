@@ -175,6 +175,7 @@
         var bDescription = JSON.stringify({ BriefDescription: briefDescription });
 
         if (isError == true) {
+            $("#preloader").hide();
             return false
         } else {
             $.ajax({
@@ -308,6 +309,7 @@
         debugger
         var bDescription = JSON.stringify({ BriefDescription: briefDescription });
         if (isError == true) {
+            $("#preloader").hide();
             return false
         } else {
             $.ajax({

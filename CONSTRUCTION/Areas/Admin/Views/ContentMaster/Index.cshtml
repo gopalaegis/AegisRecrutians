@@ -101,6 +101,7 @@
             isError = true;
         }
         if (isError == true) {
+            $("#preloader").hide();
             return false
         } else {
             $.ajax({
@@ -122,9 +123,9 @@
                 success: function (result) {
                     $("#tableDiv").html("");
                     $("#tableDiv").html(result);
+                    $("#preloader").hide();
                     $("#addContent").find('.btn_Close').click();
                     dataTableContent();
-                    $("#preloader").hide();
                     $("#alert_inquiry_success").html("Save successfully");
                     $("#alert_inquiry_success").show();
                     setTimeout(function () {
