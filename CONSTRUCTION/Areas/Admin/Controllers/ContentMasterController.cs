@@ -44,7 +44,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             return PartialView("_partialAddContentMaster", model);
         }
 
-        public ActionResult ContentMasterList()
+        public ActionResult ContentMasterList(string Status = "active")
         {
             List<ContentMasterViewModel> model = new List<ContentMasterViewModel>();
             var data = _db.tblContentMasters.ToList();
@@ -57,6 +57,14 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 m.ActionResult = item.ActionResult;
                 m.isactive = (bool)item.isActive;
                 model.Add(m);
+            }
+            if (Status == "active")
+            {
+                model = model.Where(x => x.isactive == true).ToList();
+            }
+            else
+            {
+                model = model.Where(x => x.isactive == false).ToList();
             }
             return PartialView("_partialContentMasterList", model);
         }

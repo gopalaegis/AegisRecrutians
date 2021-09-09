@@ -138,7 +138,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             return PartialView("_partialAddEditJobDetail", model);
         }
 
-        public ActionResult JobDetailsList()
+        public ActionResult JobDetailsList(string Status = "active")
         {
             List<JobDetailsViewModel> model = new List<JobDetailsViewModel>();
             var data = _db.tblJobDetails.ToList();
@@ -192,6 +192,14 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 m.ShowOnHome = item.ShowOnHome;
                 m.isactive = (bool)item.isActive;
                 model.Add(m);
+            }
+            if (Status == "active")
+            {
+                model = model.Where(x => x.isactive == true).ToList();
+            }
+            else
+            {
+                model = model.Where(x => x.isactive == false).ToList();
             }
             return PartialView("_partialJobDetailsList", model);
         }

@@ -30,10 +30,18 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             return PartialView("_partialAddSkillMaster", model);
         }
 
-        public ActionResult SkillMasterList()
+        public ActionResult SkillMasterList(string Status = "active")
         {
             List<SkillMasterViewModel> model = new List<SkillMasterViewModel>();
             model = _db.tblSkillMasters.Select(x => new SkillMasterViewModel { Id = x.Id, Name = x.Name,isactive=(bool)x.isActive }).ToList();
+            if (Status == "active")
+            {
+                model = model.Where(x => x.isactive == true).ToList();
+            }
+            else
+            {
+                model = model.Where(x => x.isactive == false).ToList();
+            }
             return PartialView("_partialSkillMasterList", model);
         }
 

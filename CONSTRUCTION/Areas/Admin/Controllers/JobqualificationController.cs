@@ -28,10 +28,18 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             }
             return PartialView("_partialAddEditQualificationMaster", model);
         }
-        public ActionResult JobQualificationMasterList()
+        public ActionResult JobQualificationMasterList(string Status = "active")
         {
             List<JobQualicationViewModel> model = new List<JobQualicationViewModel>();
             model = _db.tblJobQualifications.Select(x => new JobQualicationViewModel { Id = x.Id, Qualification= x.Qualification,isactive=(bool)x.isActive}).ToList();
+            if (Status == "active")
+            {
+                model = model.Where(x => x.isactive == true).ToList();
+            }
+            else
+            {
+                model = model.Where(x => x.isactive == false).ToList();
+            }
             return PartialView("_partialJobQualificationMasterList", model);
         }
         //public ActionResult DeleteJobQualificationMaster(int Id)

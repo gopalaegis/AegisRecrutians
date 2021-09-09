@@ -22,7 +22,15 @@
     </div>
 </div>
 <div class="right-side">
-    <div class="heading">Education Master</div>
+    <div class="heading">
+        Education
+        <label class="switch">
+
+            <input id="chk_listFilter" type="checkbox" checked>
+            <span class="slider round"></span>
+        </label>
+        <label style="float:right;"> Filter Active / Deactive : </label>
+    </div>
 
     <div class="data-table style-1">
         <div class="box-table">
@@ -33,7 +41,7 @@
                     </div>
                 </div>
                 <div id="tableDiv">
-                    @Html.Action("JobEducationMasterList", "JobEducation")
+                    @Html.Action("JobEducationMasterList", "JobEducation", new { Status = "active" })
                 </div>
             </div>
         </div>
@@ -61,6 +69,30 @@
             ]
         });
     }
+
+     function returnStatus() {
+                var status = 'deactive';
+                var value = $("#chk_listFilter").prop('checked');
+                if (value == true) {
+                        status = 'active';
+                }
+                return status;
+        }
+
+        $("#chk_listFilter").change(function () {
+                var status = returnStatus();
+                $.ajax({
+                        url: '@Url.Action("JobEducationMasterList", "JobEducation")',
+                        data: {
+                                Status: status
+                        },
+                        success: function (data) {
+                                $("#tableDiv").html("");
+                                $("#tableDiv").html(data);
+                            dataTableJobEducation();
+                        }
+                });
+        });
 
     $("#btnAddEdu").click(function () {
         $("#preloader").show();

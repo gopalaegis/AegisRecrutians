@@ -28,10 +28,18 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             }
             return PartialView("_partialAddEducationMaster", model);
         }
-        public ActionResult JobEducationMasterList()
+        public ActionResult JobEducationMasterList(string Status = "active")
         {
             List<JobEducationViewModel> model = new List<JobEducationViewModel>();
             model = _db.tblJobEducations.Select(x => new JobEducationViewModel { Id = x.Id, Education = x.Education,isactive=(bool)x.isActive }).ToList();
+            if (Status == "active")
+            {
+                model = model.Where(x => x.isactive == true).ToList();
+            }
+            else
+            {
+                model = model.Where(x => x.isactive == false).ToList();
+            }
             return PartialView("_partialJobEducationMasterList", model);
         }
         //public ActionResult DeleteJobEducationMaster(int Id)
