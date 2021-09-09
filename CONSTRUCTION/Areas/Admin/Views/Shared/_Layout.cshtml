@@ -69,6 +69,32 @@
             border-radius: .25rem;
         }
     </style>
+    <script>
+        $(document).ready(function () {
+            $(".back-btn").click(function () {
+                $(".col1").css('width', '55px');
+                $(".col2").css('width', 'calc(100vw - 55px)');
+                $(".left-side").css('width', '55px');
+                $(".back-btn").hide();
+                $(".back-btn1").show();
+                $('.accordion1').addClass('hidden');
+                $('.panel1').hide();
+
+            });
+
+            $(".back-btn1").click(function () {
+                $(".col1").css('width', '220px');
+                $(".col2").css('width', 'calc(100vw - 220px)');
+                $(".left-side").css('width', '220px');
+                $(".back-btn1").hide();
+                $(".back-btn").show();
+                $('.accordion1').removeClass('hidden');
+                $('.panel1').show();
+
+            });
+        });
+        
+    </script>
 </head>
 <body>
     <div class="nav-section1">
@@ -99,6 +125,20 @@
                         <div class="back-btn1"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
                         <div class="dashboard-head"><a href="@Url.Action("Index","Dashboard")"><i class="fa fa-th-large d-gray" aria-hidden="true"></i> Dashboard</a></div>
                         <div class="accordion_box1">
+                            <a href="@Url.Action("Index","TechnologyMaster")">
+                                <div class="accordion1">
+                                    <span class="dash-menu-item2">
+                                        <i class="fa fa-bars" aria-hidden="true"></i> Technology
+                                    </span>
+                                </div>
+                            </a>
+                            <a href="@Url.Action("Index","ContentMaster")">
+                                <div class="accordion1">
+                                    <span class="dash-menu-item2">
+                                        <i class="fa fa-bars" aria-hidden="true"></i> Content
+                                    </span>
+                                </div>
+                            </a>
                             <a href="@Url.Action("Index","AppliedJobs")">
                                 <div class="accordion1">
                                     <span class="dash-menu-item2">
@@ -116,42 +156,28 @@
                             <a href="@Url.Action("JobEducation","JobEducation")">
                                 <div class="accordion1">
                                     <span class="dash-menu-item2">
-                                        <i class="fa fa-bars" aria-hidden="true"></i> Job Education
+                                        <i class="fa fa-bars" aria-hidden="true"></i> Education
                                     </span>
                                 </div>
                             </a>
                             <a href="@Url.Action("JobQualification","JobQualification")">
                                 <div class="accordion1">
                                     <span class="dash-menu-item2">
-                                        <i class="fa fa-bars" aria-hidden="true"></i> Job Qualification
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="@Url.Action("Index","ReferDetails")">
-                                <div class="accordion1">
-                                    <span class="dash-menu-item2">
-                                        <i class="fa fa-bars" aria-hidden="true"></i> Refer Details
+                                        <i class="fa fa-bars" aria-hidden="true"></i> Qualification
                                     </span>
                                 </div>
                             </a>
                             <a href="@Url.Action("Index","SkillMaster")">
                                 <div class="accordion1">
                                     <span class="dash-menu-item2">
-                                        <i class="fa fa-bars" aria-hidden="true"></i> Skill Master
+                                        <i class="fa fa-bars" aria-hidden="true"></i> Skill
                                     </span>
                                 </div>
                             </a>
-                            <a href="@Url.Action("Index","TechnologyMaster")">
+                            <a href="@Url.Action("Index","ReferDetails")">
                                 <div class="accordion1">
                                     <span class="dash-menu-item2">
-                                        <i class="fa fa-bars" aria-hidden="true"></i> Technology Master
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="@Url.Action("Index","ContentMaster")">
-                                <div class="accordion1">
-                                    <span class="dash-menu-item2">
-                                        <i class="fa fa-bars" aria-hidden="true"></i> Content Master
+                                        <i class="fa fa-bars" aria-hidden="true"></i> Refer
                                     </span>
                                 </div>
                             </a>

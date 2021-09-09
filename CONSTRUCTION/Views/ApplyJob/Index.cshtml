@@ -96,14 +96,14 @@
                             </div>
                             <div class="col-4 col-sm-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Phone Number" id="mobile">
+                                    <input type="text" class="form-control" placeholder="Phone Number" id="mobile" maxlength="10" onkeypress = "return event.charCode >= 48 && event.charCode <= 57">
                                     <label id="label_error_PN" class="errorMessage" style="display:none;">Phone Number is required</label>
                                     <label id="label_error_PNFormat" class="errorMessage" style="display:none;">Phone Number is not Valid</label>
                                 </div>
                             </div>
                             <div class="col-4 col-sm-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Phone Number" id="mobile1">
+                                    <input type="text" class="form-control" placeholder="Phone Number" id="mobile1" maxlength="10" onkeypress = "return event.charCode >= 48 && event.charCode <= 57">
                                     <label id="label_error_PNFormat2" class="errorMessage" style="display:none;">Phone Number is not Valid</label>
                                 </div>
                             </div>

@@ -66,6 +66,7 @@
 <script>
     $(document).ready(function () {
         dataTableTechnology();
+        dataTableCityTech();
     });
 
     function dataTableTechnology() {
@@ -150,6 +151,7 @@
 
     $("#addTechnology").on("click", ".btn_save", function (e) {
         $("#preloader").show();
+        $(".errorMessage").hide();
         var Id = $("#addTechnology").find('#txt_Id').val();
         var Name = $("#addTechnology").find('#txt_Name').val();
         var Image = $("#addTechnology").find('#file_HiddenName').val();
@@ -263,7 +265,6 @@
                 $("#AddTeckCity").find("#btn_List").show();
                 $("#AddTeckCity").find(".modal-body").html("");
                 $("#AddTeckCity").find(".modal-body").html(data);
-                $("#AddTeckCity").find("#txt_city").select2();
                 $("#AddTeckCity").scrollTop(0);
             }
         });
@@ -282,13 +283,14 @@
                 $("#AddTeckCity").find("#btn_List").show();
                 $("#AddTeckCity").find(".modal-body").html("");
                 $("#AddTeckCity").find(".modal-body").html(data);
-                $("#AddTeckCity").find("#txt_city").select2();
                 $("#AddTeckCity").scrollTop(0);
             }
         });
     });
 
     $("#AddTeckCity").on("click", ".btn_save", function (e) {
+        $("#preloader").show();
+        $(".errorMessage").hide();
         var Id = $("#AddTeckCity").find('#txt_Id').val();
         var techId = $("#AddTeckCity").find('#txt_techId').val();
         var City = $("#AddTeckCity").find('#txt_city').val();
@@ -299,14 +301,13 @@
         var url = $("#AddTeckCity").find('#txt_URL').val();
         var tag = $("#AddTeckCity").find('#txt_Tags').val();
         var description = $("#AddTeckCity").find('#txt_description').val();
-        var briefDescription = CKEDITOR.instances['editor'].getData();
+        var briefDescription = CKEDITOR.instances['editor2'].getData();
         var isError = false;
-
+        
         if (City == 0) {
             $("#AddTeckCity").find('#label_error_City').show();
             isError = true;
         }
-        debugger
         var bDescription = JSON.stringify({ BriefDescription: briefDescription });
         if (isError == true) {
             $("#preloader").hide();
@@ -341,14 +342,16 @@
                 var Id = $(this).attr("data-id");
                 var parentTr = $(this).parent().parent();
                 var btn = '<i class="fa fa-check-square fa-check-css green Active" data-id="' + Id + '" title="Active"></i>';
-
+        var lab = '<label class="Active">Deactive</label>';
                    $("#preloader").show();
                    $.ajax({
                            url: '@Url.Action("isDeactive", "TechnologyMaster")',
                            data: { Id: Id, value: "deactive" },
                            success: function (data) {
-                                   $(parentTr).find("td:eq(2)").find(".Deactive").remove();
-                                   $(parentTr).find("td:eq(2)").append(btn);
+                                   $(parentTr).find("td:eq(6)").find(".Deactive").remove();
+                               $(parentTr).find("td:eq(6)").append(btn);
+                               $(parentTr).find("td:eq(5)").find(".Deactive").remove();
+                               $(parentTr).find("td:eq(5)").append(lab);
                                $("#preloader").hide();
                                $("#alert_inquiry_success").html("Deactive Sussesfully");
                                $("#alert_inquiry_success").show();
@@ -363,14 +366,17 @@
 
                 var Id = $(this).attr("data-id");
                 var parentTr = $(this).parent().parent();
-                var btn = '<i class="fa fa-ban fa-ban-css red Deactive" data-id="' + Id + '" title="De-Active"></i>';
+        var btn = '<i class="fa fa-ban fa-ban-css red Deactive" data-id="' + Id + '" title="De-Active"></i>';
+        var lab = ' <label class="Deactive">Active</label>';
                  $("#preloader").show();
                  $.ajax({
                          url: '@Url.Action("isDeactive", "TechnologyMaster")',
                          data: { Id: Id, value: "active" },
                          success: function (data) {
-                                 $(parentTr).find("td:eq(2)").find(".Active").remove();
-                                 $(parentTr).find("td:eq(2)").append(btn);
+                                 $(parentTr).find("td:eq(6)").find(".Active").remove();
+                             $(parentTr).find("td:eq(6)").append(btn);
+                             $(parentTr).find("td:eq(5)").find(".Active").remove();
+                             $(parentTr).find("td:eq(5)").append(lab);
                              $("#preloader").hide();
                              $("#alert_inquiry_success").html("Active Sussesfully");
                              $("#alert_inquiry_success").show();
@@ -391,7 +397,8 @@
              success: function (data) {
                  $("#AddTeckCity").find(".modal-body").html("");
                  $("#AddTeckCity").find(".modal-body").html(data);
-                     $("#preloader").hide();
+                 $("#preloader").hide();
+                 dataTableCityTech();
                      $("#alert_inquiry_success").html("Delete Sussesfully");
                      $("#alert_inquiry_success").show();
                      setTimeout(function () {

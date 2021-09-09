@@ -119,7 +119,8 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 m.isactive = Convert.ToBoolean(item.isActive);
                 model.Add(m);
             }
-            return PartialView("_partialTechnologyCityList", model);
+            Tuple<List<AddcityViewModel>, int> tuple = new Tuple<List<AddcityViewModel>, int>(model,Id);
+            return PartialView("_partialTechnologyCityList", tuple);
         }
 
         public ActionResult SaveCityMaster(AddcityViewModel model)

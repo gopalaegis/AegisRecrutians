@@ -14,6 +14,7 @@
                         <th>Location</th>
                         <th>IsVerified</th>
                         <th></th>
+                        <th></th>
                 </tr>
         </thead>
         <tbody>
@@ -30,7 +31,18 @@
                                 <td>@item.CityName</td>
                                 <td>@item.Location</td>
                                 <td>@item.IsVerified</td>
+                                <td>
+                                    @if (item.isactive == true)
+                                    {
+                                        <label class="Deactive">Active</label>
+                                    }
+                                    else
+                                    {
+                                        <label class="Active">Deactive</label>
+                                    }
+                                </td>
                                 <td class="light-gray text-right d-flex align-items-center">
+                                    <i class="editRow fa fa-pencil creamy ml-2 pr-2" aria-hidden="true" data-id="@item.Id" data-toggle="modal" data-target="#addJobDetail"></i>
                                     @if (item.isactive == true)
                                     {
                                         <i class="fa fa-ban fa-ban-css red Deactive" data-id="@item.Id" title="De-Active"></i>
@@ -39,7 +51,6 @@
                                     {
                                         <i class="fa fa-check-square fa-check-css green Active" data-id="@item.Id" title="Active"></i>
                                     }
-                                    <i class="editRow fa fa-pencil creamy ml-2 pr-2" aria-hidden="true" data-id="@item.Id" data-toggle="modal" data-target="#addJobDetail"></i>
                                 </td>
                         </tr>
                 }

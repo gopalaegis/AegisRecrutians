@@ -65,9 +65,9 @@ namespace CONSTRUCTION.Controllers
         {
             JobsViewModel model = new JobsViewModel();
             List<JobDetailViewModel> m = new List<JobDetailViewModel>();
-
+            title = title.ToLower();
             var technologyWiseList = _db.JobWiseTechnologies.Where(x => x.TechnologyId == TechnologyId).Select(x => x.JobId).ToList();
-            var d = _db.tblJobDetails.ToList();
+            var d = _db.tblJobDetails.Where(x=>x.Title.ToLower().Contains(title)).ToList();
             if (TechnologyId > 0)
             {
                 d = d.Where(x => technologyWiseList.Contains(x.Id)).ToList();

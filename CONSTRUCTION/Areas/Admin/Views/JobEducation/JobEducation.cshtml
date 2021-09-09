@@ -77,6 +77,7 @@
 
     $("#addEducation").on("click", ".btn_save", function (e) {
         $("#preloader").show();
+        $(".errorMessage").hide();
         var Id = $("#addEducation").find('#txt_Id').val();
         var Education = $("#addEducation").find('#txt_Education').val();
         var isError = false;
@@ -114,7 +115,6 @@
     });
 
     $("#tableDiv").on("click", ".editRow", function () {
-        debugger
         var id = $(this).attr('data-id');
         $.ajax({
             url: '@Url.Action("AddEditJobEducationMaster", "JobEducation")',
@@ -129,18 +129,19 @@
     });
 
     $("#tableDiv").on("click", ".Deactive", function () {
-            debugger
                 var Id = $(this).attr("data-id");
                 var parentTr = $(this).parent().parent();
-                var btn = '<i class="fa fa-check-square fa-check-css Active" data-id="' + Id + '" title="Active"></i>';
-
+        var btn = '<i class="fa fa-check-square fa-check-css green Active" data-id="' + Id + '" title="Active"></i>';
+        var lab = '<label class="Active">Deactive</label>';
                    $("#preloader").show();
                    $.ajax({
                            url: '@Url.Action("isDeactive", "JobEducation")',
                            data: { Id: Id, value: "deactive" },
                            success: function (data) {
-                                   $(parentTr).find("td:eq(8)").find(".Deactive").remove();
-                                   $(parentTr).find("td:eq(8)").append(btn);
+                                   $(parentTr).find("td:eq(1)").find(".Deactive").remove();
+                               $(parentTr).find("td:eq(1)").append(lab);
+                               $(parentTr).find("td:eq(2)").find(".Deactive").remove();
+                               $(parentTr).find("td:eq(2)").append(btn);
                                $("#preloader").hide();
                                $("#alert_inquiry_success").html("Deactive Sussesfully");
                                $("#alert_inquiry_success").show();
@@ -152,17 +153,19 @@
      });
 
     $("#tableDiv").on("click", ".Active", function () {
-          debugger
                 var Id = $(this).attr("data-id");
                 var parentTr = $(this).parent().parent();
-                var btn = '<i class="fa fa-ban fa-ban-css Deactive" data-id="' + Id + '" title="De-Active"></i>';
+        var btn = '<i class="fa fa-ban fa-ban-css red Deactive" data-id="' + Id + '" title="De-Active"></i>';
+        var lab = ' <label class="Deactive">Active</label>';
                  $("#preloader").show();
                  $.ajax({
                          url: '@Url.Action("isDeactive", "JobEducation")',
                          data: { Id: Id, value: "active" },
                          success: function (data) {
-                                 $(parentTr).find("td:eq(8)").find(".Active").remove();
-                                 $(parentTr).find("td:eq(8)").append(btn);
+                                 $(parentTr).find("td:eq(1)").find(".Active").remove();
+                             $(parentTr).find("td:eq(1)").append(lab);
+                             $(parentTr).find("td:eq(2)").find(".Active").remove();
+                             $(parentTr).find("td:eq(2)").append(btn);
                              $("#preloader").hide();
                              $("#alert_inquiry_success").html("Active Sussesfully");
                              $("#alert_inquiry_success").show();

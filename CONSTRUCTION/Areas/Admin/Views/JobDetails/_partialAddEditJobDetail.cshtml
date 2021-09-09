@@ -88,24 +88,24 @@
                 <div class="row formGroup">
                     <div class="col-sm-6">
                         <label>Min Experience <span style="color:red">*</span></label>
-                        <input type="text" id="txt_MinExperience" value="@Model.MinExperience" placeholder="MinExperience" class="form-control" />
+                        <input type="text" id="txt_MinExperience" value="@Model.MinExperience" placeholder="MinExperience" class="form-control"  onkeypress = "return event.charCode >= 48 && event.charCode <= 57"/>
                         <label id="label_error_MinExperience" class="errorMessage" style="display: none; color: red">MinExperience is required</label>
                     </div>
                     <div class="col-sm-6">
                         <label>Max Experience <span style="color:red">*</span></label>
-                        <input type="text" id="txt_MaxExperience" value="@Model.MaxExperience" placeholder="MaxExperience" class="form-control" />
+                        <input type="text" id="txt_MaxExperience" value="@Model.MaxExperience" placeholder="MaxExperience" class="form-control"  onkeypress = "return event.charCode >= 48 && event.charCode <= 57"/>
                         <label id="label_error_MaxExperience" class="errorMessage" style="display: none; color: red">MaxExperience is required</label>
                     </div>
                 </div>
                 <div class="row formGroup">
                     <div class="col-sm-6">
                         <label>Min Salary<span style="color:red">*</span></label>
-                        <input type="number" id="txt_MinSalary" value="@Model.MinSalary" maxlength="50" min="0" name="MinSalary" placeholder="MinSalary" class="form-control" />
+                        <input type="text" id="txt_MinSalary" value="@Model.MinSalary" maxlength="50" min="0" name="MinSalary" placeholder="MinSalary" class="form-control"  onkeypress = "return event.charCode >= 48 && event.charCode <= 57"/>
                         <label id="label_error_MinSalary" class="errorMessage" style="display: none; color: red">MinSalary is required</label>
                     </div>
                     <div class="col-sm-6">
                         <label>Max Salary <span style="color:red">*</span></label>
-                        <input type="number" id="txt_MaxSalary" value="@Model.MaxSalary" maxlength="50" min="0" name="MaxSalary" placeholder="MaxSalary" class="form-control" />
+                        <input type="text" id="txt_MaxSalary" value="@Model.MaxSalary" maxlength="50" min="0" name="MaxSalary" placeholder="MaxSalary" class="form-control"  onkeypress = "return event.charCode >= 48 && event.charCode <= 57"/>
                         <label id="label_error_MaxSalary" class="errorMessage" style="display: none; color: red">MaxSalary is required</label>
                     </div>
                 </div>

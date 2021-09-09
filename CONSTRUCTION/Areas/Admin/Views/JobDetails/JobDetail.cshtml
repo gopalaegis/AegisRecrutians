@@ -1,42 +1,42 @@
 ﻿
 @{
-        ViewBag.Title = "JobDetail";
+    ViewBag.Title = "JobDetail";
 }
 
 <div id="addJobDetail" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-xl modal-dialog-scrollable">
-                <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title modal_text">Job Detail</h4>
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title modal_text">Job Detail</h4>
                 @*<button type="button" data-dismiss="modal" class="close"> × </button>*@
-                </div>
-                <div class="modal-body">
+            </div>
+            <div class="modal-body">
 
-                </div>
-@*                <div class="modal-footer">
+            </div>
+            @*                <div class="modal-footer">
                     <button type="button" class="btn btn-primary btn_save">Save</button>
                     <button type="button" class="btn btn-default btn_Close" data-dismiss="modal">Close</button>
                 </div>*@
-            </div>
         </div>
+    </div>
 </div>
 <div class="right-side">
-        <div class="heading">Job Detail</div>
-        <div class="data-table style-1">
-                <div class="box-table">
-                        <div class="skill-table">
-                                <div class="catagory-detail">
-                                        <div class="catagory-flex1">
-                                                <div><span class="add-catagory-btn" id="btnJobDetail" data-toggle="modal" data-target="#addJobDetail"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
-                                        </div>
-                                </div>
-                                <div id="tableDiv">
-                                        @Html.Action("JobDetailsList", "JobDetails")
-                                </div>
-                        </div>
+    <div class="heading">Job Detail</div>
+    <div class="data-table style-1">
+        <div class="box-table">
+            <div class="skill-table">
+                <div class="catagory-detail">
+                    <div class="catagory-flex1">
+                        <div><span class="add-catagory-btn" id="btnJobDetail" data-toggle="modal" data-target="#addJobDetail"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
+                    </div>
                 </div>
+                <div id="tableDiv">
+                    @Html.Action("JobDetailsList", "JobDetails")
+                </div>
+            </div>
         </div>
+    </div>
 </div>
 <script>
     $(document).ready(function () {
@@ -77,134 +77,135 @@
 
     $("#addJobDetail").on("click", ".btn_save", function (e) {
         $("#preloader").show();
-                var Id = $("#addJobDetail").find('#txt_Id').val();
-                var Title = $("#addJobDetail").find('#txt_Title').val();
-                var Description = $("#addJobDetail").find('#txt_Description').val();
-                var CategoryId = $("#addJobDetail").find('.drp_categoryList').val();
-                var SubCategoryId = $("#addJobDetail").find('.drp_subcategory').val();
-                var Profession = $("#addJobDetail").find('.drp_profession').val();
-                var CountryId = $("#addJobDetail").find('.drp_country').val();
-                var CityId = $("#addJobDetail").find('.drp_city').val();
-                var CompanyName = $("#addJobDetail").find('#txt_CompanyName').val();
-                //  var experince = $("#addJobDetail").find('#drp_Experince').val();
-                var Type = $("#addJobDetail").find('#drp_Type').val();
-                var MinExperience = $("#addJobDetail").find('#txt_MinExperience').val();
-                var MaxExperience = $("#addJobDetail").find('#txt_MaxExperience').val();
-                var MinSalary = $("#addJobDetail").find('#txt_MinSalary').val();
-                var MaxSalary = $("#addJobDetail").find('#txt_MaxSalary').val();
-                var BriefDescription = $("#addJobDetail").find('#editor').val();
-                var Location = $("#addJobDetail").find('#txt_Location').val();
-                var IsVerified = $("#addJobDetail").find('#drp_IsVerified').val();
-                var ShowOnHome = $("#addJobDetail").find('#drp_ShowOnHome').val();
-                var CompanyLogo = $("#addJobDetail").find('#file_HiddenName').val();
-                var Selectedtechnology = $("#addJobDetail").find("#checkbox:checked").map(function () { return this.value; }).get().join(',');
+        $(".errorMessage").hide();
+        var Id = $("#addJobDetail").find('#txt_Id').val();
+        var Title = $("#addJobDetail").find('#txt_Title').val();
+        var Description = $("#addJobDetail").find('#txt_Description').val();
+        var CategoryId = $("#addJobDetail").find('.drp_categoryList').val();
+        var SubCategoryId = $("#addJobDetail").find('.drp_subcategory').val();
+        var Profession = $("#addJobDetail").find('.drp_profession').val();
+        var CountryId = $("#addJobDetail").find('.drp_country').val();
+        var CityId = $("#addJobDetail").find('.drp_city').val();
+        var CompanyName = $("#addJobDetail").find('#txt_CompanyName').val();
+        //  var experince = $("#addJobDetail").find('#drp_Experince').val();
+        var Type = $("#addJobDetail").find('#drp_Type').val();
+        var MinExperience = $("#addJobDetail").find('#txt_MinExperience').val();
+        var MaxExperience = $("#addJobDetail").find('#txt_MaxExperience').val();
+        var MinSalary = $("#addJobDetail").find('#txt_MinSalary').val();
+        var MaxSalary = $("#addJobDetail").find('#txt_MaxSalary').val();
+        var BriefDescription = $("#addJobDetail").find('#editor').val();
+        var Location = $("#addJobDetail").find('#txt_Location').val();
+        var IsVerified = $("#addJobDetail").find('#drp_IsVerified').val();
+        var ShowOnHome = $("#addJobDetail").find('#drp_ShowOnHome').val();
+        var CompanyLogo = $("#addJobDetail").find('#file_HiddenName').val();
+        var Selectedtechnology = $("#addJobDetail").find("#checkbox:checked").map(function () { return this.value; }).get().join(',');
 
-                var isError = false;
-                if (Title == "") {
-                        $("#addJobDetail").find('#label_error_Title').show();
-                        isError = true;
-                }
-                if (Description == "") {
-                        $("#addJobDetail").find('#label_error_Description').show();
-                        isError = true;
-                }
-                if (CategoryId == 0) {
-                        $("#addJobDetail").find('#label_error_Category').show();
-                        isError = true;
-                }
-                if (SubCategoryId == 0) {
-                        $("#addJobDetail").find('#label_error_SubCategory').show();
-                        isError = true;
-                }
-                if (Profession == 0) {
-                        $("#addJobDetail").find('#label_error_Profession').show();
-                        isError = true;
-                }
-                if (CountryId == 0) {
-                        $("#addJobDetail").find('#label_error_Country').show();
-                        isError = true;
-                }
-                if (CityId == 0) {
-                        $("#addJobDetail").find('#label_error_City').show();
-                        isError = true;
-                }
-                if (CompanyName == 0) {
-                        $("#addJobDetail").find('#label_error_CompanyName').show();
-                        isError = true;
-                }
-                if (Type == 0) {
-                        $("#addJobDetail").find('#label_error_Type').show();
-                        isError = true;
-                }
-                if (MinExperience >= 0) {
-                        $("#addJobDetail").find('#label_error_MinExperience').show();
-                        isError = true;
-                }
-                if (MaxExperience == 0) {
-                        $("#addJobDetail").find('#label_error_MaxExperience').show();
-                        isError = true;
-                }
-                if (MinSalary == 0) {
-                        $("#addJobDetail").find('#label_error_MinSalary').show();
-                        isError = true;
-                }
-                if (MaxSalary == 0) {
-                        $("#addJobDetail").find('#label_error_MaxSalary').show();
-                        isError = true;
-                }
-                if (Location == 0) {
-                        $("#addJobDetail").find('#label_error_Location').show();
-                        isError = true;
-                }
+        var isError = false;
+        if (Title == "") {
+            $("#addJobDetail").find('#label_error_Title').show();
+            isError = true;
+        }
+        if (Description == "") {
+            $("#addJobDetail").find('#label_error_Description').show();
+            isError = true;
+        }
+        if (CategoryId == 0) {
+            $("#addJobDetail").find('#label_error_Category').show();
+            isError = true;
+        }
+        if (SubCategoryId == 0) {
+            $("#addJobDetail").find('#label_error_SubCategory').show();
+            isError = true;
+        }
+        if (Profession == 0) {
+            $("#addJobDetail").find('#label_error_Profession').show();
+            isError = true;
+        }
+        if (CountryId == 0) {
+            $("#addJobDetail").find('#label_error_Country').show();
+            isError = true;
+        }
+        if (CityId == 0) {
+            $("#addJobDetail").find('#label_error_City').show();
+            isError = true;
+        }
+        if (CompanyName == 0) {
+            $("#addJobDetail").find('#label_error_CompanyName').show();
+            isError = true;
+        }
+        if (Type == 0) {
+            $("#addJobDetail").find('#label_error_Type').show();
+            isError = true;
+        }
+        if (parseInt(MinExperience) < 0) {
+            $("#addJobDetail").find('#label_error_MinExperience').show();
+            isError = true;
+        }
+        if (parseInt(MaxExperience) < 0) {
+            $("#addJobDetail").find('#label_error_MaxExperience').show();
+            isError = true;
+        }
+        if (parseInt(MinSalary) < 0) {
+            $("#addJobDetail").find('#label_error_MinSalary').show();
+            isError = true;
+        }
+        if (parseInt(MaxSalary) < 0) {
+            $("#addJobDetail").find('#label_error_MaxSalary').show();
+            isError = true;
+        }
+        if (Location == 0) {
+            $("#addJobDetail").find('#label_error_Location').show();
+            isError = true;
+        }
 
 
-                if (isError == true) {
+        if (isError == true) {
+            $("#preloader").hide();
+            return false
+        } else {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SaveJobDetailMaster", "JobDetails")',
+                data: {
+                    Id: Id,
+                    Title: Title,
+                    Description: Description,
+                    CategoryId: CategoryId,
+                    SubCategoryId: SubCategoryId,
+                    Profession: Profession,
+                    CountryId: CountryId,
+                    CityId: CityId,
+                    CompanyName: CompanyName,
+                    Type: Type,
+                    MinExperience: MinExperience,
+                    MaxExperience: MaxExperience,
+                    MinSalary: MinSalary,
+                    MaxSalary: MaxSalary,
+                    Description: Description,
+                    Location: Location,
+                    IsVerified: IsVerified,
+                    ShowOnHome: ShowOnHome,
+                    CompanyLogo: CompanyLogo,
+                    BriefDescription: BriefDescription,
+                    SelectedTechnologyString: Selectedtechnology
+                },
+                success: function (result) {
+
+                    $("#tableDiv").html("");
+                    $("#tableDiv").html(result);
                     $("#preloader").hide();
-                        return false
-                } else {
-                        $.ajax({
-                                type: "POST",
-                                url: '@Url.Action("SaveJobDetailMaster", "JobDetails")',
-                                data: {
-                                        Id: Id,
-                                        Title: Title,
-                                        Description: Description,
-                                        CategoryId: CategoryId,
-                                        SubCategoryId: SubCategoryId,
-                                        Profession: Profession,
-                                        CountryId: CountryId,
-                                        CityId: CityId,
-                                        CompanyName: CompanyName,
-                                        Type: Type,
-                                        MinExperience: MinExperience,
-                                        MaxExperience: MaxExperience,
-                                        MinSalary: MinSalary,
-                                        MaxSalary: MaxSalary,
-                                        Description: Description,
-                                        Location: Location,
-                                        IsVerified: IsVerified,
-                                        ShowOnHome: ShowOnHome,
-                                        CompanyLogo: CompanyLogo,
-                                        BriefDescription: BriefDescription,
-                                        SelectedTechnologyString: Selectedtechnology
-                                },
-                                success: function (result) {
-
-                                        $("#tableDiv").html("");
-                                        $("#tableDiv").html(result);
-                                        $("#preloader").hide();
-                                        $("#addJobDetail").find('.btn_Close').click();
-                                        dataTableJobDetail();
-                                    window.location.reload();
-                                    $("#alert_inquiry_success").html("Save successfully");
-                                    $("#alert_inquiry_success").show();
-                                    setTimeout(function () {
-                                        $("#alert_inquiry_success").hide();
-                                    }, 2000);
-                                }
-                        });
+                    $("#addJobDetail").find('.btn_Close').click();
+                    dataTableJobDetail();
+                    window.location.reload();
+                    $("#alert_inquiry_success").html("Save successfully");
+                    $("#alert_inquiry_success").show();
+                    setTimeout(function () {
+                        $("#alert_inquiry_success").hide();
+                    }, 2000);
                 }
-        });
+            });
+        }
+    });
 
     $("#tblJobDetails").on("click", ".editRow", function () {
         $("#preloader").show();
@@ -278,15 +279,17 @@
      $("#tableDiv").on("click", ".Deactive", function () {
                 var Id = $(this).attr("data-id");
                 var parentTr = $(this).parent().parent();
-                var btn = '<i class="fa fa-check-square fa-check-css Active" data-id="' + Id + '" title="Active"></i>';
-
+                var btn = '<i class="fa fa-check-square fa-check-css green Active" data-id="' + Id + '" title="Active"></i>';
+                var lab = '<label class="Active">Deactive</label>';
                    $("#preloader").show();
                    $.ajax({
                            url: '@Url.Action("isDeactive", "JobDetails")',
                            data: { Id: Id, value: "deactive" },
                            success: function (data) {
-                                   $(parentTr).find("td:eq(8)").find(".Deactive").remove();
-                                   $(parentTr).find("td:eq(8)").append(btn);
+                                   $(parentTr).find("td:eq(7)").find(".Deactive").remove();
+                               $(parentTr).find("td:eq(7)").append(lab);
+                               $(parentTr).find("td:eq(8)").find(".Deactive").remove();
+                               $(parentTr).find("td:eq(8)").append(btn);
                                $("#preloader").hide();
                                $("#alert_inquiry_success").html("Deactive Sussesfully");
                                $("#alert_inquiry_success").show();
@@ -300,15 +303,18 @@
     $("#tableDiv").on("click", ".Active", function () {
                 var Id = $(this).attr("data-id");
                 var parentTr = $(this).parent().parent();
-                var btn = '<i class="fa fa-ban fa-ban-css Deactive" data-id="' + Id + '" title="De-Active"></i>';
+        var btn = '<i class="fa fa-ban fa-ban-css red Deactive" data-id="' + Id + '" title="De-Active"></i>';
+        var lab = ' <label class="Deactive">Active</label>';
                  $("#preloader").show();
                  $.ajax({
                          url: '@Url.Action("isDeactive", "JobDetails")',
                          data: { Id: Id, value: "active" },
                          success: function (data) {
-                                 $(parentTr).find("td:eq(8)").find(".Active").remove();
-                                 $(parentTr).find("td:eq(8)").append(btn);
-                             $("#preloader").hide();
+                                 $(parentTr).find("td:eq(7)").find(".Active").remove();
+                             $(parentTr).find("td:eq(7)").append(lab);
+                             $(parentTr).find("td:eq(8)").find(".Active").remove();
+                             $(parentTr).find("td:eq(8)").append(btn);
+                             $("#preloader").hide(); 
                              $("#alert_inquiry_success").html("Active Sussesfully");
                              $("#alert_inquiry_success").show();
                              setTimeout(function () {

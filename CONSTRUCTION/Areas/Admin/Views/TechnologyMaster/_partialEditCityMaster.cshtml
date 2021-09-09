@@ -7,7 +7,7 @@
 <input type="hidden" id="txt_tech" value="@Model.teckmaster" />
 <div class="card profile-card mb-3">
     <div class="card-body">
-        <div class="row formGroup" style="align-items:flex-end">
+        <div class="row formGroup">
             <div class="col-sm-4">
                 <label>City</label>
                 <div class="select-box">
@@ -72,11 +72,11 @@
         <div class="row formGroup">
             <div class="col-sm-12">
                 <label>Brief Description</label>
-                <textarea id="editor" name="editor">@Model.BriefDescription</textarea>
+                <textarea id="editor2" name="editor2">@Model.BriefDescription</textarea>
             </div>
         </div>
     </div>
 </div>
 <script>
-    CKEDITOR.replace('editor');
+    CKEDITOR.replace('editor2');
 </script>

@@ -5,26 +5,37 @@
         <tr>
             <th>JobQualification</th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@item.Qualification</td>
-                <td class="light-gray text-right d-flex align-items-center">
-                    @if (item.isactive == true)
-                    {
-                        <i class="fa fa-ban fa-ban-css red Deactive" data-id="@item.Id" title="De-Active"></i>
-                    }
-                    else
-                    {
-                        <i class="fa fa-check-square fa-check-css green Active" data-id="@item.Id" title="Active"></i>
-                    }
-                    <i class="editRow fa fa-pencil creamy ml-2 pr-2" aria-hidden="true" data-id="@item.Id" data-toggle="modal" data-target="#addQualification" title="Edit"></i>
-                    @*<i class="fa fa-times red ml-2 pr-2" aria-hidden="true"></i>*@
-                </td>
-            </tr>
+        <tr>
+            <td>@item.Qualification</td>
+            <td>
+                @if (item.isactive == true)
+                {
+                    <label class="Deactive">Active</label>
+                }
+                else
+                {
+                    <label class="Active">Deactive</label>
+                }
+            </td>
+            <td class="light-gray text-right d-flex align-items-center">
+                <i class="editRow fa fa-pencil creamy ml-2 pr-2" aria-hidden="true" data-id="@item.Id" data-toggle="modal" data-target="#addQualification" title="Edit"></i>
+                @if (item.isactive == true)
+                {
+                    <i class="fa fa-ban fa-ban-css red Deactive" data-id="@item.Id" title="De-Active"></i>
+                }
+                else
+                {
+                    <i class="fa fa-check-square fa-check-css green Active" data-id="@item.Id" title="Active"></i>
+                }
+                @*<i class="fa fa-times red ml-2 pr-2" aria-hidden="true"></i>*@
+            </td>
+        </tr>
         }
     </tbody>
 </table>
