@@ -27,14 +27,14 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             if (Id > 0)
             {
                 var data = _db.tblTechnologyMasters.Where(x => x.Id == Id).FirstOrDefault();
-                if (data!=null)
+                if (data != null)
                 {
                     model.Id = data.Id;
                     model.Name = data.Name;
                     model.Image = data.Image;
                     model.FocusKeyphrase = data.FocusKeyphrase;
-                    model.SEOtitle = data.SEOtitle; 
-                    model.Slug = data.Slug; 
+                    model.SEOtitle = data.SEOtitle;
+                    model.Slug = data.Slug;
                     model.MetaDescription = data.MetaDescription;
                     model.BriefDescription = data.BriefDescription;
                     model.IsCrawl = (bool)data.IsCrawl;
@@ -53,7 +53,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             return PartialView("_partialCityMaster", model);
         }
 
-        public ActionResult EditCityMaster(int id = 0,int teckId=0)
+        public ActionResult EditCityMaster(int id = 0, int teckId = 0)
         {
             AddcityViewModel model = new AddcityViewModel();
             if (id > 0)
@@ -78,12 +78,12 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             }
             else
             {
-                 model.drpcity = _commonMethod.GetCity();
+                model.drpcity = _commonMethod.GetCity();
                 model.teckmasterId = teckId;
             }
             return PartialView("_partialEditCityMaster", model);
         }
-        public ActionResult TechnologyMasterList()
+        public ActionResult TechnologyMasterList(string Status = "active")
         {
             List<TechnologyMasterViewModel> model = new List<TechnologyMasterViewModel>();
             var data = _db.tblTechnologyMasters.ToList();
@@ -91,19 +91,27 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             {
                 TechnologyMasterViewModel m = new TechnologyMasterViewModel();
                 m.Id = item.Id;
-                m.Name = item.Name; 
+                m.Name = item.Name;
                 m.Image = item.Image;
                 m.isactive = Convert.ToBoolean(item.isActive);
                 m.Slug = item.Slug;
                 m.SEOtitle = item.SEOtitle;
                 model.Add(m);
             }
+            if (Status == "active")
+            {
+                model = model.Where(x => x.isactive == true).ToList();
+            }
+            else
+            {
+                model = model.Where(x => x.isactive == false).ToList();
+            }
             return PartialView("_partialTechnologyMasterList", model);
         }
-        public ActionResult TechnologyCitylist(int Id=0)
+        public ActionResult TechnologyCitylist(int Id = 0)
         {
             List<AddcityViewModel> model = new List<AddcityViewModel>();
-            var data = _db.tblAddCityTechMasters.Where(x=>x.TechMasterId == Id).ToList();
+            var data = _db.tblAddCityTechMasters.Where(x => x.TechMasterId == Id).ToList();
             foreach (var item in data)
             {
                 AddcityViewModel m = new AddcityViewModel();
@@ -119,7 +127,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 m.isactive = Convert.ToBoolean(item.isActive);
                 model.Add(m);
             }
-            Tuple<List<AddcityViewModel>, int> tuple = new Tuple<List<AddcityViewModel>, int>(model,Id);
+            Tuple<List<AddcityViewModel>, int> tuple = new Tuple<List<AddcityViewModel>, int>(model, Id);
             return PartialView("_partialTechnologyCityList", tuple);
         }
 
@@ -156,7 +164,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 _db.tblAddCityTechMasters.Add(data);
                 _db.SaveChanges();
             }
-            return RedirectToAction("AddCityMaster",new{ Id = model.teckmasterId });
+            return RedirectToAction("AddCityMaster", new { Id = model.teckmasterId });
         }
         public ActionResult DeletecityMaster(int Id)
         {
