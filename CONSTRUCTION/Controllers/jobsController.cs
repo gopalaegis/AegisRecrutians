@@ -16,7 +16,7 @@ namespace CONSTRUCTION.Controllers
         {
             int technologyId = 0;
             SEOModel seo = new SEOModel();
-            var technologyName = _db.tblTechnologyMasters.Where(x => x.Slug == slugURL).FirstOrDefault();
+            var technologyName = _db.tblTechnologyMasters.Where(x => x.Slug == slugURL && x.isActive == true).FirstOrDefault();
             if (technologyName != null)
             {
                 technologyId = technologyName.Id;
@@ -33,7 +33,7 @@ namespace CONSTRUCTION.Controllers
                 seo.cityId = 0;
             }
             else {
-                var technologyNameCity = _db.tblAddCityTechMasters.Where(x => x.Slug == slugURL).FirstOrDefault();
+                var technologyNameCity = _db.tblAddCityTechMasters.Where(x => x.Slug == slugURL && x.isActive == true).FirstOrDefault();
                 if (technologyNameCity != null)
                 {
                     technologyId = Convert.ToInt32(technologyNameCity.TechMasterId);
@@ -69,7 +69,7 @@ namespace CONSTRUCTION.Controllers
             List<JobDetailViewModel> m = new List<JobDetailViewModel>();
             title = title.ToLower();
             var technologyWiseList = _db.JobWiseTechnologies.Where(x => x.TechnologyId == TechnologyId).Select(x => x.JobId).ToList();
-            var d = _db.tblJobDetails.Where(x=>x.Title.ToLower().Contains(title)).ToList();
+            var d = _db.tblJobDetails.Where(x=>x.Title.ToLower().Contains(title) && x.isActive == true).ToList();
             if (TechnologyId > 0)
             {
                 d = d.Where(x => technologyWiseList.Contains(x.Id)).ToList();
