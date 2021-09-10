@@ -129,7 +129,8 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 record.isActive = true;
                 _db.SaveChanges();
             }
-            return RedirectToAction("ContentMasterList");
+            string status = value == "deactive" ? "active" : "deactive";
+            return RedirectToAction("ContentMasterList", new { Status = status });
         }
     }
 }

@@ -50,6 +50,7 @@ namespace CONSTRUCTION.Models
         public List<string> JobTitleList { get; set; }
         public List<string> YearofActiveList { get; set; }
         public string Resume { get; set; }
+        public bool isactive { get; set; }
         public int JobId { get; set; }
         public string Job { get; set; }
         public string URL { get; set; }

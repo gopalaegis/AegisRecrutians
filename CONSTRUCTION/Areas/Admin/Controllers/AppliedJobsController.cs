@@ -18,7 +18,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult AppliedJobList()
+        public ActionResult AppliedJobList(string Status = "active")
         {
             List<ApplyJobViewModel> model = new List<ApplyJobViewModel>();
             var data = _db.tblApplyJobDetails.ToList();
@@ -33,9 +33,18 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                     Gender = item.Gender,
                     Email = item.Email,
                     PhoneNo1 = item.Mobile,
+                    isactive = (bool)item.isActive,
                     Job = j != null ? j.Title : ""
                 };
                 model.Add(m);
+            }
+            if (Status == "active")
+            {
+                model = model.Where(x => x.isactive == true).ToList();
+            }
+            else
+            {
+                model = model.Where(x => x.isactive == false).ToList();
             }
             return PartialView("_partialAppliedJobList", model);
         }
@@ -102,6 +111,24 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 }
             }
             return PartialView("_partialAppliedJobDetail", model);
+        }
+
+        public ActionResult isDeactive(int Id, string value)
+        {
+            if (value == "deactive")
+            {
+                var record = _db.tblApplyJobDetails.Where(x => x.Id == Id).FirstOrDefault();
+                record.isActive = false;
+                _db.SaveChanges();
+            }
+            else
+            {
+                var record = _db.tblApplyJobDetails.Where(x => x.Id == Id).FirstOrDefault();
+                record.isActive = true;
+                _db.SaveChanges();
+            }
+            string status = value == "deactive" ? "active" : "deactive";
+            return RedirectToAction("AppliedJobList", new { Status = status });
         }
     }
 }

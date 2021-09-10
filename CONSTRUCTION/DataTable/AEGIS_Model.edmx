@@ -49,6 +49,7 @@
           <Property Name="CountryId" Type="int" />
           <Property Name="StateId" Type="int" />
           <Property Name="Resume" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
         </EntityType>
         <EntityType Name="tblApplyJobEducation">
           <Key>
@@ -333,6 +334,7 @@
           <Property Name="CountryId" Type="Int32" />
           <Property Name="StateId" Type="Int32" />
           <Property Name="Resume" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="tblApplyJobEducation">
           <Key>
@@ -561,6 +563,7 @@
           <EntitySetMapping Name="tblApplyJobDetails">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblApplyJobDetail">
               <MappingFragment StoreEntitySet="tblApplyJobDetails">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="Resume" ColumnName="Resume" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
                 <ScalarProperty Name="CountryId" ColumnName="CountryId" />

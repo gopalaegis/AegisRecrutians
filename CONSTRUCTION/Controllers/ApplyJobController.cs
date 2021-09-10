@@ -111,6 +111,7 @@ namespace CONSTRUCTION.Controllers
             data.StateId = model.StateId;
             data.JobId = model.JobId;
             data.Resume = model.Resume;
+            data.isActive = true;
             _db.tblApplyJobDetails.Add(data);
             _db.SaveChanges();
 
