@@ -1032,3 +1032,20 @@ textarea.form-control {height: 100%;font-family: inherit;}
 .errorMessage {
     color: red;
 }
+#jobDiv-style h1 {
+    font-weight: 100;
+    font-size: 2rem;
+}
+#jobDiv-style p {
+    font-size: 13px;
+    line-height: 1.6;
+    word-wrap: break-word;
+}
+#jobDiv-style h2 {
+    font-weight: normal;
+    line-height: 1.2;
+}
+#jobDiv-style h3 {
+    font-weight: normal;
+    line-height: 1rem;
+}
