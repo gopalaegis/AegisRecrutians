@@ -45,7 +45,19 @@
                                         </div>
                                         <div class="col-sm-6">
                                                 <label>City <span style="color:red">*</span></label>
-                                                @Html.DropDownListFor(model => model.CityList, new SelectList(Model.CityList, "Value", "Text"), new { @class = "form-control custom-select drp_city" })
+                                                <select class="form-control custom-select drp_city" id="CityList" name="CityList">
+                                                        @foreach (var item in Model.CityList)
+                                                        {
+                                                                if (Model.CityId.ToString() == item.Value)
+                                                                {
+                                                                        <option value="@item.Value" selected="selected">@item.Text</option>
+                                                                }
+                                                                else
+                                                                {
+                                                                        <option value="@item.Value">@item.Text</option>
+                                                                }
+                                                        }
+                                                </select>                                                
                                                 <label id="label_error_City" class="errorMessage" style="display: none; color: red">City is required</label>
                                         </div>
                                 </div>
