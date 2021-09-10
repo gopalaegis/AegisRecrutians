@@ -27,6 +27,7 @@
                     </select>
                 </div>
                 <label id="label_error_City" class="errorMessage" style="display:none;">City is required</label>
+                <label id="label_error_CityExist" class="errorMessage" style="display:none;">City is already Exist</label>
             </div>
             <div class="col-sm-4">
                 <label>Focus Keyphrase</label>
@@ -64,7 +65,11 @@
                 <label>Schema Tags</label>
                 <input type="text" id="txt_Tags" value="@Model.SchemaTags" placeholder="Schema Tags" class="form-control" />
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-4">
+                <label>H1</label>
+                <input type="text" id="txt_H1" value="@Model.H1" placeholder="H1" class="form-control" />
+            </div>
+            <div class="col-sm-4">
                 <label>Meta Description</label>
                 <textarea id="txt_description" placeholder="Meta Description" class="form-control">@Model.MetaDescription</textarea>
             </div>

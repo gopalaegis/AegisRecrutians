@@ -12,6 +12,7 @@
                         <label>Name <span style="color:red">*</span></label>
                         <input type="text" id="txt_Name" value="@Model.Name" placeholder="Name" class="form-control" />
                         <label id="label_error_Name" class="errorMessage" style="display:none;">Name is required</label>
+                        <label id="label_error_NameExist" class="errorMessage" style="display:none;">Name is already Exist</label>
                     </div>
                     <div class="col-sm-4">
                         <label>Image <span class="red">*</span></label>
@@ -68,7 +69,11 @@
                     </div>
                 </div>
                 <div class="row formGroup">
-                    <div class="col-sm-12">
+                    <div class="col-sm-4">
+                        <label>H1</label>
+                        <input type="text" id="txt_H1" value="@Model.H1" placeholder="H1" class="form-control" />
+                    </div>
+                    <div class="col-sm-8">
                         <label>Meta Description</label>
                         <textarea id="txt_description" placeholder="Meta Description" class="form-control">@Model.MetaDescription</textarea>
                     </div>

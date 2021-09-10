@@ -34,6 +34,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                     model.Image = data.Image;
                     model.FocusKeyphrase = data.FocusKeyphrase;
                     model.SEOtitle = data.SEOtitle;
+                    model.H1 = data.H1;
                     model.Slug = data.Slug;
                     model.MetaDescription = data.MetaDescription;
                     model.BriefDescription = data.BriefDescription;
@@ -67,6 +68,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                     model.teckmasterId = (int)data.TechMasterId;
                     model.FocusKeyphrase = data.FocusKeyphrase;
                     model.SEOtitle = data.SEOtitle;
+                    model.H1 = data.H1;
                     model.Slug = data.Slug;
                     model.MetaDescription = data.MetaDescription;
                     model.BriefDescription = data.BriefDescription;
@@ -120,6 +122,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 m.city = _db.tblCities.Where(x => x.Id == item.CityId).Select(x => x.Name).FirstOrDefault();
                 m.FocusKeyphrase = item.FocusKeyphrase;
                 m.SEOtitle = item.SEOtitle;
+                m.H1 = item.H1;
                 m.Slug = item.Slug;
                 m.IsCrawl = (bool)item.IsCrawl;
                 m.CanonicalURL = item.CanonicalURL;
@@ -143,10 +146,16 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
         {
             if (model.id > 0)
             {
+                var exist = _db.tblAddCityTechMasters.Where(x => x.Id != model.id && x.TechMasterId == model.teckmasterId && x.CityId == model.cityId).ToList();
+                if (exist.Count > 0)
+                {
+                    return Json("Error", JsonRequestBehavior.AllowGet);
+                }
                 var data = _db.tblAddCityTechMasters.Where(x => x.Id == model.id).FirstOrDefault();
                 data.CityId = model.cityId;
                 data.FocusKeyphrase = model.FocusKeyphrase;
                 data.SEOtitle = model.SEOtitle;
+                data.H1 = model.H1;
                 data.Slug = model.Slug;
                 data.MetaDescription = model.MetaDescription;
                 data.IsCrawl = model.IsCrawl;
@@ -157,11 +166,17 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             }
             else
             {
+                var exist = _db.tblAddCityTechMasters.Where(x => x.TechMasterId == model.teckmasterId && x.CityId == model.cityId).ToList();
+                if (exist.Count > 0)
+                {
+                    return Json("Error", JsonRequestBehavior.AllowGet);
+                }
                 tblAddCityTechMaster data = new tblAddCityTechMaster();
                 data.CityId = model.cityId;
                 data.TechMasterId = model.teckmasterId;
                 data.FocusKeyphrase = model.FocusKeyphrase;
                 data.SEOtitle = model.SEOtitle;
+                data.H1 = model.H1;
                 data.Slug = model.Slug;
                 data.MetaDescription = model.MetaDescription;
                 data.IsCrawl = model.IsCrawl;
@@ -186,13 +201,20 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult SaveTechnologyMaster(TechnologyMasterViewModel model)
         {
+            model.Name = model.Name.Trim();
             if (model.Id > 0)
             {
+                var exist = _db.tblTechnologyMasters.Where(x => x.Id != model.Id && x.Name.ToLower() == model.Name.ToLower()).ToList();
+                if (exist.Count > 0)
+                {
+                    return Json("Error", JsonRequestBehavior.AllowGet);
+                }
                 var data = _db.tblTechnologyMasters.Where(x => x.Id == model.Id).FirstOrDefault();
                 data.Image = model.Image;
                 data.Name = model.Name;
                 data.FocusKeyphrase = model.FocusKeyphrase;
                 data.SEOtitle = model.SEOtitle;
+                data.H1 = model.H1;
                 data.Slug = model.Slug;
                 data.MetaDescription = model.MetaDescription;
                 data.BriefDescription = model.BriefDescription;
@@ -204,11 +226,17 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             }
             else
             {
+                var exist = _db.tblTechnologyMasters.Where(x => x.Name.ToLower() == model.Name.ToLower()).ToList();
+                if (exist.Count > 0)
+                {
+                    return Json("Error", JsonRequestBehavior.AllowGet);
+                }
                 tblTechnologyMaster data = new tblTechnologyMaster();
                 data.Name = model.Name;
                 data.Image = model.Image;
                 data.FocusKeyphrase = model.FocusKeyphrase;
                 data.SEOtitle = model.SEOtitle;
+                data.H1 = model.H1;
                 data.Slug = model.Slug;
                 data.MetaDescription = model.MetaDescription;
                 data.BriefDescription = model.BriefDescription;

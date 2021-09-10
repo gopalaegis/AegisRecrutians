@@ -1,84 +1,84 @@
 ﻿
 @{
-        ViewBag.Title = "Technology Master";
+    ViewBag.Title = "Technology Master";
 }
 <div id="addTechnology" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-xl modal-dialog-scrollable">
-                <!-- Modal content-->
-                <div class="modal-content">
-                        <div class="modal-header">
-                                <h4 class="modal-title modal_text">Technology Detail</h4>
-                        </div>
-                        <div class="modal-body">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title modal_text">Technology Detail</h4>
+            </div>
+            <div class="modal-body">
 
-                        </div>
-                        @*<div class="modal-footer">
-                                    <button type="button" class="btn btn-primary btn_save">Save</button>
-                                    <button type="button" class="btn btn-default btn_Close" data-dismiss="modal">Close</button>
-                                </div>*@
-                </div>
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn_save">Save</button>
+                    <button type="button" class="btn btn-default btn_Close" data-dismiss="modal">Close</button>
+                </div>*@
         </div>
+    </div>
 </div>
 @*--------------------Add city Popup------------------*@
 
 <div class="right-side">
-        <div id="AddTeckCity" class="modal fade allied-job-main" role="dialog">
-                <div class="modal-dialog modal-xl modal-dialog-scrollable">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                                <div class="modal-header">
-                                        <div class="heading modal-title modal_text">Technology Detail</div>
-                                        <div>
-                                                <div class="catagory-detail" style="float:right;margin-left:5px;">
-                                                        <div class="catagory-flex1">
-                                                                <div><span class="add-catagory-btn" id="btnAddcity"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
-                                                                <button class="add-catagory-btn w-100" id="btn_List" style="display:none;"><i class="fa fa-arrow-left"></i> back To list</button>
-                                                        </div>
-                                                </div>
-                                                <label class="switch">
-                                                        <input id="chk_listFilter_city" type="checkbox" checked>
-                                                        <span class="slider round"></span>
-                                                </label>
-                                                <label style="float:right;"> Filter Active / Deactive : </label>
-                                        </div>
-                                </div>
-                                <div class="modal-body">
-
-                                </div>
-                                <div class="modal-footer">
-                                        <button type="button" class="btn btn_save common-btn" style="display:none;">Save</button>
-                                        <button type="button" class="btn btn-default btn_Close" data-dismiss="modal">Close</button>
-                                </div>
+    <div id="AddTeckCity" class="modal fade allied-job-main" role="dialog">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="heading modal-title modal_text">Technology Detail</div>
+                    <div>
+                        <div class="catagory-detail" style="float:right;margin-left:5px;">
+                            <div class="catagory-flex1">
+                                <div><span class="add-catagory-btn" id="btnAddcity"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
+                                <button class="add-catagory-btn w-100" id="btn_List" style="display:none;"><i class="fa fa-arrow-left"></i> back To list</button>
+                            </div>
                         </div>
+                        <label class="switch">
+                            <input id="chk_listFilter_city" type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <label style="float:right;"> Filter Active / Deactive : </label>
+                    </div>
                 </div>
-        </div>
-        <div class="heading">
-                Technology
+                <div class="modal-body">
 
-                <label class="switch">
-
-                        <input id="chk_listFilter" type="checkbox" checked>
-                        <span class="slider round"></span>
-                </label>
-                <label style="float:right;"> Filter Active / Deactive : </label>
-
-        </div>
-
-        <div class="data-table style-1">
-
-                <div class="box-table">
-                        <div class="skill-table">
-                                <div class="catagory-detail">
-                                        <div class="catagory-flex1">
-                                                <div><span class="add-catagory-btn" id="btnAddTech" data-toggle="modal" data-target="#addTechnology"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
-                                        </div>
-                                </div>
-                                <div id="tableDiv">
-                                        @Html.Action("TechnologyMasterList", "TechnologyMaster", new { Status = "active" })
-                                </div>
-                        </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn_save common-btn" style="display:none;">Save</button>
+                    <button type="button" class="btn btn-default btn_Close" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="heading">
+        Technology
+
+        <label class="switch">
+
+            <input id="chk_listFilter" type="checkbox" checked>
+            <span class="slider round"></span>
+        </label>
+        <label style="float:right;"> Filter Active / Deactive : </label>
+
+    </div>
+
+    <div class="data-table style-1">
+
+        <div class="box-table">
+            <div class="skill-table">
+                <div class="catagory-detail">
+                    <div class="catagory-flex1">
+                        <div><span class="add-catagory-btn" id="btnAddTech" data-toggle="modal" data-target="#addTechnology"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
+                    </div>
+                </div>
+                <div id="tableDiv">
+                    @Html.Action("TechnologyMasterList", "TechnologyMaster", new { Status = "active" })
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
         $(document).ready(function () {
@@ -189,11 +189,11 @@
                         data: {
                                 Id: id
                         },
-                        success: function (data) {
-                                $("#addTechnology").editcity(".modal-body").html("");
-                                $("#addTechnology").find(".modal-body").html(data);
-                                $("#preloader").hide();
-                        }
+                    success: function (data) {
+                        $("#addTechnology").find(".modal-body").html("");
+                        $("#addTechnology").find(".modal-body").html(data);
+                        $("#preloader").hide();
+                    }
                 });
         });
 
@@ -228,57 +228,66 @@
                 }
         });
 
-        $("#addTechnology").on("click", ".btn_save", function (e) {
-                $("#preloader").show();
-                $(".errorMessage").hide();
-                var Id = $("#addTechnology").find('#txt_Id').val();
-                var Name = $("#addTechnology").find('#txt_Name').val();
-                var Image = $("#addTechnology").find('#file_HiddenName').val();
-                var key = $("#addTechnology").find('#txt_FKeyphrase').val();
-                var seo = $("#addTechnology").find('#txt_Seotitle').val();
-                var slug = $("#addTechnology").find('#txt_Slug').val();
-                var crawl = $("#addTechnology").find('#chk_Crawl').prop("checked");
-                var url = $("#addTechnology").find('#txt_URL').val();
-                var tag = $("#addTechnology").find('#txt_Tags').val();
-                var description = $("#addTechnology").find('#txt_description').val();
-                var briefDescription = CKEDITOR.instances['editor'].getData();
-                var isError = false;
+    $("#addTechnology").on("click", ".btn_save", function (e) {
+        $("#preloader").show();
+        $(".errorMessage").hide();
+        var Id = $("#addTechnology").find('#txt_Id').val();
+        var Name = $("#addTechnology").find('#txt_Name').val();
+        var Image = $("#addTechnology").find('#file_HiddenName').val();
+        var key = $("#addTechnology").find('#txt_FKeyphrase').val();
+        var seo = $("#addTechnology").find('#txt_Seotitle').val();
+        var h1 = $("#addTechnology").find('#txt_H1').val();
+        var slug = $("#addTechnology").find('#txt_Slug').val();
+        var crawl = $("#addTechnology").find('#chk_Crawl').prop("checked");
+        var url = $("#addTechnology").find('#txt_URL').val();
+        var tag = $("#addTechnology").find('#txt_Tags').val();
+        var description = $("#addTechnology").find('#txt_description').val();
+        var briefDescription = CKEDITOR.instances['editor'].getData();
+        var isError = false;
+        debugger
+        if (Name == "") {
+            $("#addTechnology").find('#label_error_Name').show();
+            isError = true;
+        }
+        if (Image == "") {
+            $("#addTechnology").find('#label_error_Image').show();
+            isError = true;
+        }
 
-                if (Name == "") {
-                        $("#addTechnology").find('#label_error_Name').show();
-                        isError = true;
-                }
-                if (Image == "") {
-                        $("#addTechnology").find('#label_error_Image').show();
-                        isError = true;
-                }
+        var bDescription = JSON.stringify({
+            BriefDescription: briefDescription, SchemaTags:tag
+        });
 
-                var bDescription = JSON.stringify({ BriefDescription: briefDescription });
-
-                if (isError == true) {
+        if (isError == true) {
+            $("#preloader").hide();
+            return false
+        } else {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: '@Url.Action("SaveTechnologyMaster", "TechnologyMaster")?Id=' + Id + '&Image=' + Image + '&Name=' + Name + '&FocusKeyphrase=' + key + '&SEOtitle=' + seo + '&H1=' + h1 + '&Slug=' + slug + '&MetaDescription=' + description + '&IsCrawl=' + crawl + '&CanonicalURL=' + url,
+                data: bDescription,
+                success: function (result) {
+                    if (result == "Error") {
+                        $("#addTechnology").find('#label_error_NameExist').show();
                         $("#preloader").hide();
                         return false
-                } else {
-                        $.ajax({
-                                type: "POST",
-                                contentType: "application/json; charset=utf-8",
-                                url: '@Url.Action("SaveTechnologyMaster", "TechnologyMaster")?Id=' + Id + '&Image=' + Image + '&Name=' + Name + '&FocusKeyphrase=' + key + '&SEOtitle=' + seo + '&Slug=' + slug + '&MetaDescription=' + description + '&IsCrawl=' + crawl + '&CanonicalURL=' + url + '&SchemaTags=' + tag,
-                                data: bDescription,
-                                success: function (result) {
-                                        $("#tableDiv").html("");
-                                        $("#tableDiv").html(result);
-                                        $("#preloader").hide();
-                                        $("#addTechnology").find('.btn_Close').click();
-                                        dataTableTechnology();
-                                        $("#alert_inquiry_success").html("Save successfully");
-                                        $("#alert_inquiry_success").show();
-                                        setTimeout(function () {
-                                                $("#alert_inquiry_success").hide();
-                                        }, 2000);
-                                }
-                        });
+                    } else {
+                        $("#addTechnology").find('.btn_Close').click();
+                        $("#tableDiv").html("");
+                        $("#tableDiv").html(result);
+                        $("#preloader").hide();
+                        dataTableTechnology();
+                        $("#alert_inquiry_success").html("Save successfully");
+                        $("#alert_inquiry_success").show();
+                        setTimeout(function () {
+                            $("#alert_inquiry_success").hide();
+                        }, 2000);
+                    }
                 }
-        });
+            });
+        }
+    });
 
         $("#tableDiv").on("click", ".editcity", function () {
                 var id = $(this).attr('data-id');
@@ -416,6 +425,7 @@
                 var City = $("#AddTeckCity").find('#txt_city').val();
                 var key = $("#AddTeckCity").find('#txt_FKeyphrase').val();
                 var seo = $("#AddTeckCity").find('#txt_Seotitle').val();
+                var h1 = $("#AddTeckCity").find('#txt_H1').val();
                 var slug = $("#AddTeckCity").find('#txt_Slug').val();
                 var crawl = $("#AddTeckCity").find('#chk_Crawl').prop("checked");
                 var url = $("#AddTeckCity").find('#txt_URL').val();
@@ -428,31 +438,37 @@
                         $("#AddTeckCity").find('#label_error_City').show();
                         isError = true;
                 }
-                var bDescription = JSON.stringify({ BriefDescription: briefDescription });
+                var bDescription = JSON.stringify({ BriefDescription: briefDescription, SchemaTags: tag });
                 if (isError == true) {
                         $("#preloader").hide();
                         return false
                 } else {
                         $.ajax({
                                 type: "POST",
-                                contentType: "application/json; charset=utf-8",
-                                url: '@Url.Action("SaveCityMaster", "TechnologyMaster")?Id=' + Id + '&cityId=' + City + '&teckmasterId=' + techId + '&FocusKeyphrase=' + key + '&SEOtitle=' + seo + '&Slug=' + slug +
-                                        '&MetaDescription=' + description + '&IsCrawl=' + crawl + '&CanonicalURL=' + url + '&SchemaTags=' + tag,
+                            contentType: "application/json; charset=utf-8",
+                            url: '@Url.Action("SaveCityMaster", "TechnologyMaster")?Id=' + Id + '&cityId=' + City + '&teckmasterId=' + techId + '&FocusKeyphrase=' + key + '&SEOtitle=' + seo + '&H1=' + h1 + '&Slug=' + slug +
+                                        '&MetaDescription=' + description + '&IsCrawl=' + crawl + '&CanonicalURL=' + url,
                                 data: bDescription,
-                                success: function (result) {
-                                        $("#AddTeckCity").find("#btnAddcity").show();
-                                        $("#AddTeckCity").find(".btn_save").hide();
-                                        $("#AddTeckCity").find("#btn_List").click();
-                                        $("#AddTeckCity").find("#btn_List").hide();
-                                        $("#AddTeckCity").find(".modal-body").html("");
-                                        $("#AddTeckCity").find(".modal-body").html(result);
-                                        $("#preloader").hide();
-                                        $("#alert_inquiry_success").html("Save successfully");
-                                        $("#alert_inquiry_success").show();
-                                        setTimeout(function () {
-                                                $("#alert_inquiry_success").hide();
-                                        }, 2000);
+                            success: function (result) {
+                                if (result == "Error") {
+                                    $("#AddTeckCity").find('#label_error_CityExist').show();
+                                    $("#preloader").hide();
+                                    return false
+                                } else {
+                                    $("#AddTeckCity").find("#btnAddcity").show();
+                                    $("#AddTeckCity").find(".btn_save").hide();
+                                    $("#AddTeckCity").find("#btn_List").click();
+                                    $("#AddTeckCity").find("#btn_List").hide();
+                                    $("#AddTeckCity").find(".modal-body").html("");
+                                    $("#AddTeckCity").find(".modal-body").html(result);
+                                    $("#preloader").hide();
+                                    $("#alert_inquiry_success").html("Save successfully");
+                                    $("#alert_inquiry_success").show();
+                                    setTimeout(function () {
+                                        $("#alert_inquiry_success").hide();
+                                    }, 2000);
                                 }
+                            }
                         });
                 }
         });

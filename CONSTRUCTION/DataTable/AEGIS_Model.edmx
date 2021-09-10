@@ -29,6 +29,7 @@
           <Property Name="SchemaTags" Type="nvarchar(max)" />
           <Property Name="isActive" Type="bit" />
           <Property Name="BriefDescription" Type="nvarchar(max)" />
+          <Property Name="H1" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tblApplyJobDetails">
           <Key>
@@ -241,6 +242,7 @@
           <Property Name="isActive" Type="bit" />
           <Property Name="BriefDescription" Type="nvarchar(max)" />
           <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="H1" Type="nvarchar(max)" />
         </EntityType>
         <EntityContainer Name="AEGIS_ConstructionModelStoreContainer">
           <EntitySet Name="JobWiseTechnology" EntityType="Self.JobWiseTechnology" Schema="dbo" store:Type="Tables" />
@@ -314,6 +316,7 @@
           <Property Name="SchemaTags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="isActive" Type="Boolean" />
           <Property Name="BriefDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="H1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblApplyJobDetail">
           <Key>
@@ -526,6 +529,7 @@
           <Property Name="isActive" Type="Boolean" />
           <Property Name="BriefDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="H1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -545,6 +549,7 @@
           <EntitySetMapping Name="tblAddCityTechMasters">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblAddCityTechMaster">
               <MappingFragment StoreEntitySet="tblAddCityTechMaster">
+                <ScalarProperty Name="H1" ColumnName="H1" />
                 <ScalarProperty Name="BriefDescription" ColumnName="BriefDescription" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="SchemaTags" ColumnName="SchemaTags" />
@@ -774,6 +779,7 @@
           <EntitySetMapping Name="tblTechnologyMasters">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblTechnologyMaster">
               <MappingFragment StoreEntitySet="tblTechnologyMaster">
+                <ScalarProperty Name="H1" ColumnName="H1" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="BriefDescription" ColumnName="BriefDescription" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />

@@ -38,6 +38,7 @@ namespace CONSTRUCTION.Models
     {
         public string FocusKeyphrase { get; set; }
         public string SEOtitle { get; set; }
+        public string H1 { get; set; }
         public string Slug { get; set; }
         public string MetaDescription { get; set; }
         public bool IsCrawl { get; set; }

@@ -21,6 +21,7 @@ namespace CONSTRUCTION.Controllers
             {
                 technologyId = technologyName.Id;
                 seo.SEOtitle = technologyName.SEOtitle;
+                seo.H1 = technologyName.H1;
                 seo.Slug = technologyName.Slug;
                 seo.MetaDescription = technologyName.MetaDescription;
                 seo.IsCrawl = Convert.ToBoolean(technologyName.IsCrawl);
@@ -38,6 +39,7 @@ namespace CONSTRUCTION.Controllers
                     technologyId = Convert.ToInt32(technologyNameCity.TechMasterId);
                     var technologyData = _db.tblTechnologyMasters.Where(x => x.Id == technologyId).FirstOrDefault();
                     seo.SEOtitle = technologyNameCity.SEOtitle;
+                    seo.H1 = technologyNameCity.H1;
                     seo.Slug = technologyNameCity.Slug;
                     seo.MetaDescription = technologyNameCity.MetaDescription;
                     seo.IsCrawl = Convert.ToBoolean(technologyNameCity.IsCrawl);

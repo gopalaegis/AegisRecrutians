@@ -52,7 +52,7 @@ namespace CONSTRUCTION.CommonMethods
             var data = _db.tblCities.ToList();
             List<SelectListItem> list = new List<SelectListItem>();
             list.Add(new SelectListItem { Value = "0", Text = "City" });
-            foreach (var item in data)
+            foreach (var item in data.OrderBy(x=>x.Name).ToList())
             {
                 list.Add(new SelectListItem { Value = item.Id.ToString(), Text = item.Name });
             }

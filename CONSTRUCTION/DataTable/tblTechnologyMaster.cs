@@ -27,5 +27,6 @@ namespace CONSTRUCTION.DataTable
         public Nullable<bool> isActive { get; set; }
         public string BriefDescription { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
+        public string H1 { get; set; }
     }
 }
