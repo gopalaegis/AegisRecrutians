@@ -64,8 +64,9 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                     model.BlockNo = data.HouseName;
                     model.Street = data.Street;
                     model.City = data.City;
-                    model.State = state.Name;
-                    model.Country = country.Name;
+                    model.State = state == null ? "" : state.Name;
+                    model.Country = country == null ? "" : country.Name;
+                    model.Resume = data.Resume;
 
                     var education = _db.tblApplyJobEducations.Where(x => x.ApplyJobDetailId == Id).ToList();
                     foreach (var item in education)
@@ -86,7 +87,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                     {
                         var country1 = _db.tblCountries.Where(y => y.Id == item.CountryId).FirstOrDefault();
                         var state1 = _db.tblStates.Where(y => y.Id == item.StateId).FirstOrDefault();
-                        if (country1 != null&&state1!=null)
+                        if (country1 != null && state1 != null)
                         {
                             ExperienceViewModel e = new ExperienceViewModel();
                             e.Employer = item.Employer;

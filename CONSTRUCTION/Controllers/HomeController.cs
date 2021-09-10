@@ -17,7 +17,8 @@ namespace CONSTRUCTION.Controllers
         AEGIS_Entities _db = new AEGIS_Entities();
 
 
-        public ActionResult autoCompleteDemo() {
+        public ActionResult autoCompleteDemo()
+        {
             return View();
         }
 
@@ -31,8 +32,8 @@ namespace CONSTRUCTION.Controllers
         public ActionResult Index()
         {
             HomeViewModel model = new HomeViewModel();
-            model.skillMasterViewModels = _db.tblSkillMasters.Select(x => new SkillMasterViewModel { Id = x.Id, Name = x.Name }).ToList();
-            model.technologyMasterViewModels = _db.tblTechnologyMasters.Select(x => new TechnologyMasterViewModel { Id = x.Id, Name = x.Name, Image = x.Image, Slug = x.Slug }).ToList();
+            model.skillMasterViewModels = _db.tblSkillMasters.Where(x => x.isActive == true).Select(x => new SkillMasterViewModel { Id = x.Id, Name = x.Name }).ToList();
+            model.technologyMasterViewModels = _db.tblTechnologyMasters.Where(x => x.isActive == true).Select(x => new TechnologyMasterViewModel { Id = x.Id, Name = x.Name, Image = x.Image, Slug = x.Slug }).ToList();
             return View(model);
         }
 

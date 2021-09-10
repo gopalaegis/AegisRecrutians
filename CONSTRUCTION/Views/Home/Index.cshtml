@@ -375,15 +375,15 @@
                 }
                 if (jobSearch.trim() == "" && city.trim() != "") {
                         var searchKey = 'Jobs-in-' + city.replace(' ', '-');
-                        window.location.href = '/' + searchKey + '?l=' + city;
+                        window.location.href = '/job/' + searchKey + '?l=' + city;
                 }
                 if (jobSearch.trim() != "" && city.trim() == "") {
                         var searchKey = jobSearch.replace(' ', '-')+'-Jobs' ;
-                        window.location.href = '/' + searchKey + '?q=' + jobSearch;
+                        window.location.href = '/job/' + searchKey + '?q=' + jobSearch;
                 }
                 if (jobSearch.trim() != "" && city.trim() != "") {
                         var searchKey = jobSearch.replace(' ', '-') + '-Jobs-in-' + city.replace(' ', '-');
-                        window.location.href = '/' + searchKey +'?l=' + city + '&q=' + jobSearch;
+                        window.location.href = '/job/' + searchKey +'?l=' + city + '&q=' + jobSearch;
                 }
         });
 

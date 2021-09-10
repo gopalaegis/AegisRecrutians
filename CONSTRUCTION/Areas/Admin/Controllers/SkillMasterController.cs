@@ -33,7 +33,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
         public ActionResult SkillMasterList(string Status = "active")
         {
             List<SkillMasterViewModel> model = new List<SkillMasterViewModel>();
-            model = _db.tblSkillMasters.Select(x => new SkillMasterViewModel { Id = x.Id, Name = x.Name,isactive=(bool)x.isActive }).ToList();
+            model = _db.tblSkillMasters.Select(x => new SkillMasterViewModel { Id = x.Id, Name = x.Name, isactive = (bool)x.isActive }).ToList();
             if (Status == "active")
             {
                 model = model.Where(x => x.isactive == true).ToList();
@@ -101,7 +101,9 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 record.isActive = true;
                 _db.SaveChanges();
             }
-            return RedirectToAction("SkillMasterList");
+
+            string status = value == "deactive" ? "active" : "deactive";
+            return RedirectToAction("SkillMasterList", new { Status = status });
         }
     }
 }

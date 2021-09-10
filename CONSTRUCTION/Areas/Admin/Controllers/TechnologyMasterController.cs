@@ -108,7 +108,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             }
             return PartialView("_partialTechnologyMasterList", model);
         }
-        public ActionResult TechnologyCitylist(int Id = 0)
+        public ActionResult TechnologyCitylist(int Id = 0, string Status = "active")
         {
             List<AddcityViewModel> model = new List<AddcityViewModel>();
             var data = _db.tblAddCityTechMasters.Where(x => x.TechMasterId == Id).ToList();
@@ -126,6 +126,14 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 m.SchemaTags = item.SchemaTags;
                 m.isactive = Convert.ToBoolean(item.isActive);
                 model.Add(m);
+            }
+            if (Status == "active")
+            {
+                model = model.Where(x => x.isactive == true).ToList();
+            }
+            else
+            {
+                model = model.Where(x => x.isactive == false).ToList();
             }
             Tuple<List<AddcityViewModel>, int> tuple = new Tuple<List<AddcityViewModel>, int>(model, Id);
             return PartialView("_partialTechnologyCityList", tuple);
@@ -191,6 +199,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 data.IsCrawl = model.IsCrawl;
                 data.CanonicalURL = model.CanonicalURL;
                 data.SchemaTags = model.SchemaTags;
+                data.UpdatedDate = DateTime.Now;
                 _db.SaveChanges();
             }
             else
@@ -207,6 +216,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 data.CanonicalURL = model.CanonicalURL;
                 data.SchemaTags = model.SchemaTags;
                 data.isActive = true;
+                data.UpdatedDate = DateTime.Now;
                 _db.tblTechnologyMasters.Add(data);
                 _db.SaveChanges();
             }
@@ -241,7 +251,25 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 record.isActive = true;
                 _db.SaveChanges();
             }
-            return RedirectToAction("TechnologyMasterList");
+            string status = value == "deactive" ? "active" : "deactive";
+            return RedirectToAction("TechnologyMasterList", new { Status = status });
+        }
+
+        public ActionResult isDeactiveCity(int Id, string value)
+        {
+            var record = _db.tblAddCityTechMasters.Where(x => x.Id == Id).FirstOrDefault();
+            if (value == "deactive")
+            {
+                record.isActive = false;
+                _db.SaveChanges();
+            }
+            else
+            {
+                record.isActive = true;
+                _db.SaveChanges();
+            }
+            string status = value == "deactive" ? "active" : "deactive";
+            return RedirectToAction("TechnologyCitylist", new { Id = record.TechMasterId, Status = status });
         }
 
         //public ActionResult isDeactiveCity(int Id, string value)

@@ -28,11 +28,18 @@
                         <div class="modal-content">
                                 <div class="modal-header">
                                         <div class="heading modal-title modal_text">Technology Detail</div>
-                                        <div class="catagory-detail">
-                                                <div class="catagory-flex1">
-                                                        <div><span class="add-catagory-btn" id="btnAddcity"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
-                                                        <button class="add-catagory-btn w-100" id="btn_List" style="display:none;"><i class="fa fa-arrow-left"></i> back To list</button>
+                                        <div>
+                                                <div class="catagory-detail" style="float:right;margin-left:5px;">
+                                                        <div class="catagory-flex1">
+                                                                <div><span class="add-catagory-btn" id="btnAddcity"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
+                                                                <button class="add-catagory-btn w-100" id="btn_List" style="display:none;"><i class="fa fa-arrow-left"></i> back To list</button>
+                                                        </div>
                                                 </div>
+                                                <label class="switch">
+                                                        <input id="chk_listFilter_city" type="checkbox" checked>
+                                                        <span class="slider round"></span>
+                                                </label>
+                                                <label style="float:right;"> Filter Active / Deactive : </label>
                                         </div>
                                 </div>
                                 <div class="modal-body">
@@ -74,60 +81,29 @@
         </div>
 </div>
 <script>
-    $(document).ready(function () {
-        dataTableTechnology();
-    });
-
-    function dataTableTechnology() {
-        $('#tableDiv').find('#tbltechnologymaster').DataTable({
-            language: {
-                searchPlaceholder: "Search",
-                search: "<button class='btn search-btn2' type='button'><i class='fa fa-search' ></i></button >",
-                "paginate": {
-                    "previous": "<i class='fa fa-angle-left' aria-hidden='true'></i>",
-                    "next": "<i class='fa fa-angle-right' aria-hidden='true'></i>"
-                }
-            },
-            columnDefs: [
-                {
-                    orderable: false, targets: -1
-                }
-            ]
+        $(document).ready(function () {
+                dataTableTechnology();
         });
-    }
 
-    function dataTableCityTech() {
-        $('#AddTeckCity').find('.modal-body').find('#myTable').DataTable({
-            language: {
-                searchPlaceholder: "Search",
-                search: "<button class='btn search-btn2' type='button'><i class='fa fa-search' ></i></button >",
-                "paginate": {
-                    "previous": "<i class='fa fa-angle-left' aria-hidden='true'></i>",
-                    "next": "<i class='fa fa-angle-right' aria-hidden='true'></i>"
-                }
-            },
-            columnDefs: [
-                {
-                    orderable: false, targets: -1
-                }
-            ]
-        });
-    }
+        function dataTableTechnology() {
+                $('#tableDiv').find('#tbltechnologymaster').DataTable({
+                        language: {
+                                searchPlaceholder: "Search",
+                                search: "<button class='btn search-btn2' type='button'><i class='fa fa-search' ></i></button >",
+                                "paginate": {
+                                        "previous": "<i class='fa fa-angle-left' aria-hidden='true'></i>",
+                                        "next": "<i class='fa fa-angle-right' aria-hidden='true'></i>"
+                                }
+                        },
+                        columnDefs: [
+                                {
+                                        orderable: false, targets: -1
+                                }
+                        ]
+                });
+        }
 
-    $("#btnAddTech").click(function () {
-        $("#preloader").show();
-
-        $.ajax({
-            url: '@Url.Action("AddEditTechnologyMaster", "TechnologyMaster")',
-            success: function (data) {
-                $("#addTechnology").find(".modal-body").html("");
-                $("#addTechnology").find(".modal-body").html(data);
-                $("#preloader").hide();
-            }
-        });
-    });
-
-        function returnStatus() {
+         function returnStatus() {
                 var status = 'deactive';
                 var value = $("#chk_listFilter").prop('checked');
                 if (value == true) {
@@ -137,6 +113,7 @@
         }
 
         $("#chk_listFilter").change(function () {
+                $("#preloader").show();
                 var status = returnStatus();
                 $.ajax({
                         url: '@Url.Action("TechnologyMasterList", "TechnologyMaster")',
@@ -147,244 +124,351 @@
                                 $("#tableDiv").html("");
                                 $("#tableDiv").html(data);
                                 dataTableTechnology();
+                                $("#preloader").hide();
                         }
                 });
         });
 
-    $("#addTechnology").on("change", "#image_browse", function (e) {
-        var files = e.target.files;
-        var imageData = "";
-        if (files.length > 0) {
-            if (window.FormData !== undefined) {
-                imageData = new FormData();
-                for (var x = 0; x < files.length; x++) {
-                    imageData.append("file" + x, files[x]);
-                }
-                setTimeout(function () {
-                    $.ajax({
-                        type: "POST",
-                        url: '@Url.Action("FileUplaod", "TechnologyMaster")',
-                        contentType: false,
-                        processData: false,
-                        data: imageData,
-                        success: function (result) {
-                            $("#addTechnology").find('#file_HiddenName').val(result);
-                            var Pic = "/CommonImage/Technology/" + result;
-                            $("#addTechnology").find('#img_Profile_Pic').attr('src', Pic);
-                        }
-                    });
-                }, 500);
-            }
-        }
-        else {
-            $("#addTechnology").find("#file_HiddenName").val("");
-            $("#addTechnology").find("#img_Profile_Pic").val("");
-        }
-    });
-
-    $("#addTechnology").on("click", ".btn_save", function (e) {
-        $("#preloader").show();
-        $(".errorMessage").hide();
-        var Id = $("#addTechnology").find('#txt_Id').val();
-        var Name = $("#addTechnology").find('#txt_Name').val();
-        var Image = $("#addTechnology").find('#file_HiddenName').val();
-        var key = $("#addTechnology").find('#txt_FKeyphrase').val();
-        var seo = $("#addTechnology").find('#txt_Seotitle').val();
-        var slug = $("#addTechnology").find('#txt_Slug').val();
-        var crawl = $("#addTechnology").find('#chk_Crawl').prop("checked");
-        var url = $("#addTechnology").find('#txt_URL').val();
-        var tag = $("#addTechnology").find('#txt_Tags').val();
-        var description = $("#addTechnology").find('#txt_description').val();
-        var briefDescription = CKEDITOR.instances['editor'].getData();
-        var isError = false;
-
-        if (Name == "") {
-            $("#addTechnology").find('#label_error_Name').show();
-            isError = true;
-        }
-        if (Image == "") {
-            $("#addTechnology").find('#label_error_Image').show();
-            isError = true;
-        }
-
-        var bDescription = JSON.stringify({ BriefDescription: briefDescription });
-
-        if (isError == true) {
-            $("#preloader").hide();
-            return false
-        } else {
-            $.ajax({
-                type: "POST",
-                contentType: "application/json; charset=utf-8",
-                url: '@Url.Action("SaveTechnologyMaster", "TechnologyMaster")?Id=' + Id + '&Image=' + Image + '&Name=' + Name + '&FocusKeyphrase=' + key + '&SEOtitle=' + seo + '&Slug=' + slug + '&MetaDescription=' + description + '&IsCrawl=' + crawl + '&CanonicalURL=' + url + '&SchemaTags=' + tag,
-                data: bDescription,
-                success: function (result) {
-                    $("#tableDiv").html("");
-                    $("#tableDiv").html(result);
-                    $("#preloader").hide();
-                    $("#addTechnology").find('.btn_Close').click();
-                    dataTableTechnology();
-                    $("#alert_inquiry_success").html("Save successfully");
-                    $("#alert_inquiry_success").show();
-                    setTimeout(function () {
-                            $("#alert_inquiry_success").hide();
-                    }, 2000);
-                }
-            });
-        }
-    });
-
-    $("#tableDiv").on("click", ".editRow", function () {
-        var id = $(this).attr('data-id');
-        $.ajax({
-            url: '@Url.Action("AddEditTechnologyMaster", "TechnologyMaster")',
-            data: {
-                Id:id
-            },
-            success: function (data) {
-                $("#addTechnology").find(".modal-body").html("");
-                $("#addTechnology").find(".modal-body").html(data);
-            }
-        });
-    });
-
-    $("#tableDiv").on("click", ".editcity", function () {
-        var id = $(this).attr('data-id');
-        var title = $(this).attr('data-title');
-        $.ajax({
-            url: '@Url.Action("TechnologyCitylist", "TechnologyMaster")',
-            data: {
-                Id:id
-            },
-            success: function (data) {
-                $("#AddTeckCity").find(".modal-body").html("");
-                $("#AddTeckCity").find(".modal-body").html(data);
-                $("#AddTeckCity").find(".modal-header").find(".heading").html(title + ' Jobs');
-                $("#AddTeckCity").find("#btnAddcity").show();
-                $("#AddTeckCity").find(".btn_save").hide();
-                $("#AddTeckCity").find("#btn_List").hide();
-                dataTableCityTech();
-            }
-        });
-    });
-    $("#AddTeckCity").on("click", "#btn_List", function () {
-        var id = $("#AddTeckCity").find("#txt_techId").val();
-        $.ajax({
-            url: '@Url.Action("TechnologyCitylist", "TechnologyMaster")',
-            data: {
-                Id:id
-            },
-            success: function (data) {
-                $("#AddTeckCity").find("#btnAddcity").show();
-                $("#AddTeckCity").find(".btn_save").hide();
-                $("#AddTeckCity").find("#btn_List").hide();
-                $("#AddTeckCity").find(".modal-body").html("");
-                $("#AddTeckCity").find(".modal-body").html(data);
-                dataTableCityTech();
-            }
-        });
-    });
-
-    $("#AddTeckCity").on("click", "#edit_city", function () {
-        var id = $(this).attr('data-id');
-        $.ajax({
-            url: '@Url.Action("EditCityMaster", "TechnologyMaster")',
-            data: {
-                Id: id,
-            },
-            success: function (data) {
-                $("#AddTeckCity").find("#btnAddcity").hide();
-                $("#AddTeckCity").find(".btn_save").show();
-                $("#AddTeckCity").find("#btn_List").show();
-                $("#AddTeckCity").find(".modal-body").html("");
-                $("#AddTeckCity").find(".modal-body").html(data);
-                $("#AddTeckCity").scrollTop(0);
-            }
-        });
-    });
-    $("#AddTeckCity").on("click", "#btnAddcity", function () {
-
-        var id = $("#AddTeckCity").find('#txt_techId').val();
-        $.ajax({
-            url: '@Url.Action("AddCityMaster", "TechnologyMaster")',
-            data: {
-                Id: id,
-            },
-            success: function (data) {
-                $("#AddTeckCity").find("#btnAddcity").hide();
-                $("#AddTeckCity").find(".btn_save").show();
-                $("#AddTeckCity").find("#btn_List").show();
-                $("#AddTeckCity").find(".modal-body").html("");
-                $("#AddTeckCity").find(".modal-body").html(data);
-                $("#AddTeckCity").scrollTop(0);
-            }
-        });
-    });
-
-    $("#AddTeckCity").on("click", ".btn_save", function (e) {
-        $("#preloader").show();
-        $(".errorMessage").hide();
-        var Id = $("#AddTeckCity").find('#txt_Id').val();
-        var techId = $("#AddTeckCity").find('#txt_techId').val();
-        var City = $("#AddTeckCity").find('#txt_city').val();
-        var key = $("#AddTeckCity").find('#txt_FKeyphrase').val();
-        var seo = $("#AddTeckCity").find('#txt_Seotitle').val();
-        var slug = $("#AddTeckCity").find('#txt_Slug').val();
-        var crawl = $("#AddTeckCity").find('#chk_Crawl').prop("checked");
-        var url = $("#AddTeckCity").find('#txt_URL').val();
-        var tag = $("#AddTeckCity").find('#txt_Tags').val();
-        var description = $("#AddTeckCity").find('#txt_description').val();
-        var briefDescription = CKEDITOR.instances['editor2'].getData();
-        var isError = false;
-
-        if (City == 0) {
-            $("#AddTeckCity").find('#label_error_City').show();
-            isError = true;
-        }
-        var bDescription = JSON.stringify({ BriefDescription: briefDescription });
-        if (isError == true) {
-            $("#preloader").hide();
-            return false
-        } else {
-            $.ajax({
-                type: "POST",
-                contentType: "application/json; charset=utf-8",
-                url: '@Url.Action("SaveCityMaster", "TechnologyMaster")?Id=' + Id + '&cityId=' + City + '&teckmasterId=' + techId + '&FocusKeyphrase=' + key + '&SEOtitle=' + seo + '&Slug=' + slug +
-                    '&MetaDescription=' + description + '&IsCrawl=' + crawl + '&CanonicalURL=' + url + '&SchemaTags=' + tag,
-                data: bDescription,
-                success: function (result) {
-                    $("#AddTeckCity").find("#btnAddcity").show();
-                    $("#AddTeckCity").find(".btn_save").hide();
-                    $("#AddTeckCity").find("#btn_List").click();
-                    $("#AddTeckCity").find("#btn_List").hide();
-                    $("#AddTeckCity").find(".modal-body").html("");
-                    $("#AddTeckCity").find(".modal-body").html(result);
-                    $("#preloader").hide();
-                    $("#alert_inquiry_success").html("Save successfully");
-                    $("#alert_inquiry_success").show();
-                    setTimeout(function () {
-                        $("#alert_inquiry_success").hide();
-                    }, 2000);
-                }
-            });
-        }
-    });
-
         $("#tableDiv").on("click", ".Deactive", function () {
-
                 var Id = $(this).attr("data-id");
-                var parentTr = $(this).parent().parent();
-                var btn = '<i class="fa fa-check-square fa-check-css green Active" data-id="' + Id + '" title="Active"></i>';
-                var lab = '<label class="Active">Deactive</label>';
                 $("#preloader").show();
                 $.ajax({
                         url: '@Url.Action("isDeactive", "TechnologyMaster")',
                         data: { Id: Id, value: "deactive" },
                         success: function (data) {
-                                $(parentTr).find("td:eq(6)").find(".Deactive").remove();
-                                $(parentTr).find("td:eq(6)").append(btn);
-                                $(parentTr).find("td:eq(5)").find(".Deactive").remove();
-                                $(parentTr).find("td:eq(5)").append(lab);
+                                $("#tableDiv").html("");
+                                $("#tableDiv").html(data);
+                                dataTableTechnology();
+                                $("#preloader").hide();
+                                $("#alert_inquiry_success").html("Deactive Sussesfully");
+                                $("#alert_inquiry_success").show();
+                                setTimeout(function () {
+                                        $("#alert_inquiry_success").hide();
+                                }, 2000);
+                        }
+                });
+         });
+
+        $("#tableDiv").on("click", ".Active", function () {
+                var Id = $(this).attr("data-id");
+                $("#preloader").show();
+                $.ajax({
+                        url: '@Url.Action("isDeactive", "TechnologyMaster")',
+                        data: { Id: Id, value: "active" },
+                        success: function (data) {
+                                $("#tableDiv").html("");
+                                $("#tableDiv").html(data);
+                                dataTableTechnology();
+                                $("#preloader").hide();
+                                $("#alert_inquiry_success").html("Active Sussesfully");
+                                $("#alert_inquiry_success").show();
+                                setTimeout(function () {
+                                        $("#alert_inquiry_success").hide();
+                                }, 2000);
+                        }
+                });
+        });
+
+        $("#btnAddTech").click(function () {
+                $("#preloader").show();
+                $.ajax({
+                        url: '@Url.Action("AddEditTechnologyMaster", "TechnologyMaster")',
+                        success: function (data) {
+                                $("#addTechnology").find(".modal-body").html("");
+                                $("#addTechnology").find(".modal-body").html(data);
+                                $("#preloader").hide();
+                        }
+                });
+        });
+
+        $("#tableDiv").on("click", ".editRow", function () {
+                var id = $(this).attr('data-id');
+                $("#preloader").show();
+                $.ajax({
+                        url: '@Url.Action("AddEditTechnologyMaster", "TechnologyMaster")',
+                        data: {
+                                Id: id
+                        },
+                        success: function (data) {
+                                $("#addTechnology").editcity(".modal-body").html("");
+                                $("#addTechnology").find(".modal-body").html(data);
+                                $("#preloader").hide();
+                        }
+                });
+        });
+
+        $("#addTechnology").on("change", "#image_browse", function (e) {
+                var files = e.target.files;
+                var imageData = "";
+                if (files.length > 0) {
+                        if (window.FormData !== undefined) {
+                                imageData = new FormData();
+                                for (var x = 0; x < files.length; x++) {
+                                        imageData.append("file" + x, files[x]);
+                                }
+                                setTimeout(function () {
+                                        $.ajax({
+                                                type: "POST",
+                                                url: '@Url.Action("FileUplaod", "TechnologyMaster")',
+                                                contentType: false,
+                                                processData: false,
+                                                data: imageData,
+                                                success: function (result) {
+                                                        $("#addTechnology").find('#file_HiddenName').val(result);
+                                                        var Pic = "/CommonImage/Technology/" + result;
+                                                        $("#addTechnology").find('#img_Profile_Pic').attr('src', Pic);
+                                                }
+                                        });
+                                }, 500);
+                        }
+                }
+                else {
+                        $("#addTechnology").find("#file_HiddenName").val("");
+                        $("#addTechnology").find("#img_Profile_Pic").val("");
+                }
+        });
+
+        $("#addTechnology").on("click", ".btn_save", function (e) {
+                $("#preloader").show();
+                $(".errorMessage").hide();
+                var Id = $("#addTechnology").find('#txt_Id').val();
+                var Name = $("#addTechnology").find('#txt_Name').val();
+                var Image = $("#addTechnology").find('#file_HiddenName').val();
+                var key = $("#addTechnology").find('#txt_FKeyphrase').val();
+                var seo = $("#addTechnology").find('#txt_Seotitle').val();
+                var slug = $("#addTechnology").find('#txt_Slug').val();
+                var crawl = $("#addTechnology").find('#chk_Crawl').prop("checked");
+                var url = $("#addTechnology").find('#txt_URL').val();
+                var tag = $("#addTechnology").find('#txt_Tags').val();
+                var description = $("#addTechnology").find('#txt_description').val();
+                var briefDescription = CKEDITOR.instances['editor'].getData();
+                var isError = false;
+
+                if (Name == "") {
+                        $("#addTechnology").find('#label_error_Name').show();
+                        isError = true;
+                }
+                if (Image == "") {
+                        $("#addTechnology").find('#label_error_Image').show();
+                        isError = true;
+                }
+
+                var bDescription = JSON.stringify({ BriefDescription: briefDescription });
+
+                if (isError == true) {
+                        $("#preloader").hide();
+                        return false
+                } else {
+                        $.ajax({
+                                type: "POST",
+                                contentType: "application/json; charset=utf-8",
+                                url: '@Url.Action("SaveTechnologyMaster", "TechnologyMaster")?Id=' + Id + '&Image=' + Image + '&Name=' + Name + '&FocusKeyphrase=' + key + '&SEOtitle=' + seo + '&Slug=' + slug + '&MetaDescription=' + description + '&IsCrawl=' + crawl + '&CanonicalURL=' + url + '&SchemaTags=' + tag,
+                                data: bDescription,
+                                success: function (result) {
+                                        $("#tableDiv").html("");
+                                        $("#tableDiv").html(result);
+                                        $("#preloader").hide();
+                                        $("#addTechnology").find('.btn_Close').click();
+                                        dataTableTechnology();
+                                        $("#alert_inquiry_success").html("Save successfully");
+                                        $("#alert_inquiry_success").show();
+                                        setTimeout(function () {
+                                                $("#alert_inquiry_success").hide();
+                                        }, 2000);
+                                }
+                        });
+                }
+        });
+
+        $("#tableDiv").on("click", ".editcity", function () {
+                var id = $(this).attr('data-id');
+                var title = $(this).attr('data-title');
+                $("#preloader").show();
+                $.ajax({
+                        url: '@Url.Action("TechnologyCitylist", "TechnologyMaster")',
+                        data: {
+                                Id: id
+                        },
+                        success: function (data) {
+                                $("#AddTeckCity").find(".modal-body").html("");
+                                $("#AddTeckCity").find(".modal-body").html(data);
+                                $("#AddTeckCity").find(".modal-header").find(".heading").html(title + ' Jobs');
+                                $("#AddTeckCity").find("#btnAddcity").show();
+                                $("#AddTeckCity").find(".btn_save").hide();
+                                $("#AddTeckCity").find("#btn_List").hide();
+                                dataTableCityTech();
+                                $("#preloader").hide();
+                        }
+                });
+        });
+
+        function dataTableCityTech() {
+                $('#AddTeckCity').find('.modal-body').find('#myTable').DataTable({
+                        language: {
+                                searchPlaceholder: "Search",
+                                search: "<button class='btn search-btn2' type='button'><i class='fa fa-search' ></i></button >",
+                                "paginate": {
+                                        "previous": "<i class='fa fa-angle-left' aria-hidden='true'></i>",
+                                        "next": "<i class='fa fa-angle-right' aria-hidden='true'></i>"
+                                }
+                        },
+                        columnDefs: [
+                                {
+                                        orderable: false, targets: -1
+                                }
+                        ]
+                });
+        }
+
+        function returnStatusCity() {
+                var status = 'deactive';
+                var value = $("#chk_listFilter_city").prop('checked');
+                if (value == true) {
+                        status = 'active';
+                }
+                return status;
+        }
+
+        $("#chk_listFilter_city").change(function () {
+                $("#preloader").show();
+                var status = returnStatusCity();
+                var id = $("#AddTeckCity").find("#txt_techId").val();
+                $.ajax({
+                        url: '@Url.Action("TechnologyCitylist", "TechnologyMaster")',
+                        data: {
+                                Id: id,
+                                Status: status
+                        },
+                        success: function (data) {
+                                $("#AddTeckCity").find(".modal-body").html("");
+                                $("#AddTeckCity").find(".modal-body").html(data);
+                                dataTableCityTech();
+                                $("#preloader").hide();
+                        }
+                });
+        });
+
+        $("#AddTeckCity").on("click", "#btn_List", function () {
+                $("#preloader").show();
+                var id = $("#AddTeckCity").find("#txt_techId").val();
+                $.ajax({
+                        url: '@Url.Action("TechnologyCitylist", "TechnologyMaster")',
+                        data: {
+                                Id: id
+                        },
+                        success: function (data) {
+                                $("#AddTeckCity").find("#btnAddcity").show();
+                                $("#AddTeckCity").find(".btn_save").hide();
+                                $("#AddTeckCity").find("#btn_List").hide();
+                                $("#AddTeckCity").find(".modal-body").html("");
+                                $("#AddTeckCity").find(".modal-body").html(data);
+                                dataTableCityTech();
+                                $("#preloader").hide();
+                        }
+                });
+        });
+
+        $("#AddTeckCity").on("click", "#edit_city", function () {
+                var id = $(this).attr('data-id');
+                $("#preloader").show();
+                $.ajax({
+                        url: '@Url.Action("EditCityMaster", "TechnologyMaster")',
+                        data: {
+                                Id: id,
+                        },
+                        success: function (data) {
+                                $("#AddTeckCity").find("#btnAddcity").hide();
+                                $("#AddTeckCity").find(".btn_save").show();
+                                $("#AddTeckCity").find("#btn_List").show();
+                                $("#AddTeckCity").find(".modal-body").html("");
+                                $("#AddTeckCity").find(".modal-body").html(data);
+                                $("#AddTeckCity").scrollTop(0);
+                                $("#preloader").hide();
+                        }
+                });
+        });
+
+        $("#AddTeckCity").on("click", "#btnAddcity", function () {
+                $("#preloader").show();
+                var id = $("#AddTeckCity").find('#txt_techId').val();
+                $.ajax({
+                        url: '@Url.Action("AddCityMaster", "TechnologyMaster")',
+                        data: {
+                                Id: id,
+                        },
+                        success: function (data) {
+                                $("#AddTeckCity").find("#btnAddcity").hide();
+                                $("#AddTeckCity").find(".btn_save").show();
+                                $("#AddTeckCity").find("#btn_List").show();
+                                $("#AddTeckCity").find(".modal-body").html("");
+                                $("#AddTeckCity").find(".modal-body").html(data);
+                                $("#AddTeckCity").scrollTop(0);
+                                $("#preloader").hide();
+                        }
+                });
+        });
+
+        $("#AddTeckCity").on("click", ".btn_save", function (e) {
+                $("#preloader").show();
+                $(".errorMessage").hide();
+                var Id = $("#AddTeckCity").find('#txt_Id').val();
+                var techId = $("#AddTeckCity").find('#txt_techId').val();
+                var City = $("#AddTeckCity").find('#txt_city').val();
+                var key = $("#AddTeckCity").find('#txt_FKeyphrase').val();
+                var seo = $("#AddTeckCity").find('#txt_Seotitle').val();
+                var slug = $("#AddTeckCity").find('#txt_Slug').val();
+                var crawl = $("#AddTeckCity").find('#chk_Crawl').prop("checked");
+                var url = $("#AddTeckCity").find('#txt_URL').val();
+                var tag = $("#AddTeckCity").find('#txt_Tags').val();
+                var description = $("#AddTeckCity").find('#txt_description').val();
+                var briefDescription = CKEDITOR.instances['editor2'].getData();
+                var isError = false;
+
+                if (City == 0) {
+                        $("#AddTeckCity").find('#label_error_City').show();
+                        isError = true;
+                }
+                var bDescription = JSON.stringify({ BriefDescription: briefDescription });
+                if (isError == true) {
+                        $("#preloader").hide();
+                        return false
+                } else {
+                        $.ajax({
+                                type: "POST",
+                                contentType: "application/json; charset=utf-8",
+                                url: '@Url.Action("SaveCityMaster", "TechnologyMaster")?Id=' + Id + '&cityId=' + City + '&teckmasterId=' + techId + '&FocusKeyphrase=' + key + '&SEOtitle=' + seo + '&Slug=' + slug +
+                                        '&MetaDescription=' + description + '&IsCrawl=' + crawl + '&CanonicalURL=' + url + '&SchemaTags=' + tag,
+                                data: bDescription,
+                                success: function (result) {
+                                        $("#AddTeckCity").find("#btnAddcity").show();
+                                        $("#AddTeckCity").find(".btn_save").hide();
+                                        $("#AddTeckCity").find("#btn_List").click();
+                                        $("#AddTeckCity").find("#btn_List").hide();
+                                        $("#AddTeckCity").find(".modal-body").html("");
+                                        $("#AddTeckCity").find(".modal-body").html(result);
+                                        $("#preloader").hide();
+                                        $("#alert_inquiry_success").html("Save successfully");
+                                        $("#alert_inquiry_success").show();
+                                        setTimeout(function () {
+                                                $("#alert_inquiry_success").hide();
+                                        }, 2000);
+                                }
+                        });
+                }
+        });
+
+
+
+        $("#AddTeckCity").on("click", ".DeactiveCity", function () {
+                var Id = $(this).attr("data-id");
+                $("#preloader").show();
+                $.ajax({
+                        url: '@Url.Action("isDeactiveCity", "TechnologyMaster")',
+                        data: { Id: Id, value: "deactive" },
+                        success: function (data) {
+                                $("#AddTeckCity").find(".modal-body").html("");
+                                $("#AddTeckCity").find(".modal-body").html(data);
+                                dataTableCityTech();
                                 $("#preloader").hide();
                                 $("#alert_inquiry_success").html("Deactive Sussesfully");
                                 $("#alert_inquiry_success").show();
@@ -395,49 +479,45 @@
                 });
         });
 
-    $("#tableDiv").on("click", ".Active", function () {
+        $("#AddTeckCity").on("click", ".ActiveCity", function () {
+                var Id = $(this).attr("data-id");
+                $("#preloader").show();
+                $.ajax({
+                        url: '@Url.Action("isDeactiveCity", "TechnologyMaster")',
+                        data: { Id: Id, value: "active" },
+                        success: function (data) {
+                                $("#AddTeckCity").find(".modal-body").html("");
+                                $("#AddTeckCity").find(".modal-body").html(data);
+                                dataTableCityTech();
+                                $("#preloader").hide();
+                                $("#alert_inquiry_success").html("Deactive Sussesfully");
+                                $("#alert_inquiry_success").show();
+                                setTimeout(function () {
+                                        $("#alert_inquiry_success").hide();
+                                }, 2000);
+                        }
+                });
+        });
+
+
+        $("#AddTeckCity").on("click", ".Delete", function () {
 
                 var Id = $(this).attr("data-id");
-                var parentTr = $(this).parent().parent();
-        var btn = '<i class="fa fa-ban fa-ban-css red Deactive" data-id="' + Id + '" title="De-Active"></i>';
-        var lab = ' <label class="Deactive">Active</label>';
-                 $("#preloader").show();
-                 $.ajax({
-                         url: '@Url.Action("isDeactive", "TechnologyMaster")',
-                         data: { Id: Id, value: "active" },
-                         success: function (data) {
-                                 $(parentTr).find("td:eq(6)").find(".Active").remove();
-                             $(parentTr).find("td:eq(6)").append(btn);
-                             $(parentTr).find("td:eq(5)").find(".Active").remove();
-                             $(parentTr).find("td:eq(5)").append(lab);
-                             $("#preloader").hide();
-                             $("#alert_inquiry_success").html("Active Sussesfully");
-                             $("#alert_inquiry_success").show();
-                             setTimeout(function () {
-                                 $("#alert_inquiry_success").hide();
-                             }, 2000);
-                         }
-                 });
-    });
-
-    $("#AddTeckCity").on("click", ".Delete", function () {
-
-        var Id = $(this).attr("data-id");
-         $("#preloader").show();
-         $.ajax({
-                 url: '@Url.Action("DeletecityMaster", "TechnologyMaster")',
-             data: { Id: Id},
-             success: function (data) {
-                 $("#AddTeckCity").find(".modal-body").html("");
-                 $("#AddTeckCity").find(".modal-body").html(data);
-                 $("#preloader").hide();
-                 dataTableCityTech();
-                     $("#alert_inquiry_success").html("Delete Sussesfully");
-                     $("#alert_inquiry_success").show();
-                     setTimeout(function () {
-                         $("#alert_inquiry_success").hide();
-                     }, 2000);
-                 }
-         });
-     });
+                $("#preloader").show();
+                $.ajax({
+                        url: '@Url.Action("DeletecityMaster", "TechnologyMaster")',
+                        data: { Id: Id },
+                        success: function (data) {
+                                $("#AddTeckCity").find(".modal-body").html("");
+                                $("#AddTeckCity").find(".modal-body").html(data);
+                                $("#preloader").hide();
+                                dataTableCityTech();
+                                $("#alert_inquiry_success").html("Delete Sussesfully");
+                                $("#alert_inquiry_success").show();
+                                setTimeout(function () {
+                                        $("#alert_inquiry_success").hide();
+                                }, 2000);
+                        }
+                });
+        });
 </script>

@@ -93,25 +93,25 @@ namespace CONSTRUCTION
 
             routes.MapRoute(
               name: "bothSearchJobs",
-              url: "{q}-jobs-in-{l}",
+              url: "job/{q}-jobs-in-{l}",
               defaults: new { controller = "jobs", action = "Index" }
           );
 
             routes.MapRoute(
               name: "SearchJobsbytitle",
-              url: "{q}-jobs",
+              url: "job/{q}-jobs",
               defaults: new { controller = "jobs", action = "Index" }
           );
 
             routes.MapRoute(
               name: "SearchJobsbyCity",
-              url: "jobs-in-{l}",
+              url: "job/jobs-in-{l}",
               defaults: new { controller = "jobs", action = "Index" }
           );
 
             routes.MapRoute(
                name: "SearchJobs",
-               url: "jobs",
+               url: "job/alljob",
                defaults: new { controller = "jobs", action = "Index" }
            );
 

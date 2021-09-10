@@ -63,7 +63,8 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 record.isActive = true;
                 _db.SaveChanges();
             }
-            return RedirectToAction("JobEducationMasterList");
+            string status = value == "deactive" ? "active" : "deactive";
+            return RedirectToAction("JobEducationMasterList", new { Status = status });
         }
         [HttpPost]
         public ActionResult SaveJobEducationMaster(JobEducationViewModel model)

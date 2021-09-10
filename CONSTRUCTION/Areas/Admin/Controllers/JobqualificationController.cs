@@ -63,7 +63,9 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 record.isActive = true;
                 _db.SaveChanges();
             }
-            return RedirectToAction("JobQualificationMasterList");
+
+            string status = value == "deactive" ? "active" : "deactive";
+            return RedirectToAction("JobQualificationMasterList", new { Status = status });
         }
 
         [HttpPost]

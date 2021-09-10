@@ -26,5 +26,6 @@ namespace CONSTRUCTION.DataTable
         public string SchemaTags { get; set; }
         public Nullable<bool> isActive { get; set; }
         public string BriefDescription { get; set; }
+        public Nullable<System.DateTime> UpdatedDate { get; set; }
     }
 }

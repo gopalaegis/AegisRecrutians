@@ -27,7 +27,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             var countryList = _db.tblCountries.ToList();
             var cityList = _db.tblCities.ToList();
             var professionList = _db.tblProfessions.ToList();
-            var technologyList = _db.tblTechnologyMasters.ToList();
+            var technologyList = _db.tblTechnologyMasters.Where(x => x.isActive == true).ToList();
 
             List<SelectListItem> lstselectListItem = new List<SelectListItem>();
             List<SelectListItem> subCategoryListItem = new List<SelectListItem>();
@@ -135,6 +135,10 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 model.BriefDescription = data.BriefDescription;
                 model.SelectedTechnology = _db.JobWiseTechnologies.Where(x => x.JobId == Id).Select(x => (int)x.TechnologyId).ToList();
             }
+            else
+            {
+                model.SelectedTechnology = new List<int>();
+            }
             return PartialView("_partialAddEditJobDetail", model);
         }
 
@@ -142,15 +146,22 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
         {
             List<JobDetailsViewModel> model = new List<JobDetailsViewModel>();
             var data = _db.tblJobDetails.ToList();
+
+            var cateList = _db.tblCategoryMasters.ToList();
+            var subcateList = _db.tblSubCategoryMasters.ToList();
+            var countryList = _db.tblCountries.ToList();
+            var cityList = _db.tblCities.ToList();
+            var jobequcationList = _db.tblJobEducations.ToList();
+            var jobQualificationList = _db.tblJobQualifications.ToList();
             foreach (var item in data)
             {
                 JobDetailsViewModel m = new JobDetailsViewModel();
-                var cate = _db.tblCategoryMasters.Where(x => x.Id == item.CategoryId).FirstOrDefault();
-                var subcate = _db.tblSubCategoryMasters.Where(x => x.Id == item.SubCategoryId).FirstOrDefault();
-                var country = _db.tblCountries.Where(x => x.Id == item.CountryId).FirstOrDefault();
-                var city = _db.tblCities.Where(x => x.Id == item.CityId).FirstOrDefault();
-                var jobequcation = _db.tblJobEducations.Where(x => x.Education == item.JobEducation).FirstOrDefault();
-                var jobQualification = _db.tblJobQualifications.Where(x => x.Qualification == item.JobQualification).FirstOrDefault();
+                var cate = cateList.Where(x => x.Id == item.CategoryId).FirstOrDefault();
+                var subcate = subcateList.Where(x => x.Id == item.SubCategoryId).FirstOrDefault();
+                var country = countryList.Where(x => x.Id == item.CountryId).FirstOrDefault();
+                var city = cityList.Where(x => x.Id == item.CityId).FirstOrDefault();
+                var jobequcation = jobequcationList.Where(x => x.Education == item.JobEducation).FirstOrDefault();
+                var jobQualification = jobQualificationList.Where(x => x.Qualification == item.JobQualification).FirstOrDefault();
 
                 m.Title = item.Title;
                 m.Id = item.Id;
@@ -225,7 +236,8 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 record.isActive = true;
                 _db.SaveChanges();
             }
-            return RedirectToAction("JobDetailsList");
+            string status = value == "deactive" ? "active" : "deactive";
+            return RedirectToAction("JobDetailsList", new { Status = status });
         }
 
         [HttpPost]

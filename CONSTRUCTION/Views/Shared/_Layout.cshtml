@@ -1,66 +1,67 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
-    <meta name="description" content="@ViewBag.MetaDescription" />
-    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title</title>
+        <meta name="description" content="@ViewBag.MetaDescription" />
+        <meta name="keywords" content="@ViewBag.MetaKeywords" />
 
-    <meta name="robots" content="@ViewBag.IsCrawlString" />
-    <link rel="canonical" href="@ViewBag.CanonicalURL" />
-    <link rel="shortcut icon" href="~/images/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="~/Content/lib.css">
-    <link rel="stylesheet" href="~/Content/style.css">
-    <link rel="stylesheet" href="~/Content/responsive.css">
-    <link rel="stylesheet" href="~/Content/navigation.css">
-    <link rel="stylesheet" href="~/Content/developer.css">
-    <link href="~/EasyAutocomplete/autoComplete.css" rel="stylesheet" />
+        <meta name="robots" content="@ViewBag.IsCrawlString" />
+        <link rel="canonical" href="@ViewBag.CanonicalURL" />
+        <link rel="shortcut icon" href="~/images/favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="~/Content/lib.css">
+        <link rel="stylesheet" href="~/Content/style.css">
+        <link rel="stylesheet" href="~/Content/responsive.css">
+        <link rel="stylesheet" href="~/Content/navigation.css">
+        <link rel="stylesheet" href="~/Content/developer.css">
+        <link href="~/EasyAutocomplete/autoComplete.css" rel="stylesheet" />
 
-    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
-    <script src="~/EasyAutocomplete/autoComplete.js"></script>
-    <script src="~/Scripts/Validation.js"></script>
-    @RenderSection("scripts", required: false)
-    <script type="application/ld+json">
+        <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+        <script src="~/EasyAutocomplete/autoComplete.js"></script>
+        <script src="~/Scripts/Validation.js"></script>
+        @RenderSection("scripts", required: false)
+        <script type="application/ld+json">
 	@Html.Raw(ViewBag.SchemaTags)
-    </script>
-    <style>
-        input[type="date"] {
-            position: relative;
-        }
+        </script>
+        <style>
+                input[type="date"] {
+                        position: relative;
+                }
 
-            /* make the native arrow invisible and stretch it over the whole field so you can click anywhere in the input field to trigger the native datepicker*/
-            input[type="date"]::-webkit-calendar-picker-indicator {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                width: auto;
-                height: auto;
-                color: transparent;
-                background: transparent;
-            }
+                        /* make the native arrow invisible and stretch it over the whole field so you can click anywhere in the input field to trigger the native datepicker*/
+                        input[type="date"]::-webkit-calendar-picker-indicator {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                bottom: 0;
+                                width: auto;
+                                height: auto;
+                                color: transparent;
+                                background: transparent;
+                        }
 
-            input[type="date"]::-webkit-inner-spin-button {
-                z-index: 1;
-            }
+                        input[type="date"]::-webkit-inner-spin-button {
+                                z-index: 1;
+                        }
 
-            /* adjust clear button */
-            input[type="date"]::-webkit-clear-button {
-                z-index: 1;
-            }
-        .form-group {
-            display: block;
-            position: relative;
-        }
-        .calendar-1 {
-            position: absolute;
-            right: 0;
-            transform: translate(-15%, -190%);
-        }
+                        /* adjust clear button */
+                        input[type="date"]::-webkit-clear-button {
+                                z-index: 1;
+                        }
 
-    </style>
+                .form-group {
+                        display: block;
+                        position: relative;
+                }
+
+                .calendar-1 {
+                        position: absolute;
+                        right: 0;
+                        transform: translate(-15%, -190%);
+                }
+        </style>
 
 </head>
 <body>

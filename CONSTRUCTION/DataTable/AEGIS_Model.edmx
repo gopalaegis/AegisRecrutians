@@ -239,6 +239,7 @@
           <Property Name="SchemaTags" Type="nvarchar(max)" />
           <Property Name="isActive" Type="bit" />
           <Property Name="BriefDescription" Type="nvarchar(max)" />
+          <Property Name="UpdatedDate" Type="datetime" />
         </EntityType>
         <EntityContainer Name="AEGIS_ConstructionModelStoreContainer">
           <EntitySet Name="JobWiseTechnology" EntityType="Self.JobWiseTechnology" Schema="dbo" store:Type="Tables" />
@@ -522,6 +523,7 @@
           <Property Name="SchemaTags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="isActive" Type="Boolean" />
           <Property Name="BriefDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -769,6 +771,7 @@
           <EntitySetMapping Name="tblTechnologyMasters">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblTechnologyMaster">
               <MappingFragment StoreEntitySet="tblTechnologyMaster">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="BriefDescription" ColumnName="BriefDescription" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="SchemaTags" ColumnName="SchemaTags" />
