@@ -762,6 +762,7 @@
     <Content Include="Template\images\AR_17_8_21\template\images\thumb\why-aegis\2.webp" />
     <Content Include="Template\images\AR_17_8_21\template\images\thumb\why-aegis\3.webp" />
     <Content Include="Template\students\students.webp" />
+    <Content Include="Views\jobs\BindHTMLCity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="adminAssets\img\" />

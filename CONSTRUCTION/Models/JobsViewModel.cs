@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace CONSTRUCTION.Models
 {
@@ -45,7 +46,9 @@ namespace CONSTRUCTION.Models
         public string IsCrawlString { get; set; }
         public string CanonicalURL { get; set; }
         public string SchemaTags { get; set; }
+        [AllowHtml]
         public string jobDescription { get; set; }
         public int cityId { get; set; }
+        public int Id { get; set; }
     }
 }

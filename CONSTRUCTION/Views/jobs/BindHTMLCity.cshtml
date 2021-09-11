@@ -1,0 +1,15 @@
+﻿@model CONSTRUCTION.Models.SEOModel
+@{
+        Layout = null;
+}
+<input type="hidden" id="hdn_html" value="@Model.jobDescription" />
+<div id="div_desc"></div>
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script>
+        $(document).ready(function () {
+                $("#div_desc").html($('#hdn_html').val());
+        })
+
+</script>
+

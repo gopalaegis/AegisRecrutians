@@ -3,6 +3,7 @@ using CONSTRUCTION.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -31,6 +32,7 @@ namespace CONSTRUCTION.Controllers
                 seo.FocusKeyphrase = technologyName.FocusKeyphrase;
                 seo.jobDescription = technologyName.BriefDescription;
                 seo.cityId = 0;
+                seo.Id = technologyName.Id;
             }
             else {
                 var technologyNameCity = _db.tblAddCityTechMasters.Where(x => x.Slug == slugURL && x.isActive == true).FirstOrDefault();
@@ -49,6 +51,7 @@ namespace CONSTRUCTION.Controllers
                     seo.FocusKeyphrase = technologyNameCity.FocusKeyphrase;
                     seo.jobDescription = technologyNameCity.BriefDescription;
                     seo.cityId = Convert.ToInt32(technologyNameCity.CityId);
+                    seo.Id = technologyNameCity.Id;
                 }
             }
             Tuple<int, SEOModel> tuple = new Tuple<int, SEOModel>(technologyId, seo);
@@ -61,6 +64,25 @@ namespace CONSTRUCTION.Controllers
             model.City = l.Replace('-', ' '); ;
             model.Title = q.Replace('-',' ');
             return View(model);
+        }
+
+        public ActionResult BindHTMLCity(int Id,int CityId)
+        {
+            string htmlString = "";
+            if (CityId > 0)
+            {
+                var technologyNameCity = _db.tblAddCityTechMasters.Where(x => x.Id == Id).FirstOrDefault();
+                var c = new HtmlString(technologyNameCity.ToString());
+                htmlString = Regex.Replace(technologyNameCity.BriefDescription, "(?<=\\<[^<>]*)\"(?=[^><]*\\>)", "'");
+            }
+            else {
+                var technologyNameCity = _db.tblTechnologyMasters.Where(x => x.Id == Id).FirstOrDefault();
+                var c = new HtmlString(technologyNameCity.ToString());
+                htmlString = Regex.Replace(technologyNameCity.BriefDescription, "(?<=\\<[^<>]*)\"(?=[^><]*\\>)", "'");
+            }
+            SEOModel seo = new SEOModel();
+            seo.jobDescription = htmlString;
+            return View(seo);
         }
 
         public ActionResult List(int page = 1, string city = "", string title = "", int TechnologyId = 0,int technologyCityId = 0)
