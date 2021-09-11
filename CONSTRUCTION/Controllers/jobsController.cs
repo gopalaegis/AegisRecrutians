@@ -72,13 +72,19 @@ namespace CONSTRUCTION.Controllers
             if (CityId > 0)
             {
                 var technologyNameCity = _db.tblAddCityTechMasters.Where(x => x.Id == Id).FirstOrDefault();
-                var c = new HtmlString(technologyNameCity.ToString());
-                htmlString = Regex.Replace(technologyNameCity.BriefDescription, "(?<=\\<[^<>]*)\"(?=[^><]*\\>)", "'");
+                if (!string.IsNullOrEmpty(technologyNameCity.BriefDescription))
+                {
+                    var c = new HtmlString(technologyNameCity.ToString());
+                    htmlString = Regex.Replace(technologyNameCity.BriefDescription, "(?<=\\<[^<>]*)\"(?=[^><]*\\>)", "'");
+                }
             }
             else {
                 var technologyNameCity = _db.tblTechnologyMasters.Where(x => x.Id == Id).FirstOrDefault();
-                var c = new HtmlString(technologyNameCity.ToString());
-                htmlString = Regex.Replace(technologyNameCity.BriefDescription, "(?<=\\<[^<>]*)\"(?=[^><]*\\>)", "'");
+                if (!string.IsNullOrEmpty(technologyNameCity.BriefDescription))
+                {
+                    var c = new HtmlString(technologyNameCity.ToString());
+                    htmlString = Regex.Replace(technologyNameCity.BriefDescription, "(?<=\\<[^<>]*)\"(?=[^><]*\\>)", "'");
+                }
             }
             SEOModel seo = new SEOModel();
             seo.jobDescription = htmlString;
