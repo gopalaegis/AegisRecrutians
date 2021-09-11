@@ -13,6 +13,7 @@
                                                 <label>Title <span style="color:red">*</span></label>
                                                 <input type="text" id="txt_Title" value="@Model.Title" placeholder="Title" class="form-control" />
                                                 <label id="label_error_Title" class="errorMessage" style="display: none; color: red">Title is required</label>
+                                                <label id="label_error_TitleExist" class="errorMessage" style="display: none; color: red">Title is already Exist</label>
                                         </div>
                                         <div class="col-sm-6">
                                                 <label>Description <span style="color:red">*</span></label>
@@ -138,8 +139,18 @@
                                         <div class="col-sm-6">
                                                 <label>IsVerified <span style="color:red">*</span></label>
                                                 <select class="form-control inputstyle requiredField custom-select" id="drp_IsVerified" name="IsVerified">
-                                                        <option value="1">Yes</option>
-                                                        <option value="0">No</option>
+                                                    @if (Model.IsVerified == false)
+                                                    {
+
+
+                                                        <option value="true">Yes</option>
+                                                        <option value="false" selected="selected">No</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="true" selected="selected">Yes</option>
+                                                        <option value="false">No</option>
+                                                    }
                                                 </select>
                                                 <label id="label_error_IsVerified" class="errorMessage" style="display: none; color: red">IsVerified is required</label>
                                         </div>

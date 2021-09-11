@@ -211,19 +211,19 @@
             $("#addJobDetail").find('#label_error_Type').show();
             isError = true;
         }
-        if (parseInt(MinExperience) < 0) {
+        if (parseInt(MinExperience) < 0 || MinExperience=='') {
             $("#addJobDetail").find('#label_error_MinExperience').show();
             isError = true;
         }
-        if (parseInt(MaxExperience) < 0) {
+        if (parseInt(MaxExperience) < 0 || MaxExperience == '') {
             $("#addJobDetail").find('#label_error_MaxExperience').show();
             isError = true;
         }
-        if (parseInt(MinSalary) < 0) {
+        if (parseInt(MinSalary) < 0 || MinSalary == '') {
             $("#addJobDetail").find('#label_error_MinSalary').show();
             isError = true;
         }
-        if (parseInt(MaxSalary) < 0) {
+        if (parseInt(MaxSalary) < 0 || MaxSalary == '') {
             $("#addJobDetail").find('#label_error_MaxSalary').show();
             isError = true;
         }
@@ -264,18 +264,23 @@
                     SelectedTechnologyString: Selectedtechnology
                 },
                 success: function (result) {
-
-                    $("#tableDiv").html("");
-                    $("#tableDiv").html(result);
-                    $("#preloader").hide();
-                    $("#addJobDetail").find('.btn_Close').click();
-                    dataTableJobDetail();
-                    window.location.reload();
-                    $("#alert_inquiry_success").html("Save successfully");
-                    $("#alert_inquiry_success").show();
-                    setTimeout(function () {
-                        $("#alert_inquiry_success").hide();
-                    }, 2000);
+                    if (result == "Error") {
+                        $("#addJobDetail").find('#label_error_TitleExist').show();
+                        $("#preloader").hide();
+                        return false
+                    } else {
+                        $("#tableDiv").html("");
+                        $("#tableDiv").html(result);
+                        $("#preloader").hide();
+                        $("#addJobDetail").find('.btn_Close').click();
+                        dataTableJobDetail();
+                        window.location.reload();
+                        $("#alert_inquiry_success").html("Save successfully");
+                        $("#alert_inquiry_success").show();
+                        setTimeout(function () {
+                            $("#alert_inquiry_success").hide();
+                        }, 2000);
+                    }
                 }
             });
         }
@@ -296,7 +301,7 @@
                         }
                 });
         });
-            
+
         $("#addJobDetail").on("change", "#image_browse", function (e) {
                 var files = e.target.files;
                 var imageData = "";

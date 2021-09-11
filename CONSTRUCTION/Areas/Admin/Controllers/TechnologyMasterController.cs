@@ -151,6 +151,11 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 {
                     return Json("Error", JsonRequestBehavior.AllowGet);
                 }
+                var exist1 = _db.tblAddCityTechMasters.Where(x => x.Id != model.id && x.Slug == model.Slug).ToList();
+                if (exist1.Count > 0)
+                {
+                    return Json("Error1", JsonRequestBehavior.AllowGet);
+                }
                 var data = _db.tblAddCityTechMasters.Where(x => x.Id == model.id).FirstOrDefault();
                 data.CityId = model.cityId;
                 data.FocusKeyphrase = model.FocusKeyphrase;
@@ -170,6 +175,11 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 if (exist.Count > 0)
                 {
                     return Json("Error", JsonRequestBehavior.AllowGet);
+                }
+                var exist1 = _db.tblAddCityTechMasters.Where(x => x.Slug == model.Slug).ToList();
+                if (exist1.Count > 0)
+                {
+                    return Json("Error1", JsonRequestBehavior.AllowGet);
                 }
                 tblAddCityTechMaster data = new tblAddCityTechMaster();
                 data.CityId = model.cityId;
@@ -209,6 +219,11 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 {
                     return Json("Error", JsonRequestBehavior.AllowGet);
                 }
+                var exist1 = _db.tblTechnologyMasters.Where(x => x.Id != model.Id && x.Slug.ToLower() == model.Slug.ToLower()).ToList();
+                if (exist1.Count > 0)
+                {
+                    return Json("Error1", JsonRequestBehavior.AllowGet);
+                }
                 var data = _db.tblTechnologyMasters.Where(x => x.Id == model.Id).FirstOrDefault();
                 data.Image = model.Image;
                 data.Name = model.Name;
@@ -230,6 +245,11 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 if (exist.Count > 0)
                 {
                     return Json("Error", JsonRequestBehavior.AllowGet);
+                }
+                var exist1 = _db.tblTechnologyMasters.Where(x => x.Slug.ToLower() == model.Slug.ToLower()).ToList();
+                if (exist1.Count > 0)
+                {
+                    return Json("Error1", JsonRequestBehavior.AllowGet);
                 }
                 tblTechnologyMaster data = new tblTechnologyMaster();
                 data.Name = model.Name;
