@@ -30,7 +30,7 @@
                         @{
                             var finalPic = "/CommonImage/Technology/" + Model.Image;
                         }
-                        <img id="img_Profile_Pic" src="@finalPic" style="height:80px;width:80px;" />
+                        <img id="img_Profile_Pic" src="@finalPic" style="height:80px;width:80px;" onerror="this.onerror=null; this.src='../images/no-image-available.jpg'" />
                     </div>
                 </div>
                 <div class="row formGroup">
