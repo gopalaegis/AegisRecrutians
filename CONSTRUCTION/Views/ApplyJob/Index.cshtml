@@ -187,7 +187,7 @@
                                     <h2>Work Experience</h2>
                                 </div>
                             </div>
-                            <div id="experienceDiv">
+                            <div id="experienceDiv" class="col-12">
                                 @Html.Action("ExperienceData", "ApplyJob")
                             </div>
                             <div class="col-12">
@@ -420,12 +420,11 @@
         if (mobile == null || mobile == "") {
             IsError = true;
             $("#label_error_PN").show();
-        }
-        if (!PhoneNumberValidation(mobile)) {
+        } else if (!PhoneNumberValidation(mobile)) {
             IsError = true;
             $("#label_error_PNFormat").show();
         }
-        if (mobile2 != null || mobile2 != "") {
+        if (mobile1 != null || mobile1 != "") {
             if (!PhoneNumberValidation(mobile1)) {
                 IsError = true;
                 $("#label_error_PNFormat2").show();

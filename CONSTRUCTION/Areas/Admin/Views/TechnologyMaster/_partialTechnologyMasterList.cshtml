@@ -16,7 +16,7 @@
                 @foreach (var item in Model)
                 {
                         <tr>
-                                <td><img src="~/CommonImage/Technology/@item.Image" style="width:50px;" /></td>
+                                <td><img src="~/CommonImage/Technology/@item.Image" style="width:50px;" onerror="this.onerror=null; this.src='../images/no-image-available.jpg'" /></td>
                                 <td>@item.Name</td>
                                 <td>@item.SEOtitle</td>
                                 <td><a href="@Url.Action("TechnoloGyWiseJob","Jobs",new { slugURL = item.Slug,area = ""})" target="_blank">@item.Slug</a></td>
@@ -27,11 +27,11 @@
                                 <td>
                                     @if (item.isactive == true)
                                     {
-                                        <label class="Deactive">Active</label>
+                                        <label>Active</label>
                                     }
                                     else
                                     {
-                                        <label class="Active">Deactive</label>
+                                        <label>Deactive</label>
                                     }
                                 </td>
                                 <td class="light-gray text-right d-flex align-items-center">

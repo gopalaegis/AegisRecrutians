@@ -30,7 +30,7 @@
                         @{
                             var finalPic = "/CommonImage/Technology/" + Model.Image;
                         }
-                        <img id="img_Profile_Pic" src="@finalPic" style="height:80px;width:80px;" />
+                        <img id="img_Profile_Pic" src="@finalPic" style="height:80px;width:80px;" onerror="this.onerror=null; this.src='../images/no-image-available.jpg'" />
                     </div>
                 </div>
                 <div class="row formGroup">
@@ -45,6 +45,7 @@
                     <div class="col-sm-4">
                         <label>Slug</label>
                         <input type="text" id="txt_Slug" value="@Model.Slug" placeholder="Slug" class="form-control" />
+                        <label id="label_error_SlugExist" class="errorMessage" style="display:none;">Slug is already Exist</label>
                     </div>
                 </div>
                 <div class="row formGroup">

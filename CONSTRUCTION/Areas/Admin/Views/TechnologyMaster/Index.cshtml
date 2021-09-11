@@ -244,7 +244,6 @@
         var description = $("#addTechnology").find('#txt_description').val();
         var briefDescription = CKEDITOR.instances['editor'].getData();
         var isError = false;
-        debugger
         if (Name == "") {
             $("#addTechnology").find('#label_error_Name').show();
             isError = true;
@@ -270,6 +269,10 @@
                 success: function (result) {
                     if (result == "Error") {
                         $("#addTechnology").find('#label_error_NameExist').show();
+                        $("#preloader").hide();
+                        return false
+                    } else if (result == "Error1") {
+                        $("#addTechnology").find('#label_error_SlugExist').show();
                         $("#preloader").hide();
                         return false
                     } else {
@@ -454,7 +457,12 @@
                                     $("#AddTeckCity").find('#label_error_CityExist').show();
                                     $("#preloader").hide();
                                     return false
-                                } else {
+                                } else if (result == "Error1") {
+                                    $("#AddTeckCity").find('#label_error_SlugExist').show();
+                                    $("#preloader").hide();
+                                    return false
+                                }
+                                else {
                                     $("#AddTeckCity").find("#btnAddcity").show();
                                     $("#AddTeckCity").find(".btn_save").hide();
                                     $("#AddTeckCity").find("#btn_List").click();

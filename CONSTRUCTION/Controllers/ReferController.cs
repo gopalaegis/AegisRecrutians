@@ -28,17 +28,17 @@ namespace CONSTRUCTION.Controllers
         {
             try
             {
-                tblRefer m = new tblRefer();
-            m.FullName = model.Name;
-            m.Email = model.Email;
-            m.PhoneNumber = model.PhoneNo;
-            m.FriendFullName = model.FriendName;
-            m.FriendEmail = model.FriendEmail;
-            m.FriendPhoneNo = model.FriendPhoneNo;
-            m.Description = model.Description;
+            tblRefer m = new tblRefer();
+            //m.FullName = model.Name;
+            //m.Email = model.Email;
+            //m.PhoneNumber = model.PhoneNo;
+            //m.FriendFullName = model.FriendName;
+            //m.FriendEmail = model.FriendEmail;
+            //m.FriendPhoneNo = model.FriendPhoneNo;
+            //m.Description = model.Description;
             m.JobId = model.jobId;
-            _db.tblRefers.Add(m);
-            _db.SaveChanges();
+            //_db.tblRefers.Add(m);
+            //_db.SaveChanges();
 
             string from = WebConfigurationManager.AppSettings["SMTPMailFrom"];
             string pass = WebConfigurationManager.AppSettings["SMTPPassword"];
