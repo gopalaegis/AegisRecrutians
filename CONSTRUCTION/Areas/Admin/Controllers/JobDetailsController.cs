@@ -247,11 +247,11 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
 
             if (model.Id > 0)
             {
-                var exist = _db.tblJobDetails.Where(x => x.Id != model.Id && x.Title.ToLower() == model.Title.ToLower()).ToList();
-                if (exist.Count > 0)
-                {
-                    return Json("Error", JsonRequestBehavior.AllowGet);
-                }
+                //var exist = _db.tblJobDetails.Where(x => x.Id != model.Id && x.Title.ToLower() == model.Title.ToLower()).ToList();
+                //if (exist.Count > 0)
+                //{
+                //    return Json("Error", JsonRequestBehavior.AllowGet);
+                //}
                 var data = _db.tblJobDetails.Where(x => x.Id == model.Id).FirstOrDefault();
 
                 data.Title = model.Title;
@@ -306,11 +306,11 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             }
             else
             {
-                var exist = _db.tblJobDetails.Where(x => x.Title.ToLower() == model.Title.ToLower()).ToList();
-                if (exist.Count > 0)
-                {
-                    return Json("Error", JsonRequestBehavior.AllowGet);
-                }
+                //var exist = _db.tblJobDetails.Where(x => x.Title.ToLower() == model.Title.ToLower()).ToList();
+                //if (exist.Count > 0)
+                //{
+                //    return Json("Error", JsonRequestBehavior.AllowGet);
+                //}
                 tblJobDetail data = new tblJobDetail();
                 data.Title = model.Title;
                 data.Title = model.Title;

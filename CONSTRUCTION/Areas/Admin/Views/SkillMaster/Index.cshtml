@@ -117,7 +117,7 @@
                 var Id = $(this).attr("data-id");
                 var parentTr = $(this).parent().parent();
                 var btn = '<i class="fa fa-ban fa-ban-css red Deactive" data-id="' + Id + '" title="De-Active"></i>';
-                var lab = ' <label class="Deactive">Active</label>';
+                var lab = ' <label>Active</label>';
                 $("#preloader").show();
                 $.ajax({
                         url: '@Url.Action("isDeactive", "SkillMaster")',
