@@ -41,6 +41,7 @@ namespace CONSTRUCTION.Controllers
             //_db.SaveChanges();
 
             string from = WebConfigurationManager.AppSettings["SMTPMailFrom"];
+            string user = WebConfigurationManager.AppSettings["SMTPUserName"];
             string pass = WebConfigurationManager.AppSettings["SMTPPassword"];
             string to = WebConfigurationManager.AppSettings["SMTPMailTo"];
             int port = Convert.ToInt32(WebConfigurationManager.AppSettings["SMTPPort"]);
@@ -49,7 +50,7 @@ namespace CONSTRUCTION.Controllers
             string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
             string urlforApply  = string.Format("{0}ApplyJob?jobId={1}", baseUrl, m.JobId);
             SmtpClient client = new SmtpClient();
-            client.Credentials = new NetworkCredential(from, pass);
+            client.Credentials = new NetworkCredential(user, pass);
             client.Port = port;
             client.Host = host;
             client.EnableSsl = ssl;
