@@ -134,11 +134,13 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 model.ShowOnHome = data.ShowOnHome;
                 model.BriefDescription = data.BriefDescription;
                 model.SelectedTechnology = _db.JobWiseTechnologies.Where(x => x.JobId == Id).Select(x => (int)x.TechnologyId).ToList();
+                model.SelectedCity = _db.JobWiseCities.Where(x => x.JobId == Id).Select(x => (int)x.CityId).ToList();
             }
             else
             {
                 model.IsVerified = true;
                 model.SelectedTechnology = new List<int>();
+                model.SelectedCity = new List<int>();
             }
             return PartialView("_partialAddEditJobDetail", model);
         }
@@ -154,16 +156,18 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             var cityList = _db.tblCities.ToList();
             var jobequcationList = _db.tblJobEducations.ToList();
             var jobQualificationList = _db.tblJobQualifications.ToList();
+            var jobwiseCity = _db.JobWiseCities.ToList();
             foreach (var item in data)
             {
                 JobDetailsViewModel m = new JobDetailsViewModel();
                 var cate = cateList.Where(x => x.Id == item.CategoryId).FirstOrDefault();
                 var subcate = subcateList.Where(x => x.Id == item.SubCategoryId).FirstOrDefault();
                 var country = countryList.Where(x => x.Id == item.CountryId).FirstOrDefault();
-                var city = cityList.Where(x => x.Id == item.CityId).FirstOrDefault();
+
                 var jobequcation = jobequcationList.Where(x => x.Education == item.JobEducation).FirstOrDefault();
                 var jobQualification = jobQualificationList.Where(x => x.Qualification == item.JobQualification).FirstOrDefault();
-
+                var jobCity = jobwiseCity.Where(x => x.JobId == item.Id).Select(x => x.CityId).ToList();
+                var city = cityList.Where(x => jobCity.Contains(x.Id)).Select(x => x.Name).ToList();
                 m.Title = item.Title;
                 m.Id = item.Id;
                 m.CompanyName = item.CompanyName;
@@ -180,9 +184,9 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 {
                     m.CountryName = country.Name;
                 }
-                if (city != null)
+                if (city.Count > 0)
                 {
-                    m.CityName = city.Name;
+                    m.CityName = string.Join(", ", city);
                 }
                 m.Profession = item.Profession;
                 m.Location = item.Location;
@@ -303,6 +307,33 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                         _db.SaveChanges();
                     }
                 }
+
+                var removeoldCityData = _db.JobWiseCities.Where(x => x.JobId == data.Id).ToList();
+                _db.JobWiseCities.RemoveRange(removeoldCityData);
+                _db.SaveChanges();
+
+                if (!string.IsNullOrEmpty(model.SelectedCityString))
+                {
+                    if (model.SelectedCityString.IndexOf(',') > -1)
+                    {
+                        foreach (var item in model.SelectedCityString.Split(','))
+                        {
+                            JobWiseCity ip = new JobWiseCity();
+                            ip.CityId = Convert.ToInt32(item);
+                            ip.JobId = data.Id;
+                            _db.JobWiseCities.Add(ip);
+                            _db.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        JobWiseCity ip = new JobWiseCity();
+                        ip.CityId = Convert.ToInt32(model.SelectedCityString);
+                        ip.JobId = data.Id;
+                        _db.JobWiseCities.Add(ip);
+                        _db.SaveChanges();
+                    }
+                }
             }
             else
             {
@@ -357,6 +388,29 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                         ip.TechnologyId = Convert.ToInt32(model.SelectedTechnologyString);
                         ip.JobId = data.Id;
                         _db.JobWiseTechnologies.Add(ip);
+                        _db.SaveChanges();
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(model.SelectedCityString))
+                {
+                    if (model.SelectedCityString.IndexOf(',') > -1)
+                    {
+                        foreach (var item in model.SelectedCityString.Split(','))
+                        {
+                            JobWiseCity ip = new JobWiseCity();
+                            ip.CityId = Convert.ToInt32(item);
+                            ip.JobId = data.Id;
+                            _db.JobWiseCities.Add(ip);
+                            _db.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        JobWiseCity ip = new JobWiseCity();
+                        ip.CityId = Convert.ToInt32(model.SelectedCityString);
+                        ip.JobId = data.Id;
+                        _db.JobWiseCities.Add(ip);
                         _db.SaveChanges();
                     }
                 }

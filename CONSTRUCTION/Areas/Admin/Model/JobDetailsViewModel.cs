@@ -22,7 +22,9 @@ namespace CONSTRUCTION.Areas.Admin.Model
         public List<SelectListItem> ProfessionList { get; set; }
         public List<SelectListItem> technologyList { get; set; }
         public List<int> SelectedTechnology { get; set; }
+        public List<int> SelectedCity { get; set; }
         public string SelectedTechnologyString { get; set; }
+        public string SelectedCityString { get; set; }
         public int professionId { get; set; }
         public int CountryId { get; set; }
         public string CountryName { get; set; }

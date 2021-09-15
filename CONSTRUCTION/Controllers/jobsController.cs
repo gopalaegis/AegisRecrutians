@@ -34,7 +34,8 @@ namespace CONSTRUCTION.Controllers
                 seo.cityId = 0;
                 seo.Id = technologyName.Id;
             }
-            else {
+            else
+            {
                 var technologyNameCity = _db.tblAddCityTechMasters.Where(x => x.Slug == slugURL && x.isActive == true).FirstOrDefault();
                 if (technologyNameCity != null)
                 {
@@ -62,11 +63,11 @@ namespace CONSTRUCTION.Controllers
         {
             JobDetailViewModel model = new JobDetailViewModel();
             model.City = l.Replace('-', ' '); ;
-            model.Title = q.Replace('-',' ');
+            model.Title = q.Replace('-', ' ');
             return View(model);
         }
 
-        public ActionResult BindHTMLCity(int Id,int CityId)
+        public ActionResult BindHTMLCity(int Id, int CityId)
         {
             string htmlString = "";
             if (CityId > 0)
@@ -78,7 +79,8 @@ namespace CONSTRUCTION.Controllers
                     htmlString = Regex.Replace(technologyNameCity.BriefDescription, "(?<=\\<[^<>]*)\"(?=[^><]*\\>)", "'");
                 }
             }
-            else {
+            else
+            {
                 var technologyNameCity = _db.tblTechnologyMasters.Where(x => x.Id == Id).FirstOrDefault();
                 if (!string.IsNullOrEmpty(technologyNameCity.BriefDescription))
                 {
@@ -91,20 +93,24 @@ namespace CONSTRUCTION.Controllers
             return View(seo);
         }
 
-        public ActionResult List(int page = 1, string city = "", string title = "", int TechnologyId = 0,int technologyCityId = 0)
+        public ActionResult List(int page = 1, string city = "", string title = "", int TechnologyId = 0, int technologyCityId = 0)
         {
             JobsViewModel model = new JobsViewModel();
             List<JobDetailViewModel> m = new List<JobDetailViewModel>();
             title = title.ToLower();
             var technologyWiseList = _db.JobWiseTechnologies.Where(x => x.TechnologyId == TechnologyId).Select(x => x.JobId).ToList();
-            var d = _db.tblJobDetails.Where(x=>x.Title.ToLower().Contains(title) && x.isActive == true).ToList();
+            var d = _db.tblJobDetails.Where(x => x.Title.ToLower().Contains(title) && x.isActive == true).ToList();
             if (TechnologyId > 0)
             {
                 d = d.Where(x => technologyWiseList.Contains(x.Id)).ToList();
             }
+            var jobwiseCity = _db.JobWiseCities.ToList();
+            var cityList = _db.tblCities.ToList();
             foreach (var item in d)
             {
-                var cityData = _db.tblCities.Where(x => x.Id == item.CityId).FirstOrDefault();
+                var jobCity = jobwiseCity.Where(x => x.JobId == item.Id).Select(x => x.CityId).ToList();
+                var cityData = cityList.Where(x => jobCity.Contains(x.Id)).Select(x => x.Name).ToList();
+
                 JobDetailViewModel data = new JobDetailViewModel();
 
                 data.Id = item.Id;
@@ -117,42 +123,71 @@ namespace CONSTRUCTION.Controllers
                 {
                     if (technologyCityId > 0)
                     {
-                        data.City = item.CityId == technologyCityId ? cityData.Name : "Work From Home";
+                        var currentCity = jobCity.Where(x => x == technologyCityId).FirstOrDefault();
+                        if (currentCity != null)
+                        {
+                            data.City = cityList.Where(x => x.Id == technologyCityId).FirstOrDefault().Name;
+                        }
+                        else
+                        {
+                            data.City = "Work From Home";
+                        }
                     }
-                    else {
-                        data.City = cityData.Name;
+                    else
+                    {
+
+                        data.City = string.Join(",", cityData);
                     }
                 }
                 else
                 {
-                    data.City = cityData.Name.ToLower().Contains(city.ToLower()) ? cityData.Name : "Work From Home";
+                    if (!string.IsNullOrEmpty(city))
+                    {
+                        string cityName = "Work From Home";
+                        foreach (var c in cityData)
+                        {
+                            if (c.ToLower().IndexOf(city.ToLower()) > -1)
+                            {
+                                cityName = c;                                
+                            }
+                        }
+                        data.City = cityName;
+                    }
+                    else
+                    {
+                        if (cityData.Count > 0)
+                        {
+                            data.City = string.Join(", ", cityData);
+                        }
+                    }
+                        //data.City = cityData.Name.ToLower().Contains(city.ToLower()) ? cityData.Name : "Work From Home";
+                    }
+                    m.Add(data);
                 }
-                m.Add(data);
+                m = m.Where(x => x.Title.ToLower().Contains(title.ToLower())).ToList();
+                model.currentPage = page;
+                model.totalRecord = m.Count;
+                var pageCount = (double)m.Count / (double)5;
+                model.totalPage = (int)Math.Ceiling(pageCount);
+                var skip = ((page - 1) * 5);
+                m = m.Skip(skip).ToList();
+                if (m.Count > 5)
+                {
+                    model.jobDetailViewModels = m.Take(5).ToList();
+                }
+                else
+                {
+                    model.jobDetailViewModels = m.ToList();
+                }
+                if (model.jobDetailViewModels.Count > 0)
+                {
+                    model.fromtojob = (skip + 1).ToString() + " - " + (skip + model.jobDetailViewModels.Count) + " of " + model.totalRecord + " Jobs";
+                }
+                else
+                {
+                    model.fromtojob = "0 - 0 of 0 Jobs";
+                }
+                return PartialView("_partialJobList", model);
             }
-            m = m.Where(x => x.Title.ToLower().Contains(title.ToLower())).ToList();
-            model.currentPage = page;
-            model.totalRecord = m.Count;
-            var pageCount = (double)m.Count / (double)5;
-            model.totalPage = (int)Math.Ceiling(pageCount);
-            var skip = ((page - 1) * 5);
-            m = m.Skip(skip).ToList();
-            if (m.Count > 5)
-            {
-                model.jobDetailViewModels = m.Take(5).ToList();
-            }
-            else
-            {
-                model.jobDetailViewModels = m.ToList();
-            }
-            if (model.jobDetailViewModels.Count > 0)
-            {
-                model.fromtojob = (skip + 1).ToString() + " - " + (skip + model.jobDetailViewModels.Count) + " of " + model.totalRecord + " Jobs";
-            }
-            else
-            {
-                model.fromtojob = "0 - 0 of 0 Jobs";
-            }
-            return PartialView("_partialJobList", model);
         }
     }
-}

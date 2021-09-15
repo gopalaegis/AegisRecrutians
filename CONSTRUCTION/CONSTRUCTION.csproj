@@ -177,6 +177,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AEGIS_Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DataTable\JobWiseCity.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataTable\JobWiseTechnology.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>

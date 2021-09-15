@@ -35,11 +35,17 @@
                 </div>
         </div>
 </section>
+
 <script>
 
         $('#descriptionDiv').on("load", function () {
                 var iframe = $(window.top.document).find("#descriptionDiv");
-                iframe.height((parseFloat(iframe[0].ownerDocument.body.scrollHeight) + 600) + 'px');
+                setTimeout(function () {
+                        var actualDivHeight = $("#descriptionDiv").contents().find("#div_desc").css('height');
+                        actualDivHeight = actualDivHeight.replace('px', '');
+                        actualDivHeight = parseInt(actualDivHeight) + 100;
+                        iframe.height(actualDivHeight + 'px');
+                }, 200);
         });
 
 

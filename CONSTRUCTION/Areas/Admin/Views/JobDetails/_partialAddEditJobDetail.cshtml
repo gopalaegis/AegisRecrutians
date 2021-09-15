@@ -20,48 +20,7 @@
                                                 <input type="text" id="txt_Description" value="@Model.Description" placeholder="Description" class="form-control" />
                                                 <label id="label_error_Description" class="errorMessage" style="display: none; color: red">Description is required</label>
                                         </div>
-                                </div>
-                                @*<div class="row formGroup">
-                                                <div class="col-sm-6">
-                                                        <label>Category <span style="color:red">*</span></label>
-                                                        @Html.DropDownListFor(model => model.CategoryList, new SelectList(Model.CategoryList, "Value", "Text"), new { @class = "form-control drp_categoryList" })
-                                                        <label id="label_error_Category" class="errorMessage" style="display: none; color: red">Category is required</label>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                        <label>Sub Category <span style="color:red">*</span></label>
-                                                        @Html.DropDownListFor(model => model.SubCategoryList, new SelectList(Model.SubCategoryList, "Value", "Text"), new { @class = "form-control drp_subcategory" })
-                                                        <label id="label_error_SubCategory" class="errorMessage" style="display: none; color: red">SubCategory is required</label>
-                                                </div>
-                                        </div>*@
-                                <div class="row formGroup">
-                                        @*<div class="col-sm-6">
-                                                        <label>Profession <span style="color:red">*</span></label>
-                                                        @Html.DropDownListFor(model => model.ProfessionList, new SelectList(Model.ProfessionList, "Value", "Text"), new { @class = "form-control drp_profession" })
-                                                        <label id="label_error_Profession" class="errorMessage" style="display: none; color: red">Profession is required</label>
-                                                </div>*@
-                                        <div class="col-sm-6">
-                                                <label>Country <span style="color:red">*</span></label>
-                                                @Html.DropDownListFor(model => model.CountryList, new SelectList(Model.CountryList, "Value", "Text"), new { @class = "form-control custom-select drp_country" })
-                                                <label id="label_error_Country" class="errorMessage" style="display: none; color: red">Country is required</label>
-                                        </div>
-                                        <div class="col-sm-6">
-                                                <label>City <span style="color:red">*</span></label>
-                                                <select class="form-control custom-select drp_city" id="CityList" name="CityList">
-                                                        @foreach (var item in Model.CityList)
-                                                        {
-                                                                if (Model.CityId.ToString() == item.Value)
-                                                                {
-                                                                        <option value="@item.Value" selected="selected">@item.Text</option>
-                                                                }
-                                                                else
-                                                                {
-                                                                        <option value="@item.Value">@item.Text</option>
-                                                                }
-                                                        }
-                                                </select>                                                
-                                                <label id="label_error_City" class="errorMessage" style="display: none; color: red">City is required</label>
-                                        </div>
-                                </div>
+                                </div>                              
                                 <div class="row formGroup">
                                         <div class="col-sm-6">
                                                 <label>Company Name <span style="color:red">*</span></label>
@@ -132,25 +91,25 @@
                                 </div>
                                 <div class="row formGroup">
                                         <div class="col-sm-6">
-                                                <label>Location<span style="color:red">*</span></label>
-                                                <input type="text" id="txt_Location" value="@Model.Location" name="Location" placeholder="Location" class="form-control" />
-                                                <label id="label_error_Location" class="errorMessage" style="display: none; color: red">Location is required</label>
+                                                <label>Country <span style="color:red">*</span></label>
+                                                @Html.DropDownListFor(model => model.CountryList, new SelectList(Model.CountryList, "Value", "Text"), new { @class = "form-control custom-select drp_country" })
+                                                <label id="label_error_Country" class="errorMessage" style="display: none; color: red">Country is required</label>
                                         </div>
                                         <div class="col-sm-6">
                                                 <label>IsVerified <span style="color:red">*</span></label>
                                                 <select class="form-control inputstyle requiredField custom-select" id="drp_IsVerified" name="IsVerified">
-                                                    @if (Model.IsVerified == false)
-                                                    {
+                                                        @if (Model.IsVerified == false)
+                                                        {
 
 
-                                                        <option value="true">Yes</option>
-                                                        <option value="false" selected="selected">No</option>
-                                                    }
-                                                    else
-                                                    {
-                                                        <option value="true" selected="selected">Yes</option>
-                                                        <option value="false">No</option>
-                                                    }
+                                                                <option value="true">Yes</option>
+                                                                <option value="false" selected="selected">No</option>
+                                                        }
+                                                        else
+                                                        {
+                                                                <option value="true" selected="selected">Yes</option>
+                                                                <option value="false">No</option>
+                                                        }
                                                 </select>
                                                 <label id="label_error_IsVerified" class="errorMessage" style="display: none; color: red">IsVerified is required</label>
                                         </div>
@@ -182,36 +141,75 @@
                                         </div>
                                 </div>
                                 <div class="row formGroup">
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-6">
                                                 <label>Technology<span style="color:red">*</span></label>
-                                                <table class="dataTable no-footer">
-                                                        @foreach (var item in Model.technologyList)
-                                                        {
-                                                                <tr>
-                                                                        <td class="w-15 p-0">
-                                                                                @if (Model.SelectedTechnology.Contains(Convert.ToInt32(item.Value)))
-                                                                                {
-                                                                                        <label class="container">
-                                                                                                <input type="checkbox" id="checkbox" checked="checked" value="@item.Value" />
-                                                                                                <span class="checkmark"></span>
-                                                                                        </label>
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                        <label class="container">
-                                                                                                <input type="checkbox" id="checkbox" value="@item.Value" />
-                                                                                                <span class="checkmark"></span>
-                                                                                        </label>
-                                                                                }
-                                                                        </td>
-                                                                        <td>
-                                                                                @item.Text
-                                                                        </td>
-                                                                </tr>
-                                                        }
-                                                </table>
+                                                <input type="text" id="txt_TechnologySearch" placeholder="Technology Search" class="form-control" />
+                                                <br />
+                                                <div style="max-height:350px;overflow-y:auto;">
+                                                        <table class="dataTable no-footer" id="tbl_Technology">
+                                                                @foreach (var item in Model.technologyList)
+                                                                {
+                                                                        <tr>
+                                                                                <td class="w-15 p-0">
+                                                                                        @if (Model.SelectedTechnology.Contains(Convert.ToInt32(item.Value)))
+                                                                                        {
+                                                                                                <label class="container">
+                                                                                                        <input type="checkbox" id="checkbox" checked="checked" value="@item.Value" />
+                                                                                                        <span class="checkmark"></span>
+                                                                                                </label>
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                                <label class="container">
+                                                                                                        <input type="checkbox" id="checkbox" value="@item.Value" />
+                                                                                                        <span class="checkmark"></span>
+                                                                                                </label>
+                                                                                        }
+                                                                                </td>
+                                                                                <td>
+                                                                                        @item.Text
+                                                                                </td>
+                                                                        </tr>
+                                                                }
+                                                        </table>
+                                                </div>
                                         </div>
 
+                                        <div class="col-sm-6">
+                                                <label>City<span style="color:red">*</span></label>
+                                                <input type="text" id="txt_CitySearch" placeholder="City Search" class="form-control" />
+                                                <br />
+                                                <div style="max-height:350px;overflow-y:auto;">
+                                                        <table class="dataTable no-footer" id="tbl_City">
+                                                                <tbody>
+                                                                        @foreach (var item in Model.CityList)
+                                                                        {
+                                                                                <tr>
+                                                                                        <td class="w-15 p-0">
+                                                                                                @if (Model.SelectedCity.Contains(Convert.ToInt32(item.Value)))
+                                                                                                {
+                                                                                                        <label class="container">
+                                                                                                                <input type="checkbox" id="checkbox_city" checked="checked" value="@item.Value" />
+                                                                                                                <span class="checkmark"></span>
+                                                                                                        </label>
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                        <label class="container">
+                                                                                                                <input type="checkbox" id="checkbox_city" value="@item.Value" />
+                                                                                                                <span class="checkmark"></span>
+                                                                                                        </label>
+                                                                                                }
+                                                                                        </td>
+                                                                                        <td>
+                                                                                                @item.Text
+                                                                                        </td>
+                                                                                </tr>
+                                                                        }
+                                                                </tbody>
+                                                        </table>
+                                                </div>
+                                        </div>
                                 </div>
                         </div>
                 </div>

@@ -54,22 +54,24 @@ namespace CONSTRUCTION.Controllers
         public ActionResult JobDetails()
         {
             List<JobDetailViewModel> model = new List<JobDetailViewModel>();
-            var m = _db.tblJobDetails.Where(x => x.ShowOnHome == "1").OrderByDescending(x => x.Id).ToList();
+            var m = _db.tblJobDetails.Where(x => x.ShowOnHome == "1" && x.isActive == true).OrderByDescending(x => x.Id).ToList();
+            var jobwiseCity = _db.JobWiseCities.ToList();
+            var cityData = _db.tblCities.ToList();
             foreach (var item in m)
             {
-                var cityData = _db.tblCities.Where(x => x.Id == item.CityId).FirstOrDefault();
+                var jobCity = jobwiseCity.Where(x => x.JobId == item.Id).Select(x => x.CityId).ToList();
+                var city = cityData.Where(x => jobCity.Contains(x.Id)).Select(x => x.Name).ToList();
                 JobDetailViewModel data = new JobDetailViewModel
                 {
                     Id = item.Id,
                     Title = item.Title,
-                    CityId = (int)item.CityId,
                     minExpirience = (int)item.MinExperience,
                     maxExpirience = (int)item.MaxExperience,
                     minSalary = (int)item.MinSalary,
                     maxSalary = (int)item.MaxSalary,
                     description = item.Description,
                     Date = ((DateTime)item.date).ToString("MMM dd, yyyy"),
-                    City = cityData.Name
+                    City = city.Count > 0 ? string.Join(", ", city) : ""
                 };
                 model.Add(data);
             }

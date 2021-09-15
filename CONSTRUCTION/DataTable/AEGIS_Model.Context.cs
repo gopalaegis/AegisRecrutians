@@ -45,5 +45,6 @@ namespace CONSTRUCTION.DataTable
         public virtual DbSet<tblSubCategoryMaster> tblSubCategoryMasters { get; set; }
         public virtual DbSet<tblSuperAdmin> tblSuperAdmins { get; set; }
         public virtual DbSet<tblTechnologyMaster> tblTechnologyMasters { get; set; }
+        public virtual DbSet<JobWiseCity> JobWiseCities { get; set; }
     }
 }
