@@ -31,7 +31,7 @@
                 </div>
                 <br />
                 <div class="row">
-                        <iframe id="descriptionDiv" src="@Url.Action("BindHTMLCity","Jobs",new {Id=Model.Item2.Id,CityId=Model.Item2.cityId})" frameborder="0" style="overflow:hidden;height:100%;width:100%" height="100%" width="100%"></iframe>
+                        <iframe id="descriptionDiv" src="@Url.Action("BindHTMLCity","Jobs",new {Id=Model.Item2.Id,CityId=Model.Item2.cityId})" frameborder="0" style="overflow:hidden;width:100%" width="100%"></iframe>
                 </div>
         </div>
 </section>
@@ -43,14 +43,16 @@
         });
 
 
-    $("#jobDiv").on("click", ".pageList", function () {
+        $("#jobDiv").on("click", ".pageList", function () {
                 var page = $(this).attr("data-page");
-                var technology = '@(Model)';
+                var technologyId = '@(Model.Item1)';
+                var technologyCityId = '@(Model.Item2.cityId)';
                 $.ajax({
                         url: '@Url.Action("List", "jobs")',
                         data: {
                                 page: page,
-                                TechnologyId: technology
+                                TechnologyId: technologyId,
+                                technologyCityId: technologyCityId
                         },
                         success: function (result) {
                                 $("#jobDiv").html("");
