@@ -6,6 +6,9 @@
         .footer_section {
                 padding: 8.5rem 0 3rem !important;
         }
+        .h-60 {
+            height:60px;
+        }
 </style>
 <!-- Slider Section -->
 <section class="slider-section">
@@ -54,7 +57,7 @@
                                                 {
                                                         <li data-aos="zoom-in" data-aos-duration="1000">
                                                                 <a href="@Url.Action("TechnoloGyWiseJob","Jobs",new { slugURL = item.Slug})">
-                                                                        <aside><img src="~/CommonImage/Technology/@item.Image" class="lazyload" alt="@item.Name" /></aside>
+                                                                        <aside><img src="~/CommonImage/Technology/@item.Image" class="lazyload h-60" alt="@item.Name" /></aside>
                                                                         <h3 title="@item.Name">@item.Name</h3>
                                                                 </a>
                                                         </li>

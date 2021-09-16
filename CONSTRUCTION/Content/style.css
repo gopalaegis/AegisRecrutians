@@ -129,7 +129,7 @@ form .form-control:focus{
 }
 img {
     max-width: 100%;
-	height: 60px;
+	height: auto;
 }
 a {
     outline: 0 !important;
