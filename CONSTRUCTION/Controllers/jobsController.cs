@@ -136,7 +136,7 @@ namespace CONSTRUCTION.Controllers
                     else
                     {
 
-                        data.City = string.Join(",", cityData);
+                        data.City = string.Join(", ", cityData);
                     }
                 }
                 else
