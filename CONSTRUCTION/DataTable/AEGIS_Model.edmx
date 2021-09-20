@@ -253,7 +253,7 @@
           <Property Name="H1" Type="nvarchar(max)" />
         </EntityType>
         <EntityContainer Name="AEGIS_ConstructionModelStoreContainer">
-          <EntitySet Name="JobWiseCity" EntityType="Self.JobWiseCity" Schema="admin_aegisrecrutians" store:Type="Tables" />
+          <EntitySet Name="JobWiseCity" EntityType="Self.JobWiseCity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobWiseTechnology" EntityType="Self.JobWiseTechnology" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblAddCityTechMaster" EntityType="Self.tblAddCityTechMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblApplyJobDetails" EntityType="Self.tblApplyJobDetails" Schema="dbo" store:Type="Tables" />
@@ -280,6 +280,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="AEGIS_ConstructionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="AEGIS_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="JobWiseCities" EntityType="AEGIS_ConstructionModel.JobWiseCity" />
           <EntitySet Name="JobWiseTechnologies" EntityType="AEGIS_ConstructionModel.JobWiseTechnology" />
           <EntitySet Name="tblAddCityTechMasters" EntityType="AEGIS_ConstructionModel.tblAddCityTechMaster" />
           <EntitySet Name="tblApplyJobDetails" EntityType="AEGIS_ConstructionModel.tblApplyJobDetail" />
@@ -300,8 +301,15 @@
           <EntitySet Name="tblSubCategoryMasters" EntityType="AEGIS_ConstructionModel.tblSubCategoryMaster" />
           <EntitySet Name="tblSuperAdmins" EntityType="AEGIS_ConstructionModel.tblSuperAdmin" />
           <EntitySet Name="tblTechnologyMasters" EntityType="AEGIS_ConstructionModel.tblTechnologyMaster" />
-          <EntitySet Name="JobWiseCities" EntityType="AEGIS_ConstructionModel.JobWiseCity" />
         </EntityContainer>
+        <EntityType Name="JobWiseCity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobId" Type="Int32" />
+          <Property Name="CityId" Type="Int32" />
+        </EntityType>
         <EntityType Name="JobWiseTechnology">
           <Key>
             <PropertyRef Name="Id" />
@@ -541,20 +549,21 @@
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="H1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="JobWiseCity">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="JobId" Type="Int32" />
-          <Property Name="CityId" Type="Int32" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="AEGIS_ConstructionModelStoreContainer" CdmEntityContainer="AEGIS_Entities">
+          <EntitySetMapping Name="JobWiseCities">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.JobWiseCity">
+              <MappingFragment StoreEntitySet="JobWiseCity">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="JobWiseTechnologies">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.JobWiseTechnology">
               <MappingFragment StoreEntitySet="JobWiseTechnology">
@@ -810,15 +819,6 @@
                 <ScalarProperty Name="FocusKeyphrase" ColumnName="FocusKeyphrase" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="JobWiseCities">
-            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.JobWiseCity">
-              <MappingFragment StoreEntitySet="JobWiseCity">
-                <ScalarProperty Name="CityId" ColumnName="CityId" />
-                <ScalarProperty Name="JobId" ColumnName="JobId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

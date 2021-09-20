@@ -21,7 +21,7 @@ namespace CONSTRUCTION
 
             routes.MapRoute(
              name: "Professionals",
-             url: "Professionals",
+             url: "professionals",
              defaults: new { controller = "Professionals", action = "Index" }
          );
 
