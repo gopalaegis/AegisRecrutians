@@ -3713,3 +3713,21 @@ table tr {
     cursor: pointer;
     min-width: 100px;
 }
+.ZebraDialog_Title {
+    background: #0aafce !important;
+    border-bottom: none !important;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.ZebraDialog_Buttons a {
+    background-color: #0aafce;
+    background-image: -moz-linear-gradient(#0aafce)!important;
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#0aafce),to(#0aafce))!important;
+    background-image: -webkit-linear-gradient(top,#0aafce,#0aafce)!important;
+    background-image: -o-linear-gradient(top,#0aafce,#0aafce)!important;
+    background-image: linear-gradient(to bottom,#0aafce,#0aafce)!important;
+}
+.ZebraDialog {
+    border: none !important;
+    background: #e7edef !important;
+}

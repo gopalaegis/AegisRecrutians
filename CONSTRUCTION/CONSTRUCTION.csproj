@@ -340,6 +340,45 @@
     <Content Include="images\thumb\why-aegis\1.webp" />
     <Content Include="images\thumb\why-aegis\2.webp" />
     <Content Include="images\thumb\why-aegis\3.webp" />
+    <Content Include="Zebra_Dialog-master\dist\css\classic\confirmation.png" />
+    <Content Include="Zebra_Dialog-master\dist\css\classic\error.png" />
+    <Content Include="Zebra_Dialog-master\dist\css\classic\information.png" />
+    <Content Include="Zebra_Dialog-master\dist\css\classic\prompt.png" />
+    <Content Include="Zebra_Dialog-master\dist\css\classic\question.png" />
+    <Content Include="Zebra_Dialog-master\dist\css\classic\spinner.gif" />
+    <Content Include="Zebra_Dialog-master\dist\css\classic\warning.png" />
+    <Content Include="Zebra_Dialog-master\dist\css\classic\zebra_dialog.css" />
+    <Content Include="Zebra_Dialog-master\dist\css\classic\zebra_dialog.min.css" />
+    <Content Include="Zebra_Dialog-master\dist\css\flat\confirmation.png" />
+    <Content Include="Zebra_Dialog-master\dist\css\flat\error.png" />
+    <Content Include="Zebra_Dialog-master\dist\css\flat\icons.txt" />
+    <Content Include="Zebra_Dialog-master\dist\css\flat\information.png" />
+    <Content Include="Zebra_Dialog-master\dist\css\flat\prompt.png" />
+    <Content Include="Zebra_Dialog-master\dist\css\flat\question.png" />
+    <Content Include="Zebra_Dialog-master\dist\css\flat\spinner.gif" />
+    <Content Include="Zebra_Dialog-master\dist\css\flat\warning.png" />
+    <Content Include="Zebra_Dialog-master\dist\css\flat\zebra_dialog.css" />
+    <Content Include="Zebra_Dialog-master\dist\css\flat\zebra_dialog.min.css" />
+    <Content Include="Zebra_Dialog-master\dist\css\materialize\confirmation.png" />
+    <Content Include="Zebra_Dialog-master\dist\css\materialize\error.png" />
+    <Content Include="Zebra_Dialog-master\dist\css\materialize\icons.txt" />
+    <Content Include="Zebra_Dialog-master\dist\css\materialize\information.png" />
+    <Content Include="Zebra_Dialog-master\dist\css\materialize\prompt.png" />
+    <Content Include="Zebra_Dialog-master\dist\css\materialize\question.png" />
+    <Content Include="Zebra_Dialog-master\dist\css\materialize\spinner.gif" />
+    <Content Include="Zebra_Dialog-master\dist\css\materialize\warning.png" />
+    <Content Include="Zebra_Dialog-master\dist\css\materialize\zebra_dialog.css" />
+    <Content Include="Zebra_Dialog-master\dist\css\materialize\zebra_dialog.min.css" />
+    <Content Include="Zebra_Dialog-master\dist\zebra_dialog.min.js" />
+    <Content Include="Zebra_Dialog-master\dist\zebra_dialog.src.js" />
+    <Content Include="Zebra_Dialog-master\examples\ajax.html" />
+    <Content Include="Zebra_Dialog-master\examples\coffee_48.png" />
+    <Content Include="Zebra_Dialog-master\examples\examples.css" />
+    <Content Include="Zebra_Dialog-master\examples\examples.js" />
+    <Content Include="Zebra_Dialog-master\examples\favicon.ico" />
+    <Content Include="Zebra_Dialog-master\examples\flat.html" />
+    <Content Include="Zebra_Dialog-master\examples\index.html" />
+    <Content Include="Zebra_Dialog-master\examples\materialize.html" />
     <EntityDeploy Include="DataTable\AEGIS_Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>AEGIS_Model.Designer.cs</LastGenOutput>
@@ -767,6 +806,12 @@
     <Content Include="Template\images\AR_17_8_21\template\images\thumb\why-aegis\3.webp" />
     <Content Include="Template\students\students.webp" />
     <Content Include="Views\jobs\BindHTMLCity.cshtml" />
+    <Content Include="Zebra_Dialog-master\CHANGELOG.md" />
+    <Content Include="Zebra_Dialog-master\dist\css\classic\zebra_dialog.scss" />
+    <Content Include="Zebra_Dialog-master\dist\css\flat\zebra_dialog.scss" />
+    <Content Include="Zebra_Dialog-master\dist\css\materialize\zebra_dialog.scss" />
+    <Content Include="Zebra_Dialog-master\LICENSE.md" />
+    <Content Include="Zebra_Dialog-master\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="adminAssets\img\" />
