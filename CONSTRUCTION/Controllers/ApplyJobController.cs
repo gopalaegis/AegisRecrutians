@@ -150,35 +150,40 @@ namespace CONSTRUCTION.Controllers
                     _db.SaveChanges();
                 }
             }
+            try
+            {
+                string from = WebConfigurationManager.AppSettings["SMTPMailFrom"];
+                string user = WebConfigurationManager.AppSettings["SMTPUserName"];
+                string pass = WebConfigurationManager.AppSettings["SMTPPassword"];
+                string to = WebConfigurationManager.AppSettings["SMTPMailTo"];
+                int port = Convert.ToInt32(WebConfigurationManager.AppSettings["SMTPPort"]);
+                bool ssl = Convert.ToBoolean(WebConfigurationManager.AppSettings["SMTPEnableSSL"]);
+                string host = Convert.ToString(WebConfigurationManager.AppSettings["SMTPHost"]);
+                //string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
+                //string urlforApply = string.Format("{0}ApplyJob?jobId={1}", baseUrl, m.JobId);
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new NetworkCredential(user, pass);
+                client.Port = port;
+                client.Host = host;
+                client.EnableSsl = ssl;
+                string str = string.Empty;
+                str = "Hi ";
+                str = str + "Job Title : " + jobData.Title + "<br />";
+                str = str + "Name : " + model.Name + "<br />";
+                str = str + "Contact Email : " + model.Email + "<br />";
+                str = str + "Contact Mobile : " + model.PhoneNo1 + "<br />";
+                str = str + "Thanks & Regards <br /> Aegis Team";
+                MailMessage message = new MailMessage(from, to, " Aegis Portal - Apply Job ", str);
+                message.IsBodyHtml = true;
+                //message.Headers.Add("Content-Type", "text/html");
+                client.Send(message);
+                return Json("Success", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json("Error", JsonRequestBehavior.AllowGet);
+            }
 
-            string from = WebConfigurationManager.AppSettings["SMTPMailFrom"];
-            string user = WebConfigurationManager.AppSettings["SMTPUserName"];
-            string pass = WebConfigurationManager.AppSettings["SMTPPassword"];
-            string to = WebConfigurationManager.AppSettings["SMTPMailTo"];
-            int port = Convert.ToInt32(WebConfigurationManager.AppSettings["SMTPPort"]);
-            bool ssl = Convert.ToBoolean(WebConfigurationManager.AppSettings["SMTPEnableSSL"]);
-            string host = Convert.ToString(WebConfigurationManager.AppSettings["SMTPHost"]);
-            //string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
-            //string urlforApply = string.Format("{0}ApplyJob?jobId={1}", baseUrl, m.JobId);
-            SmtpClient client = new SmtpClient();
-            client.Credentials = new NetworkCredential(user, pass);
-            client.Port = port;
-            client.Host = host;
-            client.EnableSsl = ssl;
-            string str = string.Empty;
-            str = "Hi ";
-            str = str + "Job Title : " + jobData.Title + "<br />";
-            str = str + "Name : " + model.Name + "<br />";
-            str = str + "Contact Email : " + model.Email + "<br />";
-            str = str + "Contact Mobile : " + model.PhoneNo1 + "<br />";
-            str = str + "Thanks & Regards <br /> Aegis Team";
-            MailMessage message = new MailMessage(from, to, " Aegis Portal - Apply Job ", str);
-            message.IsBodyHtml = true;
-            //message.Headers.Add("Content-Type", "text/html");
-            client.Send(message);
-
-
-            return Json("Success", JsonRequestBehavior.AllowGet);
         }
     }
 }
