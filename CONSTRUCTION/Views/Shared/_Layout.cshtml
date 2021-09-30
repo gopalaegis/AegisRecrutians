@@ -8,6 +8,7 @@
     <meta name="keywords" content="@ViewBag.MetaKeywords" />
 
     <meta name="robots" content="@ViewBag.IsCrawlString" />
+    <meta name="google-site-verification" content="UfkdLk_tJW14KTBOZKPav3uNUTNWytTS2i0vlGHn6oU" />
     <link rel="canonical" href="@ViewBag.CanonicalURL" />
     <link rel="shortcut icon" href="~/images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="~/Content/lib.css">
@@ -24,6 +25,15 @@
     @RenderSection("scripts", required: false)
     <script type="application/ld+json">
 	@Html.Raw(ViewBag.SchemaTags)
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q9Q29DTB0G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-Q9Q29DTB0G');
     </script>
     <style>
         input[type="date"] {
@@ -78,6 +88,8 @@
 
 </head>
 <body>
+    <div id="preloader" style="display:none;"></div>
+    
     <!-- Go to top -->
     <div id="return-to-top"><i class="fa fa-angle-up"></i></div>
 

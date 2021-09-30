@@ -471,6 +471,7 @@
         if (IsError == true) {
             return false;
         } else {
+            $("#preloader").show();
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("SaveData", "ApplyJob")',
@@ -493,6 +494,7 @@
                     Resume: file
                 },
                 success: function (result) {
+                    $("#preloader").hide();
                     if (result == "Success") {
                         $.Zebra_Dialog('Apply job successfully.', {
                             'type': 'confirmation',
@@ -527,5 +529,8 @@
                 }
             });
         }
+    });
+    $(".ZebraDialog_Close").click(function () {
+        window.location.href = '@Url.Action("Index", "jobs")';
     });
 </script>
