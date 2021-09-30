@@ -183,6 +183,9 @@
     <Compile Include="DataTable\JobWiseTechnology.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataTable\Schematag_master.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataTable\tblAddCityTechMaster.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>

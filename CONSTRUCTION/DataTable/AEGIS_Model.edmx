@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="AEGIS_ConstructionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Schematag_master">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchemaTag" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="JobWiseCity">
           <Key>
             <PropertyRef Name="Id" />
@@ -253,6 +261,7 @@
           <Property Name="H1" Type="nvarchar(max)" />
         </EntityType>
         <EntityContainer Name="AEGIS_ConstructionModelStoreContainer">
+          <EntitySet Name="Schematag_master" EntityType="Self.Schematag_master" Schema="admin_aegisrecrutians" store:Type="Tables" />
           <EntitySet Name="JobWiseCity" EntityType="Self.JobWiseCity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobWiseTechnology" EntityType="Self.JobWiseTechnology" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblAddCityTechMaster" EntityType="Self.tblAddCityTechMaster" Schema="dbo" store:Type="Tables" />
@@ -301,6 +310,7 @@
           <EntitySet Name="tblSubCategoryMasters" EntityType="AEGIS_ConstructionModel.tblSubCategoryMaster" />
           <EntitySet Name="tblSuperAdmins" EntityType="AEGIS_ConstructionModel.tblSuperAdmin" />
           <EntitySet Name="tblTechnologyMasters" EntityType="AEGIS_ConstructionModel.tblTechnologyMaster" />
+          <EntitySet Name="Schematag_master" EntityType="AEGIS_ConstructionModel.Schematag_master" />
         </EntityContainer>
         <EntityType Name="JobWiseCity">
           <Key>
@@ -548,6 +558,14 @@
           <Property Name="BriefDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="H1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Schematag_master">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchemaTag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -819,6 +837,15 @@
                 <ScalarProperty Name="FocusKeyphrase" ColumnName="FocusKeyphrase" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schematag_master">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.Schematag_master">
+              <MappingFragment StoreEntitySet="Schematag_master">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="SchemaTag" ColumnName="SchemaTag" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -34,6 +34,9 @@ namespace CONSTRUCTION.Controllers
             HomeViewModel model = new HomeViewModel();
             model.skillMasterViewModels = _db.tblSkillMasters.Where(x => x.isActive == true).Select(x => new SkillMasterViewModel { Id = x.Id, Name = x.Name }).ToList();
             model.technologyMasterViewModels = _db.tblTechnologyMasters.Where(x => x.isActive == true).Select(x => new TechnologyMasterViewModel { Id = x.Id, Name = x.Name, Image = x.Image, Slug = x.Slug }).ToList();
+
+            var schematag = _db.Schematag_master.Where(x => x.SchemaTag == "Home").FirstOrDefault();
+            model.SchemaDescription = schematag != null ? schematag.description : "";
             return View(model);
         }
 

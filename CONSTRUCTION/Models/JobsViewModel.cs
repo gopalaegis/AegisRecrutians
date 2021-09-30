@@ -51,4 +51,9 @@ namespace CONSTRUCTION.Models
         public int cityId { get; set; }
         public int Id { get; set; }
     }
+
+    public class SchemaTagModel
+    {
+        public string Description { get; set; }
+    }
 }

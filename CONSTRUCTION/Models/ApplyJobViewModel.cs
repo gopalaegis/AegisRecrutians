@@ -59,6 +59,7 @@ namespace CONSTRUCTION.Models
         public List<SelectListItem> drpState { get; set; }
         public string jsonEducation { get; set; }
         public string jsonExperience { get; set; }
+        public string SchemaDescription { get; set; }
         public List<EducationViewModel> educationModel { get; set; }
         public List<ExperienceViewModel> experienceModel { get; set; }
     }

@@ -1,7 +1,9 @@
-﻿@{
-        ViewBag.Title = "Blog Section - Aegis Recruitment";
-        ViewBag.MetaDescription = "Check out here for some useful blogs of career or recruitment related and know the best things to grow an impactful unique career in right way.";
-        Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@model CONSTRUCTION.Models.SchemaTagModel
+@{
+    ViewBag.Title = "Blog Section - Aegis Recruitment";
+    ViewBag.MetaDescription = "Check out here for some useful blogs of career or recruitment related and know the best things to grow an impactful unique career in right way.";
+    ViewBag.SchemaTags = Model.Description;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Template/css/style.css" rel="stylesheet" />
 <link href="~/Template/css/responsive.css" rel="stylesheet" />

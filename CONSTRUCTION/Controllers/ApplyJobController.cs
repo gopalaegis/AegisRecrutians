@@ -38,6 +38,15 @@ namespace CONSTRUCTION.Controllers
                 model.Job = job.Title;
             }
             model.drpCountry = _commonMethod.GetCountry();
+
+            var schematag = _db.Schematag_master.Where(x => x.SchemaTag == "applyJob").FirstOrDefault();
+            model.SchemaDescription = schematag != null ? schematag.description : "";
+            if (!string.IsNullOrEmpty(model.SchemaDescription)) {
+                model.SchemaDescription = model.SchemaDescription.Replace("__JonName__", job.Title);
+                model.SchemaDescription = model.SchemaDescription.Replace("__JobId__", job.Id.ToString());
+            }
+
+
             return View(model);
         }
 

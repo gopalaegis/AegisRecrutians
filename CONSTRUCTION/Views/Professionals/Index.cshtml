@@ -1,8 +1,9 @@
-﻿
+﻿@model CONSTRUCTION.Models.SchemaTagModel
 @{
-        ViewBag.Title = "Experienced Professionals Internship and Career Jobs - Aegis Recruitment";
-        ViewBag.MetaDescription = "We rely on to provide an equal job opportunity to every individual. Find the experienced professionals internship and career jobs at Aegis Recruitment.";
-        Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Experienced Professionals Internship and Career Jobs - Aegis Recruitment";
+    ViewBag.MetaDescription = "We rely on to provide an equal job opportunity to every individual. Find the experienced professionals internship and career jobs at Aegis Recruitment.";
+    ViewBag.SchemaTags = Model.Description;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <link href="~/Template/css/style.css" rel="stylesheet" />
