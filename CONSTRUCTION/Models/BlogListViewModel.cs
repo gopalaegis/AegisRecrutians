@@ -4,28 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace CONSTRUCTION.Areas.Admin.Model
+namespace CONSTRUCTION.Models
 {
-    public class SkillMasterViewModel
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public bool isactive { get; set; }
-    }
-
-    public class BlogCategoryViewModel
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public bool isactive { get; set; }
-    }
-
-    public class BlogViewModel
+    public class BlogListViewModel
     {
         public int Id { get; set; }
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public List<SelectListItem> CategoryList { get; set; }
+        public List<SelectListItem> BlogList { get; set; }
         public string Date { get; set; }
         public string Image { get; set; }
         public string BlogTitle { get; set; }

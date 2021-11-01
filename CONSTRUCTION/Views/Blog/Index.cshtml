@@ -1,9 +1,9 @@
-﻿@model CONSTRUCTION.Models.SchemaTagModel
+﻿@model Tuple<CONSTRUCTION.Models.SchemaTagModel, int>
 @{
-    ViewBag.Title = "Blog Section - Aegis Recruitment";
-    ViewBag.MetaDescription = "Check out here for some useful blogs of career or recruitment related and know the best things to grow an impactful unique career in right way.";
-    ViewBag.SchemaTags = Model.Description;
-    Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewBag.Title = "Blog Section - Aegis Recruitment";
+        ViewBag.MetaDescription = "Check out here for some useful blogs of career or recruitment related and know the best things to grow an impactful unique career in right way.";
+        ViewBag.SchemaTags = Model.Item1.Description;
+        Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Template/css/style.css" rel="stylesheet" />
 <link href="~/Template/css/responsive.css" rel="stylesheet" />
@@ -31,157 +31,12 @@
                         </div>
                 </div>
                 <div class="row">
-                        <div class="col-4 col-sm-12 col-lg-4">
-                                <div class="blog-box">
-                                        <div class="blog-img">
-                                                <a href="JavaScript:;" target="_blank">
-                                                        <img src="~/Template/articles/images/blog/b1.jpg" alt="Blog Image" />
-                                                </a>
-                                        </div>
-                                        <div class="overlay">
-                                                <h2><a href="JavaScript:;" target="_blank">Best Place to Work</a></h2>
-                                                <p>“There’s no question that inclusion drives better business results,” as the firm once again scores 100 on the Disability Equality Index.</p>
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="col-4 col-sm-12 col-lg-4">
-                                <div class="blog-box">
-                                        <div class="blog-img">
-                                                <a href="JavaScript:;" target="_blank">
-                                                        <img src="~/Template/articles/images/blog/b2.jpg" alt="Blog Image" />
-                                                </a>
-                                        </div>
-                                        <div class="overlay">
-                                                <h2><a href="JavaScript:;" target="_blank">Best Place to Work</a></h2>
-                                                <p>“There’s no question that inclusion drives better business results,” as the firm once again scores 100 on the Disability Equality Index.</p>
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="col-4 col-sm-12 col-lg-4">
-                                <div class="blog-box">
-                                        <div class="blog-img">
-                                                <a href="JavaScript:;" target="_blank">
-                                                        <img src="~/Template/articles/images/blog/b3.jpg" alt="Blog Image" />
-                                                </a>
-                                        </div>
-                                        <div class="overlay">
-                                                <h2><a href="JavaScript:;" target="_blank">Best Place to Work</a></h2>
-                                                <p>“There’s no question that inclusion drives better business results,” as the firm once again scores 100 on the Disability Equality Index.</p>
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="col-4 col-sm-12 col-lg-4">
-                                <div class="blog-box">
-                                        <div class="blog-img">
-                                                <a href="JavaScript:;" target="_blank">
-                                                        <img src="~/Template/articles/images/blog/b4.jpg" alt="Blog Image" />
-                                                </a>
-                                        </div>
-                                        <div class="overlay">
-                                                <h2><a href="JavaScript:;" target="_blank">Best Place to Work</a></h2>
-                                                <p>“There’s no question that inclusion drives better business results,” as the firm once again scores 100 on the Disability Equality Index.</p>
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="col-4 col-sm-12 col-lg-4">
-                                <div class="blog-box">
-                                        <div class="blog-img">
-                                                <a href="JavaScript:;" target="_blank">
-                                                        <img src="~/Template/articles/images/blog/b5.jpg" alt="Blog Image" />
-                                                </a>
-                                        </div>
-                                        <div class="overlay">
-                                                <h2><a href="JavaScript:;" target="_blank">Best Place to Work</a></h2>
-                                                <p>“There’s no question that inclusion drives better business results,” as the firm once again scores 100 on the Disability Equality Index.</p>
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="col-4 col-sm-12 col-lg-4">
-                                <div class="blog-box">
-                                        <div class="blog-img">
-                                                <a href="JavaScript:;" target="_blank">
-                                                        <img src="~/Template/articles/images/blog/b6.jpg" alt="Blog Image" />
-                                                </a>
-                                        </div>
-                                        <div class="overlay">
-                                                <h2><a href="JavaScript:;" target="_blank">Best Place to Work</a></h2>
-                                                <p>“There’s no question that inclusion drives better business results,” as the firm once again scores 100 on the Disability Equality Index.</p>
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="col-4 col-sm-12 col-lg-4">
-                                <div class="blog-box">
-                                        <div class="blog-img">
-                                                <a href="JavaScript:;" target="_blank">
-                                                        <img src="~/Template/articles/images/blog/b7.jpg" alt="Blog Image" />
-                                                </a>
-                                        </div>
-                                        <div class="overlay">
-                                                <h2><a href="JavaScript:;" target="_blank">Best Place to Work</a></h2>
-                                                <p>“There’s no question that inclusion drives better business results,” as the firm once again scores 100 on the Disability Equality Index.</p>
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="col-4 col-sm-12 col-lg-4">
-                                <div class="blog-box">
-                                        <div class="blog-img">
-                                                <a href="JavaScript:;" target="_blank">
-                                                        <img src="~/Template/articles/images/blog/b8.jpg" alt="Blog Image" />
-                                                </a>
-                                        </div>
-                                        <div class="overlay">
-                                                <h2><a href="JavaScript:;" target="_blank">Best Place to Work</a></h2>
-                                                <p>“There’s no question that inclusion drives better business results,” as the firm once again scores 100 on the Disability Equality Index.</p>
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="col-4 col-sm-12 col-lg-4">
-                                <div class="blog-box">
-                                        <div class="blog-img">
-                                                <a href="JavaScript:;" target="_blank">
-                                                        <img src="~/Template/articles/images/blog/b9.jpg" alt="Blog Image" />
-                                                </a>
-                                        </div>
-                                        <div class="overlay">
-                                                <h2><a href="JavaScript:;" target="_blank">Best Place to Work</a></h2>
-                                                <p>“There’s no question that inclusion drives better business results,” as the firm once again scores 100 on the Disability Equality Index.</p>
-                                        </div>
-                                </div>
-                        </div>
+                        @Html.Action("BindBlog", "BLog", new { CategoryId = Model.Item2 })
+
+                       
                 </div>
         </div>
 </section>
-
-<!-- Nav menu -->
-@*<div class="nav-menu pt-2 pb-3 titan">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="bottom-info">
-                            <nav>
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <i class="fa fa-angle-left"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>*@
-<!-- job form -->
 <section class="form_section">
         <div class="container">
                 <div class="row">

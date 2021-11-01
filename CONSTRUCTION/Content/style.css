@@ -1069,3 +1069,51 @@ textarea.form-control {height: 100%;font-family: inherit;}
     z-index: 9999999;
     background-size: 120px;
 }
+.blog-details {
+    margin-top: 80px;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.heding_section h1 {
+    font-size: 38px;
+    font-weight: 600;
+}
+
+.blog-flex {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: relative
+}
+
+.left-data {
+    width: 65%
+}
+
+.right-data {
+    width: 30%;
+    position: sticky;
+    top: 75px;
+    height: 500px;
+    overflow-y: scroll;
+    padding-bottom: 80px;
+}
+
+    .right-data::-webkit-scrollbar {
+        display: none
+    }
+
+    .right-data h2 {
+        font-size: 20px;
+        background-color: #0AAFCE;
+        padding: 10px;
+        color: #fff;
+        text-align: center
+    }
+
+    .right-data ul li {
+        margin: 20px;
+    }

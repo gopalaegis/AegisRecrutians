@@ -1,0 +1,25 @@
+﻿@model List<CONSTRUCTION.Models.BlogListViewModel>
+@{
+        Layout = null;
+}
+
+@foreach (var item in Model)
+{
+        <div class="col-4 col-sm-12 col-lg-4">
+                <div class="blog-box">
+                        <div class="blog-img">
+                                <a href="@Url.Action("BlogDetail","Blog",new { slugURL = item.URL})" target="_blank">
+                                        @*<img src="~/Template/articles/images/blog/b1.jpg" alt="Blog Image" />*@
+                                        @{
+                                                var finalPic = "/CommonImage/Blog/" + item.Image;
+                                        }
+                                        <img id="img_Profile_Pic" src="@finalPic" nerror="this.onerror=null; this.src='../images/no-image-available.jpg'" />
+                                </a>
+                        </div>
+                        <div class="overlay">
+                                <h2><a href="@Url.Action("BlogDetail","Blog",new { slugURL = item.URL})" target="_blank">@item.BlogTitle</a></h2>
+                                <p>@item.ShortDescription</p>
+                        </div>
+                </div>
+        </div>
+}

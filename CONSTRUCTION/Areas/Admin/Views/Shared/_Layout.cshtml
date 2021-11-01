@@ -1,184 +1,185 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link rel="stylesheet" href="~/adminAssets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    @Scripts.Render("~/bundles/modernizr")
-    <link rel="stylesheet" href="~/adminAssets/css/style.css">
-    <link rel="stylesheet" href="~/adminAssets/css/developer.css">
-    <link rel="stylesheet" href="~/adminAssets/css/aos.css">
-    <link href="~/Zebra_Dialog-master/dist/css/classic/zebra_dialog.css" rel="stylesheet" />
-    <link href="~/Zebra_Dialog-master/dist/css/classic/zebra_dialog.min.css" rel="stylesheet" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        <link rel="stylesheet" href="~/adminAssets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        @Scripts.Render("~/bundles/modernizr")
+        <link rel="stylesheet" href="~/adminAssets/css/style.css">
+        <link rel="stylesheet" href="~/adminAssets/css/developer.css">
+        <link rel="stylesheet" href="~/adminAssets/css/aos.css">
+        <link href="~/Zebra_Dialog-master/dist/css/classic/zebra_dialog.css" rel="stylesheet" />
+        <link href="~/Zebra_Dialog-master/dist/css/classic/zebra_dialog.min.css" rel="stylesheet" />
+        <link href="~/Zebra_Datepicker-master/public/css/metallic.css" rel="stylesheet" />
 
+        <script type="text/javascript" src="~/adminAssets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="~/adminAssets/js/popper.min.js"></script>
+        <script type="text/javascript" src="~/adminAssets/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="~/adminAssets/js/aos.js"></script>
+        <script type="text/javascript" src="~/adminAssets/js/custome.js"></script>
+        <script src="~/Zebra_Dialog-master/dist/zebra_dialog.min.js"></script>
+        <script src="~/Zebra_Dialog-master/dist/zebra_dialog.src.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
-    <script type="text/javascript" src="~/adminAssets/js/jquery.min.js"></script>
-    <script type="text/javascript" src="~/adminAssets/js/popper.min.js"></script>
-    <script type="text/javascript" src="~/adminAssets/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="~/adminAssets/js/aos.js"></script>
-    <script type="text/javascript" src="~/adminAssets/js/custome.js"></script>
-    <script src="~/Zebra_Dialog-master/dist/zebra_dialog.min.js"></script>
-    <script src="~/Zebra_Dialog-master/dist/zebra_dialog.src.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+        <script type="text/javascript" src="~/Zebra_Datepicker-master/public/javascript/zebra_datepicker.js"></script>
+        @RenderSection("scripts", required: false)
 
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-    @RenderSection("scripts", required: false)
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+        <style>
+                #preloader {
+                        background: #ffffffa1 url('../../../../images/bx_loader.gif') no-repeat scroll center center;
+                        min-height: 50px;
+                        height: 100%;
+                        width: 100%;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        z-index: 99999;
+                }
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
-    <style>
-        #preloader {
-            background: #ffffffa1 url('../../../../images/bx_loader.gif') no-repeat scroll center center;
-            min-height: 50px;
-            height: 100%;
-            width: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 99999;
-        }
+                .errorMessageBorder {
+                        border-color: red !important;
+                }
 
-        .errorMessageBorder {
-            border-color: red !important;
-        }
+                .fixedPosition {
+                        position: fixed !important;
+                        top: 15px;
+                        right: 30px;
+                        z-index: 9999;
+                }
 
-        .fixedPosition {
-            position: fixed !important;
-            top: 15px;
-            right: 30px;
-            z-index: 9999;
-        }
+                .alert-success {
+                        color: #155724;
+                        background-color: #d4edda;
+                        border-color: #c3e6cb;
+                }
 
-        .alert-success {
-            color: #155724;
-            background-color: #d4edda;
-            border-color: #c3e6cb;
-        }
+                .alert-danger {
+                        color: #721c24;
+                        background-color: #f8d7da;
+                        border-color: #f5c6cb;
+                }
 
-        .alert-danger {
-            color: #721c24;
-            background-color: #f8d7da;
-            border-color: #f5c6cb;
-        }
+                .alert {
+                        position: relative;
+                        padding: .75rem 1.25rem;
+                        margin-bottom: 1rem;
+                        border: 1px solid transparent;
+                        border-radius: .25rem;
+                }
 
-        .alert {
-            position: relative;
-            padding: .75rem 1.25rem;
-            margin-bottom: 1rem;
-            border: 1px solid transparent;
-            border-radius: .25rem;
-        }
+                .switch {
+                        position: relative;
+                        display: inline-block;
+                        width: 60px;
+                        height: 34px;
+                        float: right;
+                        margin-left: 5px;
+                }
 
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-            float: right;
-            margin-left: 5px;
-        }
+                        .switch input {
+                                opacity: 0;
+                                width: 0;
+                                height: 0;
+                        }
 
-            .switch input {
-                opacity: 0;
-                width: 0;
-                height: 0;
-            }
+                .slider {
+                        position: absolute;
+                        cursor: pointer;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background-color: #ccc;
+                        -webkit-transition: .4s;
+                        transition: .4s;
+                }
 
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
+                        .slider:before {
+                                position: absolute;
+                                content: "";
+                                height: 26px;
+                                width: 26px;
+                                left: 4px;
+                                bottom: 4px;
+                                background-color: white;
+                                -webkit-transition: .4s;
+                                transition: .4s;
+                        }
 
-            .slider:before {
-                position: absolute;
-                content: "";
-                height: 26px;
-                width: 26px;
-                left: 4px;
-                bottom: 4px;
-                background-color: white;
-                -webkit-transition: .4s;
-                transition: .4s;
-            }
+                input:checked + .slider {
+                        background-color: #5C2F91;
+                }
 
-        input:checked + .slider {
-            background-color: #5C2F91;
-        }
+                input:focus + .slider {
+                        box-shadow: 0 0 1px #2196F3;
+                }
 
-        input:focus + .slider {
-            box-shadow: 0 0 1px #2196F3;
-        }
+                input:checked + .slider:before {
+                        -webkit-transform: translateX(26px);
+                        -ms-transform: translateX(26px);
+                        transform: translateX(26px);
+                }
 
-        input:checked + .slider:before {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
-            transform: translateX(26px);
-        }
+                /* Rounded sliders */
+                .slider.round {
+                        border-radius: 34px;
+                }
 
-        /* Rounded sliders */
-        .slider.round {
-            border-radius: 34px;
-        }
+                        .slider.round:before {
+                                border-radius: 50%;
+                        }
+        </style>
+        <script>
+                $(document).ready(function () {
+                        $(".back-btn").click(function () {
+                                $(".col1").css('width', '55px');
+                                $(".col2").css('width', 'calc(100vw - 55px)');
+                                $(".left-side").css('width', '55px');
+                                $(".back-btn").hide();
+                                $(".back-btn1").show();
+                                $('.accordion1').addClass('hidden');
+                                $('.panel1').hide();
 
-            .slider.round:before {
-                border-radius: 50%;
-            }
-    </style>
-    <script>
-        $(document).ready(function () {
-            $(".back-btn").click(function () {
-                $(".col1").css('width', '55px');
-                $(".col2").css('width', 'calc(100vw - 55px)');
-                $(".left-side").css('width', '55px');
-                $(".back-btn").hide();
-                $(".back-btn1").show();
-                $('.accordion1').addClass('hidden');
-                $('.panel1').hide();
+                        });
 
-            });
+                        $(".back-btn1").click(function () {
+                                $(".col1").css('width', '220px');
+                                $(".col2").css('width', 'calc(100vw - 220px)');
+                                $(".left-side").css('width', '220px');
+                                $(".back-btn1").hide();
+                                $(".back-btn").show();
+                                $('.accordion1').removeClass('hidden');
+                                $('.panel1').show();
 
-            $(".back-btn1").click(function () {
-                $(".col1").css('width', '220px');
-                $(".col2").css('width', 'calc(100vw - 220px)');
-                $(".left-side").css('width', '220px');
-                $(".back-btn1").hide();
-                $(".back-btn").show();
-                $('.accordion1').removeClass('hidden');
-                $('.panel1').show();
+                        });
+                });
 
-            });
-        });
+        </script>
+        <script>
+                $(document).ready(function () {
 
-    </script>
-    <script>
-        $(document).ready(function () {
+                        // show a dialog box when clicking on an element
+                        $('#element').on('click', function (e) {
+                                e.preventDefault();
+                                new $.Zebra_Dialog(
+                                        "Use error messages to let the user know that an action has not completed successfully " +
+                                        "and show the reason why that happened.",
+                                        {
+                                                type: "error",
+                                                title: "Error"
+                                        }
+                                );
+                        });
 
-            // show a dialog box when clicking on an element
-            $('#element').on('click', function (e) {
-                e.preventDefault();
-                new $.Zebra_Dialog(
-                    "Use error messages to let the user know that an action has not completed successfully " +
-                    "and show the reason why that happened.",
-                    {
-                        type: "error",
-                        title: "Error"
-                    }
-                );
-            });
-
-        });
-    </script>
+                });
+        </script>
 </head>
 <body>
     <div class="nav-section1">
@@ -206,103 +207,117 @@
                         <div class="back-btn1"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
                         <div class="dashboard-head"><a href="@Url.Action("Index","Dashboard")" title="Dashboard"><i class="fa fa-th-large d-gray" aria-hidden="true"></i> Dashboard</a></div>
                         <div class="accordion_box1">
-                            <a href="@Url.Action("Index","TechnologyMaster")" title="Technology">
-                                <div class="accordion1">
-                                    <span class="dash-menu-item2">
-                                        <i class="fa fa-bars" aria-hidden="true"></i> Technology
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="@Url.Action("Index","ContentMaster")" title="Content">
-                                <div class="accordion1">
-                                    <span class="dash-menu-item2">
-                                        <i class="fa fa-bars" aria-hidden="true"></i> Content
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="@Url.Action("Index","AppliedJobs")" title="Applied Jobs">
-                                <div class="accordion1">
-                                    <span class="dash-menu-item2">
-                                        <i class="fa fa-bars" aria-hidden="true"></i> Applied Jobs
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="@Url.Action("JobDetail","JobDetails")" title="Job Detail">
-                                <div class="accordion1">
-                                    <span class="dash-menu-item2">
-                                        <i class="fa fa-bars" aria-hidden="true"></i> Job Detail
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="@Url.Action("JobEducation","JobEducation")" title="Education">
-                                <div class="accordion1">
-                                    <span class="dash-menu-item2">
-                                        <i class="fa fa-bars" aria-hidden="true"></i> Education
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="@Url.Action("JobQualification","JobQualification")" title="Qualification">
-                                <div class="accordion1">
-                                    <span class="dash-menu-item2">
-                                        <i class="fa fa-bars" aria-hidden="true"></i> Qualification
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="@Url.Action("Index","SkillMaster")" title="Skill">
-                                <div class="accordion1">
-                                    <span class="dash-menu-item2">
-                                        <i class="fa fa-bars" aria-hidden="true"></i> Skill
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="@Url.Action("Index","ReferDetails")" title="Refer">
-                                <div class="accordion1">
-                                    <span class="dash-menu-item2">
-                                        <i class="fa fa-bars" aria-hidden="true"></i> Refer
-                                    </span>
-                                </div>
-                            </a>
-                            @*<div class="panel1">
-            <div class="panel1-list">
-                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Category</div>
-                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Job Qualifications</div>
-                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Profession</div>
-                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Job Type</div>
-                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Country</div>
-                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Experience</div>
-                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> City</div>
-            </div>
-        </div>
+                                <a href="@Url.Action("Index","TechnologyMaster")" title="Technology">
+                                        <div class="accordion1">
+                                                <span class="dash-menu-item2">
+                                                        <i class="fa fa-bars" aria-hidden="true"></i> Technology
+                                                </span>
+                                        </div>
+                                </a>
+                                <a href="@Url.Action("Index","ContentMaster")" title="Content">
+                                        <div class="accordion1">
+                                                <span class="dash-menu-item2">
+                                                        <i class="fa fa-bars" aria-hidden="true"></i> Content
+                                                </span>
+                                        </div>
+                                </a>
+                                <a href="@Url.Action("Index","AppliedJobs")" title="Applied Jobs">
+                                        <div class="accordion1">
+                                                <span class="dash-menu-item2">
+                                                        <i class="fa fa-bars" aria-hidden="true"></i> Applied Jobs
+                                                </span>
+                                        </div>
+                                </a>
+                                <a href="@Url.Action("JobDetail","JobDetails")" title="Job Detail">
+                                        <div class="accordion1">
+                                                <span class="dash-menu-item2">
+                                                        <i class="fa fa-bars" aria-hidden="true"></i> Job Detail
+                                                </span>
+                                        </div>
+                                </a>
+                                <a href="@Url.Action("JobEducation","JobEducation")" title="Education">
+                                        <div class="accordion1">
+                                                <span class="dash-menu-item2">
+                                                        <i class="fa fa-bars" aria-hidden="true"></i> Education
+                                                </span>
+                                        </div>
+                                </a>
+                                <a href="@Url.Action("JobQualification","JobQualification")" title="Qualification">
+                                        <div class="accordion1">
+                                                <span class="dash-menu-item2">
+                                                        <i class="fa fa-bars" aria-hidden="true"></i> Qualification
+                                                </span>
+                                        </div>
+                                </a>
+                                <a href="@Url.Action("Index","SkillMaster")" title="Skill">
+                                        <div class="accordion1">
+                                                <span class="dash-menu-item2">
+                                                        <i class="fa fa-bars" aria-hidden="true"></i> Skill
+                                                </span>
+                                        </div>
+                                </a>
+                                <a href="@Url.Action("Index","ReferDetails")" title="Refer">
+                                        <div class="accordion1">
+                                                <span class="dash-menu-item2">
+                                                        <i class="fa fa-bars" aria-hidden="true"></i> Refer
+                                                </span>
+                                        </div>
+                                </a>
+                                <a href="@Url.Action("Index","BlogDetail")" title="Refer">
+                                        <div class="accordion1">
+                                                <span class="dash-menu-item2">
+                                                        <i class="fa fa-bars" aria-hidden="true"></i> Blog Category
+                                                </span>
+                                        </div>
+                                </a>
+                                <a href="@Url.Action("Blog","BlogDetail")" title="Refer">
+                                        <div class="accordion1">
+                                                <span class="dash-menu-item2">
+                                                        <i class="fa fa-bars" aria-hidden="true"></i> Blog
+                                                </span>
+                                        </div>
+                                </a>
+                                @*<div class="panel1">
+                    <div class="panel1-list">
+                        <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Category</div>
+                        <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Job Qualifications</div>
+                        <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Profession</div>
+                        <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Job Type</div>
+                        <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Country</div>
+                        <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Experience</div>
+                        <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> City</div>
+                    </div>
+                </div>
 
-        <div class="accordion1">
-            <span class="dash-menu-item2"><i class="fa fa-suitcase" aria-hidden="true"></i> Job Post</span>
-        </div>
-        <div class="panel1">
-            <div class="panel1-list">
-                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
-                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
-            </div>
-        </div>
+                <div class="accordion1">
+                    <span class="dash-menu-item2"><i class="fa fa-suitcase" aria-hidden="true"></i> Job Post</span>
+                </div>
+                <div class="panel1">
+                    <div class="panel1-list">
+                        <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
+                        <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
+                    </div>
+                </div>
 
-        <div class="accordion1">
-            <span class="dash-menu-item2"><i class="fa fa-user ppl-2" aria-hidden="true"></i> User</span>
-        </div>
-        <div class="panel1">
-            <div class="panel1-list">
-                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
-                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
-            </div>
-        </div>
+                <div class="accordion1">
+                    <span class="dash-menu-item2"><i class="fa fa-user ppl-2" aria-hidden="true"></i> User</span>
+                </div>
+                <div class="panel1">
+                    <div class="panel1-list">
+                        <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
+                        <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
+                    </div>
+                </div>
 
-        <div class="accordion1">
-            <span class="dash-menu-item2"><i class="fa fa-users pmin-2" aria-hidden="true"></i> Job Seeker</span>
-        </div>
-        <div class="panel1">
-            <div class="panel1-list">
-                <div class="dash-menu-list1"><a href="JobApplicant.html"><i class="fa fa-angle-right" aria-hidden="true"></i> JobApplicant </a></div>
-                <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
-            </div>
-        </div>*@
+                <div class="accordion1">
+                    <span class="dash-menu-item2"><i class="fa fa-users pmin-2" aria-hidden="true"></i> Job Seeker</span>
+                </div>
+                <div class="panel1">
+                    <div class="panel1-list">
+                        <div class="dash-menu-list1"><a href="JobApplicant.html"><i class="fa fa-angle-right" aria-hidden="true"></i> JobApplicant </a></div>
+                        <div class="dash-menu-list1"><i class="fa fa-angle-right" aria-hidden="true"></i> Item 1 </div>
+                    </div>
+                </div>*@
                         </div>
                     </div>
                 </div>

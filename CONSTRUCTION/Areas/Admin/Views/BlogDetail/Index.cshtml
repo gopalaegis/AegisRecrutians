@@ -1,0 +1,203 @@
+﻿
+@{
+        ViewBag.Title = "Blog Category Master";
+}
+<div id="addSkill" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <!-- Modal content-->
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <h4 class="modal-title modal_text"> Blog Category</h4>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn_save common-btn">Save</button>
+                                <button type="button" class="btn btn-default btn_Close" data-dismiss="modal">Close</button>
+                        </div>
+                </div>
+        </div>
+</div>
+<div class="right-side">
+        <div class="heading">
+                Blog Category
+                <label class="switch">
+                        <input id="chk_listFilter" type="checkbox" checked>
+                        <span class="slider round"></span>
+                </label>
+                <label style="float:right;"> Filter Active / Deactive : </label>
+        </div>
+
+        <div class="data-table style-1">
+                <div class="box-table">
+                        <div class="skill-table">
+                                <div class="catagory-detail">
+                                        <div class="catagory-flex1">
+                                                <div><span class="add-catagory-btn" id="btnAddTech" data-toggle="modal" data-target="#addSkill"><i class="fa fa-plus pr-1" aria-hidden="true"></i> Add</span></div>
+                                        </div>
+                                </div>
+                                <div id="tableDiv">
+                                        @Html.Action("BlogCategoryList", "BlogDetail")
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
+<script>
+        $(document).ready(function () {
+                dataTableSkill();
+        });
+
+        function dataTableSkill() {
+                $('#tableDiv').find('#tblSkillmaster').DataTable({
+                        language: {
+                                searchPlaceholder: "Search",
+                                search: "<button class='btn search-btn2' type='button'><i class='fa fa-search' ></i></button >",
+                                "paginate": {
+                                        "previous": "<i class='fa fa-angle-left' aria-hidden='true'></i>",
+                                        "next": "<i class='fa fa-angle-right' aria-hidden='true'></i>"
+                                }
+                        },
+                        columnDefs: [
+                                {
+                                        orderable: false, targets: -1
+                                }
+                        ]
+                });
+        }
+
+        function returnStatus() {
+                var status = 'deactive';
+                var value = $("#chk_listFilter").prop('checked');
+                if (value == true) {
+                        status = 'active';
+                }
+                return status;
+        }
+
+        $("#chk_listFilter").change(function () {
+                $("#preloader").show();
+                var status = returnStatus();
+                $.ajax({
+                        url: '@Url.Action("BlogCategoryList", "BlogDetail")',
+                        data: {
+                                Status: status
+                        },
+                        success: function (data) {
+                                $("#tableDiv").html("");
+                                $("#tableDiv").html(data);
+                                dataTableSkill();
+                                $("#preloader").hide();
+                        }
+                });
+        });
+
+        $("#tableDiv").on("click", ".Deactive", function () {
+                var Id = $(this).attr("data-id");
+                $("#preloader").show();
+                $.ajax({
+                        url: '@Url.Action("isDeactive", "BlogDetail")',
+                        data: { Id: Id, value: "deactive" },
+                        success: function (data) {
+                                $("#tableDiv").html("");
+                                $("#tableDiv").html(data);
+                                dataTableSkill();
+                                $("#preloader").hide();
+                                $("#alert_inquiry_success").html("Deactive Sussesfully");
+                                $("#alert_inquiry_success").show();
+                                setTimeout(function () {
+                                        $("#alert_inquiry_success").hide();
+                                }, 2000);
+                        }
+                });
+        });
+
+        $("#tableDiv").on("click", ".Active", function () {
+                var Id = $(this).attr("data-id");
+                var parentTr = $(this).parent().parent();
+                var btn = '<i class="fa fa-ban fa-ban-css red Deactive" data-id="' + Id + '" title="De-Active"></i>';
+                var lab = ' <label>Active</label>';
+                $("#preloader").show();
+                $.ajax({
+                        url: '@Url.Action("isDeactive", "BlogDetail")',
+                        data: { Id: Id, value: "active" },
+                        success: function (data) {
+                                $("#tableDiv").html("");
+                                $("#tableDiv").html(data);
+                                dataTableSkill();
+                                $("#preloader").hide();
+                                $("#alert_inquiry_success").html("Active Sussesfully");
+                                $("#alert_inquiry_success").show();
+                                setTimeout(function () {
+                                        $("#alert_inquiry_success").hide();
+                                }, 2000);
+                        }
+                });
+        });
+
+        $("#btnAddTech").click(function () {
+                $("#preloader").show();
+                $.ajax({
+                        url: '@Url.Action("AddEditBlogCategory", "BlogDetail")',
+                        success: function (data) {
+                                $("#addSkill").find(".modal-body").html("");
+                                $("#addSkill").find(".modal-body").html(data);
+                                $("#preloader").hide();
+                        }
+                });
+        });
+
+        $("#addSkill").on("click", ".btn_save", function (e) {
+                $("#preloader").show();
+                $(".errorMessage").hide();
+                var Id = $("#addSkill").find('#txt_Id').val();
+                var Name = $("#addSkill").find('#txt_Name').val();
+
+                if (Name == "") {
+                        $("#addSkill").find('#label_error_Name').show();
+                        $("#preloader").hide();
+                        return false
+                } else {
+                        $.ajax({
+                                type: "POST",
+                                url: '@Url.Action("SaveBlogMaster", "BlogDetail")',
+                                data: {
+                                        Id: Id,
+                                        Name: Name
+                                },
+                                success: function (result) {
+                                        $("#tableDiv").html("");
+                                        $("#tableDiv").html(result);
+                                        $("#preloader").hide();
+                                        $("#addSkill").find('.btn_Close').click();
+                                        dataTableSkill();
+
+                                        $("#alert_inquiry_success").html("Save successfully");
+                                        $("#alert_inquiry_success").show();
+                                        setTimeout(function () {
+                                                $("#alert_inquiry_success").hide();
+                                        }, 2000);
+                                }
+                        });
+                }
+        });
+
+        $("#tableDiv").on("click", ".editRow", function () {
+                $("#preloader").show();
+                var id = $(this).attr('data-id');
+                $.ajax({
+                        url: '@Url.Action("AddEditBlogCategory", "BlogDetail")',
+                        data: {
+                                Id: id
+                        },
+                        success: function (data) {
+                                $("#addSkill").find(".modal-body").html("");
+                                $("#addSkill").find(".modal-body").html(data);
+                                $("#preloader").hide();
+                        }
+                });
+        });
+
+
+</script>

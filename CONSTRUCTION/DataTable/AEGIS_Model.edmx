@@ -5,6 +5,32 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="AEGIS_ConstructionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="BlogTitle" Type="nvarchar(max)" />
+          <Property Name="ShortDescription" Type="nvarchar(max)" />
+          <Property Name="Blogdetail" Type="nvarchar(max)" />
+          <Property Name="URL" Type="nvarchar(max)" />
+          <Property Name="MetaTags" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="SEOTitle" Type="nvarchar(max)" />
+          <Property Name="SEODescription" Type="nvarchar(max)" />
+          <Property Name="IsCrawl" Type="bit" />
+        </EntityType>
+        <EntityType Name="BlogCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
         <EntityType Name="Schematag_master">
           <Key>
             <PropertyRef Name="Id" />
@@ -261,6 +287,8 @@
           <Property Name="H1" Type="nvarchar(max)" />
         </EntityType>
         <EntityContainer Name="AEGIS_ConstructionModelStoreContainer">
+          <EntitySet Name="Blog" EntityType="Self.Blog" Schema="admin_aegisrecrutians" store:Type="Tables" />
+          <EntitySet Name="BlogCategory" EntityType="Self.BlogCategory" Schema="admin_aegisrecrutians" store:Type="Tables" />
           <EntitySet Name="Schematag_master" EntityType="Self.Schematag_master" Schema="admin_aegisrecrutians" store:Type="Tables" />
           <EntitySet Name="JobWiseCity" EntityType="Self.JobWiseCity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobWiseTechnology" EntityType="Self.JobWiseTechnology" Schema="dbo" store:Type="Tables" />
@@ -311,6 +339,8 @@
           <EntitySet Name="tblSuperAdmins" EntityType="AEGIS_ConstructionModel.tblSuperAdmin" />
           <EntitySet Name="tblTechnologyMasters" EntityType="AEGIS_ConstructionModel.tblTechnologyMaster" />
           <EntitySet Name="Schematag_master" EntityType="AEGIS_ConstructionModel.Schematag_master" />
+          <EntitySet Name="BlogCategories" EntityType="AEGIS_ConstructionModel.BlogCategory" />
+          <EntitySet Name="Blogs" EntityType="AEGIS_ConstructionModel.Blog" />
         </EntityContainer>
         <EntityType Name="JobWiseCity">
           <Key>
@@ -566,6 +596,32 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SchemaTag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BlogCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BlogTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShortDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Blogdetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaTags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="SEOTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SEODescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsCrawl" Type="Boolean" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -846,6 +902,34 @@
               <MappingFragment StoreEntitySet="Schematag_master">
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="SchemaTag" ColumnName="SchemaTag" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlogCategories">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.BlogCategory">
+              <MappingFragment StoreEntitySet="BlogCategory">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Blogs">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.Blog">
+              <MappingFragment StoreEntitySet="Blog">
+                <ScalarProperty Name="IsCrawl" ColumnName="IsCrawl" />
+                <ScalarProperty Name="SEODescription" ColumnName="SEODescription" />
+                <ScalarProperty Name="SEOTitle" ColumnName="SEOTitle" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="MetaTags" ColumnName="MetaTags" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Blogdetail" ColumnName="Blogdetail" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="BlogTitle" ColumnName="BlogTitle" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

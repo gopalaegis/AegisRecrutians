@@ -133,6 +133,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AppliedJobsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogDetailController.cs" />
     <Compile Include="Areas\Admin\Controllers\ReferDetailsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\JobEducationController.cs" />
@@ -176,6 +177,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AEGIS_Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\Blog.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\BlogCategory.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTable\JobWiseCity.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
@@ -246,6 +253,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BlogListViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\ApplyJobViewModel.cs" />
     <Compile Include="Models\ReferViewModel.cs" />
@@ -344,6 +352,18 @@
     <Content Include="images\thumb\why-aegis\1.webp" />
     <Content Include="images\thumb\why-aegis\2.webp" />
     <Content Include="images\thumb\why-aegis\3.webp" />
+    <Content Include="Zebra_Datepicker-master\public\css\bootstrap.css" />
+    <Content Include="Zebra_Datepicker-master\public\css\default.css" />
+    <Content Include="Zebra_Datepicker-master\public\css\metallic.css" />
+    <Content Include="Zebra_Datepicker-master\public\images\calendar-disabled.png" />
+    <Content Include="Zebra_Datepicker-master\public\images\calendar.png" />
+    <Content Include="Zebra_Datepicker-master\public\images\metallic\default-date.png" />
+    <Content Include="Zebra_Datepicker-master\public\images\metallic\disabled-date.png" />
+    <Content Include="Zebra_Datepicker-master\public\images\metallic\header.png" />
+    <Content Include="Zebra_Datepicker-master\public\images\metallic\selected-date.png" />
+    <Content Include="Zebra_Datepicker-master\public\images\themes.png" />
+    <Content Include="Zebra_Datepicker-master\public\javascript\zebra_datepicker.js" />
+    <Content Include="Zebra_Datepicker-master\public\javascript\zebra_datepicker.src.js" />
     <Content Include="Zebra_Dialog\css\default\confirmation.png" />
     <Content Include="Zebra_Dialog\css\default\error.png" />
     <Content Include="Zebra_Dialog\css\default\index.html" />
@@ -407,6 +427,12 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Areas\Admin\Views\BlogDetail\_partialAdd.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogDetail\_partialList.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogDetail\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogDetail\Blog.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogDetail\_partialAddBlog.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogDetail\_partialBlogList.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -793,12 +819,16 @@
     <Content Include="Template\images\AR_17_8_21\template\images\thumb\why-aegis\3.webp" />
     <Content Include="Template\students\students.webp" />
     <Content Include="Views\jobs\BindHTMLCity.cshtml" />
+    <Content Include="Views\Blog\_partialBLogList.cshtml" />
+    <Content Include="Views\Blog\BlogDetail.cshtml" />
+    <Content Include="Views\Blog\BindHTMLDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="adminAssets\img\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="ckeditor\" />
+    <Folder Include="CommonImage\Blog\" />
     <Folder Include="CommonImage\Resume\" />
     <Folder Include="CommonImage\Technology\" />
     <Folder Include="System\" />
