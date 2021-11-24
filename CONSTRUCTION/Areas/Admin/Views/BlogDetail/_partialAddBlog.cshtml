@@ -85,8 +85,9 @@
                                 </div>
                                 <div class="row formGroup">
                                         <div class="col-sm-4">
-                                                <label>Canonical URL</label>
+                                                <label>Canonical URL <span class="red">*</span></label>
                                                 <input type="text" id="txt_URL" value="@Model.URL" placeholder="Canonical URL" class="form-control" />
+                                                <label id="label_error_URL" class="errorMessage" style="display:none;">Canonical URL is required</label>
                                         </div>
                                         <div class="col-sm-4">
                                                 <label>IsCrawl</label>

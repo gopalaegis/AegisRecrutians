@@ -88,12 +88,15 @@ namespace CONSTRUCTION.Controllers
             var blogDataList = _db.Blogs.Where(x => x.isActive == true).OrderByDescending(x => x.Id).Take(5).ToList();
             foreach (var category in blogDataList)
             {
-                SelectListItem selectListItem = new SelectListItem()
+                if (!string.IsNullOrEmpty(category.URL) && !string.IsNullOrEmpty(category.URL))
                 {
-                    Text = category.BlogTitle,
-                    Value = category.URL.ToString()
-                };
-                blogList.Add(selectListItem);
+                    SelectListItem selectListItem = new SelectListItem()
+                    {
+                        Text = category.BlogTitle,
+                        Value = category.URL.ToString()
+                    };
+                    blogList.Add(selectListItem);
+                }
             }
             model.BlogList = blogList;
             return View(model);
@@ -103,12 +106,14 @@ namespace CONSTRUCTION.Controllers
             string htmlString = "";
 
             var technologyNameCity = _db.Blogs.Where(x => x.Id == Id).FirstOrDefault();
-            if (!string.IsNullOrEmpty(technologyNameCity.Blogdetail))
+            if (technologyNameCity != null)
             {
-                var c = new HtmlString(technologyNameCity.ToString());
-                htmlString = Regex.Replace(technologyNameCity.Blogdetail, "(?<=\\<[^<>]*)\"(?=[^><]*\\>)", "'");
+                if (!string.IsNullOrEmpty(technologyNameCity.Blogdetail))
+                {
+                    var c = new HtmlString(technologyNameCity.ToString());
+                    htmlString = Regex.Replace(technologyNameCity.Blogdetail, "(?<=\\<[^<>]*)\"(?=[^><]*\\>)", "'");
+                }
             }
-
             SEOModel seo = new SEOModel();
             seo.jobDescription = htmlString;
             return View(seo);

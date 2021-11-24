@@ -1,6 +1,6 @@
 ﻿
 @{
-        ViewBag.Title = "Blog Category Master";
+        ViewBag.Title = "Blog Master";
 }
 <div id="addSkill" class="modal fade" role="dialog">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
@@ -21,7 +21,7 @@
 </div>
 <div class="right-side">
         <div class="heading">
-                Blog Category
+                Blog
                 <label class="switch">
                         <input id="chk_listFilter" type="checkbox" checked>
                         <span class="slider round"></span>
@@ -219,6 +219,10 @@
                 }
                 if (Image == "") {
                         $("#addSkill").find('#label_error_Image').show();
+                        isError = true;
+                }
+                if (URL == "") {
+                        $("#addSkill").find('#label_error_URL').show();
                         isError = true;
                 }
                 if (isError == true) {
