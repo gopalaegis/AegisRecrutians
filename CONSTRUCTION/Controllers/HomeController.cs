@@ -137,5 +137,41 @@ namespace CONSTRUCTION.Controllers
                 return Json("Error", JsonRequestBehavior.AllowGet);
             }
         }
+
+        [HttpPost]
+        public ActionResult SendMail(string Fname = "", string Lname = "", string Ename = "", string Subject = "", string Comment = "")
+        {
+            try
+            {
+                string from = WebConfigurationManager.AppSettings["SMTPMailFrom"];
+                string user = WebConfigurationManager.AppSettings["SMTPUserName"];
+                string pass = WebConfigurationManager.AppSettings["SMTPPassword"];
+                string to = WebConfigurationManager.AppSettings["SMTPMailTo"];
+                int port = Convert.ToInt32(WebConfigurationManager.AppSettings["SMTPPort"]);
+                bool ssl = Convert.ToBoolean(WebConfigurationManager.AppSettings["SMTPEnableSSL"]);
+                string host = Convert.ToString(WebConfigurationManager.AppSettings["SMTPHost"]);
+
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new NetworkCredential(user, pass);
+                client.Port = port;
+                client.Host = host;
+                client.EnableSsl = ssl;
+                string str = string.Empty;
+                str = "Hi <br /> <br /> ";
+                str = str + "Name :- " + Fname + " " + Lname + " <br />";
+                str = str + "Email : " + Ename + "<br />";
+                str = str + "Comment :- " + Comment;
+                MailMessage message = new MailMessage(from, to, Subject, str);
+                message.IsBodyHtml = true;
+                //message.Headers.Add("Content-Type", "text/html");
+                client.Send(message);
+
+                return Json("Success", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json("Error", JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

@@ -56,11 +56,13 @@
                                 <div class="col-6 col-md-12">
                                     <div class="form-group">
                                         <input class="form-control" id="contactfname" type="text" name="fname" placeholder="First Name">
+                                        <label id="label_error_Fname" class="errorMessage" style="display:none;">First Name is required</label>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-12">
                                     <div class="form-group">
                                         <input class="form-control" id="contactlname" type="text" name="lname" placeholder="Last Name">
+                                        <label id="label_error_Lname" class="errorMessage" style="display:none;">Last Name is required</label>
                                     </div>
                                 </div>
                             </div>
@@ -68,23 +70,26 @@
                                 <div class="col-6 col-md-12">
                                     <div class="form-group">
                                         <input class="form-control" id="contactemail" type="text" name="email" placeholder="Email Name">
+                                        <label id="label_error_Ename" class="errorMessage" style="display:none;">Email Name is required</label>
+                                        <label id="label_error_EmailFormat" class="errorMessage" style="display:none;">Email Name is not Valid</label>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-12">
                                     <div class="form-group">
                                         <input class="form-control" id="contactsubject" type="text" name="subject" placeholder="Subject Name">
+                                        <label id="label_error_Sname" class="errorMessage" style="display:none;">Subject Name is required</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="bs-row">
                                 <div class="col-12">
                                     <div class="form-group">
-<textarea class="form-control" cols="4" rows="5" id="contactcomments" placeholder="Comments" type="text"></textarea>
+                                        <textarea class="form-control" cols="4" rows="5" id="contactcomments" placeholder="Comments" type="text"></textarea>
+                                        <label id="label_error_Comments" class="errorMessage" style="display:none;">Comments is required</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="submit-btn">
-
                                         <button type="button" id="btnContactSubmit" value="Submit" name="Submit" class="btn_default">Send Message</button>
                                     </div>
                                 </div>
@@ -132,4 +137,84 @@
                 </div>
             </div>
         </div>
+    </div>
 </main>
+<script>
+    $(".contact-form").on("click", "#btnContactSubmit", function () {
+        var fname = $(".contact-form").find("#contactfname").val();
+        var lname = $(".contact-form").find("#contactlname").val();
+        var email = $(".contact-form").find("#contactemail").val();
+        var subject = $(".contact-form").find("#contactsubject").val();
+        var comment = $(".contact-form").find("#contactcomments").val();
+
+        var IsError = false;
+
+        if (fname == null || fname == "") {
+            IsError = true;
+            $(".contact-form").find("#label_error_Fname").show();
+        }
+
+        if (lname == null || lname == "") {
+            IsError = true;
+            $(".contact-form").find("#label_error_Lname").show();
+        }
+
+        if (email == null || email == "") {
+            IsError = true;
+            $(".contact-form").find("#label_error_Ename").show();
+        } else if (!EmailValidation(email)) {
+            IsError = true;
+            $(".contact-form").find("#label_error_EmailFormat").show();
+        }
+
+        if (subject == null || subject == "") {
+            IsError = true;
+            $(".contact-form").find("#label_error_Sname").show();
+        }
+
+        if (comment == null || comment == "") {
+            IsError = true;
+            $(".contact-form").find("#label_error_Comments").show();
+        }
+
+        if (IsError == true) {
+            return false;
+        } else {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SendMail", "Home")',
+                data: {
+                    Fname: fname,
+                    Lname: lname,
+                    Ename: email,
+                    Subject: subject,
+                    Comment: comment
+                },
+                success: function (result) {
+                    if (result == "Success") {
+                        $(".contact-form").find("#contactfname").val("");
+                        $(".contact-form").find("#contactlname").val("");
+                        $(".contact-form").find("#contactemail").val("");
+                        $(".contact-form").find("#contactsubject").val("");
+                        $(".contact-form").find("#contactcomments").val("");
+
+                        $("#alert_inquiry_success").html("Massage genrated successfully");
+                        $("#alert_inquiry_success").show();
+                        setTimeout(function () { $("#alert_inquiry_success").hide(); }, 2000);
+                    }
+                    else {
+                        $(".contact-form").find("#name").val("");
+                        $(".contact-form").find("#email").val("");
+                        $(".contact-form").find("#mobile").val("");
+                        $(".contact-form").find("#description").val("");
+
+                        $("#alert_inquiry_error").html("Error, Please try again after some time.");
+                        $("#alert_inquiry_error").show();
+                        $(".closeInquiry").click();
+                        setTimeout(function () { $("#alert_inquiry_error").hide(); }, 2000);
+                    }
+                }
+            });
+        }
+    });
+</script>
