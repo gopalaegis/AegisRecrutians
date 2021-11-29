@@ -506,7 +506,7 @@
                 },
                 success: function (result) {
                     $("#preloader").hide();
-                    @*if (result == "Success") {
+                    if (result == "Success") {
                         $.Zebra_Dialog('Your CV has been submitted successfully. We will revert back to you soon.', {
                             'type': 'confirmation',
                             'title': 'Apply job',
@@ -523,7 +523,7 @@
                         setTimeout(function () {
                             $("#alert_inquiry_success").hide();
                             window.location.href = '@Url.Action("Index", "jobs")';
-                        }, 2000);
+                        }, 2000);*@
                     } else {
                         $.Zebra_Dialog('Somthing went wrong please try again after sometime.', {
                             'type': 'error',
@@ -536,7 +536,7 @@
                                 }
                             ]
                         });
-                    }*@
+                    }
                 }
             });
         }

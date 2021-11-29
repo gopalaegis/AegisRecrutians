@@ -54,6 +54,11 @@ namespace CONSTRUCTION.Controllers
             return View();
         }
 
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
+
         public ActionResult JobDetails()
         {
             List<JobDetailViewModel> model = new List<JobDetailViewModel>();
