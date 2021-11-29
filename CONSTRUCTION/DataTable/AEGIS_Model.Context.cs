@@ -25,6 +25,9 @@ namespace CONSTRUCTION.DataTable
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Blog> Blogs { get; set; }
+        public virtual DbSet<BlogCategory> BlogCategories { get; set; }
+        public virtual DbSet<Schematag_master> Schematag_master { get; set; }
         public virtual DbSet<JobWiseCity> JobWiseCities { get; set; }
         public virtual DbSet<JobWiseTechnology> JobWiseTechnologies { get; set; }
         public virtual DbSet<tblAddCityTechMaster> tblAddCityTechMasters { get; set; }
@@ -46,8 +49,5 @@ namespace CONSTRUCTION.DataTable
         public virtual DbSet<tblSubCategoryMaster> tblSubCategoryMasters { get; set; }
         public virtual DbSet<tblSuperAdmin> tblSuperAdmins { get; set; }
         public virtual DbSet<tblTechnologyMaster> tblTechnologyMasters { get; set; }
-        public virtual DbSet<Schematag_master> Schematag_master { get; set; }
-        public virtual DbSet<BlogCategory> BlogCategories { get; set; }
-        public virtual DbSet<Blog> Blogs { get; set; }
     }
 }

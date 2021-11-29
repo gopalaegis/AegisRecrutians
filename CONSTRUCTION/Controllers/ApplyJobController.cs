@@ -37,16 +37,25 @@ namespace CONSTRUCTION.Controllers
             {
                 model.Job = job.Title;
             }
+            model.drpState.Add(new SelectListItem { Value = "0", Text = "State" });
             model.drpCountry = _commonMethod.GetCountry();
-
-            var schematag = _db.Schematag_master.Where(x => x.SchemaTag == "applyJob").FirstOrDefault();
-            model.SchemaDescription = schematag != null ? schematag.description : "";
-            if (!string.IsNullOrEmpty(model.SchemaDescription)) {
-                model.SchemaDescription = model.SchemaDescription.Replace("__JonName__", job.Title);
-                model.SchemaDescription = model.SchemaDescription.Replace("__JobId__", job.Id.ToString());
+            var country = model.drpCountry.Where(x => x.Value != "0").FirstOrDefault();
+            if (country != null)
+            {
+                if (Convert.ToInt32(country.Value) > 0)
+                {
+                    model.drpState = _commonMethod.GetStateByCountry(Convert.ToInt32(country.Value));
+                }
             }
 
 
+            var schematag = _db.Schematag_master.Where(x => x.SchemaTag == "applyJob").FirstOrDefault();
+            model.SchemaDescription = schematag != null ? schematag.description : "";
+            if (!string.IsNullOrEmpty(model.SchemaDescription))
+            {
+                model.SchemaDescription = model.SchemaDescription.Replace("__JonName__", job.Title);
+                model.SchemaDescription = model.SchemaDescription.Replace("__JobId__", job.Id.ToString());
+            }
             return View(model);
         }
 
@@ -60,7 +69,16 @@ namespace CONSTRUCTION.Controllers
         public ActionResult ExperienceData()
         {
             ApplyJobViewModel model = new ApplyJobViewModel();
+            model.drpState.Add(new SelectListItem { Value = "0", Text = "State" });
             model.drpCountry = _commonMethod.GetCountry();
+            var country = model.drpCountry.Where(x => x.Value != "0").FirstOrDefault();
+            if (country != null)
+            {
+                if (Convert.ToInt32(country.Value) > 0)
+                {
+                    model.drpState = _commonMethod.GetStateByCountry(Convert.ToInt32(country.Value));
+                }
+            }
             return PartialView("_partialExperience", model);
         }
 
@@ -116,8 +134,8 @@ namespace CONSTRUCTION.Controllers
             data.Gender = model.Gender;
             data.Email = model.Email;
             data.Mobile = model.PhoneNo1;
-            data.Mobile1 = model.PhoneNo2;
-            data.AddressType = model.AddressType;
+            //data.Mobile1 = model.PhoneNo2;
+            //data.AddressType = model.AddressType;
             data.HouseName = model.BlockNo;
             data.Street = model.Street;
             data.City = model.City;
@@ -168,7 +186,7 @@ namespace CONSTRUCTION.Controllers
                 int port = Convert.ToInt32(WebConfigurationManager.AppSettings["SMTPPort"]);
                 bool ssl = Convert.ToBoolean(WebConfigurationManager.AppSettings["SMTPEnableSSL"]);
                 string host = Convert.ToString(WebConfigurationManager.AppSettings["SMTPHost"]);
-                //string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
+                string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
                 //string urlforApply = string.Format("{0}ApplyJob?jobId={1}", baseUrl, m.JobId);
                 SmtpClient client = new SmtpClient();
                 client.Credentials = new NetworkCredential(user, pass);
@@ -182,6 +200,11 @@ namespace CONSTRUCTION.Controllers
                 str = str + "Contact Email : " + model.Email + "<br />";
                 str = str + "Contact Mobile : " + model.PhoneNo1 + "<br />";
                 str = str + "Thanks & Regards <br /> Aegis Team";
+                if (!string.IsNullOrEmpty(model.Resume))
+                {
+                    str = str + " <br/><br/><a href = '" + baseUrl + "CommonImage/Resume/" + model.Resume + "' style='background-color: #0aafce;color: #fff;padding: 12px;text-decoration: none;font-weight: bold;font-family: 'Roboto', sans-serif;' download target='_blank'> Download Resume</a>";
+                }
+
                 MailMessage message = new MailMessage(from, to, " Aegis Portal - Apply Job ", str);
                 message.IsBodyHtml = true;
                 //message.Headers.Add("Content-Type", "text/html");

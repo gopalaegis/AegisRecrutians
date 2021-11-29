@@ -7,229 +7,246 @@
 
 <!-- heading section -->
 <section class="heading pt-3 pb-3">
-        <div class="container">
-                <div class="row">
-                        <div class="col-12">
-                                <div class="section-header text-center">
-                                        <h1>@Model.Job</h1>
-                                </div>
-                        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-header text-center">
+                    <h1>@Model.Job</h1>
                 </div>
+            </div>
         </div>
+    </div>
 </section>
 
 <!-- aooly form -->
 <section class="apply_form pt-3 pb-3 titan">
-        <div class="container">
-                <div class="row top-bar">
-                        <div class="col-6 col-sm-12">
-                                <div class="left-side">
-                                        @if (Model.Job != null && Model.Job != "")
-                                        {
-                                                <p>Apply for “@Model.Job”</p>
-                                        }
-                                </div>
-                        </div>
-                        <div class="col-6 col-sm-12">
-                                <div class="back-link">
-                                        @if (!string.IsNullOrEmpty(Model.URL) && Model.URL != "")
-                                        {
-                                                <p><a href="@Model.URL"><i class="fa fa-angle-left"></i>   Back to Results</a></p>
-                                        }
-                                </div>
-                        </div>
+    <div class="container">
+        <div class="row top-bar">
+            <div class="col-6 col-sm-12">
+                <div class="left-side">
+                    @if (Model.Job != null && Model.Job != "")
+                    {
+                        <p>Apply for “@Model.Job”</p>
+                    }
                 </div>
-                <div class="row mt-2">
-                        <div class="col-12">
-                                <div class="fill-data">
-                                        <div class="fild-info">
-                                                <p>Please tell us how we can get in touch with you and your friend.</p>
-                                                <p><span class="red">*</span> indicates a required field.</p>
-                                        </div>
-                                        <form method="post" class="">
-                                                <div class="row info">
-                                                        <div class="col-12">
-                                                                <div class="title-heding">
-                                                                        <h2>Enter Your Information</h2>
-                                                                </div>
-                                                        </div>
-                                                        <input type="hidden" id="jobId" value="@Model.JobId" />
-                                                        <div class="col-4 col-sm-12">
-                                                                <div class="form-group">
-                                                                        <input type="text" class="form-control" placeholder="Your Full Name" id="fullName">
-                                                                        <label id="label_error_FN" class="errorMessage" style="display:none;">Your Full Name is required</label>
-                                                                </div>
-                                                        </div>
-                                                        <div class="col-4 col-sm-12">
-                                                                <div class="form-group">
-                                                                        <input type="date" class="form-control" placeholder="DOB" id="DOB">
-                                                                        <i class="fa fa-calendar calendar-1"></i>
-                                                                        <label id="label_error_DOB" class="errorMessage" style="display:none;">DOB is required</label>
-                                                                </div>
-                                                        </div>
-                                                        <div class="col-4 col-sm-12">
-                                                                <div class="form-group join">
-                                                                        <p>Gender</p>
-                                                                        <div class="bd-example">
-                                                                                <div class="form-check form-check-inline">
-                                                                                        <label class="gender">
-                                                                                                Male
-                                                                                                <input type="radio" checked="checked" class="male" name="gender" value="Male" />
-                                                                                                <span class="checkmark"></span>
-                                                                                        </label>
-                                                                                </div>
-                                                                                <div class="form-check form-check-inline">
-                                                                                        <label class="gender">
-                                                                                                Female
-                                                                                                <input type="radio" name="gender" class="female" value="Female" />
-                                                                                                <span class="checkmark"></span>
-                                                                                        </label>
-                                                                                </div>
-                                                                        </div>
-                                                                        <label id="label_error_Gender" class="errorMessage" style="display:none;">Gender is required</label>
-                                                                </div>
-                                                        </div>
-                                                        <div class="col-4 col-sm-12">
-                                                                <div class="form-group">
-                                                                        <input type="text" class="form-control" placeholder="Email ID" id="email">
-                                                                        <label id="label_error_Email" class="errorMessage" style="display:none;">Email is required</label>
-                                                                        <label id="label_error_EmailFormat" class="errorMessage" style="display:none;">Email is not Valid</label>
-                                                                </div>
-                                                        </div>
-                                                        <div class="col-4 col-sm-12">
-                                                                <div class="form-group">
-                                                                        <input type="text" class="form-control" placeholder="Phone Number" id="mobile" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                                                                        <label id="label_error_PN" class="errorMessage" style="display:none;">Phone Number is required</label>
-                                                                        <label id="label_error_PNFormat" class="errorMessage" style="display:none;">Phone Number is not Valid</label>
-                                                                </div>
-                                                        </div>
-                                                        <div class="col-4 col-sm-12">
-                                                                <div class="form-group">
-                                                                        <input type="text" class="form-control" placeholder="Phone Number" id="mobile1" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                                                                        <label id="label_error_PNFormat2" class="errorMessage" style="display:none;">Phone Number is not Valid</label>
-                                                                </div>
-                                                        </div>
-                                                </div>
-                                                <div class="row address mt-2">
-                                                        <div class="col-12">
-                                                                <div class="title-heding">
-                                                                        <h2>Address</h2>
-                                                                </div>
-                                                        </div>
-                                                        <div class="col-4 col-sm-12">
-                                                                <div class="form-group">
-                                                                        <div class="select-box">
-                                                                                <select class="form-control" id="addressType">
-                                                                                        <option value="0">Address Type</option>
-                                                                                        <option value="Home">Home</option>
-                                                                                        <option value="Business">Business</option>
-                                                                                </select>
-                                                                        </div>
-                                                                        <label id="label_error_addressType" class="errorMessage" style="display:none;">Address Type is required</label>
-                                                                </div>
-                                                        </div>
-                                                        <div class="col-4 col-sm-12">
-                                                                <div class="form-group">
-                                                                        <input type="text" class="form-control" placeholder="Block no. / Flat no. / House name" id="fNo">
-                                                                        <label id="label_error_FNo" class="errorMessage" style="display:none;">Block no. / Flat no. / House name is required</label>
-                                                                </div>
-                                                        </div>
-                                                        <div class="col-4 col-sm-12">
-                                                                <div class="form-group">
-                                                                        <input type="text" class="form-control" placeholder="Street / Landmark / Area" id="area">
-                                                                        <label id="label_error_area" class="errorMessage" style="display:none;">Street / Landmark / Area is required</label>
-                                                                </div>
-                                                        </div>
-                                                        <div class="col-4 col-sm-12">
-                                                                <div class="form-group">
-                                                                        <input type="text" class="form-control" placeholder="City" id="city">
-                                                                        <label id="label_error_city" class="errorMessage" style="display:none;">City is required</label>
-                                                                </div>
-                                                        </div>
-                                                        <div class="col-4 col-sm-12">
-                                                                <div class="form-group">
-                                                                        <div class="select-box">
-                                                                                <select class="form-control country">
-                                                                                        @foreach (var item in Model.drpCountry)
-                                                                                        {
-                                                                                                <option value="@item.Value">@item.Text</option>
-                                                                                        }
-                                                                                </select>
-                                                                        </div>
-                                                                        <label id="label_error_Country" class="errorMessage" style="display:none;">Country is required</label>
-                                                                </div>
-                                                        </div>
-                                                        <div class="col-4 col-sm-12">
-                                                                <div class="form-group">
-                                                                        <div class="select-box">
-                                                                                <select class="form-control state">
-                                                                                        <option value="0">State</option>
-                                                                                </select>
-                                                                        </div>
-                                                                        <label id="label_error_State" class="errorMessage" style="display:none;">State is required</label>
-                                                                </div>
-                                                        </div>
-                                                </div>
-                                                <div class="row edu mt-2">
-                                                        <div class="col-12">
-                                                                <div class="title-heding">
-                                                                        <h2>Education</h2>
-                                                                </div>
-                                                        </div>
-                                                        <div id="educationDiv" class="col-12">
-                                                                @Html.Action("EducationData", "ApplyJob")
-                                                        </div>
-                                                        <div class="col-12">
-                                                                <div class="add-new-row"><a id="addEducation">&#43; Add More</a></div>
-                                                        </div>
-                                                </div>
-                                                <div class="row experience mt-2">
-                                                        <div class="col-12">
-                                                                <div class="title-heding">
-                                                                        <h2>Work Experience</h2>
-                                                                </div>
-                                                        </div>
-                                                        <div id="experienceDiv" class="col-12">
-                                                                @Html.Action("ExperienceData", "ApplyJob")
-                                                        </div>
-                                                        <div class="col-12">
-                                                                <div class="add-new-row"><a id="addExperience">&#43; Add More</a></div>
-                                                        </div>
-                                                </div>
-                                                <div class="row mt-3 upload-doc">
-                                                        <div class="col-7 col-sm-12">
-                                                                <div class="fill-upload">
-                                                                        <input id="file-upload" type="file" name="fileUpload" accept=".pdf,.doc, .docx,.rtf" />
-                                                                        <label for="file-upload" id="file-drag">
-                                                                                <img id="file-image" src="#" alt="Preview" class="hidden" />
-                                                                                <div id="start">
-                                                                                        <div class="border">
-                                                                                                <h3>UPLOAD RESUME</h3>
-                                                                                                <p>Supported Formats: doc, docx, rtf, pdf, upto 2 MB</p>
-                                                                                                <div id="notimage" class="hidden">Please select an image</div>
-                                                                                        </div>
-                                                                                </div>
-                                                                        </label>
-                                                                        <label id="filename"></label>
-                                                                        <label id="label_error_FileSize" class="errorMessage" style="display:none;">RESUME is not less then 2 mb.</label>
-                                                                        <label id="label_error_FileFormat" class="errorMessage" style="display:none;">RESUME should be doc, docx, rtf, pdf.</label>
-                                                                        <label id="label_error_File" class="errorMessage" style="display: none;">RESUME is required</label>
-                                                                </div>
-                                                                <input id="hiddenFilename" type="hidden" value="" />
-                                                        </div>
-                                                </div>
-                                                <div class="row pt-3 submit-box">
-                                                        <div class="col-5 col-sm-12 text-center">
-                                                                <div class="send-btn">
-                                                                        <a class="send_btn">Apply Now</a>
-                                                                </div>
-                                                        </div>
-                                                </div>
-                                        </form>
-                                </div>
-                        </div>
+            </div>
+            <div class="col-6 col-sm-12">
+                <div class="back-link">
+                    @if (!string.IsNullOrEmpty(Model.URL) && Model.URL != "")
+                    {
+                        <p><a href="@Model.URL"><i class="fa fa-angle-left"></i>   Back to Results</a></p>
+                    }
                 </div>
+            </div>
         </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                <div class="fill-data">
+                    <div class="fild-info">
+                        <p>Please tell us how we can get in touch with you and your friend.</p>
+                        <p><span class="red">*</span> indicates a required field.</p>
+                    </div>
+                    <form method="post" class="">
+                        <div class="row info">
+                            <div class="col-12">
+                                <div class="title-heding">
+                                    <h2>Enter Your Information</h2>
+                                </div>
+                            </div>
+                            <input type="hidden" id="jobId" value="@Model.JobId" />
+                            <div class="col-4 col-sm-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Your Full Name" id="fullName">
+                                    <label id="label_error_FN" class="errorMessage" style="display:none;">Your Full Name is required</label>
+                                </div>
+                            </div>
+                            <div class="col-4 col-sm-12">
+                                <div class="form-group">
+                                    <i class="fa fa-calendar calendar-1"></i>
+                                    <input type="date" class="form-control" placeholder="DOB" id="DOB">
+                                    <label id="label_error_DOB" class="errorMessage" style="display:none;">DOB is required</label>
+                                </div>
+                            </div>
+                            <div class="col-4 col-sm-12">
+                                <div class="form-group join">
+                                    <p>Gender</p>
+                                    <div class="bd-example">
+                                        <div class="form-check form-check-inline">
+                                            <label class="gender">
+                                                Male
+                                                <input type="radio" checked="checked" class="male" name="gender" value="Male" />
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="gender">
+                                                Female
+                                                <input type="radio" name="gender" class="female" value="Female" />
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <label id="label_error_Gender" class="errorMessage" style="display:none;">Gender is required</label>
+                                </div>
+                            </div>
+                            <div class="col-4 col-sm-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Email ID" id="email">
+                                    <label id="label_error_Email" class="errorMessage" style="display:none;">Email is required</label>
+                                    <label id="label_error_EmailFormat" class="errorMessage" style="display:none;">Email is not Valid</label>
+                                </div>
+                            </div>
+                            <div class="col-4 col-sm-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Phone Number" id="mobile" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                    <label id="label_error_PN" class="errorMessage" style="display:none;">Phone Number is required</label>
+                                    <label id="label_error_PNFormat" class="errorMessage" style="display:none;">Phone Number is not Valid</label>
+                                </div>
+                            </div>
+                            @*<div class="col-4 col-sm-12">
+                                        <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Phone Number" id="mobile1" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                                <label id="label_error_PNFormat2" class="errorMessage" style="display:none;">Phone Number is not Valid</label>
+                                        </div>
+                                </div>*@
+                        </div>
+                        <div class="row address mt-2">
+                            <div class="col-12">
+                                <div class="title-heding">
+                                    <h2>Address</h2>
+                                </div>
+                            </div>
+                            @*<div class="col-4 col-sm-12">
+                                        <div class="form-group">
+                                                <div class="select-box">
+                                                        <select class="form-control" id="addressType">
+                                                                <option value="0">Address Type</option>
+                                                                <option value="Home">Home</option>
+                                                                <option value="Business">Business</option>
+                                                        </select>
+                                                </div>
+                                                <label id="label_error_addressType" class="errorMessage" style="display:none;">Address Type is required</label>
+                                        </div>
+                                </div>*@
+                            <div class="col-4 col-sm-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Block no. / Flat no. / House name" id="fNo">
+                                    <label id="label_error_FNo" class="errorMessage" style="display:none;">Block no. / Flat no. / House name is required</label>
+                                </div>
+                            </div>
+                            <div class="col-4 col-sm-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Street / Landmark / Area" id="area">
+                                    <label id="label_error_area" class="errorMessage" style="display:none;">Street / Landmark / Area is required</label>
+                                </div>
+                            </div>
+                            <div class="col-4 col-sm-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="City" id="city">
+                                    <label id="label_error_city" class="errorMessage" style="display:none;">City is required</label>
+                                </div>
+                            </div>
+                            <div class="col-4 col-sm-12">
+                                <div class="form-group">
+                                    <div class="select-box">
+                                        <select class="form-control state">
+                                            @foreach (var item in Model.drpState)
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <label id="label_error_State" class="errorMessage" style="display:none;">State is required</label>
+                                </div>
+                            </div>
+                            <div class="col-4 col-sm-12">
+                                <div class="form-group">
+                                    <div class="select-box">
+                                        <select class="form-control country">
+                                            @if (Model.drpCountry.Count() > 1)
+                                            {
+                                                foreach (var item in Model.drpCountry)
+                                                {
+                                                    if (item.Value == Model.drpCountry.Where(x => x.Value != "0").FirstOrDefault().Value)
+                                                    {
+                                                        <option value="@item.Value" selected="selected">@item.Text</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.Value">@item.Text</option>
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <option value="0">Country</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <label id="label_error_Country" class="errorMessage" style="display:none;">Country is required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row edu mt-2">
+                            <div class="col-12">
+                                <div class="title-heding">
+                                    <h2>Education</h2>
+                                </div>
+                            </div>
+                            <div id="educationDiv" class="col-12">
+                                @Html.Action("EducationData", "ApplyJob")
+                            </div>
+                            <div class="col-12">
+                                <div class="add-new-row"><a id="addEducation">&#43; Add More</a></div>
+                            </div>
+                        </div>
+                        <div class="row experience mt-2">
+                            <div class="col-12">
+                                <div class="title-heding">
+                                    <h2>Work Experience</h2>
+                                </div>
+                            </div>
+                            <div id="experienceDiv" class="col-12">
+                                @Html.Action("ExperienceData", "ApplyJob")
+                            </div>
+                            <div class="col-12">
+                                <div class="add-new-row"><a id="addExperience">&#43; Add More</a></div>
+                            </div>
+                        </div>
+                        <div class="row mt-3 upload-doc">
+                            <div class="col-7 col-sm-12">
+                                <div class="fill-upload">
+                                    <input id="file-upload" type="file" name="fileUpload" accept=".pdf,.doc, .docx,.rtf" />
+                                    <label for="file-upload" id="file-drag">
+                                        <img id="file-image" src="#" alt="Preview" class="hidden" />
+                                        <div id="start">
+                                            <div class="border">
+                                                <h3>UPLOAD RESUME</h3>
+                                                <p>Supported Formats: doc, docx, rtf, pdf, upto 2 MB</p>
+                                                <div id="notimage" class="hidden">Please select an image</div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <label id="filename"></label>
+                                    <label id="label_error_FileSize" class="errorMessage" style="display:none;">RESUME is not less then 2 mb.</label>
+                                    <label id="label_error_FileFormat" class="errorMessage" style="display:none;">RESUME should be doc, docx, rtf, pdf.</label>
+                                    <label id="label_error_File" class="errorMessage" style="display: none;">RESUME is required</label>
+                                </div>
+                                <input id="hiddenFilename" type="hidden" value="" />
+                            </div>
+                        </div>
+                        <div class="row pt-3 submit-box">
+                            <div class="col-5 col-sm-12 text-center">
+                                <div class="send-btn">
+                                    <a class="send_btn">Apply Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <script>
@@ -346,8 +363,8 @@
         var gender = $('input[name="gender"]:checked').val();
         var email = $("#email").val();
         var mobile = $("#mobile").val();
-        var mobile1 = $("#mobile1").val();
-        var addressType = $("#addressType").val();
+        //var mobile1 = $("#mobile1").val();
+        //var addressType = $("#addressType").val();
         var fno = $("#fNo").val();
         var area = $("#area").val();
         var city = $("#city").val();
@@ -426,17 +443,11 @@
             IsError = true;
             $("#label_error_PNFormat").show();
         }
-        if (mobile1 != null || mobile1 != "") {
-            if (!PhoneNumberValidation(mobile1)) {
-                IsError = true;
-                $("#label_error_PNFormat2").show();
-            }
-        }
 
-        if (addressType == null || addressType == "0") {
-            IsError = true;
-            $("#label_error_addressType").show();
-        }
+        //if (addressType == null || addressType == "0") {
+        //    IsError = true;
+        //    $("#label_error_addressType").show();
+        //}
 
         if (fno == null || fno == "") {
             IsError = true;
@@ -481,8 +492,8 @@
                     Gender: gender,
                     Email: email,
                     PhoneNo1: mobile,
-                    PhoneNo2: mobile1,
-                    AddressType: addressType,
+                    //PhoneNo2: mobile1,
+                    //AddressType: addressType,
                     BlockNo: fno,
                     Street: area,
                     City: city,
@@ -495,8 +506,8 @@
                 },
                 success: function (result) {
                     $("#preloader").hide();
-                    if (result == "Success") {
-                        $.Zebra_Dialog('Apply job successfully.', {
+                    @*if (result == "Success") {
+                        $.Zebra_Dialog('Your CV has been submitted successfully. We will revert back to you soon.', {
                             'type': 'confirmation',
                             'title': 'Apply job',
                             'buttons': [
@@ -512,7 +523,7 @@
                         setTimeout(function () {
                             $("#alert_inquiry_success").hide();
                             window.location.href = '@Url.Action("Index", "jobs")';
-                        }, 2000);*@
+                        }, 2000);
                     } else {
                         $.Zebra_Dialog('Somthing went wrong please try again after sometime.', {
                             'type': 'error',
@@ -525,7 +536,7 @@
                                 }
                             ]
                         });
-                    }
+                    }*@
                 }
             });
         }
