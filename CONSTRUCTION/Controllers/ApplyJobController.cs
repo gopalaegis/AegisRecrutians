@@ -200,12 +200,16 @@ namespace CONSTRUCTION.Controllers
                 str = str + "Contact Email : " + model.Email + "<br />";
                 str = str + "Contact Mobile : " + model.PhoneNo1 + "<br />";
                 str = str + "Thanks & Regards <br /> Aegis Team";
-                if (!string.IsNullOrEmpty(model.Resume))
-                {
-                    str = str + " <br/><br/><a href = '" + baseUrl + "CommonImage/Resume/" + model.Resume + "' style='background-color: #0aafce;color: #fff;padding: 12px;text-decoration: none;font-weight: bold;font-family: 'Roboto', sans-serif;' download target='_blank'> Download Resume</a>";
-                }
+                //if (!string.IsNullOrEmpty(model.Resume))
+                //{
+                //    str = str + " <br/><br/><a href = '" + baseUrl + "CommonImage/Resume/" + model.Resume + "' style='background-color: #0aafce;color: #fff;padding: 12px;text-decoration: none;font-weight: bold;font-family: 'Roboto', sans-serif;' download target='_blank'> Download Resume</a>";
+                //}
 
                 MailMessage message = new MailMessage(from, to, " Aegis Portal - Apply Job ", str);
+                if (!string.IsNullOrEmpty(model.Resume))
+                {
+                    message.Attachments.Add(new System.Net.Mail.Attachment(Server.MapPath("../CommonImage/Resume/" + model.Resume)));
+                }
                 message.IsBodyHtml = true;
                 //message.Headers.Add("Content-Type", "text/html");
                 client.Send(message);
