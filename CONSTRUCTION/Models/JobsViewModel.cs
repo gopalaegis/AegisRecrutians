@@ -24,6 +24,7 @@ namespace CONSTRUCTION.Models
         public int Id { get; set; }
         public int TechnologyId { get; set; }
         public string Title { get; set; }
+        public string KeyWord { get; set; }
         public string TechnologyTitle { get; set; }
         public int CityId { get; set; }
         public string City { get; set; }

@@ -133,6 +133,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 model.IsVerified = Convert.ToBoolean(data.IsVerified);
                 model.ShowOnHome = data.ShowOnHome;
                 model.BriefDescription = data.BriefDescription;
+                model.KeyWord = data.KeyWords;
                 model.SelectedTechnology = _db.JobWiseTechnologies.Where(x => x.JobId == Id).Select(x => (int)x.TechnologyId).ToList();
                 model.SelectedCity = _db.JobWiseCities.Where(x => x.JobId == Id).Select(x => (int)x.CityId).ToList();
             }
@@ -278,6 +279,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 data.IsVerified = Convert.ToBoolean(model.IsVerified);
                 data.ShowOnHome = model.ShowOnHome;
                 data.BriefDescription = model.BriefDescription;
+                data.KeyWords = model.KeyWord;
                 data.date = DateTime.Now;
                 _db.SaveChanges();
 
@@ -364,6 +366,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 data.IsVerified = Convert.ToBoolean(model.IsVerified);
                 data.ShowOnHome = model.ShowOnHome;
                 data.BriefDescription = model.BriefDescription;
+                data.KeyWords = model.KeyWord;
                 data.date = DateTime.Now;
                 data.isActive = true;
                 _db.tblJobDetails.Add(data);

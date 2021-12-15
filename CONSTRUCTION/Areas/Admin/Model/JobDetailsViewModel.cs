@@ -43,6 +43,7 @@ namespace CONSTRUCTION.Areas.Admin.Model
         public int MinSalary { get; set; }
         public int MaxSalary { get; set; }
         public string BriefDescription { get; set; }
+        public string KeyWord { get; set; }
         public string JobEducation { get; set; }
         public string JobQualification { get; set; }
         public Boolean IsVerified { get; set; }

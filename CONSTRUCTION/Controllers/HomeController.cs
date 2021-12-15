@@ -26,6 +26,19 @@ namespace CONSTRUCTION.Controllers
         {
             var cityData = _db.tblCities.Select(x => x.Name).Distinct().ToList();
             var jobTitle = _db.tblJobDetails.Select(x => x.Title).Distinct().ToList();
+            var data = _db.tblJobDetails.Select(x => x.KeyWords).ToList();
+            foreach (var item in data)
+            {
+                if (!string.IsNullOrEmpty(item))
+                {
+                    var list = item.Split(',').ToList();
+                    foreach (var item1 in list)
+                    {
+                        jobTitle.Add(item1);
+                    }
+                }
+            }
+            jobTitle = jobTitle.Distinct().ToList();
             Tuple<List<string>, List<string>> tuple = new Tuple<List<string>, List<string>>(cityData, jobTitle);
             return Json(tuple, JsonRequestBehavior.AllowGet);
         }

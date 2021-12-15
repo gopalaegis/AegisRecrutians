@@ -8,209 +8,216 @@
                 <div class="card profile-card mb-3">
                         <div class="card-header"> Job Information </div>
                         <div class="card-body">
-                                <div class="row formGroup">
-                                        <div class="col-sm-6">
-                                                <label>Title <span style="color:red">*</span></label>
-                                                <input type="text" id="txt_Title" value="@Model.Title" placeholder="Title" class="form-control" />
-                                                <label id="label_error_Title" class="errorMessage" style="display: none; color: red">Title is required</label>
-                                                <label id="label_error_TitleExist" class="errorMessage" style="display: none; color: red">Title is already Exist</label>
-                                        </div>
-                                        <div class="col-sm-6">
-                                                <label>Description <span style="color:red">*</span></label>
-                                                <input type="text" id="txt_Description" value="@Model.Description" placeholder="Description" class="form-control" />
-                                                <label id="label_error_Description" class="errorMessage" style="display: none; color: red">Description is required</label>
-                                        </div>
-                                </div>                              
-                                <div class="row formGroup">
-                                        <div class="col-sm-6">
-                                                <label>Company Name <span style="color:red">*</span></label>
-                                                <input type="text" id="txt_CompanyName" value="@Model.CompanyName" placeholder="CompanyName" class="form-control" />
-                                                <label id="label_error_CompanyName" class="errorMessage" style="display: none; color: red">CompanyName is required</label>
-                                        </div>
-                                        <div class="col-sm-6">
-                                                <label>Type <span style="color:red">*</span></label>
-                                                <select class="form-control inputstyle requiredField custom-select" id="drp_Type" name="JobTypeId">
-                                                        <option value="1">Full Time</option>
-                                                        <option value="2">Part Time</option>
-                                                        <option value="3">Test</option>
-                                                </select>
-                                                <label id="label_error_Type" class="errorMessage" style="display: none; color: red">Type is required</label>
-                                        </div>
+                            <div class="row formGroup">
+                                <div class="col-sm-6">
+                                    <label>Title <span style="color:red">*</span></label>
+                                    <input type="text" id="txt_Title" value="@Model.Title" placeholder="Title" class="form-control" />
+                                    <label id="label_error_Title" class="errorMessage" style="display: none; color: red">Title is required</label>
+                                    <label id="label_error_TitleExist" class="errorMessage" style="display: none; color: red">Title is already Exist</label>
                                 </div>
-                                <div class="row formGroup">
-                                        <div class="col-sm-6" style="display:none;">
-                                                <label>Experience <span style="color:red">*</span></label>
-                                                <select class="form-control inputstyle requiredField custom-select" data-val="true" id="drp_Experince" name="Experience" title="Experience">
-                                                        <option value="1">0-1</option>
-                                                        <option value="2">1-2</option>
-                                                        <option value="3">1-1</option>
-                                                        <option value="4">2-3</option>
-                                                        <option value="5">3-4</option>
-                                                        <option value="6">4-5</option>
-                                                        <option value="7">5-6</option>
-                                                        <option value="8">5-10</option>
-                                                        <option value="9">6-7</option>
-                                                        <option value="10">7-8</option>
-                                                        <option value="11">8-9</option>
-                                                        <option value="12">10-12</option>
-                                                </select>
-                                                <label id="label_error_Experience" class="errorMessage" style="display: none; color: red">Experience is required</label>
+                                <div class="col-sm-6">
+                                    <label>Description <span style="color:red">*</span></label>
+                                    <input type="text" id="txt_Description" value="@Model.Description" placeholder="Description" class="form-control" />
+                                    <label id="label_error_Description" class="errorMessage" style="display: none; color: red">Description is required</label>
+                                </div>
+                            </div>
+                            <div class="row formGroup">
+                                <div class="col-sm-6">
+                                    <label>Company Name <span style="color:red">*</span></label>
+                                    <input type="text" id="txt_CompanyName" value="@Model.CompanyName" placeholder="CompanyName" class="form-control" />
+                                    <label id="label_error_CompanyName" class="errorMessage" style="display: none; color: red">CompanyName is required</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Type <span style="color:red">*</span></label>
+                                    <select class="form-control inputstyle requiredField custom-select" id="drp_Type" name="JobTypeId">
+                                        <option value="1">Full Time</option>
+                                        <option value="2">Part Time</option>
+                                        <option value="3">Test</option>
+                                    </select>
+                                    <label id="label_error_Type" class="errorMessage" style="display: none; color: red">Type is required</label>
+                                </div>
+                            </div>
+                            <div class="row formGroup">
+                                <div class="col-sm-6" style="display:none;">
+                                    <label>Experience <span style="color:red">*</span></label>
+                                    <select class="form-control inputstyle requiredField custom-select" data-val="true" id="drp_Experince" name="Experience" title="Experience">
+                                        <option value="1">0-1</option>
+                                        <option value="2">1-2</option>
+                                        <option value="3">1-1</option>
+                                        <option value="4">2-3</option>
+                                        <option value="5">3-4</option>
+                                        <option value="6">4-5</option>
+                                        <option value="7">5-6</option>
+                                        <option value="8">5-10</option>
+                                        <option value="9">6-7</option>
+                                        <option value="10">7-8</option>
+                                        <option value="11">8-9</option>
+                                        <option value="12">10-12</option>
+                                    </select>
+                                    <label id="label_error_Experience" class="errorMessage" style="display: none; color: red">Experience is required</label>
+                                </div>
+
+                            </div>
+                            <div class="row formGroup">
+                                <div class="col-sm-6">
+                                    <label>Min Experience <span style="color:red">*</span></label>
+                                    <input type="text" id="txt_MinExperience" value="@Model.MinExperience" placeholder="MinExperience" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                                    <label id="label_error_MinExperience" class="errorMessage" style="display: none; color: red">MinExperience is required</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Max Experience <span style="color:red">*</span></label>
+                                    <input type="text" id="txt_MaxExperience" value="@Model.MaxExperience" placeholder="MaxExperience" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                                    <label id="label_error_MaxExperience" class="errorMessage" style="display: none; color: red">MaxExperience is required</label>
+                                </div>
+                            </div>
+                            <div class="row formGroup">
+                                <div class="col-sm-6">
+                                    <label>Min Salary<span style="color:red">*</span></label>
+                                    <input type="text" id="txt_MinSalary" value="@Model.MinSalary" maxlength="50" min="0" name="MinSalary" placeholder="MinSalary" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                                    <label id="label_error_MinSalary" class="errorMessage" style="display: none; color: red">MinSalary is required</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Max Salary <span style="color:red">*</span></label>
+                                    <input type="text" id="txt_MaxSalary" value="@Model.MaxSalary" maxlength="50" min="0" name="MaxSalary" placeholder="MaxSalary" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                                    <label id="label_error_MaxSalary" class="errorMessage" style="display: none; color: red">MaxSalary is required</label>
+                                </div>
+                            </div>
+                            <div class="row formGroup">
+                                <div class="col-sm-12">
+                                    <label>KeyWords</label>
+                                    <textarea id="txt_KeyWord" name="KeyWord">@Model.KeyWord</textarea>
+                                    @*<label id="label_error_MinSalary" class="errorMessage" style="display: none; color: red">MinSalary is required</label>*@
+                                </div>
+                            </div>
+                            <div class="row formGroup">
+                                <div class="col-sm-12">
+                                    <label>Brief Description</label>
+                                    <textarea id="editor" name="editor"></textarea>
+                                    <label id="label_error_MinSalary" class="errorMessage" style="display: none; color: red">MinSalary is required</label>
+                                </div>
+                            </div>
+                            <div class="row formGroup">
+                                <div class="col-sm-6">
+                                    <label>Country <span style="color:red">*</span></label>
+                                    @Html.DropDownListFor(model => model.CountryList, new SelectList(Model.CountryList, "Value", "Text"), new { @class = "form-control custom-select drp_country" })
+                                    <label id="label_error_Country" class="errorMessage" style="display: none; color: red">Country is required</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>IsVerified <span style="color:red">*</span></label>
+                                    <select class="form-control inputstyle requiredField custom-select" id="drp_IsVerified" name="IsVerified">
+                                        @if (Model.IsVerified == false)
+                                        {
+
+
+                                            <option value="true">Yes</option>
+                                            <option value="false" selected="selected">No</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="true" selected="selected">Yes</option>
+                                            <option value="false">No</option>
+                                        }
+                                    </select>
+                                    <label id="label_error_IsVerified" class="errorMessage" style="display: none; color: red">IsVerified is required</label>
+                                </div>
+                            </div>
+                            <div class="row formGroup">
+                                <div class="col-sm-6">
+                                    <label>Show On Home<span style="color:red">*</span></label>
+                                    <select class="form-control inputstyle requiredField custom-select" id="drp_ShowOnHome" name="ShowOnHome">
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                    <label id="label_error_Location" class="errorMessage" style="display: none; color: red">Location is required</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Company Logo<span class="red">*</span></label>
+                                    <div class="img-upload">
+                                        <div class="upbtn">
+                                            <input autocomplete="off" id="image_browse" value="Upload a file from your computer" class="file-upload"
+                                                   style="display: block;" accept=".jpg, .png, .jpeg,.bmp, .tif, .tiff|images/*" name="CompanyLogo" type="file" />
+                                            <button type="button" class="btn common-btn btn-upload"><i class="fa fa-arrow-circle-o-up"></i> Select Image</button>
+                                            <input type="hidden" id="file_HiddenName" value="@Model.CompanyLogo" />
+                                            <label id="label_error_CompanyLogo" class="errorMessage" style="display: none; color: red">CompanyLogo is required</label>
                                         </div>
+                                    </div>
 
                                 </div>
-                                <div class="row formGroup">
-                                        <div class="col-sm-6">
-                                                <label>Min Experience <span style="color:red">*</span></label>
-                                                <input type="text" id="txt_MinExperience" value="@Model.MinExperience" placeholder="MinExperience" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
-                                                <label id="label_error_MinExperience" class="errorMessage" style="display: none; color: red">MinExperience is required</label>
-                                        </div>
-                                        <div class="col-sm-6">
-                                                <label>Max Experience <span style="color:red">*</span></label>
-                                                <input type="text" id="txt_MaxExperience" value="@Model.MaxExperience" placeholder="MaxExperience" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
-                                                <label id="label_error_MaxExperience" class="errorMessage" style="display: none; color: red">MaxExperience is required</label>
-                                        </div>
+                                <div class="col-sm-3 align-self-end">
+                                    <img id="img_Profile_Pic" src="~/CommonImage/CompanyLogo/@Model.CompanyLogo" onerror="this.onerror=null; this.src='../../images/no-image-available.jpg'" style="height: 80px; width: 80px;" />
                                 </div>
-                                <div class="row formGroup">
-                                        <div class="col-sm-6">
-                                                <label>Min Salary<span style="color:red">*</span></label>
-                                                <input type="text" id="txt_MinSalary" value="@Model.MinSalary" maxlength="50" min="0" name="MinSalary" placeholder="MinSalary" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
-                                                <label id="label_error_MinSalary" class="errorMessage" style="display: none; color: red">MinSalary is required</label>
-                                        </div>
-                                        <div class="col-sm-6">
-                                                <label>Max Salary <span style="color:red">*</span></label>
-                                                <input type="text" id="txt_MaxSalary" value="@Model.MaxSalary" maxlength="50" min="0" name="MaxSalary" placeholder="MaxSalary" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
-                                                <label id="label_error_MaxSalary" class="errorMessage" style="display: none; color: red">MaxSalary is required</label>
-                                        </div>
-                                </div>
-                                <div class="row formGroup">
-                                        <div class="col-sm-12">
-                                                <label>Brief Description</label>
-                                                <textarea id="editor" name="editor"></textarea>
-                                                <label id="label_error_MinSalary" class="errorMessage" style="display: none; color: red">MinSalary is required</label>
-                                        </div>
-                                </div>
-                                <div class="row formGroup">
-                                        <div class="col-sm-6">
-                                                <label>Country <span style="color:red">*</span></label>
-                                                @Html.DropDownListFor(model => model.CountryList, new SelectList(Model.CountryList, "Value", "Text"), new { @class = "form-control custom-select drp_country" })
-                                                <label id="label_error_Country" class="errorMessage" style="display: none; color: red">Country is required</label>
-                                        </div>
-                                        <div class="col-sm-6">
-                                                <label>IsVerified <span style="color:red">*</span></label>
-                                                <select class="form-control inputstyle requiredField custom-select" id="drp_IsVerified" name="IsVerified">
-                                                        @if (Model.IsVerified == false)
+                            </div>
+                            <div class="row formGroup">
+                                <div class="col-sm-6">
+                                    <label>Technology<span style="color:red">*</span></label>
+                                    <input type="text" id="txt_TechnologySearch" placeholder="Technology Search" class="form-control" />
+                                    <br />
+                                    <div style="max-height:350px;overflow-y:auto;">
+                                        <table class="dataTable no-footer" id="tbl_Technology">
+                                            @foreach (var item in Model.technologyList)
+                                            {
+                                                <tr>
+                                                    <td class="w-15 p-0">
+                                                        @if (Model.SelectedTechnology.Contains(Convert.ToInt32(item.Value)))
                                                         {
-
-
-                                                                <option value="true">Yes</option>
-                                                                <option value="false" selected="selected">No</option>
+                                                            <label class="container">
+                                                                <input type="checkbox" id="checkbox" checked="checked" value="@item.Value" />
+                                                                <span class="checkmark"></span>
+                                                            </label>
                                                         }
                                                         else
                                                         {
-                                                                <option value="true" selected="selected">Yes</option>
-                                                                <option value="false">No</option>
+                                                            <label class="container">
+                                                                <input type="checkbox" id="checkbox" value="@item.Value" />
+                                                                <span class="checkmark"></span>
+                                                            </label>
                                                         }
-                                                </select>
-                                                <label id="label_error_IsVerified" class="errorMessage" style="display: none; color: red">IsVerified is required</label>
-                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        @item.Text
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </table>
+                                    </div>
                                 </div>
-                                <div class="row formGroup">
-                                        <div class="col-sm-6">
-                                                <label>Show On Home<span style="color:red">*</span></label>
-                                                <select class="form-control inputstyle requiredField custom-select" id="drp_ShowOnHome" name="ShowOnHome">
-                                                        <option value="1">Yes</option>
-                                                        <option value="0">No</option>
-                                                </select>
-                                                <label id="label_error_Location" class="errorMessage" style="display: none; color: red">Location is required</label>
-                                        </div>
-                                        <div class="col-sm-3">
-                                                <label>Company Logo<span class="red">*</span></label>
-                                                <div class="img-upload">
-                                                        <div class="upbtn">
-                                                                <input autocomplete="off" id="image_browse" value="Upload a file from your computer" class="file-upload"
-                                                                       style="display: block;" accept=".jpg, .png, .jpeg,.bmp, .tif, .tiff|images/*" name="CompanyLogo" type="file" />
-                                                                <button type="button" class="btn common-btn btn-upload"><i class="fa fa-arrow-circle-o-up"></i> Select Image</button>
-                                                                <input type="hidden" id="file_HiddenName" value="@Model.CompanyLogo" />
-                                                                <label id="label_error_CompanyLogo" class="errorMessage" style="display: none; color: red">CompanyLogo is required</label>
-                                                        </div>
-                                                </div>
 
-                                        </div>
-                                        <div class="col-sm-3 align-self-end">
-                                                <img id="img_Profile_Pic" src="~/CommonImage/CompanyLogo/@Model.CompanyLogo" onerror="this.onerror=null; this.src='../../images/no-image-available.jpg'" style="height: 80px; width: 80px;" />
-                                        </div>
+                                <div class="col-sm-6">
+                                    <label>City<span style="color:red">*</span></label>
+                                    <input type="text" id="txt_CitySearch" placeholder="City Search" class="form-control" />
+                                    <br />
+                                    <div style="max-height:350px;overflow-y:auto;">
+                                        <table class="dataTable no-footer" id="tbl_City">
+                                            <tbody>
+                                                @foreach (var item in Model.CityList)
+                                                {
+                                                    <tr>
+                                                        <td class="w-15 p-0">
+                                                            @if (Model.SelectedCity.Contains(Convert.ToInt32(item.Value)))
+                                                            {
+                                                                <label class="container">
+                                                                    <input type="checkbox" id="checkbox_city" checked="checked" value="@item.Value" />
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            }
+                                                            else
+                                                            {
+                                                                <label class="container">
+                                                                    <input type="checkbox" id="checkbox_city" value="@item.Value" />
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            @item.Text
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                                <div class="row formGroup">
-                                        <div class="col-sm-6">
-                                                <label>Technology<span style="color:red">*</span></label>
-                                                <input type="text" id="txt_TechnologySearch" placeholder="Technology Search" class="form-control" />
-                                                <br />
-                                                <div style="max-height:350px;overflow-y:auto;">
-                                                        <table class="dataTable no-footer" id="tbl_Technology">
-                                                                @foreach (var item in Model.technologyList)
-                                                                {
-                                                                        <tr>
-                                                                                <td class="w-15 p-0">
-                                                                                        @if (Model.SelectedTechnology.Contains(Convert.ToInt32(item.Value)))
-                                                                                        {
-                                                                                                <label class="container">
-                                                                                                        <input type="checkbox" id="checkbox" checked="checked" value="@item.Value" />
-                                                                                                        <span class="checkmark"></span>
-                                                                                                </label>
-                                                                                        }
-                                                                                        else
-                                                                                        {
-                                                                                                <label class="container">
-                                                                                                        <input type="checkbox" id="checkbox" value="@item.Value" />
-                                                                                                        <span class="checkmark"></span>
-                                                                                                </label>
-                                                                                        }
-                                                                                </td>
-                                                                                <td>
-                                                                                        @item.Text
-                                                                                </td>
-                                                                        </tr>
-                                                                }
-                                                        </table>
-                                                </div>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                                <label>City<span style="color:red">*</span></label>
-                                                <input type="text" id="txt_CitySearch" placeholder="City Search" class="form-control" />
-                                                <br />
-                                                <div style="max-height:350px;overflow-y:auto;">
-                                                        <table class="dataTable no-footer" id="tbl_City">
-                                                                <tbody>
-                                                                        @foreach (var item in Model.CityList)
-                                                                        {
-                                                                                <tr>
-                                                                                        <td class="w-15 p-0">
-                                                                                                @if (Model.SelectedCity.Contains(Convert.ToInt32(item.Value)))
-                                                                                                {
-                                                                                                        <label class="container">
-                                                                                                                <input type="checkbox" id="checkbox_city" checked="checked" value="@item.Value" />
-                                                                                                                <span class="checkmark"></span>
-                                                                                                        </label>
-                                                                                                }
-                                                                                                else
-                                                                                                {
-                                                                                                        <label class="container">
-                                                                                                                <input type="checkbox" id="checkbox_city" value="@item.Value" />
-                                                                                                                <span class="checkmark"></span>
-                                                                                                        </label>
-                                                                                                }
-                                                                                        </td>
-                                                                                        <td>
-                                                                                                @item.Text
-                                                                                        </td>
-                                                                                </tr>
-                                                                        }
-                                                                </tbody>
-                                                        </table>
-                                                </div>
-                                        </div>
-                                </div>
+                            </div>
                         </div>
                 </div>
                 <div class="float-right">

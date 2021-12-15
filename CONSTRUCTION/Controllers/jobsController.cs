@@ -99,7 +99,8 @@ namespace CONSTRUCTION.Controllers
             List<JobDetailViewModel> m = new List<JobDetailViewModel>();
             title = title.ToLower();
             var technologyWiseList = _db.JobWiseTechnologies.Where(x => x.TechnologyId == TechnologyId).Select(x => x.JobId).ToList();
-            var d = _db.tblJobDetails.Where(x => x.Title.ToLower().Contains(title) && x.isActive == true).ToList();
+            var d = _db.tblJobDetails.Where(x => x.Title.ToLower().Contains(title) || x.KeyWords.ToLower().Contains(title)).ToList();
+            d = d.Where(x => x.isActive == true).ToList();
             if (TechnologyId > 0)
             {
                 d = d.Where(x => technologyWiseList.Contains(x.Id)).ToList();
@@ -115,6 +116,7 @@ namespace CONSTRUCTION.Controllers
 
                 data.Id = item.Id;
                 data.Title = item.Title;
+                data.KeyWord = item.KeyWords;
                 data.CityId = (int)item.CityId;
                 data.minExpirience = (int)item.MinExperience;
                 data.maxExpirience = (int)item.MaxExperience;
@@ -148,7 +150,7 @@ namespace CONSTRUCTION.Controllers
                         {
                             if (c.ToLower().IndexOf(city.ToLower()) > -1)
                             {
-                                cityName = c;                                
+                                cityName = c;
                             }
                         }
                         data.City = cityName;
@@ -160,34 +162,34 @@ namespace CONSTRUCTION.Controllers
                             data.City = string.Join(", ", cityData);
                         }
                     }
-                        //data.City = cityData.Name.ToLower().Contains(city.ToLower()) ? cityData.Name : "Work From Home";
-                    }
-                    m.Add(data);
+                    //data.City = cityData.Name.ToLower().Contains(city.ToLower()) ? cityData.Name : "Work From Home";
                 }
-                m = m.Where(x => x.Title.ToLower().Contains(title.ToLower())).ToList();
-                model.currentPage = page;
-                model.totalRecord = m.Count;
-                var pageCount = (double)m.Count / (double)5;
-                model.totalPage = (int)Math.Ceiling(pageCount);
-                var skip = ((page - 1) * 5);
-                m = m.Skip(skip).ToList();
-                if (m.Count > 5)
-                {
-                    model.jobDetailViewModels = m.Take(5).ToList();
-                }
-                else
-                {
-                    model.jobDetailViewModels = m.ToList();
-                }
-                if (model.jobDetailViewModels.Count > 0)
-                {
-                    model.fromtojob = (skip + 1).ToString() + " - " + (skip + model.jobDetailViewModels.Count) + " of " + model.totalRecord + " Jobs";
-                }
-                else
-                {
-                    model.fromtojob = "0 - 0 of 0 Jobs";
-                }
-                return PartialView("_partialJobList", model);
+                m.Add(data);
             }
+            m = m.Where(x => x.Title.ToLower().Contains(title.ToLower()) || x.KeyWord.ToLower().Contains(title)).ToList();
+            model.currentPage = page;
+            model.totalRecord = m.Count;
+            var pageCount = (double)m.Count / (double)5;
+            model.totalPage = (int)Math.Ceiling(pageCount);
+            var skip = ((page - 1) * 5);
+            m = m.Skip(skip).ToList();
+            if (m.Count > 5)
+            {
+                model.jobDetailViewModels = m.Take(5).ToList();
+            }
+            else
+            {
+                model.jobDetailViewModels = m.ToList();
+            }
+            if (model.jobDetailViewModels.Count > 0)
+            {
+                model.fromtojob = (skip + 1).ToString() + " - " + (skip + model.jobDetailViewModels.Count) + " of " + model.totalRecord + " Jobs";
+            }
+            else
+            {
+                model.fromtojob = "0 - 0 of 0 Jobs";
+            }
+            return PartialView("_partialJobList", model);
         }
     }
+}
