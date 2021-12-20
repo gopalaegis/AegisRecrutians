@@ -1,10 +1,18 @@
 ﻿@model CONSTRUCTION.Areas.Admin.Model.SkillMasterViewModel
 
 <input type="hidden" id="txt_Id" value="@Model.Id" />
-<div class="row formGroup">
-    <div class="col-sm-12">
-        <label>Name <span style="color:red">*</span></label>
-        <input type="text" id="txt_Name" value="@Model.Name" placeholder="Name" class="form-control" />
-        <label id="label_error_Name" class="errorMessage" style="display:none;">Name is required</label>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card profile-card mb-3">
+            <div class="card-body">
+                <div class="row formGroup">
+                    <div class="col-sm-12">
+                        <label>Name <span style="color:red">*</span></label>
+                        <input type="text" id="txt_Name" value="@Model.Name" placeholder="Name" class="form-control" />
+                        <label id="label_error_Name" class="errorMessage" style="display:none;">Name is required</label>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

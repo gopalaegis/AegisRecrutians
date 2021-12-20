@@ -9,5 +9,6 @@ namespace CONSTRUCTION.Areas.Admin.Model
     {
         public int Id { get; set; }
         public string Qualification { get; set; }
+        public bool isactive { get; set; }
     }
 }

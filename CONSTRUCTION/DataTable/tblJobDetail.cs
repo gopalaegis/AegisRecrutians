@@ -35,7 +35,9 @@ namespace CONSTRUCTION.DataTable
         public string JobQualification { get; set; }
         public Nullable<bool> IsVerified { get; set; }
         public string ShowOnHome { get; set; }
+        public string KeyWords { get; set; }
         public string BriefDescription { get; set; }
         public Nullable<System.DateTime> date { get; set; }
+        public Nullable<bool> isActive { get; set; }
     }
 }

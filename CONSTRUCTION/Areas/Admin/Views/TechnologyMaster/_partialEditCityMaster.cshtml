@@ -1,0 +1,88 @@
+﻿@model CONSTRUCTION.Areas.Admin.Model.AddcityViewModel
+
+
+<script src="~/ckeditor/ckeditor.js"></script>
+<input type="hidden" id="txt_Id" value="@Model.id" />
+<input type="hidden" id="txt_techId" value="@Model.teckmasterId" />
+<input type="hidden" id="txt_tech" value="@Model.teckmaster" />
+<div class="card profile-card mb-3">
+    <div class="card-body">
+        <div class="row formGroup">
+            <div class="col-sm-4">
+                <label>City</label>
+                <div class="select-box">
+                    <select class="form-control custom-select" id="txt_city">
+                        @foreach (var item in Model.drpcity)
+                        {
+                            if (Model.cityId.ToString() == item.Value)
+                            {
+                                <option value="@item.Value" selected="selected">@item.Text</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+
+                        }
+                    </select>
+                </div>
+                <label id="label_error_City" class="errorMessage" style="display:none;">City is required</label>
+                <label id="label_error_CityExist" class="errorMessage" style="display:none;">City is already Exist</label>
+            </div>
+            <div class="col-sm-4">
+                <label>Focus Keyphrase</label>
+                <input type="text" id="txt_FKeyphrase" value="@Model.FocusKeyphrase" placeholder="Focus Keyphrase" class="formcontrol">
+            </div>
+            <div class="col-sm-4">
+                <label>SEO title</label>
+                <input type="text" id="txt_Seotitle" value="@Model.SEOtitle" placeholder="SEO title" class="form-control" />
+            </div>
+        </div>
+        <div class="row formGroup">
+            <div class="col-sm-4">
+                <label>Slug</label>
+                <input type="text" id="txt_Slug" value="@Model.Slug" placeholder="Slug" class="form-control" />
+                <label id="label_error_SlugExist" class="errorMessage" style="display:none;">Slug is already Exist</label>
+            </div>
+            <div class="col-sm-4">
+                <label>IsCrawl</label>
+                @if (Model.IsCrawl)
+                {
+                    <input type="checkbox" id="chk_Crawl" name="IsCrawl" class="form-control" checked="checked" style="width:20px" />
+                }
+                else
+                {
+                    <input type="checkbox" id="chk_Crawl" name="IsCrawl" class="form-control" style="width:20px" />
+                }
+            </div>
+            <div class="col-sm-4">
+                <label>Canonical URL</label>
+                <input type="text" id="txt_URL" value="@Model.CanonicalURL " placeholder="Canonical URL" class="form-control" />
+            </div>
+
+        </div>
+        <div class="row formGroup">
+            <div class="col-sm-4">
+                <label>Schema Tags</label>
+                <input type="text" id="txt_Tags" value="@Model.SchemaTags" placeholder="Schema Tags" class="form-control" />
+            </div>
+            <div class="col-sm-4">
+                <label>H1</label>
+                <input type="text" id="txt_H1" value="@Model.H1" placeholder="H1" class="form-control" />
+            </div>
+            <div class="col-sm-4">
+                <label>Meta Description</label>
+                <textarea id="txt_description" placeholder="Meta Description" class="form-control">@Model.MetaDescription</textarea>
+            </div>
+        </div>
+        <div class="row formGroup">
+            <div class="col-sm-12">
+                <label>Brief Description</label>
+                <textarea id="editor2" name="editor2">@Model.BriefDescription</textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    CKEDITOR.replace('editor2');
+</script>

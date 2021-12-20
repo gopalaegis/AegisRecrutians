@@ -133,6 +133,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AppliedJobsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogDetailController.cs" />
     <Compile Include="Areas\Admin\Controllers\ReferDetailsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\JobEducationController.cs" />
@@ -140,19 +141,28 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\SkillMasterController.cs" />
     <Compile Include="Areas\Admin\Controllers\JobDetailsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContentMasterController.cs" />
     <Compile Include="Areas\Admin\Controllers\TechnologyMasterController.cs" />
+    <Compile Include="Areas\Admin\Model\AddcityViewModel.cs" />
     <Compile Include="Areas\Admin\Model\JobEducationViewModel.cs" />
     <Compile Include="Areas\Admin\Model\JobQualicationViewModel.cs" />
     <Compile Include="Areas\Admin\Model\LoginViewModel.cs" />
     <Compile Include="Areas\Admin\Model\SkillMasterViewModel.cs" />
     <Compile Include="Areas\Admin\Model\JobDetailsViewModel.cs" />
+    <Compile Include="Areas\Admin\Model\ContentMasterViewModel.cs" />
     <Compile Include="Areas\Admin\Model\TechnologyMasterViewModel.cs" />
     <Compile Include="CommonMethods\CommonMethod.cs" />
     <Compile Include="CommonMethods\CryptoMethod.cs" />
+    <Compile Include="CommonMethods\UserLoginCheck.cs" />
+    <Compile Include="Controllers\aboutUsController.cs" />
     <Compile Include="Controllers\ApplyJobController.cs" />
+    <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\jobsController.cs" />
+    <Compile Include="Controllers\ProfessionalsController.cs" />
     <Compile Include="Controllers\ReferController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="DataTable\AEGIS_Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -167,6 +177,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AEGIS_Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\Blog.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\BlogCategory.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\JobWiseCity.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\JobWiseTechnology.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\Schematag_master.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\tblAddCityTechMaster.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTable\tblApplyJobDetail.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
@@ -184,6 +212,9 @@
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTable\tblContectU.cs">
+      <DependentUpon>AEGIS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTable\tblContentMaster.cs">
       <DependentUpon>AEGIS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTable\tblCountry.cs">
@@ -222,6 +253,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BlogListViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\ApplyJobViewModel.cs" />
     <Compile Include="Models\ReferViewModel.cs" />
@@ -239,6 +271,17 @@
     <Content Include="adminAssets\js\jquery.min.js" />
     <Content Include="adminAssets\js\popper.min.js" />
     <Content Include="adminAssets\js\UploadDocs.js" />
+    <Content Include="CommonImage\capcha.png" />
+    <Content Include="CommonImage\CompanyLogo\0173cf8a-71fc-4c0b-bac0-b77c076be1e3.png" />
+    <Content Include="CommonImage\CompanyLogo\300f27f6-44c7-436a-8e7b-4be488e7fba2.png" />
+    <Content Include="CommonImage\CompanyLogo\32af5a2d-1bab-4dea-a8b4-cba27d25882c.png" />
+    <Content Include="CommonImage\CompanyLogo\3cf27b5f-4664-4189-9db8-7795cfd3f0fe.png" />
+    <Content Include="CommonImage\CompanyLogo\3d747002-3594-48a1-84f7-ffd2603fb216.png" />
+    <Content Include="CommonImage\CompanyLogo\58495f1f-1ab8-423b-b5ff-60ed4630dc67.jpg" />
+    <Content Include="CommonImage\CompanyLogo\956a14dc-11db-4834-86bc-b7aa769c29c9.png" />
+    <Content Include="CommonImage\CompanyLogo\9a7f567c-641e-4a6b-952b-5a375d88859a.png" />
+    <Content Include="CommonImage\CompanyLogo\ac3a05c8-5b84-442c-a678-764f13edf130.png" />
+    <Content Include="CommonImage\CompanyLogo\feeb8f62-b58d-43ba-a5f0-65d86b95b39b.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -247,6 +290,7 @@
     <Content Include="Content\lib.css" />
     <Content Include="Content\navigation.css" />
     <Content Include="Content\responsive.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
     <Content Include="DataTable\AEGIS_Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -258,11 +302,19 @@
       <DependentUpon>AEGIS_Model.edmx</DependentUpon>
       <LastGenOutput>AEGIS_Model.cs</LastGenOutput>
     </Content>
+    <Content Include="EasyAutocomplete\autoComplete.css" />
+    <Content Include="EasyAutocomplete\autoComplete.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="images\banner.jpg" />
     <Content Include="images\banner\banner1.png" />
+    <Content Include="images\banner\call.png" />
+    <Content Include="images\banner\clock.png" />
+    <Content Include="images\banner\contac-bg.jpg" />
+    <Content Include="images\banner\mail.png" />
+    <Content Include="images\banner\map.png" />
+    <Content Include="images\loader.gif" />
     <Content Include="images\bx_loader.gif" />
     <Content Include="images\controls.png" />
     <Content Include="images\explore.png" />
@@ -272,6 +324,8 @@
     <Content Include="images\icons\e3.png" />
     <Content Include="images\join-bg.png" />
     <Content Include="images\logo.png" />
+    <Content Include="images\no-image-available.jpg" />
+    <Content Include="images\preloader.gif" />
     <Content Include="images\tech-img\1.png" />
     <Content Include="images\tech-img\10.png" />
     <Content Include="images\tech-img\11.png" />
@@ -304,6 +358,40 @@
     <Content Include="images\thumb\why-aegis\1.webp" />
     <Content Include="images\thumb\why-aegis\2.webp" />
     <Content Include="images\thumb\why-aegis\3.webp" />
+    <Content Include="Zebra_Datepicker-master\public\css\bootstrap.css" />
+    <Content Include="Zebra_Datepicker-master\public\css\default.css" />
+    <Content Include="Zebra_Datepicker-master\public\css\metallic.css" />
+    <Content Include="Zebra_Datepicker-master\public\images\calendar-disabled.png" />
+    <Content Include="Zebra_Datepicker-master\public\images\calendar.png" />
+    <Content Include="Zebra_Datepicker-master\public\images\metallic\default-date.png" />
+    <Content Include="Zebra_Datepicker-master\public\images\metallic\disabled-date.png" />
+    <Content Include="Zebra_Datepicker-master\public\images\metallic\header.png" />
+    <Content Include="Zebra_Datepicker-master\public\images\metallic\selected-date.png" />
+    <Content Include="Zebra_Datepicker-master\public\images\themes.png" />
+    <Content Include="Zebra_Datepicker-master\public\javascript\zebra_datepicker.js" />
+    <Content Include="Zebra_Datepicker-master\public\javascript\zebra_datepicker.src.js" />
+    <Content Include="Zebra_Dialog\css\default\confirmation.png" />
+    <Content Include="Zebra_Dialog\css\default\error.png" />
+    <Content Include="Zebra_Dialog\css\default\index.html" />
+    <Content Include="Zebra_Dialog\css\default\information.png" />
+    <Content Include="Zebra_Dialog\css\default\preloader.gif" />
+    <Content Include="Zebra_Dialog\css\default\question.png" />
+    <Content Include="Zebra_Dialog\css\default\warning.png" />
+    <Content Include="Zebra_Dialog\css\default\zebra_dialog.css" />
+    <Content Include="Zebra_Dialog\css\flat\confirmation.png" />
+    <Content Include="Zebra_Dialog\css\flat\error.png" />
+    <Content Include="Zebra_Dialog\css\flat\icons.txt" />
+    <Content Include="Zebra_Dialog\css\flat\index.html" />
+    <Content Include="Zebra_Dialog\css\flat\information.png" />
+    <Content Include="Zebra_Dialog\css\flat\preloader.gif" />
+    <Content Include="Zebra_Dialog\css\flat\question.png" />
+    <Content Include="Zebra_Dialog\css\flat\warning.png" />
+    <Content Include="Zebra_Dialog\css\flat\zebra_dialog.css" />
+    <Content Include="Zebra_Dialog\css\index.html" />
+    <Content Include="Zebra_Dialog\index.html" />
+    <Content Include="Zebra_Dialog\javascript\index.html" />
+    <Content Include="Zebra_Dialog\javascript\zebra_dialog.js" />
+    <Content Include="Zebra_Dialog\javascript\zebra_dialog.src.js" />
     <EntityDeploy Include="DataTable\AEGIS_Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>AEGIS_Model.Designer.cs</LastGenOutput>
@@ -332,14 +420,32 @@
     <Content Include="Areas\Admin\Views\AppliedJobs\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AppliedJobs\_partialAppliedJobList.cshtml" />
     <Content Include="Areas\Admin\Views\AppliedJobs\_partialAppliedJobDetail.cshtml" />
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Areas\Admin\Views\ContentMaster\_partialAddContentMaster.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentMaster\_partialContentMasterList.cshtml" />
+    <Content Include="Areas\Admin\Views\ContentMaster\Index.cshtml" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\custom.min.js" />
     <Content Include="Scripts\functions.js" />
-    <Content Include="Scripts\jquery-3.4.1.js" />
-    <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Areas\Admin\Views\TechnologyMaster\_partialCityMaster.cshtml" />
+    <Content Include="Areas\Admin\Views\TechnologyMaster\_partialTechnologyCityList.cshtml" />
+    <Content Include="Areas\Admin\Views\TechnologyMaster\_partialEditCityMaster.cshtml" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Areas\Admin\Views\BlogDetail\_partialAdd.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogDetail\_partialList.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogDetail\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogDetail\Blog.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogDetail\_partialAddBlog.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogDetail\_partialBlogList.cshtml" />
+    <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.6.0.js" />
+    <Content Include="Scripts\jquery-3.6.0.min.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.6.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -348,21 +454,192 @@
     <Content Include="Scripts\lib.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Validation.js" />
+    <Content Include="Template\articles\blog.html" />
+    <Content Include="Template\articles\images\a1.jpg" />
+    <Content Include="Template\articles\images\a2.jpg" />
+    <Content Include="Template\articles\images\a3.jpg" />
+    <Content Include="Template\articles\images\a4.jpg" />
+    <Content Include="Template\articles\images\a5.jpg" />
+    <Content Include="Template\articles\images\blog\b1.jpg" />
+    <Content Include="Template\articles\images\blog\b2.jpg" />
+    <Content Include="Template\articles\images\blog\b3.jpg" />
+    <Content Include="Template\articles\images\blog\b4.jpg" />
+    <Content Include="Template\articles\images\blog\b5.jpg" />
+    <Content Include="Template\articles\images\blog\b6.jpg" />
+    <Content Include="Template\articles\images\blog\b7.jpg" />
+    <Content Include="Template\articles\images\blog\b8.jpg" />
+    <Content Include="Template\articles\images\blog\b9.jpg" />
+    <Content Include="Template\articles\index.html" />
+    <Content Include="Template\css\animate.css" />
+    <Content Include="Template\css\aos.css" />
+    <Content Include="Template\css\fa4-7.css" />
+    <Content Include="Template\css\lib.css" />
     <Content Include="Template\css\main.css" />
+    <Content Include="Template\css\navigation.css" />
+    <Content Include="Template\css\owl.css" />
+    <Content Include="Template\css\responsive.css" />
+    <Content Include="Template\css\style.css" />
     <Content Include="Template\css\util.css" />
     <Content Include="Template\fonts\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="Template\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
     <Content Include="Template\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Template\fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Template\fonts\FontAwesome.svg" />
     <Content Include="Template\fonts\iconic\css\material-design-iconic-font.css" />
     <Content Include="Template\fonts\iconic\css\material-design-iconic-font.min.css" />
     <Content Include="Template\fonts\iconic\fonts\Material-Design-Iconic-Font.svg" />
     <Content Include="Template\fonts\Linearicons-Free-v1.0.0\icon-font.min.css" />
     <Content Include="Template\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.svg" />
     <Content Include="Template\fonts\ubuntu\UFL.txt" />
+    <Content Include="Template\images\about\a1.jpg" />
+    <Content Include="Template\images\about\a2.jpg" />
+    <Content Include="Template\images\about\a3.jpg" />
+    <Content Include="Template\images\about\t1.jpg" />
+    <Content Include="Template\images\about\t10.jpg" />
+    <Content Include="Template\images\about\t11.jpg" />
+    <Content Include="Template\images\about\t2.jpg" />
+    <Content Include="Template\images\about\t3.jpg" />
+    <Content Include="Template\images\about\t4.jpg" />
+    <Content Include="Template\images\about\t5.jpg" />
+    <Content Include="Template\images\about\t6.jpg" />
+    <Content Include="Template\images\about\t7.jpg" />
+    <Content Include="Template\images\about\t8.jpg" />
+    <Content Include="Template\images\about\t9.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\about.html" />
+    <Content Include="Template\images\AR_17_8_21\template\apply.html" />
+    <Content Include="Template\images\AR_17_8_21\template\articles\blog.html" />
+    <Content Include="Template\images\AR_17_8_21\template\articles\images\a1.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\articles\images\a2.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\articles\images\a3.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\articles\images\a4.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\articles\images\a5.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\articles\images\blog\b1.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\articles\images\blog\b2.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\articles\images\blog\b3.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\articles\images\blog\b4.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\articles\images\blog\b5.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\articles\images\blog\b6.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\articles\images\blog\b7.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\articles\images\blog\b8.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\articles\images\blog\b9.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\articles\index.html" />
+    <Content Include="Template\images\AR_17_8_21\template\css\animate.css" />
+    <Content Include="Template\images\AR_17_8_21\template\css\aos.css" />
+    <Content Include="Template\images\AR_17_8_21\template\css\fa4-7.css" />
+    <Content Include="Template\images\AR_17_8_21\template\css\lib.css" />
+    <Content Include="Template\images\AR_17_8_21\template\css\navigation.css" />
+    <Content Include="Template\images\AR_17_8_21\template\css\owl.css" />
+    <Content Include="Template\images\AR_17_8_21\template\css\responsive.css" />
+    <Content Include="Template\images\AR_17_8_21\template\css\style.css" />
+    <Content Include="Template\images\AR_17_8_21\template\fonts\FontAwesome.svg" />
+    <Content Include="Template\images\AR_17_8_21\template\images\about\t1.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\images\about\t10.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\images\about\t11.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\images\about\t2.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\images\about\t3.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\images\about\t4.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\images\about\t5.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\images\about\t6.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\images\about\t7.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\images\about\t8.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\images\about\t9.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\images\bx_loader.gif" />
+    <Content Include="Template\images\AR_17_8_21\template\images\controls.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\favicon.ico" />
+    <Content Include="Template\images\AR_17_8_21\template\images\icons\e1.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\icons\e2.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\icons\e3.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\professionals\1.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\images\professionals\1.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\professionals\2.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\professionals\3.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\students\1.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\images\students\2.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\images\students\3.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\images\students\students.jpg" />
+    <Content Include="Template\images\AR_17_8_21\template\images\tech-img\1.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\tech-img\10.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\tech-img\11.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\tech-img\12.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\tech-img\13.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\tech-img\14.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\tech-img\2.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\tech-img\3.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\tech-img\4.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\tech-img\5.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\tech-img\6.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\tech-img\7.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\tech-img\8.png" />
+    <Content Include="Template\images\AR_17_8_21\template\images\tech-img\9.png" />
+    <Content Include="Template\images\AR_17_8_21\template\index.html" />
+    <Content Include="Template\images\AR_17_8_21\template\js\ajax-autocomplete.js" />
+    <Content Include="Template\images\AR_17_8_21\template\js\aos.js" />
+    <Content Include="Template\images\AR_17_8_21\template\js\functions.js" />
+    <Content Include="Template\images\AR_17_8_21\template\js\jQuery.js" />
+    <Content Include="Template\images\AR_17_8_21\template\js\lazysizes.js" />
+    <Content Include="Template\images\AR_17_8_21\template\js\lib.js" />
+    <Content Include="Template\images\AR_17_8_21\template\js\owl.js" />
+    <Content Include="Template\images\AR_17_8_21\template\professionals.html" />
+    <Content Include="Template\images\AR_17_8_21\template\refer.html" />
+    <Content Include="Template\images\AR_17_8_21\template\result.html" />
+    <Content Include="Template\images\AR_17_8_21\template\students-graduates.html" />
     <Content Include="Template\images\bg-01.jpg" />
+    <Content Include="Template\images\bx_loader.gif" />
+    <Content Include="Template\images\controls.png" />
+    <Content Include="Template\images\explore.jpg" />
+    <Content Include="Template\images\favicon.ico" />
+    <Content Include="Template\images\head_banner\about_main.png" />
+    <Content Include="Template\images\head_banner\professionals.png" />
+    <Content Include="Template\images\head_banner\students_graduates.png" />
+    <Content Include="Template\images\icons\e1.png" />
+    <Content Include="Template\images\icons\e2.png" />
+    <Content Include="Template\images\icons\e3.png" />
     <Content Include="Template\images\icons\favicon.ico" />
+    <Content Include="Template\images\join-bg.png" />
+    <Content Include="Template\images\join-bg1.png" />
+    <Content Include="Template\images\join-bg2.png" />
+    <Content Include="Template\images\professionals\1.jpg" />
+    <Content Include="Template\images\professionals\1.png" />
+    <Content Include="Template\images\professionals\1_11zon.jpg" />
+    <Content Include="Template\images\professionals\2.png" />
+    <Content Include="Template\images\professionals\2_11zon.jpg" />
+    <Content Include="Template\images\professionals\3.png" />
+    <Content Include="Template\images\professionals\3_11zon.jpg" />
+    <Content Include="Template\images\students\1.jpg" />
+    <Content Include="Template\images\students\2.jpg" />
+    <Content Include="Template\images\students\3.jpg" />
+    <Content Include="Template\images\students\students.jpg" />
+    <Content Include="Template\images\students\students_11zon.png" />
+    <Content Include="Template\images\tech-img\1.png" />
+    <Content Include="Template\images\tech-img\10.png" />
+    <Content Include="Template\images\tech-img\11.png" />
+    <Content Include="Template\images\tech-img\12.png" />
+    <Content Include="Template\images\tech-img\13.png" />
+    <Content Include="Template\images\tech-img\14.png" />
+    <Content Include="Template\images\tech-img\2.png" />
+    <Content Include="Template\images\tech-img\3.png" />
+    <Content Include="Template\images\tech-img\4.png" />
+    <Content Include="Template\images\tech-img\5.png" />
+    <Content Include="Template\images\tech-img\6.png" />
+    <Content Include="Template\images\tech-img\7.png" />
+    <Content Include="Template\images\tech-img\8.png" />
+    <Content Include="Template\images\tech-img\9.png" />
+    <Content Include="Template\images\thumb\why-aegis\1.png" />
+    <Content Include="Template\images\thumb\why-aegis\2.png" />
+    <Content Include="Template\images\thumb\why-aegis\3.png" />
+    <Content Include="Template\js\ajax-autocomplete.js" />
+    <Content Include="Template\js\aos.js" />
+    <Content Include="Template\js\functions.js" />
+    <Content Include="Template\js\jQuery.js" />
+    <Content Include="Template\js\lazysizes.js" />
+    <Content Include="Template\js\lib.js" />
     <Content Include="Template\js\main.js" />
+    <Content Include="Template\js\owl.js" />
+    <Content Include="Template\students\1.jpg" />
+    <Content Include="Template\students\2.jpg" />
+    <Content Include="Template\students\3.jpg" />
+    <Content Include="Template\students\students.jpg" />
+    <Content Include="Template\students\students_11zon.png" />
     <Content Include="Template\vendor\animate\animate.css" />
     <Content Include="Template\vendor\animsition\css\animsition.css" />
     <Content Include="Template\vendor\animsition\css\animsition.min.css" />
@@ -487,27 +764,88 @@
     <Content Include="Template\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="Template\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Template\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Views\jobs\TechnoloGyWiseJob.cshtml" />
+    <Content Include="Views\Home\autoCompleteDemo.cshtml" />
+    <Content Include="Views\aboutUs\Index.cshtml" />
+    <Content Include="Views\Professionals\Index.cshtml" />
+    <Content Include="Template\fonts\FontAwesome.eot" />
+    <Content Include="Template\fonts\FontAwesome.ttf" />
+    <Content Include="Template\fonts\FontAwesome.woff" />
+    <Content Include="Template\fonts\FontAwesome.woff2" />
+    <Content Include="Template\images\about\a1.webp" />
+    <Content Include="Template\images\about\a2.webp" />
+    <Content Include="Template\images\about\a3.webp" />
+    <Content Include="Template\images\banner\banner1.webp" />
+    <Content Include="Template\images\explore.webp" />
+    <Content Include="Template\images\head_banner\about_main.webp" />
+    <Content Include="Template\images\head_banner\professionals.webp" />
+    <Content Include="Template\images\head_banner\students_graduates.webp" />
+    <Content Include="Template\images\join-bg.webp" />
+    <Content Include="Template\images\join-bg1.webp" />
+    <Content Include="Template\images\join-bg2.webp" />
+    <Content Include="Template\images\logo.webp" />
+    <Content Include="Template\images\professionals\1.webp" />
+    <Content Include="Template\images\professionals\2.webp" />
+    <Content Include="Template\images\professionals\3.webp" />
+    <Content Include="Template\images\students\students.webp" />
+    <Content Include="Template\images\thumb\why-aegis\1.webp" />
+    <Content Include="Template\images\thumb\why-aegis\2.webp" />
+    <Content Include="Template\images\thumb\why-aegis\3.webp" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Articles\Index.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Template\images\AR_17_8_21\template\.vs\ProjectSettings.json" />
+    <Content Include="Template\images\AR_17_8_21\template\.vs\slnx.sqlite" />
+    <Content Include="Template\images\AR_17_8_21\template\.vs\template\config\applicationhost.config" />
+    <Content Include="Template\images\AR_17_8_21\template\.vs\template\v16\.suo" />
+    <Content Include="Template\images\AR_17_8_21\template\.vs\VSWorkspaceState.json" />
+    <Content Include="Template\images\AR_17_8_21\template\Captcha.ashx" />
+    <Content Include="Template\images\AR_17_8_21\template\fonts\FontAwesome.eot" />
+    <Content Include="Template\images\AR_17_8_21\template\fonts\FontAwesome.ttf" />
+    <Content Include="Template\images\AR_17_8_21\template\fonts\FontAwesome.woff" />
+    <Content Include="Template\images\AR_17_8_21\template\fonts\FontAwesome.woff2" />
+    <Content Include="Template\images\AR_17_8_21\template\images\about\a1.webp" />
+    <Content Include="Template\images\AR_17_8_21\template\images\about\a2.webp" />
+    <Content Include="Template\images\AR_17_8_21\template\images\about\a3.webp" />
+    <Content Include="Template\images\AR_17_8_21\template\images\banner\banner1.webp" />
+    <Content Include="Template\images\AR_17_8_21\template\images\explore.webp" />
+    <Content Include="Template\images\AR_17_8_21\template\images\head_banner\about_main.webp" />
+    <Content Include="Template\images\AR_17_8_21\template\images\head_banner\professionals.webp" />
+    <Content Include="Template\images\AR_17_8_21\template\images\head_banner\students_graduates.webp" />
+    <Content Include="Template\images\AR_17_8_21\template\images\join-bg.webp" />
+    <Content Include="Template\images\AR_17_8_21\template\images\join-bg1.webp" />
+    <Content Include="Template\images\AR_17_8_21\template\images\join-bg2.webp" />
+    <Content Include="Template\images\AR_17_8_21\template\images\logo.webp" />
+    <Content Include="Template\images\AR_17_8_21\template\images\professionals\1.webp" />
+    <Content Include="Template\images\AR_17_8_21\template\images\professionals\2.webp" />
+    <Content Include="Template\images\AR_17_8_21\template\images\professionals\3.webp" />
+    <Content Include="Template\images\AR_17_8_21\template\images\students\students.webp" />
+    <Content Include="Template\images\AR_17_8_21\template\images\thumb\why-aegis\1.webp" />
+    <Content Include="Template\images\AR_17_8_21\template\images\thumb\why-aegis\2.webp" />
+    <Content Include="Template\images\AR_17_8_21\template\images\thumb\why-aegis\3.webp" />
+    <Content Include="Template\students\students.webp" />
+    <Content Include="Views\jobs\BindHTMLCity.cshtml" />
+    <Content Include="Views\Blog\_partialBLogList.cshtml" />
+    <Content Include="Views\Blog\BlogDetail.cshtml" />
+    <Content Include="Views\Blog\BindHTMLDetail.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="adminAssets\img\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="ckeditor\" />
+    <Folder Include="CommonImage\Blog\" />
     <Folder Include="CommonImage\Resume\" />
     <Folder Include="CommonImage\Technology\" />
+    <Folder Include="System\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

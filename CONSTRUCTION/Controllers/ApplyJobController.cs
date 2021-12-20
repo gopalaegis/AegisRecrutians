@@ -6,7 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace CONSTRUCTION.Controllers
@@ -20,13 +23,39 @@ namespace CONSTRUCTION.Controllers
         {
             var job = _db.tblJobDetails.Where(x => x.Id == jobId).FirstOrDefault();
             ApplyJobViewModel model = new ApplyJobViewModel();
-            model.URL = Request.UrlReferrer.AbsoluteUri;
+
+            if (Request.UrlReferrer != null)
+                if (!string.IsNullOrEmpty(Request.UrlReferrer.AbsoluteUri))
+                    model.URL = Request.UrlReferrer.AbsoluteUri;
+                else
+                    model.URL = "";
+            else
+                model.URL = "";
+
             model.JobId = jobId;
             if (job != null)
             {
                 model.Job = job.Title;
             }
+            model.drpState.Add(new SelectListItem { Value = "0", Text = "State" });
             model.drpCountry = _commonMethod.GetCountry();
+            var country = model.drpCountry.Where(x => x.Value != "0").FirstOrDefault();
+            if (country != null)
+            {
+                if (Convert.ToInt32(country.Value) > 0)
+                {
+                    model.drpState = _commonMethod.GetStateByCountry(Convert.ToInt32(country.Value));
+                }
+            }
+
+
+            var schematag = _db.Schematag_master.Where(x => x.SchemaTag == "applyJob").FirstOrDefault();
+            model.SchemaDescription = schematag != null ? schematag.description : "";
+            if (!string.IsNullOrEmpty(model.SchemaDescription))
+            {
+                model.SchemaDescription = model.SchemaDescription.Replace("__JonName__", job.Title);
+                model.SchemaDescription = model.SchemaDescription.Replace("__JobId__", job.Id.ToString());
+            }
             return View(model);
         }
 
@@ -40,7 +69,16 @@ namespace CONSTRUCTION.Controllers
         public ActionResult ExperienceData()
         {
             ApplyJobViewModel model = new ApplyJobViewModel();
+            model.drpState.Add(new SelectListItem { Value = "0", Text = "State" });
             model.drpCountry = _commonMethod.GetCountry();
+            var country = model.drpCountry.Where(x => x.Value != "0").FirstOrDefault();
+            if (country != null)
+            {
+                if (Convert.ToInt32(country.Value) > 0)
+                {
+                    model.drpState = _commonMethod.GetStateByCountry(Convert.ToInt32(country.Value));
+                }
+            }
             return PartialView("_partialExperience", model);
         }
 
@@ -52,6 +90,7 @@ namespace CONSTRUCTION.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
         public ActionResult FileUplaod()
         {
             System.Web.HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
@@ -87,21 +126,24 @@ namespace CONSTRUCTION.Controllers
                 Experience = JsonConvert.DeserializeObject<List<ExperienceViewModel>>(model.jsonExperience);
             }
 
+            var jobData = _db.tblJobDetails.Where(x => x.Id == model.JobId).FirstOrDefault();
+
             tblApplyJobDetail data = new tblApplyJobDetail();
-            data.Name= model.Name;
-            data.DOB= Convert.ToDateTime(model.DOB);
-            data.Gender= model.Gender;
-            data.Email= model.Email;
-            data.Mobile= model.PhoneNo1;
-            data.Mobile1= model.PhoneNo2;
-            data.AddressType= model.AddressType;
-            data.HouseName= model.BlockNo;
-            data.Street= model.Street;
-            data.City= model.City;
-            data.CountryId= model.CountryId;
-            data.StateId= model.StateId;
-            data.JobId= model.JobId;
-            data.Resume= model.Resume;
+            data.Name = model.Name;
+            data.DOB = Convert.ToDateTime(model.DOB);
+            data.Gender = model.Gender;
+            data.Email = model.Email;
+            data.Mobile = model.PhoneNo1;
+            //data.Mobile1 = model.PhoneNo2;
+            //data.AddressType = model.AddressType;
+            data.HouseName = model.BlockNo;
+            data.Street = model.Street;
+            data.City = model.City;
+            data.CountryId = model.CountryId;
+            data.StateId = model.StateId;
+            data.JobId = model.JobId;
+            data.Resume = model.Resume;
+            data.isActive = true;
             _db.tblApplyJobDetails.Add(data);
             _db.SaveChanges();
 
@@ -135,7 +177,49 @@ namespace CONSTRUCTION.Controllers
                     _db.SaveChanges();
                 }
             }
-            return Json("Success", JsonRequestBehavior.AllowGet);
+            try
+            {
+                string from = WebConfigurationManager.AppSettings["SMTPMailFrom"];
+                string user = WebConfigurationManager.AppSettings["SMTPUserName"];
+                string pass = WebConfigurationManager.AppSettings["SMTPPassword"];
+                string to = WebConfigurationManager.AppSettings["SMTPMailTo"];
+                int port = Convert.ToInt32(WebConfigurationManager.AppSettings["SMTPPort"]);
+                bool ssl = Convert.ToBoolean(WebConfigurationManager.AppSettings["SMTPEnableSSL"]);
+                string host = Convert.ToString(WebConfigurationManager.AppSettings["SMTPHost"]);
+                string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
+                //string urlforApply = string.Format("{0}ApplyJob?jobId={1}", baseUrl, m.JobId);
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new NetworkCredential(user, pass);
+                client.Port = port;
+                client.Host = host;
+                client.EnableSsl = ssl;
+                string str = string.Empty;
+                str = "Hi ";
+                str = str + "Job Title : " + jobData.Title + "<br />";
+                str = str + "Name : " + model.Name + "<br />";
+                str = str + "Contact Email : " + model.Email + "<br />";
+                str = str + "Contact Mobile : " + model.PhoneNo1 + "<br />";
+                str = str + "Thanks & Regards <br /> Aegis Team";
+                //if (!string.IsNullOrEmpty(model.Resume))
+                //{
+                //    str = str + " <br/><br/><a href = '" + baseUrl + "CommonImage/Resume/" + model.Resume + "' style='background-color: #0aafce;color: #fff;padding: 12px;text-decoration: none;font-weight: bold;font-family: 'Roboto', sans-serif;' download target='_blank'> Download Resume</a>";
+                //}
+
+                MailMessage message = new MailMessage(from, to, " Aegis Portal - Apply Job ", str);
+                if (!string.IsNullOrEmpty(model.Resume))
+                {
+                    message.Attachments.Add(new System.Net.Mail.Attachment(Server.MapPath("../CommonImage/Resume/" + model.Resume)));
+                }
+                message.IsBodyHtml = true;
+                //message.Headers.Add("Content-Type", "text/html");
+                client.Send(message);
+                return Json("Success", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json("Error", JsonRequestBehavior.AllowGet);
+            }
+
         }
     }
 }

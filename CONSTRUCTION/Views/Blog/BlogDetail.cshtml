@@ -1,0 +1,182 @@
+﻿@model CONSTRUCTION.Models.BlogListViewModel
+@{
+        ViewBag.Title = Model.SEOTitle;
+        ViewBag.MetaDescription = Model.SEODescription;
+        ViewBag.SchemaTags = Model.MetaTags;
+        Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="heding_section pt-3 pb-3">
+        <div class="container">
+                <div class="row align-items-center v-center">
+                        <div class="col-7 col-sm-12 col-lg-12">
+                                <div class="right-side">
+                                        <div class="section-header">
+                                                <h1>@Model.BlogTitle</h1>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="col-5 col-sm-12 col-lg-12">
+                                <div class="left-side text-center">
+                                        @{
+                                                var finalPic = "/CommonImage/Blog/" + Model.Image;
+                                        }                                        
+                                        <img src="~/images/banner.jpg" class="img-fluid lazyload" alt="" />
+                                </div>
+                        </div>
+                </div>
+        </div>
+</section>
+<section class="blog-details">
+        <div class="container">
+                <div class="blog-flex">
+                        <div class="left-data">
+                                <iframe id="descriptionDiv" src="@Url.Action("BindHTMLDetail","Blog",new {Id=Model.Id})" frameborder="0" style="overflow:hidden;width:100%" width="100%"></iframe>
+                        </div>
+                        <div class="right-data">
+                                <div class="recent-blog">
+                                        <h2>Recent Blogs</h2>
+                                        <ul>
+                                                @foreach (var item in Model.BlogList)
+                                                {
+                                                        <li><a href="@Url.Action("BlogDetail","Blog",new { Id = item.Value})">@item.Text</a></li>
+                                                }
+                                        </ul>
+                                </div>
+
+                                <div class="blog-cat">
+                                        <h2>Categories</h2>
+                                        <ul>
+                                                @foreach (var item in Model.CategoryList)
+                                                {
+                                                        <li><a href="@Url.Action("Index","Blog",new { CategoryId = item.Value})">@item.Text</a></li>
+                                                }
+                                        </ul>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</section>
+<section class="form_section">
+        <div class="container">
+                <div class="row">
+                        <div class="col-12">
+                                <div class="job-req row">
+                                        <div class="col-6 col-sm-12">
+                                                <div class="talk">
+                                                        <h2>Talk to our experts about your JOB requirements</h2>
+                                                        <p>Contact us and know more about how our experts can help your business grow. Contact us and know more about how our experts can help your business grow. Contact us and know more about how our experts can help your business grow.</p>
+                                                        <p>Contact us and know more about how our experts can help your business grow. Contact us and know more about how our experts can help your business grow.</p>
+                                                        <div class="read-btn"><a href="javascript:;" class="send-msg">Let’s Talk</a></div>
+                                                </div>
+                                        </div>
+                                        <div class="col-6 col-sm-12">
+                                                <div class="form-fill" id="ContectUsDiv">
+                                                        <form>
+                                                                <div class="form-group" style="margin-bottom:24px;">
+                                                                        <input type="text" class="form-control name" placeholder="Name" id="name" style="margin-bottom:0px;">
+                                                                        <label id="label_error_name" class="errorMessage" style="display:none;">Name is required</label>
+                                                                </div>
+                                                                <div class="form-group" style="margin-bottom:24px;">
+                                                                        <input type="email" class="form-control email" placeholder="Email Id" id="email" style="margin-bottom:0px;">
+                                                                        <label id="label_error_Email" class="errorMessage" style="display:none;">Email Id is required</label>
+                                                                        <label id="label_error_EmailFormat" class="errorMessage" style="display:none;">Email Id is not Valid</label>
+                                                                </div>
+                                                                <div class="form-group" style="margin-bottom:24px;">
+                                                                        <input type="text" class="form-control phone" placeholder="Phone Number" id="mobile" style="margin-bottom:0px;">
+                                                                        <label id="label_error_PN" class="errorMessage" style="display:none;">Phone Number is required</label>
+                                                                        <label id="label_error_PNFormat" class="errorMessage" style="display:none;">Phone Number is not Valid</label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                        <textarea class="form-control project" placeholder="Describe your project" rows="3" id="description"></textarea>
+                                                                </div>
+                                                                <div class="read-btn">
+                                                                        <a id="submitData" class="send-msg">Submit</a>
+                                                                </div>
+                                                        </form>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</section>
+<script>
+
+        $('#descriptionDiv').on("load", function () {
+                var iframe = $(window.top.document).find("#descriptionDiv");
+                setTimeout(function () {
+                        var actualDivHeight = $("#descriptionDiv").contents().find("#div_desc").css('height');
+                        actualDivHeight = actualDivHeight.replace('px', '');
+                        actualDivHeight = parseInt(actualDivHeight) + 100;
+                        iframe.height(actualDivHeight + 'px');
+                }, 200);
+        });
+
+        $("#ContectUsDiv").on("click", "#submitData", function () {
+                var name = $("#ContectUsDiv").find("#name").val();
+                var email = $("#ContectUsDiv").find("#email").val();
+                var mobile = $("#ContectUsDiv").find("#mobile").val();
+                var description = $("#ContectUsDiv").find("#description").val();
+
+                var IsError = false;
+
+                if (name == null || name == "") {
+                        IsError = true;
+                        $("#ContectUsDiv").find("#label_error_name").show();
+                }
+
+                if (email == null || email == "") {
+                        IsError = true;
+                        $("#ContectUsDiv").find("#label_error_Email").show();
+                } else if (!EmailValidation(email)) {
+                        IsError = true;
+                        $("#ContectUsDiv").find("#label_error_EmailFormat").show();
+                }
+
+                if (mobile == null || mobile == "") {
+                        IsError = true;
+                        $("#ContectUsDiv").find("#label_error_PN").show();
+                } else if (!PhoneNumberValidation(mobile)) {
+                        IsError = true;
+                        $("#ContectUsDiv").find("#label_error_PNFormat").show();
+                }
+
+                if (IsError == true) {
+                        return false;
+                } else {
+                        $.ajax({
+                                type: "POST",
+                                url: '@Url.Action("SaveContectData", "Home")',
+                                data: {
+                                        Name: name,
+                                        Email: email,
+                                        Mobile: mobile,
+                                        Description: description
+                                },
+                                success: function (result) {
+                                        if (result == "Success") {
+                                                $("#ContectUsDiv").find("#name").val("");
+                                                $("#ContectUsDiv").find("#email").val("");
+                                                $("#ContectUsDiv").find("#mobile").val("");
+                                                $("#ContectUsDiv").find("#description").val("");
+
+                                                $("#alert_inquiry_success").html("Inquiry genrated successfully");
+                                                $("#alert_inquiry_success").show();
+                                                setTimeout(function () { $("#alert_inquiry_success").hide(); }, 2000);
+                                        }
+                                        else {
+                                                $("#ContectUsDiv").find("#name").val("");
+                                                $("#ContectUsDiv").find("#email").val("");
+                                                $("#ContectUsDiv").find("#mobile").val("");
+                                                $("#ContectUsDiv").find("#description").val("");
+
+                                                $("#alert_inquiry_error").html("Error, Please try again after some time.");
+                                                $("#alert_inquiry_error").show();
+                                                $(".closeInquiry").click();
+                                                setTimeout(function () { $("#alert_inquiry_error").hide(); }, 2000);
+                                        }
+                                }
+                        });
+                }
+        });
+</script>

@@ -50,6 +50,7 @@ namespace CONSTRUCTION.Models
         public List<string> JobTitleList { get; set; }
         public List<string> YearofActiveList { get; set; }
         public string Resume { get; set; }
+        public bool isactive { get; set; }
         public int JobId { get; set; }
         public string Job { get; set; }
         public string URL { get; set; }
@@ -58,6 +59,7 @@ namespace CONSTRUCTION.Models
         public List<SelectListItem> drpState { get; set; }
         public string jsonEducation { get; set; }
         public string jsonExperience { get; set; }
+        public string SchemaDescription { get; set; }
         public List<EducationViewModel> educationModel { get; set; }
         public List<ExperienceViewModel> experienceModel { get; set; }
     }

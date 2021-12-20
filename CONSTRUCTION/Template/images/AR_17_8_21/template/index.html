@@ -1,0 +1,641 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <title>AR</title>
+	
+	<!-- Standard Favicon -->
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+	
+	<!-- Custom - CSS -->
+	<link rel="stylesheet" type="text/css" as="style" href="css/style.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="css/responsive.css" media="all" />
+</head>
+
+<body>
+	<!-- Go to top -->
+    <div id="return-to-top"><i class="fa fa-angle-up"></i></div>
+
+    <!-- Whatsapp -->
+    <div class="whatsapp">
+        <a href="https://api.whatsapp.com/send?phone=+919824127020&amp;text=I'm connected on AR" class="floats" target="_blank">
+        <svg class="svg-inline--fa fa-whatsapp fa-w-14 my-floats" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="whatsapp" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg></a>
+    </div>
+	<!-- Mobile View -->
+	<div class="mobile-sticky-footer">
+		<a href="tel:+917574823154"><i class="fa fa-phone" aria-hidden="true"></i></a>
+		<a href="mailto:info@violettiles.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+		<a target="_blank" href="https://www.facebook.com/Vikassanitarywares/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+		<a href="contact.html"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+		<a href="https://api.whatsapp.com/send?phone=+919824127020&amp;text=I'm connected on AR"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+	</div>
+
+	<!-- Inquiry Form -->
+    <div class="b-notification-bar">
+        <ul class="btnlist">
+            <li class="item inquiry">
+                <div id="inquiry_form" class="btn sticky-box">
+                    <p><i class="fa fa-envelope" aria-hidden="true"></i></p>
+                    <p>Quick Inquiry</p>
+                </div>
+                <div class="info-box inq">
+                    <a href="javascript:;"><i class="fa fa-close closeInquiry"></i></a>
+                    <strong class="title">Fill the details and We’ll get back to you soon</strong>
+                    <form>
+                        <div class="inquiry-box">
+                            <div class="form-group fullwidth">
+                                <textarea class="form-control" id="txtcomments" placeholder="Tell us your requirements"></textarea>
+                            </div>
+                            <div class="form-group-block">
+                                <div class="form-group">
+                                    <input class="form-control" id="txtphone" placeholder="Phone" type="text" onKeyPress="return checkIt(event);">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" id="txtemail" placeholder="Email" type="email">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" id="txtskype" placeholder="Skype" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <img id="imgCaptcha" alt="captcha" src="Captcha.ashx" />
+                                    <input class="form-control" type="text" placeholder="Captcha" id="txtCaptcha" name="txtCaptcha" />
+                                </div>
+                                <div class="form-group Clear">
+                                    <button type="button" id="btnSubmit" value="Submit" name="Submit" class="btn-submit">Submit</button>
+                                </div>
+                                <div class="form-group Clear">
+                                    <span id="lblInfo"> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+	<!-- Header Section -->
+	<header class="header_s">
+		<div class="menu-block">
+			<nav class="menu-navigation menu-nav">
+				<div class="menu-collapse">
+					<div class="container">
+						<div class="aegis-navigation">
+							<a class="navbar-brand" href="index.html">
+								<img data-src="images/logo.webp" class="lazyload" alt="logo"/>
+							</a>
+							<a class="menuswitch" href="javascript:;">
+								<span class="menuline bar1"></span>
+								<span class="menuline bar2"></span>
+								<span class="menuline bar3"></span>
+							</a>
+							<ul class="navigation-menu menu">
+								<li><a href="about.html" title="Home">About us</a></li>
+								<li><a href="professionals.html">Professionals</a></li>							
+	                            <li><a href="students-graduates.html">Students and Graduates</a></li>
+	                            <li><a href="articles/index.html">Blog</a></li>
+								<li class="web-view account-details"><a href="signin.html">Join Our Talent Network</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<!-- Slider Section -->
+		<section class="slider-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-7 col-sm-12">
+						<div class="inner-content">
+							<h1>Start your springful <span class="d-block">career with us.</span></h1>
+							<p>Imagine, Believe & Achieve progressive careers with us because you deserve the best</p>
+							<div class="serch-form">
+								<form class="form-inline">
+								    <div class="form-group col-7">
+								    	<input type="text" name="country" class="form-control job-search autocomplete" placeholder="Search by job title (Ex. Resident Medical Officer/RMO)"/>
+								        <!-- <input type="text" class="" placeholder="" /> -->
+								    </div>
+								    <div class="form-group col-4">
+								        <input type="text" class="form-control location autocomplete" placeholder="Location" />
+								    </div>
+								    <div class="form-group col-1">
+								        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+								    </div>									    
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- Technology Stack -->
+		<section class="tech_stack pt-3 pb-3 sky_light">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-12">
+	                    <div class="section-header text-center">
+	                        <h2>Browse by technology</h2>
+	                        <p>We offers complete job posting services to ensure that your opportunities are seen by qualified candidates. Thousands of new candidates register every week, allowing you to reach the right candidates quickly and affordably.</p>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="row mt-2">
+	                <div class="col-12">
+	                    <div class="list-tech">
+	                        <ul>
+	                            <li data-aos="zoom-in" data-aos-duration="1000">
+	                                <a href="javascript:;">
+	                                    <aside><img data-src="images/tech-img/1.png" class="lazyload" alt="Technology" /></aside>
+	                                    <h3>Java</h3>
+	                                </a>
+	                            </li>
+	                            <li data-aos="zoom-in" data-aos-duration="1000">
+	                            	<a href="javascript:;">
+	                                    <aside><img data-src="images/tech-img/2.png" class="lazyload" alt="Technology" /></aside>
+	                                    <h3>Mongo DB</h3>
+	                                </a>
+	                            </li>
+	                            <li data-aos="zoom-in" data-aos-duration="1000">
+	                                <a href="javascript:;">
+	                                    <aside><img data-src="images/tech-img/3.png" class="lazyload" alt="Technology" /></aside>
+	                                    <h3>.Net</h3>
+	                                </a>
+	                            </li>
+	                            <li data-aos="zoom-in" data-aos-duration="1000">
+	                                <a href="javascript:;">
+	                                    <aside><img data-src="images/tech-img/4.png" class="lazyload" alt="Technology" /></aside>
+	                                    <h3>Scala</h3>
+	                                </a>
+	                            </li>
+	                            <li data-aos="zoom-in" data-aos-duration="1000">
+	                                <a href="javascript:;">
+	                                    <aside><img data-src="images/tech-img/5.png" class="lazyload" alt="Technology" /></aside>
+	                                    <h3>Dynamics 365</h3>
+	                                </a>
+	                            </li>
+	                            <li data-aos="zoom-in" data-aos-duration="1000">
+	                                <a href="javascript:;">
+	                                    <aside><img data-src="images/tech-img/6.png" class="lazyload" alt="Technology" /></aside>
+	                                    <h3>Magento</h3>
+	                                </a>
+	                            </li>
+	                            <li data-aos="zoom-in" data-aos-duration="1000">
+	                                <a href="javascript:;">
+	                                    <aside><img data-src="images/tech-img/7.png" class="lazyload" alt="Technology" /></aside>
+	                                    <h3>Power BI</h3>
+	                                </a>
+	                            </li>
+	                            <li data-aos="zoom-in" data-aos-duration="1000">
+	                                <a href="javascript:;">
+	                                    <aside><img data-src="images/tech-img/8.png" class="lazyload" alt="Technology" /></aside>
+	                                    <h3>Oracle</h3>
+	                                </a>
+	                            </li>
+	                            <li data-aos="zoom-in" data-aos-duration="1000">
+	                                <a href="javascript:;">
+	                                    <aside><img data-src="images/tech-img/9.png" class="lazyload" alt="Technology" /></aside>
+	                                    <h3>Python</h3>
+	                                </a>
+	                            </li>
+	                            <li data-aos="zoom-in" data-aos-duration="1000">
+	                                <a href="javascript:;">
+	                                    <aside><img data-src="images/tech-img/10.png" class="lazyload" alt="Technology" /></aside>
+	                                    <h3>NodeJS</h3>
+	                                </a>
+	                            </li>
+	                            <li data-aos="zoom-in" data-aos-duration="1000">
+	                                <a href="javascript:;">
+	                                    <aside><img data-src="images/tech-img/11.png" class="lazyload" alt="Technology" /></aside>
+	                                    <h3>Tableau</h3>
+	                                </a>
+	                            </li>
+	                            <li data-aos="zoom-in" data-aos-duration="1000">
+	                                <a href="javascript:;">
+	                                    <aside><img data-src="images/tech-img/12.png" class="lazyload" alt="Technology" /></aside>
+	                                    <h3>Spark</h3>
+	                                </a>
+	                            </li>
+	                            <li data-aos="zoom-in" data-aos-duration="1000">
+	                                <a href="javascript:;">
+	                                    <aside><img data-src="images/tech-img/13.png" class="lazyload" alt="Technology" /></aside>
+	                                    <h3>Big Data</h3>
+	                                </a>
+	                            </li>
+	                            <li data-aos="zoom-in" data-aos-duration="1000">
+	                                <a href="javascript:;">
+	                                    <aside><img data-src="images/tech-img/14.png" class="lazyload" alt="Technology" /></aside>
+	                                    <h3>hadoop</h3>
+	                                </a>
+	                            </li>
+	                        </ul>
+	                    </div>
+	                    <div class="read-btn text-center mt-2">
+	                        <a href="signin.html">Confused? We’ve right solution for you!</a>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </section>
+
+		<!-- explore -->
+		<section class="explore">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-6 col-sm-12">
+						<div class="bg-img"></div>
+					</div>
+					<div class="col-6 col-sm-12">
+						<div class="inner-box">
+							<div class="section-header text-center">
+		                        <h2>Explore Opportunities</h2>		                        
+		                    </div>
+		                    <div class="content text-center">
+		                    	<p>What’s destination next? Is it better technology? A better you? Or a better community of makers? Wherever you desire to go, we give you the tools, the techniques, and the teams to navigate the journey. So you’re inspired to build what’s next, ensure your career never stands still, & navigate further together. Take the world with you.</p>
+		                    	<div class="round">
+			                    	<div class="media bg1" data-aos="zoom-in" data-aos-duration="1000">
+									    <aside><img class="lazyload" data-src="images/icons/e1.png" /></aside>
+									    <div class="media-body">
+									        <h3>Graduates</h3>
+									    </div>
+									</div>
+			                    	<div class="media bg2" data-aos="zoom-in" data-aos-duration="1200">
+									    <aside><img class="lazyload" data-src="images/icons/e2.png" /></aside>
+									    <div class="media-body">
+									        <h3>Professionals</h3>
+									    </div>
+									</div>
+			                    	<div class="media bg3" data-aos="zoom-in" data-aos-duration="1400">
+									    <aside><img class="lazyload" data-src="images/icons/e3.png" /></aside>
+									    <div class="media-body">
+									        <h3>Students / Internships</h3>
+									    </div>
+									</div>
+								</div>
+		                    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- why aegis -->
+	    <section class="why_aegis pt-3 pb-3 titan">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-12">
+	                    <div class="section-header text-center">
+	                        <h2>Why Aegis</h2>
+	                        <p>We offers complete job posting services to ensure that your opportunities are seen by qualified candidates. Thousands of new candidates register every week, allowing you to reach the right candidates quickly and affordably.</p>
+	                    </div>
+	                </div>
+	            </div>
+	            <!--  -->
+	            <div class="row mt-2">
+	                <div class="col-12">
+	                    <div class="owl-slider">
+	                        <div id="solutions-box" class="owl-carousel owl-theme">
+	                            <div class="item">
+	                                <div class="inner-box">
+	                                    <div class="img-box">
+	                                    	<img class="lazyload" data-src="images/thumb/why-aegis/1.webp" alt="Why Us" />
+	                                    </div>
+	                                    <div class="overlay">
+	                                        <h4>Inclusion and Diversity</h4>
+	                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="item">
+	                                <div class="inner-box">
+	                                    <div class="img-box">
+	                                    	<img class="lazyload" data-src="images/thumb/why-aegis/2.webp" alt="Whu Us"/>
+	                                    </div>
+	                                    <div class="overlay">
+	                                        <h4>Benefits</h4>
+	                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="item">
+	                                <div class="inner-box">
+	                                    <div class="img-box">
+	                                    	<img class="lazyload" data-src="images/thumb/why-aegis/3.webp" alt="Whu Us"/>
+	                                    </div>
+	                                    <div class="overlay">
+	                                        <h4>Who We Are</h4>
+	                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="item">
+	                                <div class="inner-box">
+	                                    <div class="img-box">
+	                                    	<img class="lazyload" data-src="images/thumb/why-aegis/1.webp" alt="Whu Us"/>
+	                                    </div>
+	                                    <div class="overlay">
+	                                        <h4>Inclusion and Diversity</h4>
+	                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="item">
+	                                <div class="inner-box">
+	                                    <div class="img-box">
+	                                    	<img class="lazyload" data-src="images/thumb/why-aegis/2.webp" alt="Whu Us"/>
+	                                    </div>
+	                                    <div class="overlay">
+	                                        <h4>Benefits</h4>
+	                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="item">
+	                                <div class="inner-box">
+	                                    <div class="img-box">
+	                                    	<img class="lazyload" data-src="images/thumb/why-aegis/3.webp" alt="Whu Us"/>
+	                                    </div>
+	                                    <div class="overlay">
+	                                        <h4>Who We Are</h4>
+	                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="item">
+	                                <div class="inner-box">
+	                                    <div class="img-box">
+	                                    	<img class="lazyload" data-src="images/thumb/why-aegis/1.webp" alt="Whu Us"/>
+	                                    </div>
+	                                    <div class="overlay">
+	                                        <h4>Inclusion and Diversity</h4>
+	                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="item">
+	                                <div class="inner-box">
+	                                    <div class="img-box">
+	                                    	<img class="lazyload" data-src="images/thumb/why-aegis/2.webp" alt="Whu Us"/>
+	                                    </div>
+	                                    <div class="overlay">
+	                                        <h4>Benefits</h4>
+	                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="item">
+	                                <div class="inner-box">
+	                                    <div class="img-box">
+	                                    	<img class="lazyload" data-src="images/thumb/why-aegis/3.webp" alt="Whu Us"/>
+	                                    </div>
+	                                    <div class="overlay">
+	                                        <h4>Who We Are</h4>
+	                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has the industry's standard dummy text ever since 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </section>
+
+	    <!-- job skill -->
+	    <section class="why_aegis pt-3 pb-3 titan">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-12">
+	                    <div class="section-header text-center">
+	                        <h2>Find jobs by skill</h2>
+	                        <p>We offers complete job posting services to ensure that your opportunities are seen by qualified candidates. Thousands of new candidates register every week, allowing you to reach the right candidates quickly and affordably.</p>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="row mt-2">
+	            	<div class="col-12">
+	            		<div class="list-skill">
+	            			<ul>
+	            				<li><a href="JavaScript:;">AI and ML</a></li>
+	            				<li><a href="JavaScript:;">Robotic Process Automation</a></li>
+	            				<li><a href="JavaScript:;">Db2 Database</a></li>
+	            				<li><a href="JavaScript:;">Bot Development</a></li>
+	            				<li><a href="JavaScript:;">Automation Consulting</a></li>
+	            				<li><a href="JavaScript:;">Event-driven Analytics</a></li>
+	            				<li><a href="JavaScript:;">Information lifecycle</a></li>
+	            				<li><a href="JavaScript:;">Data Replication</a></li>
+	            				<li><a href="JavaScript:;">Unified governance and integration</a></li>
+	            				<li><a href="JavaScript:;">Smart Data Discovery</a></li>
+	            				<li><a href="JavaScript:;">Prescriptive Analytics</a></li>
+	            				<li><a href="JavaScript:;">Data Science</a></li>
+	            				<li><a href="JavaScript:;">DevOps</a></li>
+	            				<li><a href="JavaScript:;">System Administration</a></li>
+	            				<li><a href="JavaScript:;">Cloud Technology & Data System</a></li>
+	            				<li><a href="JavaScript:;">Multi-Tenant Development</a></li>
+	            				<li><a href="JavaScript:;">Min Stack Development</a></li>
+	            				<li><a href="JavaScript:;">BI & Analytics</a></li>
+	            			</ul>
+	            		</div>
+	            	</div>
+	            </div>
+	            <div class="row mt-2">
+	            	<div class="col-12">
+	            		<div class="read-btn text-center">
+	                        <a href="signin.html">Didn’t get your skill?, Click here!</a>
+	                    </div>
+	            	</div>
+	            </div>
+	        </div>
+	    </section>
+
+	    <!-- job list -->
+		<section class="joblist_section pt-3 pb-3 titan">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="section-header text-center">
+							<h2>Grab This Exciting Job Opportunities</h2>
+							<p>We offers complete job posting services to ensure that your opportunities are seen by qualified candidates. Thousands of new candidates register every week, allowing you to reach the right candidates quickly and affordably.</p>
+						</div>
+					</div>
+				</div>
+				<div class="row mt-2">
+					<div class="col-6 col-sm-12">
+						<div class="job-type" data-aos="zoom-in" data-aos-duration="1000">
+							<div class="left-detail">
+								<h3>DevOps Developers</h3>
+								<div class="work-experience">
+									<p><i class="fa fa-clock-o"></i> Posted on 29th Oct. 2020</p>
+									<p><i class="fa fa-suitcase"></i> 2 - 3 Year experince  |  Full Time</p>
+								</div>
+								<p>We are looking for a DevOps developers for Paris, France.</p>
+							</div>
+							<div class="right-apply">
+								<div class="salary">
+									<p>Salary</p>
+									<p>&#8377; 10k - 30k p/m</p>
+								</div>
+								<a href="javascript:;">Apply Now</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-6 col-sm-12">
+						<div class="job-type" data-aos="zoom-in" data-aos-duration="1000">
+							<div class="left-detail">
+								<h3>Min Stack Programmers </h3>
+								<div class="work-experience">
+									<p><i class="fa fa-clock-o"></i> Posted on 29th Oct. 2020</p>
+									<p><i class="fa fa-suitcase"></i> 2 - 3 Year experince  |  Full Time</p>
+								</div>
+								<p>We are looking for a Min Stack Programmers for Bangalore, Karnataka, India.</p>
+							</div>
+							<div class="right-apply">
+								<div class="salary">
+									<p>Salary</p>
+									<p>&#8377; 10k - 30k p/m</p>
+								</div>
+								<a href="javascript:;">Apply Now</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-6 col-sm-12">
+						<div class="job-type" data-aos="zoom-in" data-aos-duration="1000">
+							<div class="left-detail">
+								<h3>Data Warehouse Architecture</h3>
+								<div class="work-experience">
+									<p><i class="fa fa-clock-o"></i> Posted on 29th Oct. 2020</p>
+									<p><i class="fa fa-suitcase"></i> 2 - 3 Year experince  |  Full Time</p>
+								</div>
+								<p>We are looking for a Data Warehouse Architecture for Armonk, New York, United States.</p>
+							</div>
+							<div class="right-apply">
+								<div class="salary">
+									<p>Salary</p>
+									<p>&#8377; 10k - 30k p/m</p>
+								</div>
+								<a href="javascript:;">Apply Now</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-6 col-sm-12">
+						<div class="job-type" data-aos="zoom-in" data-aos-duration="1000">
+							<div class="left-detail">
+								<h3>Blockchain Developers</h3>
+								<div class="work-experience">
+									<p><i class="fa fa-clock-o"></i> Posted on 29th Oct. 2020</p>
+									<p><i class="fa fa-suitcase"></i> 2 - 3 Year experince  |  Full Time</p>
+								</div>
+								<p>We are looking for a medical representative for Teaneck, New Jersey, United States.</p>
+							</div>
+							<div class="right-apply">
+								<div class="salary">
+									<p>Salary</p>
+									<p>&#8377; 10k - 30k p/m</p>
+								</div>
+								<a href="javascript:;">Apply Now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</section>
+
+		<!-- account box -->
+		<section class="account_section pt-2 pb-3 titan">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="inner-box">
+							<h3>Join our Talent Network <span class="d-block">to start your career with us.</span></h3>
+							<div class="read-btn">
+		                        <a href="JavaScript:;">Join Now</a>
+		                    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- job form -->
+		<section class="form_section">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="job-req row">
+							<div class="col-6 col-sm-12">
+								<div class="talk">
+									<h2>Talk to our experts about your JOB requirements</h2>
+									<p>Contact us and know more about how our experts can help your business grow. Contact us and know more about how our experts can help your business grow. Contact us and know more about how our experts can help your business grow.</p>
+									<p>Contact us and know more about how our experts can help your business grow. Contact us and know more about how our experts can help your business grow.</p>
+									<div class="read-btn"><a href="javascript:;" class="send-msg">Let’s Talk</a></div>
+								</div>
+							</div>
+							<div class="col-6 col-sm-12">
+								<div class="form-fill">
+									<form>
+									 	<div class="form-group">
+										  	<input type="text" class="form-control name" placeholder="Name">
+										</div>
+									 	<div class="form-group">
+										  	<input type="email" class="form-control email" placeholder="Email Id">
+										</div>
+									 	<div class="form-group">
+										  	<input type="text" class="form-control phone" placeholder="Phone Number">
+										</div>
+									 	<div class="form-group">
+										  	<textarea class="form-control project" placeholder="Describe your project" rows="3"></textarea>
+										</div>
+									 	<div class="read-btn">
+										  	<a href="javascript:;" class="send-msg">Submit</a>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- Footer -->
+		<footer class="footer_section desktop-view">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="foot-link">
+							<div class="copyright-block">
+							    <p>Copyright &copy; <span id="year"></span> Aegis Recrutians All rights reserved</p>
+			                </div>							
+			                <div class="foot-social">
+			                	<a href="javascript:;" target="_blank"><i class="fa fa-facebook"></i></a>
+			                	<a href="javascript:;" target="_blank"><i class="fa fa-linkedin"></i></a>
+			                	<a href="javascript:;" target="_blank"><i class="fa fa-twitter"></i></a>
+			                </div>
+			                <ul>
+								<li><a href="about.html">About Us</a></li>
+								<li><a href="career.html">Career</a></li>
+								<li><a href="contact.html">Contact Us</a></li>
+								<li><a href="articles/index.html">Articles</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</main>
+
+	<!--=== JavaScript ===-->
+    <script src="js/jQuery.js"></script>
+    <script src="js/ajax-autocomplete.js"></script>
+    <script src="js/owl.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/lazysizes.js"></script>
+    <script src="js/functions.js"></script>
+</body>
+</html>

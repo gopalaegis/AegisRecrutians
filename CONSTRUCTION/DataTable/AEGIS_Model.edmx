@@ -5,6 +5,74 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="AEGIS_ConstructionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="BlogTitle" Type="nvarchar(max)" />
+          <Property Name="ShortDescription" Type="nvarchar(max)" />
+          <Property Name="Blogdetail" Type="nvarchar(max)" />
+          <Property Name="URL" Type="nvarchar(max)" />
+          <Property Name="MetaTags" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="SEOTitle" Type="nvarchar(max)" />
+          <Property Name="SEODescription" Type="nvarchar(max)" />
+          <Property Name="IsCrawl" Type="bit" />
+        </EntityType>
+        <EntityType Name="BlogCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Schematag_master">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchemaTag" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="JobWiseCity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobId" Type="int" />
+          <Property Name="CityId" Type="int" />
+        </EntityType>
+        <EntityType Name="JobWiseTechnology">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobId" Type="int" />
+          <Property Name="TechnologyId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblAddCityTechMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TechMasterId" Type="int" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="FocusKeyphrase" Type="nvarchar(max)" />
+          <Property Name="SEOtitle" Type="nvarchar(max)" />
+          <Property Name="Slug" Type="nvarchar(max)" />
+          <Property Name="MetaDescription" Type="nvarchar(max)" />
+          <Property Name="IsCrawl" Type="bit" />
+          <Property Name="CanonicalURL" Type="nvarchar(max)" />
+          <Property Name="SchemaTags" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="BriefDescription" Type="nvarchar(max)" />
+          <Property Name="H1" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="tblApplyJobDetails">
           <Key>
             <PropertyRef Name="Id" />
@@ -24,6 +92,7 @@
           <Property Name="CountryId" Type="int" />
           <Property Name="StateId" Type="int" />
           <Property Name="Resume" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
         </EntityType>
         <EntityType Name="tblApplyJobEducation">
           <Key>
@@ -60,8 +129,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StateId" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="StateId" Type="int" />
         </EntityType>
         <EntityType Name="tblContectUs">
           <Key>
@@ -72,13 +141,33 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Skype" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblContentMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Controller" Type="nvarchar" MaxLength="50" />
+          <Property Name="ActionResult" Type="nvarchar" MaxLength="50" />
+          <Property Name="FocusKeyphrase" Type="nvarchar(max)" />
+          <Property Name="SEOtitle" Type="nvarchar(max)" />
+          <Property Name="Slug" Type="nvarchar(max)" />
+          <Property Name="MetaDescription" Type="nvarchar(max)" />
+          <Property Name="IsCrawl" Type="bit" />
+          <Property Name="CanonicalURL" Type="nvarchar(max)" />
+          <Property Name="SchemaTags" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
         </EntityType>
         <EntityType Name="tblCountry">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sortname" Type="nvarchar" MaxLength="50" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="phonecode" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblJobDetails">
           <Key>
@@ -105,8 +194,10 @@
           <Property Name="JobQualification" Type="nvarchar(max)" />
           <Property Name="IsVerified" Type="bit" />
           <Property Name="ShowOnHome" Type="nvarchar" MaxLength="50" />
+          <Property Name="KeyWords" Type="nvarchar(max)" />
           <Property Name="BriefDescription" Type="nvarchar(max)" />
           <Property Name="date" Type="datetime" />
+          <Property Name="isActive" Type="bit" />
         </EntityType>
         <EntityType Name="tblJobEducation">
           <Key>
@@ -114,6 +205,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Education" Type="nvarchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" />
         </EntityType>
         <EntityType Name="tblJobQualification">
           <Key>
@@ -121,6 +213,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" />
         </EntityType>
         <EntityType Name="tblProfession">
           <Key>
@@ -149,14 +242,15 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
         </EntityType>
         <EntityType Name="tblState">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CountryId" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryId" Type="int" />
         </EntityType>
         <EntityType Name="tblSubCategoryMaster">
           <Key>
@@ -181,14 +275,32 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Image" Type="nvarchar(max)" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="FocusKeyphrase" Type="nvarchar(max)" />
+          <Property Name="SEOtitle" Type="nvarchar(max)" />
+          <Property Name="Slug" Type="nvarchar(max)" />
+          <Property Name="MetaDescription" Type="nvarchar(max)" />
+          <Property Name="IsCrawl" Type="bit" />
+          <Property Name="CanonicalURL" Type="nvarchar(max)" />
+          <Property Name="SchemaTags" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="BriefDescription" Type="nvarchar(max)" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="H1" Type="nvarchar(max)" />
         </EntityType>
         <EntityContainer Name="AEGIS_ConstructionModelStoreContainer">
+          <EntitySet Name="Blog" EntityType="Self.Blog" Schema="admin_aegisrecrutians" store:Type="Tables" />
+          <EntitySet Name="BlogCategory" EntityType="Self.BlogCategory" Schema="admin_aegisrecrutians" store:Type="Tables" />
+          <EntitySet Name="Schematag_master" EntityType="Self.Schematag_master" Schema="admin_aegisrecrutians" store:Type="Tables" />
+          <EntitySet Name="JobWiseCity" EntityType="Self.JobWiseCity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobWiseTechnology" EntityType="Self.JobWiseTechnology" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAddCityTechMaster" EntityType="Self.tblAddCityTechMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblApplyJobDetails" EntityType="Self.tblApplyJobDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblApplyJobEducation" EntityType="Self.tblApplyJobEducation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblApplyJobExperience" EntityType="Self.tblApplyJobExperience" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCategoryMaster" EntityType="Self.tblCategoryMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCity" EntityType="Self.tblCity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblContectUs" EntityType="Self.tblContectUs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblContentMaster" EntityType="Self.tblContentMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCountry" EntityType="Self.tblCountry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblJobDetails" EntityType="Self.tblJobDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblJobEducation" EntityType="Self.tblJobEducation" Schema="dbo" store:Type="Tables" />
@@ -206,12 +318,19 @@
     <edmx:ConceptualModels>
       <Schema Namespace="AEGIS_ConstructionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="AEGIS_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Blogs" EntityType="AEGIS_ConstructionModel.Blog" />
+          <EntitySet Name="BlogCategories" EntityType="AEGIS_ConstructionModel.BlogCategory" />
+          <EntitySet Name="Schematag_master" EntityType="AEGIS_ConstructionModel.Schematag_master" />
+          <EntitySet Name="JobWiseCities" EntityType="AEGIS_ConstructionModel.JobWiseCity" />
+          <EntitySet Name="JobWiseTechnologies" EntityType="AEGIS_ConstructionModel.JobWiseTechnology" />
+          <EntitySet Name="tblAddCityTechMasters" EntityType="AEGIS_ConstructionModel.tblAddCityTechMaster" />
           <EntitySet Name="tblApplyJobDetails" EntityType="AEGIS_ConstructionModel.tblApplyJobDetail" />
           <EntitySet Name="tblApplyJobEducations" EntityType="AEGIS_ConstructionModel.tblApplyJobEducation" />
           <EntitySet Name="tblApplyJobExperiences" EntityType="AEGIS_ConstructionModel.tblApplyJobExperience" />
           <EntitySet Name="tblCategoryMasters" EntityType="AEGIS_ConstructionModel.tblCategoryMaster" />
           <EntitySet Name="tblCities" EntityType="AEGIS_ConstructionModel.tblCity" />
           <EntitySet Name="tblContectUs" EntityType="AEGIS_ConstructionModel.tblContectU" />
+          <EntitySet Name="tblContentMasters" EntityType="AEGIS_ConstructionModel.tblContentMaster" />
           <EntitySet Name="tblCountries" EntityType="AEGIS_ConstructionModel.tblCountry" />
           <EntitySet Name="tblJobDetails" EntityType="AEGIS_ConstructionModel.tblJobDetail" />
           <EntitySet Name="tblJobEducations" EntityType="AEGIS_ConstructionModel.tblJobEducation" />
@@ -224,6 +343,74 @@
           <EntitySet Name="tblSuperAdmins" EntityType="AEGIS_ConstructionModel.tblSuperAdmin" />
           <EntitySet Name="tblTechnologyMasters" EntityType="AEGIS_ConstructionModel.tblTechnologyMaster" />
         </EntityContainer>
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BlogTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShortDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Blogdetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaTags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="SEOTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SEODescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsCrawl" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="BlogCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Schematag_master">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchemaTag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="JobWiseCity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobId" Type="Int32" />
+          <Property Name="CityId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="JobWiseTechnology">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobId" Type="Int32" />
+          <Property Name="TechnologyId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblAddCityTechMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TechMasterId" Type="Int32" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="FocusKeyphrase" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SEOtitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Slug" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsCrawl" Type="Boolean" />
+          <Property Name="CanonicalURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SchemaTags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="BriefDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="H1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="tblApplyJobDetail">
           <Key>
             <PropertyRef Name="Id" />
@@ -243,6 +430,7 @@
           <Property Name="CountryId" Type="Int32" />
           <Property Name="StateId" Type="Int32" />
           <Property Name="Resume" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="tblApplyJobEducation">
           <Key>
@@ -279,8 +467,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StateId" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StateId" Type="Int32" />
         </EntityType>
         <EntityType Name="tblContectU">
           <Key>
@@ -291,13 +479,33 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Skype" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblContentMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Controller" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActionResult" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FocusKeyphrase" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SEOtitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Slug" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsCrawl" Type="Boolean" />
+          <Property Name="CanonicalURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SchemaTags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="tblCountry">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sortname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phonecode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblJobDetail">
           <Key>
@@ -324,8 +532,10 @@
           <Property Name="JobQualification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsVerified" Type="Boolean" />
           <Property Name="ShowOnHome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KeyWords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BriefDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="tblJobEducation">
           <Key>
@@ -333,6 +543,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Education" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="tblJobQualification">
           <Key>
@@ -340,6 +551,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="tblProfession">
           <Key>
@@ -368,14 +580,15 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="tblState">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CountryId" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int32" />
         </EntityType>
         <EntityType Name="tblSubCategoryMaster">
           <Key>
@@ -400,6 +613,17 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FocusKeyphrase" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SEOtitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Slug" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsCrawl" Type="Boolean" />
+          <Property Name="CanonicalURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SchemaTags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="BriefDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="H1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -407,9 +631,84 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="AEGIS_ConstructionModelStoreContainer" CdmEntityContainer="AEGIS_Entities">
+          <EntitySetMapping Name="Blogs">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.Blog">
+              <MappingFragment StoreEntitySet="Blog">
+                <ScalarProperty Name="IsCrawl" ColumnName="IsCrawl" />
+                <ScalarProperty Name="SEODescription" ColumnName="SEODescription" />
+                <ScalarProperty Name="SEOTitle" ColumnName="SEOTitle" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="MetaTags" ColumnName="MetaTags" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Blogdetail" ColumnName="Blogdetail" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="BlogTitle" ColumnName="BlogTitle" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlogCategories">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.BlogCategory">
+              <MappingFragment StoreEntitySet="BlogCategory">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schematag_master">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.Schematag_master">
+              <MappingFragment StoreEntitySet="Schematag_master">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="SchemaTag" ColumnName="SchemaTag" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobWiseCities">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.JobWiseCity">
+              <MappingFragment StoreEntitySet="JobWiseCity">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobWiseTechnologies">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.JobWiseTechnology">
+              <MappingFragment StoreEntitySet="JobWiseTechnology">
+                <ScalarProperty Name="TechnologyId" ColumnName="TechnologyId" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAddCityTechMasters">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblAddCityTechMaster">
+              <MappingFragment StoreEntitySet="tblAddCityTechMaster">
+                <ScalarProperty Name="H1" ColumnName="H1" />
+                <ScalarProperty Name="BriefDescription" ColumnName="BriefDescription" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="SchemaTags" ColumnName="SchemaTags" />
+                <ScalarProperty Name="CanonicalURL" ColumnName="CanonicalURL" />
+                <ScalarProperty Name="IsCrawl" ColumnName="IsCrawl" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="SEOtitle" ColumnName="SEOtitle" />
+                <ScalarProperty Name="FocusKeyphrase" ColumnName="FocusKeyphrase" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="TechMasterId" ColumnName="TechMasterId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblApplyJobDetails">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblApplyJobDetail">
               <MappingFragment StoreEntitySet="tblApplyJobDetails">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="Resume" ColumnName="Resume" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
                 <ScalarProperty Name="CountryId" ColumnName="CountryId" />
@@ -464,8 +763,8 @@
           <EntitySetMapping Name="tblCities">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblCity">
               <MappingFragment StoreEntitySet="tblCity">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -473,6 +772,7 @@
           <EntitySetMapping Name="tblContectUs">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblContectU">
               <MappingFragment StoreEntitySet="tblContectUs">
+                <ScalarProperty Name="Skype" ColumnName="Skype" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Mobile" ColumnName="Mobile" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -481,10 +781,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tblContentMasters">
+            <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblContentMaster">
+              <MappingFragment StoreEntitySet="tblContentMaster">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="SchemaTags" ColumnName="SchemaTags" />
+                <ScalarProperty Name="CanonicalURL" ColumnName="CanonicalURL" />
+                <ScalarProperty Name="IsCrawl" ColumnName="IsCrawl" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="SEOtitle" ColumnName="SEOtitle" />
+                <ScalarProperty Name="FocusKeyphrase" ColumnName="FocusKeyphrase" />
+                <ScalarProperty Name="ActionResult" ColumnName="ActionResult" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblCountries">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblCountry">
               <MappingFragment StoreEntitySet="tblCountry">
+                <ScalarProperty Name="phonecode" ColumnName="phonecode" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="sortname" ColumnName="sortname" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -492,8 +812,10 @@
           <EntitySetMapping Name="tblJobDetails">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobDetail">
               <MappingFragment StoreEntitySet="tblJobDetails">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="BriefDescription" ColumnName="BriefDescription" />
+                <ScalarProperty Name="KeyWords" ColumnName="KeyWords" />
                 <ScalarProperty Name="ShowOnHome" ColumnName="ShowOnHome" />
                 <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
                 <ScalarProperty Name="JobQualification" ColumnName="JobQualification" />
@@ -521,6 +843,7 @@
           <EntitySetMapping Name="tblJobEducations">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobEducation">
               <MappingFragment StoreEntitySet="tblJobEducation">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="Education" ColumnName="Education" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -529,6 +852,7 @@
           <EntitySetMapping Name="tblJobQualifications">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblJobQualification">
               <MappingFragment StoreEntitySet="tblJobQualification">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="Qualification" ColumnName="Qualification" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -560,6 +884,7 @@
           <EntitySetMapping Name="tblSkillMasters">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblSkillMaster">
               <MappingFragment StoreEntitySet="tblSkillMaster">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -568,8 +893,8 @@
           <EntitySetMapping Name="tblStates">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblState">
               <MappingFragment StoreEntitySet="tblState">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -595,6 +920,17 @@
           <EntitySetMapping Name="tblTechnologyMasters">
             <EntityTypeMapping TypeName="AEGIS_ConstructionModel.tblTechnologyMaster">
               <MappingFragment StoreEntitySet="tblTechnologyMaster">
+                <ScalarProperty Name="H1" ColumnName="H1" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="BriefDescription" ColumnName="BriefDescription" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="SchemaTags" ColumnName="SchemaTags" />
+                <ScalarProperty Name="CanonicalURL" ColumnName="CanonicalURL" />
+                <ScalarProperty Name="IsCrawl" ColumnName="IsCrawl" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="SEOtitle" ColumnName="SEOtitle" />
+                <ScalarProperty Name="FocusKeyphrase" ColumnName="FocusKeyphrase" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

@@ -31,15 +31,14 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 myCookie["UserName"] = isIxists.UserName;
                 myCookie["UserId"] = isIxists.Id.ToString();
                 Response.Cookies.Add(myCookie);
-                return Json("Success",JsonRequestBehavior.AllowGet);
+                return Json("Success", JsonRequestBehavior.AllowGet);
             }
             else
             {
-                return Json("Error",JsonRequestBehavior.AllowGet);
+                return Json("Error", JsonRequestBehavior.AllowGet);
             }
         }
 
-        [HttpPost]
         public ActionResult LogOff()
         {
             Response.Cookies["Login"].Expires = DateTime.Now.AddDays(-1);

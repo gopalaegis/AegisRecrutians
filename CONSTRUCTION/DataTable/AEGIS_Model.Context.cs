@@ -25,12 +25,19 @@ namespace CONSTRUCTION.DataTable
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Blog> Blogs { get; set; }
+        public virtual DbSet<BlogCategory> BlogCategories { get; set; }
+        public virtual DbSet<Schematag_master> Schematag_master { get; set; }
+        public virtual DbSet<JobWiseCity> JobWiseCities { get; set; }
+        public virtual DbSet<JobWiseTechnology> JobWiseTechnologies { get; set; }
+        public virtual DbSet<tblAddCityTechMaster> tblAddCityTechMasters { get; set; }
         public virtual DbSet<tblApplyJobDetail> tblApplyJobDetails { get; set; }
         public virtual DbSet<tblApplyJobEducation> tblApplyJobEducations { get; set; }
         public virtual DbSet<tblApplyJobExperience> tblApplyJobExperiences { get; set; }
         public virtual DbSet<tblCategoryMaster> tblCategoryMasters { get; set; }
         public virtual DbSet<tblCity> tblCities { get; set; }
         public virtual DbSet<tblContectU> tblContectUs { get; set; }
+        public virtual DbSet<tblContentMaster> tblContentMasters { get; set; }
         public virtual DbSet<tblCountry> tblCountries { get; set; }
         public virtual DbSet<tblJobDetail> tblJobDetails { get; set; }
         public virtual DbSet<tblJobEducation> tblJobEducations { get; set; }

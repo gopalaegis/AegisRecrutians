@@ -17,5 +17,16 @@ namespace CONSTRUCTION.DataTable
         public int Id { get; set; }
         public string Image { get; set; }
         public string Name { get; set; }
+        public string FocusKeyphrase { get; set; }
+        public string SEOtitle { get; set; }
+        public string Slug { get; set; }
+        public string MetaDescription { get; set; }
+        public Nullable<bool> IsCrawl { get; set; }
+        public string CanonicalURL { get; set; }
+        public string SchemaTags { get; set; }
+        public Nullable<bool> isActive { get; set; }
+        public string BriefDescription { get; set; }
+        public Nullable<System.DateTime> UpdatedDate { get; set; }
+        public string H1 { get; set; }
     }
 }

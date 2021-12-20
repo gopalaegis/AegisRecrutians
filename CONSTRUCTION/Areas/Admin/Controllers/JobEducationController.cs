@@ -1,4 +1,5 @@
 ﻿using CONSTRUCTION.Areas.Admin.Model;
+using CONSTRUCTION.CommonMethods;
 using CONSTRUCTION.DataTable;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
     {
         AEGIS_Entities _db = new AEGIS_Entities();
         // GET: Admin/JobEducation
+        [UserLoginCheck]
         public ActionResult JobEducation()
         {
             return View();
@@ -26,18 +28,43 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             }
             return PartialView("_partialAddEducationMaster", model);
         }
-        public ActionResult JobEducationMasterList()
+        public ActionResult JobEducationMasterList(string Status = "active")
         {
             List<JobEducationViewModel> model = new List<JobEducationViewModel>();
-            model = _db.tblJobEducations.Select(x => new JobEducationViewModel { Id = x.Id, Education = x.Education }).ToList();
+            model = _db.tblJobEducations.Select(x => new JobEducationViewModel { Id = x.Id, Education = x.Education,isactive=(bool)x.isActive }).ToList();
+            if (Status == "active")
+            {
+                model = model.Where(x => x.isactive == true).ToList();
+            }
+            else
+            {
+                model = model.Where(x => x.isactive == false).ToList();
+            }
             return PartialView("_partialJobEducationMasterList", model);
         }
-        public ActionResult DeleteJobEducationMaster(int Id)
+        //public ActionResult DeleteJobEducationMaster(int Id)
+        //{
+        //    var data = _db.tblJobEducations.Where(x => x.Id == Id).FirstOrDefault();
+        //    _db.tblJobEducations.Remove(data);
+        //    _db.SaveChanges();
+        //    return RedirectToAction("JobEducationMasterList");
+        //}
+        public ActionResult isDeactive(int Id, string value)
         {
-            var data = _db.tblJobEducations.Where(x => x.Id == Id).FirstOrDefault();
-            _db.tblJobEducations.Remove(data);
-            _db.SaveChanges();
-            return RedirectToAction("JobEducationMasterList");
+            if (value == "deactive")
+            {
+                var record = _db.tblJobEducations.Where(x => x.Id == Id).FirstOrDefault();
+                record.isActive = false;
+                _db.SaveChanges();
+            }
+            else
+            {
+                var record = _db.tblJobEducations.Where(x => x.Id == Id).FirstOrDefault();
+                record.isActive = true;
+                _db.SaveChanges();
+            }
+            string status = value == "deactive" ? "active" : "deactive";
+            return RedirectToAction("JobEducationMasterList", new { Status = status });
         }
         [HttpPost]
         public ActionResult SaveJobEducationMaster(JobEducationViewModel model)
@@ -52,6 +79,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
             {
                 tblJobEducation data = new tblJobEducation();
                 data.Education = model.Education;
+                data.isActive = true;
                 _db.tblJobEducations.Add(data);
                 _db.SaveChanges();
             }

@@ -15,5 +15,6 @@ namespace CONSTRUCTION.Models
         }
         public List<SkillMasterViewModel> skillMasterViewModels { get; set; }
         public List<TechnologyMasterViewModel> technologyMasterViewModels { get; set; }
+        public string SchemaDescription { get; set; }
     }
 }

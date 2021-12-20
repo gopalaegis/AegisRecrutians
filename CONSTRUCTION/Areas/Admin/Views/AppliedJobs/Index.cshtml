@@ -3,11 +3,12 @@
     ViewBag.Title = "Applied Jobs";
 }
 <div id="applicantDetails" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg  mx-hight">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
         <!-- Modal content-->
         <div class="modal-content height-calc-100vh-130px">
             <div class="modal-header">
-                <h4 class="modal-title"> Applicant Details</h4>
+                <h4 class="modal-title modal_text"> Applicant Details</h4>
+                @*<button type="button" data-dismiss="modal" class="close"> × </button>*@
             </div>
             <div class="modal-body app-body">
 
@@ -19,8 +20,16 @@
         </div>
     </div>
 </div>
-<div class="right-side">
-    <div class="heading">Applied Jobs</div>
+<div class="right-side allied-job-main">
+    <div class="heading">
+        Applied Jobs
+        <label class="switch">
+
+            <input id="chk_listFilter" type="checkbox" checked>
+            <span class="slider round"></span>
+        </label>
+        <label style="float:right;"> Filter Active / Deactive : </label>
+    </div>
 
     <div class="data-table style-1">
         <div class="box-table">
@@ -55,6 +64,30 @@
         });
     }
 
+    function returnStatus() {
+        var status = 'deactive';
+        var value = $("#chk_listFilter").prop('checked');
+        if (value == true) {
+            status = 'active';
+        }
+        return status;
+    }
+
+    $("#chk_listFilter").change(function () {
+                var status = returnStatus();
+                $.ajax({
+                        url: '@Url.Action("AppliedJobList", "AppliedJobs")',
+                        data: {
+                                Status: status
+                        },
+                        success: function (data) {
+                                $("#tableDiv").html("");
+                                $("#tableDiv").html(data);
+                                dataTableAppliedJob();
+                        }
+                });
+        });
+
     $("#tableDiv").on("click", ".detailRow", function () {
         var id = $(this).attr('data-id');
         $.ajax({
@@ -66,6 +99,46 @@
                 $("#applicantDetails").find(".modal-body").html("");
                 $("#applicantDetails").find(".modal-body").html(data);
                 $("#applicantDetails").find(".modal-body").find('input[type="text"]').attr("disabled", "disabled");
+            }
+        });
+    });
+
+     $("#tableDiv").on("click", ".Deactive", function () {
+        var Id = $(this).attr("data-id");    
+        $("#preloader").show();
+        $.ajax({
+            url: '@Url.Action("isDeactive", "AppliedJobs")',
+            data: { Id: Id, value: "deactive" },
+            success: function (data) {
+                $("#tableDiv").html("");
+                $("#tableDiv").html(data);
+                dataTableAppliedJob();
+                $("#preloader").hide();
+                $("#alert_inquiry_success").html("Deactive Sussesfully");
+                $("#alert_inquiry_success").show();
+                setTimeout(function () {
+                    $("#alert_inquiry_success").hide();
+                }, 2000);
+            }
+        });
+    });
+
+    $("#tableDiv").on("click", ".Active", function () {
+        var Id = $(this).attr("data-id");       
+        $("#preloader").show();
+        $.ajax({
+            url: '@Url.Action("isDeactive", "AppliedJobs")',
+            data: { Id: Id, value: "active" },
+            success: function (data) {
+                $("#tableDiv").html("");
+                $("#tableDiv").html(data);
+                dataTableAppliedJob();
+                $("#preloader").hide();
+                $("#alert_inquiry_success").html("Active Sussesfully");
+                $("#alert_inquiry_success").show();
+                setTimeout(function () {
+                    $("#alert_inquiry_success").hide();
+                }, 2000);
             }
         });
     });

@@ -1,0 +1,52 @@
+﻿@model Tuple<List<CONSTRUCTION.Areas.Admin.Model.AddcityViewModel>,int>
+<input type="hidden" id="txt_techId" value="@Model.Item2" />
+<div class="row">
+    <div class="col-md-12">
+        <div class="data-table style-1">
+            <div class="box-table m-0">
+                <div class="skill-table pt-0">
+                    <div class="table mb-0">
+                        <table class="t-body" id="myTable" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>City</th>
+                                    <th>SEOtitle</th>
+                                    <th>Slug</th>
+                                    <th>Status</th>                                    
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="city_list">
+                                @foreach (var item in Model.Item1)
+                                {
+                                    <tr>
+                                        @{
+                                            var URL = "/Jobs-in-" + item.Slug + "?l=" + item.Slug;
+                                        }
+                                        <td>@item.city</td>
+                                        <td>@item.SEOtitle</td>
+                                        <td><a href="@Url.Action("TechnoloGyWiseJob","Jobs",new { slugURL = item.Slug,area = ""})" target="_blank">@item.Slug</a></td>
+                                        <td>@(item.isactive ? "Active" : "Deactive")</td>
+                                        <td class="light-gray text-right d-flex align-items-center">                                                
+                                                <i class="editRow fa fa-pencil creamy ml-2 pr-2" aria-hidden="true" id="edit_city" data-id="@item.id"></i>
+                                                @if (item.isactive == true)
+                                                {
+                                                        <i class="fa fa-ban fa-ban-css red DeactiveCity" data-id="@item.id" title="De-Active"></i>
+                                                }
+                                                else
+                                                {
+                                                        <i class="fa fa-check-square fa-check-css green ActiveCity" data-id="@item.id" title="Active"></i>
+                                                }
+                                                <input type="hidden" id="txt_tech" value="@item.teckmaster" />
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

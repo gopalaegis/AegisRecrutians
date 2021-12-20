@@ -20,6 +20,11 @@ namespace CONSTRUCTION.Areas.Admin.Model
         public List<SelectListItem> SubCategoryList { get; set; }
         public string Profession { get; set; }
         public List<SelectListItem> ProfessionList { get; set; }
+        public List<SelectListItem> technologyList { get; set; }
+        public List<int> SelectedTechnology { get; set; }
+        public List<int> SelectedCity { get; set; }
+        public string SelectedTechnologyString { get; set; }
+        public string SelectedCityString { get; set; }
         public int professionId { get; set; }
         public int CountryId { get; set; }
         public string CountryName { get; set; }
@@ -38,9 +43,11 @@ namespace CONSTRUCTION.Areas.Admin.Model
         public int MinSalary { get; set; }
         public int MaxSalary { get; set; }
         public string BriefDescription { get; set; }
+        public string KeyWord { get; set; }
         public string JobEducation { get; set; }
         public string JobQualification { get; set; }
         public Boolean IsVerified { get; set; }
         public string ShowOnHome { get; set; }
+        public bool isactive { get; set; }
     }
 }

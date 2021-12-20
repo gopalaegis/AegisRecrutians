@@ -12,8 +12,15 @@
 
 @font-face {
     font-family: 'Roboto-b';
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
     src: url('../fonts/Roboto-Bold.ttf') format('truetype');
     font-style: normal;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog-scrollable {
+        max-height: calc(100% - 5.5rem);
+    }
 }
 
 
@@ -25,7 +32,7 @@ html {
 body {
     margin: 0;
     padding: 0 !important;
-    font-family: 'Roboto';
+    font-family: "Poppins", sans-serif;
     overflow: hidden;
     color: #333;
     background-color: #FBFBFF;
@@ -71,10 +78,14 @@ h2 {
 .bold {
     font-weight: bold
 }
+.common-btn.btn:hover {
+    color: #fff !important;
+}
 
 button, button:focus {
     border: none !important;
-    outline: none !important
+    outline: none !important;
+    box-shadow:none!important;
 }
 
 .black {
@@ -128,9 +139,9 @@ button, button:focus {
     margin-top: 15px;
 }
 
-.modal.fade .modal-body {
+/*.modal.fade .modal-body {
     padding: 0 1rem 1rem 1rem;
-}
+}*/
 
 .modal.fade .modal-dialog {
     margin: 4rem auto;
@@ -168,6 +179,9 @@ button, button:focus {
     border-radius: 0px !important;
 }
 
+select.form-control {
+    border-radius: 5px !important;
+}
 
 
 /* Nav-Section */
@@ -699,7 +713,7 @@ button, button:focus {
     .modal .close {
         opacity: 1;
         color: #5E3192;
-        border: 1px solid #ccc !important;
+        /*border: 1px solid #ccc !important;*/
         font-family: 'Roboto-m';
         padding: 3px 8px;
         margin-top: 5px;
@@ -716,9 +730,6 @@ button, button:focus {
         padding-bottom: 10px;
     }
 
-    .modal .modal-footer, .modal .modal-header {
-        border: none;
-    }
 
 .get-opt-area {
     padding: 15px;
@@ -892,7 +903,6 @@ button, button:focus {
     width: 16px;
     background-color: #fff;
     border: 2.5px solid #999;
-    border-radius: 50%;
 }
 
 .gender .checkmark:after {
@@ -943,9 +953,10 @@ button, button:focus {
 .nav-prof-btn1 {
     background-color: #5C2F91;
     color: #fff;
-    padding: 0;
+    /*padding: 0;*/
     font-size: 16px;
     border: 2px solid #AC95C8 !important;
+    border-radius:5px;
 }
 
     .nav-prof-btn1 .fa-angle-down {
@@ -2383,7 +2394,7 @@ button, button:focus {
 
 .dashboard .right-side .form-control {
     padding: 5px;
-    border-radius: 0px !important;
+    border-radius: 0px;
 }
 
     .dashboard .right-side .form-control:focus {
@@ -2458,7 +2469,7 @@ button, button:focus {
     position: fixed;
     bottom: 0;
     width: 100%;
-    z-index: 9999;
+    z-index: 1;
 }
 
     .dash-foot-bg .copyright {
@@ -3578,4 +3589,145 @@ button, button:focus {
 .modal-body.app-body {
     height: calc(100vh - 130px);
     overflow: auto;
+}
+.w-15 {
+    width:15px;
+}
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+    /* Hide the browser's default checkbox */
+    .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+/* Create a custom checkbox */
+    .container .checkmark {
+        position: absolute;
+        top: -15px;
+        left: 0;
+         height: 20px; 
+         width: 20px; 
+        /* background-color: transparent !important; */
+        border: 2px solid #2196F3 !important;
+    }
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: transparent;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.container .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.table thead th, .table td {
+    border: none !important;
+}
+table tr {
+    border-bottom: 1px solid #CDD3DB;
+}
+.mb-20 {
+    margin-bottom:20px;
+}
+.m-10 {
+    margin:10px;
+}
+.p-10-9 {
+     padding:10px 9px;
+ }
+.card-header {
+    background-color: rgba(0, 0, 0, 0.03);
+    font-size: 18px;
+    font-weight: 700;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    color: #5C2F91;
+}
+.card-body {
+    line-height: 20px;
+    color: #000000;
+}
+.modal-title.modal_text {
+    font-size: 22px;
+    color: #000000;
+    font-weight: 500;
+}
+.data-table.style-1 .dataTable {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 7%);
+    overflow: auto;
+    border: none !important;
+    padding: 10px 0 20px;
+}
+.dashboard .card-body .title-heding h5 {
+    margin-top:.5rem;
+}
+
+.common-btn {
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 28px;
+    color: #ffffff;
+    background-color: #5c2f91;
+    font-weight: 400;
+    cursor: pointer;
+    min-width: 100px;
+}
+.ZebraDialog_Title {
+    background: #0aafce !important;
+    border-bottom: none !important;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.ZebraDialog_Buttons a {
+    background-color: #0aafce;
+    background-image: -moz-linear-gradient(#0aafce)!important;
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#0aafce),to(#0aafce))!important;
+    background-image: -webkit-linear-gradient(top,#0aafce,#0aafce)!important;
+    background-image: -o-linear-gradient(top,#0aafce,#0aafce)!important;
+    background-image: linear-gradient(to bottom,#0aafce,#0aafce)!important;
+}
+.ZebraDialog {
+    border: none !important;
+    background: #e7edef !important;
 }

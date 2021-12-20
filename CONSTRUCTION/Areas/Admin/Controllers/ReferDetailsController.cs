@@ -1,4 +1,5 @@
-﻿using CONSTRUCTION.DataTable;
+﻿using CONSTRUCTION.CommonMethods;
+using CONSTRUCTION.DataTable;
 using CONSTRUCTION.Models;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
     public class ReferDetailsController : Controller
     {
         AEGIS_Entities _db = new AEGIS_Entities();
+        [UserLoginCheck]
         public ActionResult Index()
         {
             return View();

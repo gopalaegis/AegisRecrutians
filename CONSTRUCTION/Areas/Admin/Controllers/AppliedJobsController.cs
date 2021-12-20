@@ -1,4 +1,5 @@
-﻿using CONSTRUCTION.DataTable;
+﻿using CONSTRUCTION.CommonMethods;
+using CONSTRUCTION.DataTable;
 using CONSTRUCTION.Models;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,13 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
     public class AppliedJobsController : Controller
     {
         AEGIS_Entities _db = new AEGIS_Entities();
+        [UserLoginCheck]
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult AppliedJobList()
+        public ActionResult AppliedJobList(string Status = "active")
         {
             List<ApplyJobViewModel> model = new List<ApplyJobViewModel>();
             var data = _db.tblApplyJobDetails.ToList();
@@ -31,9 +33,18 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                     Gender = item.Gender,
                     Email = item.Email,
                     PhoneNo1 = item.Mobile,
+                    isactive = (bool)item.isActive,
                     Job = j != null ? j.Title : ""
                 };
                 model.Add(m);
+            }
+            if (Status == "active")
+            {
+                model = model.Where(x => x.isactive == true).ToList();
+            }
+            else
+            {
+                model = model.Where(x => x.isactive == false).ToList();
             }
             return PartialView("_partialAppliedJobList", model);
         }
@@ -62,8 +73,9 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                     model.BlockNo = data.HouseName;
                     model.Street = data.Street;
                     model.City = data.City;
-                    model.State = state.Name;
-                    model.Country = country.Name;
+                    model.State = state == null ? "" : state.Name;
+                    model.Country = country == null ? "" : country.Name;
+                    model.Resume = data.Resume;
 
                     var education = _db.tblApplyJobEducations.Where(x => x.ApplyJobDetailId == Id).ToList();
                     foreach (var item in education)
@@ -84,7 +96,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                     {
                         var country1 = _db.tblCountries.Where(y => y.Id == item.CountryId).FirstOrDefault();
                         var state1 = _db.tblStates.Where(y => y.Id == item.StateId).FirstOrDefault();
-                        if (country1 != null&&state1!=null)
+                        if (country1 != null && state1 != null)
                         {
                             ExperienceViewModel e = new ExperienceViewModel();
                             e.Employer = item.Employer;
@@ -99,6 +111,24 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 }
             }
             return PartialView("_partialAppliedJobDetail", model);
+        }
+
+        public ActionResult isDeactive(int Id, string value)
+        {
+            if (value == "deactive")
+            {
+                var record = _db.tblApplyJobDetails.Where(x => x.Id == Id).FirstOrDefault();
+                record.isActive = false;
+                _db.SaveChanges();
+            }
+            else
+            {
+                var record = _db.tblApplyJobDetails.Where(x => x.Id == Id).FirstOrDefault();
+                record.isActive = true;
+                _db.SaveChanges();
+            }
+            string status = value == "deactive" ? "active" : "deactive";
+            return RedirectToAction("AppliedJobList", new { Status = status });
         }
     }
 }

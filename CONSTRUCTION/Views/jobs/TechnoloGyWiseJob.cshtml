@@ -1,0 +1,69 @@
+﻿@model Tuple<int, CONSTRUCTION.Models.SEOModel>
+@{
+        ViewBag.Title = Model.Item2.SEOtitle;
+        ViewBag.MetaDescription = Model.Item2.MetaDescription;
+        ViewBag.MetaKeywords = Model.Item2.FocusKeyphrase;
+        ViewBag.IsCrawlString = Model.Item2.IsCrawlString;
+        ViewBag.CanonicalURL = Model.Item2.CanonicalURL;
+        ViewBag.SchemaTags = Model.Item2.SchemaTags;
+}
+
+<!-- heading section -->
+<section class="heading pt-3 pb-3">
+        <div class="container">
+                <div class="row">
+                        <div class="col-12">
+                                <div class="section-header text-center">
+                                        <h1>@Model.Item2.H1</h1>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</section>
+
+<!-- show list -->
+<section class="show_list pt-3 pb-3 titan">
+        <div class="container">
+                <div class="row mt-2">
+                        <div class="col-12" id="jobDiv">
+                                @Html.Action("List", "jobs", new { TechnologyId = Model.Item1, technologyCityId = Model.Item2.cityId })
+                        </div>
+                </div>
+                <br />
+                <div class="row">
+                        <iframe id="descriptionDiv" src="@Url.Action("BindHTMLCity","Jobs",new {Id=Model.Item2.Id,CityId=Model.Item2.cityId})" frameborder="0" style="overflow:hidden;width:100%" width="100%"></iframe>
+                </div>
+        </div>
+</section>
+
+<script>
+
+        $('#descriptionDiv').on("load", function () {
+                var iframe = $(window.top.document).find("#descriptionDiv");
+                setTimeout(function () {
+                        var actualDivHeight = $("#descriptionDiv").contents().find("#div_desc").css('height');
+                        actualDivHeight = actualDivHeight.replace('px', '');
+                        actualDivHeight = parseInt(actualDivHeight) + 100;
+                        iframe.height(actualDivHeight + 'px');
+                }, 200);
+        });
+
+
+        $("#jobDiv").on("click", ".pageList", function () {
+                var page = $(this).attr("data-page");
+                var technologyId = '@(Model.Item1)';
+                var technologyCityId = '@(Model.Item2.cityId)';
+                $.ajax({
+                        url: '@Url.Action("List", "jobs")',
+                        data: {
+                                page: page,
+                                TechnologyId: technologyId,
+                                technologyCityId: technologyCityId
+                        },
+                        success: function (result) {
+                                $("#jobDiv").html("");
+                                $("#jobDiv").html(result);
+                        }
+                });
+        });
+</script>

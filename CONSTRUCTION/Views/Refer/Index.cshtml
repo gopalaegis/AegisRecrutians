@@ -1,193 +1,207 @@
 ﻿@model CONSTRUCTION.Models.ReferViewModel
 @{
-    ViewBag.Title = "Refer";
+        ViewBag.Title = "Refer";
 }
 
 <!-- heading section -->
 <section class="heading pt-3 pb-3">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-header text-center">
-                    <h1>@Model.Job</h1>
+        <div class="container">
+                <div class="row">
+                        <div class="col-12">
+                                <div class="section-header text-center">
+                                        <h1>@Model.Job</h1>
+                                </div>
+                        </div>
                 </div>
-            </div>
         </div>
-    </div>
 </section>
 
 <!-- aooly form -->
 <section class="apply_form pt-3 pb-3 titan refer">
-    <div class="container">
-        <div class="row top-bar">
-            <div class="col-6 col-sm-12">
-                <div class="left-side">
-                    <p>Refer a friend</p>
+        <div class="container">
+                <div class="row top-bar">
+                        <div class="col-6 col-sm-12">
+                                <div class="left-side">
+                                        <p>Refer a friend</p>
+                                </div>
+                        </div>
+                        <div class="col-6 col-sm-12">
+                                <div class="back-link">
+                                        <p><a href="@Model.URL"><i class="fa fa-angle-left"></i>   Back to Results</a></p>
+                                </div>
+                        </div>
                 </div>
-            </div>
-            <div class="col-6 col-sm-12">
-                <div class="back-link">
-                    <p><a href="@Model.URL"><i class="fa fa-angle-left"></i>   Back to Results</a></p>
+                <div class="row mt-2">
+                        <div class="col-12">
+                                <div class="fill-data">
+                                        <div class="fild-info">
+                                                <p>Please tell us how we can get in touch with you and your friend.</p>
+                                                <p><span class="red">*</span> indicates a required field.</p>
+                                        </div>
+                                        <form method="post" class="">
+                                                <div class="row info">
+                                                        <div class="col-12">
+                                                                <div class="title-heding">
+                                                                        <h2>Your Information</h2>
+                                                                </div>
+                                                        </div>
+                                                        <input type="hidden" id="jobId" value="@Model.jobId" />
+                                                        <div class="col-4 col-sm-12">
+                                                                <div class="form-group">
+                                                                        <input type="text" class="form-control" placeholder="Your Full Name" id="name">
+                                                                        <label id="label_error_FN" class="errorMessage" style="display:none;">Your Full Name is required</label>
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-4 col-sm-12">
+                                                                <div class="form-group">
+                                                                        <input type="text" class="form-control" placeholder="Your Email ID" id="email">
+                                                                        <label id="label_error_Email" class="errorMessage" style="display:none;">Your Email ID is required</label>
+                                                                        <label id="label_error_EmailFormat" class="errorMessage" style="display:none;">Your Email ID is not Valid</label>
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-4 col-sm-12">
+                                                                <div class="form-group">
+                                                                        <input type="text" class="form-control" placeholder="Your Phone Number" id="phoneNo" maxlength="10" onkeypress = "return event.charCode >= 48 && event.charCode <= 57">
+                                                                        <label id="label_error_PN" class="errorMessage" style="display:none;">Your Phone Number is required</label>
+                                                                        <label id="label_error_PNFormat" class="errorMessage" style="display:none;">Your Phone Number is not Valid</label>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <div class="row address mt-2">
+                                                        <div class="col-12">
+                                                                <div class="title-heding">
+                                                                        <h2>Details about your friend</h2>
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-4 col-sm-12">
+                                                                <div class="form-group">
+                                                                        <input type="text" class="form-control" placeholder="Your Friend Full Name" id="Fname">
+                                                                        <label id="label_error_FFN" class="errorMessage" style="display:none;">Your Friend Full Name is required</label>
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-4 col-sm-12">
+                                                                <div class="form-group">
+                                                                        <input type="text" class="form-control" placeholder="Your Friend Email ID" id="Femail">
+                                                                        <label id="label_error_FEmail" class="errorMessage" style="display:none;">Your Friend Email ID is required</label>
+                                                                        <label id="label_error_FEmailFormat" class="errorMessage" style="display:none;">Your Friend Email ID is not Valid</label>
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-4 col-sm-12">
+                                                                <div class="form-group">
+                                                                        <input type="text" class="form-control" placeholder="Your Friend Phone Number" id="FphoneNo" maxlength="10" onkeypress = "return event.charCode >= 48 && event.charCode <= 57">
+                                                                        <label id="label_error_FPN" class="errorMessage" style="display:none;">Your Friend Phone Number is required</label>
+                                                                        <label id="label_error_FPNFormat" class="errorMessage" style="display:none;">Your Friend Phone Number is not Valid</label>
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                                <div class="form-group">
+                                                                        <textarea class="form-control" placeholder="Description" rows="5" id="description"></textarea>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <div class="row pt-3 submit-box">
+                                                        <div class="col-5 col-sm-12 text-center">
+                                                                <div class="send-btn">
+                                                                        <a class="send_btn" id="submit">Refer your friend</a>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </form>
+                                </div>
+                        </div>
                 </div>
-            </div>
         </div>
-        <div class="row mt-2">
-            <div class="col-12">
-                <div class="fill-data">
-                    <div class="fild-info">
-                        <p>Please tell us how we can get in touch with you and your friend.</p>
-                        <p><span class="red">*</span> indicates a required field.</p>
-                    </div>
-                    <form method="post" class="">
-                        <div class="row info">
-                            <div class="col-12">
-                                <div class="title-heding">
-                                    <h2>Your Information</h2>
-                                </div>
-                            </div>
-                            <input type="hidden" id="jobId" value="@Model.jobId" />
-                            <div class="col-4 col-sm-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your Full Name" id="name">
-                                    <label id="label_error_FN" class="errorMessage" style="display:none;">Your Full Name is required</label>
-                                </div>
-                            </div>
-                            <div class="col-4 col-sm-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your Email ID" id="email">
-                                    <label id="label_error_Email" class="errorMessage" style="display:none;">Your Email ID is required</label>
-                                    <label id="label_error_EmailFormat" class="errorMessage" style="display:none;">Your Email ID is not Valid</label>
-                                </div>
-                            </div>
-                            <div class="col-4 col-sm-12">
-                                <div class="form-group">
-                                    <input type="number" class="form-control" placeholder="Your Phone Number" id="phoneNo">
-                                    <label id="label_error_PN" class="errorMessage" style="display:none;">Your Phone Number is required</label>
-                                    <label id="label_error_PNFormat" class="errorMessage" style="display:none;">Your Phone Number is not Valid</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row address mt-2">
-                            <div class="col-12">
-                                <div class="title-heding">
-                                    <h2>Details about your friend</h2>
-                                </div>
-                            </div>
-                            <div class="col-4 col-sm-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your Friend Full Name" id="Fname">
-                                    <label id="label_error_FFN" class="errorMessage" style="display:none;">Your Friend Full Name is required</label>
-                                </div>
-                            </div>
-                            <div class="col-4 col-sm-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your Friend Email ID" id="Femail">
-                                    <label id="label_error_FEmail" class="errorMessage" style="display:none;">Your Friend Email ID is required</label>
-                                    <label id="label_error_FEmailFormat" class="errorMessage" style="display:none;">Your Friend Email ID is not Valid</label>
-                                </div>
-                            </div>
-                            <div class="col-4 col-sm-12">
-                                <div class="form-group">
-                                    <input type="number" class="form-control" placeholder="Your Friend Phone Number" id="FphoneNo">
-                                    <label id="label_error_FPN" class="errorMessage" style="display:none;">Your Friend Phone Number is required</label>
-                                    <label id="label_error_FPNFormat" class="errorMessage" style="display:none;">Your Friend Phone Number is not Valid</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <textarea class="form-control" placeholder="Description" rows="5" id="description"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row pt-3 submit-box">
-                            <div class="col-5 col-sm-12 text-center">
-                                <div class="send-btn">
-                                    <a class="send_btn" id="submit">Refer your friend</a>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 <script>
-    $("#submit").click(function () {
-        var job = $("#jobId").val();
-        var name = $("#name").val();
-        var email = $("#email").val();
-        var phoneNo = $("#phoneNo").val();
-        var fName = $("#Fname").val();
-        var fEmail = $("#Femail").val();
-        var fPhoneNo = $("#FphoneNo").val();
-        var description = $("#description").val();
-        var IsError = false;
+        $("#submit").click(function () {
+                var job = $("#jobId").val();
+                var name = $("#name").val();
+                var email = $("#email").val();
+                var phoneNo = $("#phoneNo").val();
+                var fName = $("#Fname").val();
+                var fEmail = $("#Femail").val();
+                var fPhoneNo = $("#FphoneNo").val();
+                var description = $("#description").val();
+                var IsError = false;
 
-        if (name == null || name == "") {
-            IsError = true;
-            $("#label_error_FN").show();
-        }
-
-        if (email == null || email == "") {
-            IsError = true;
-            $("#label_error_Email").show();
-        } else if (!EmailValidation(email)) {
-            IsError = true;
-            $("#label_error_EmailFormat").show();
-        }
-
-        if (phoneNo == null || phoneNo == "") {
-            IsError = true;
-            $("#label_error_PN").show();
-        } else if (!PhoneNumberValidation(phoneNo)) {
-            IsError = true;
-            $("#label_error_PNFormat").show();
-        }
-
-        if (fName == null || fName == "") {
-            IsError = true;
-            $("#label_error_FFN").show();
-        }
-
-        if (fEmail == null || fEmail == "") {
-            IsError = true;
-            $("#label_error_FEmail").show();
-        } else if (!EmailValidation(fEmail)) {
-            IsError = true;
-            $("#label_error_FEmailFormat").show();
-        }
-
-        if (fPhoneNo == null || fPhoneNo == "") {
-            IsError = true;
-            $("#label_error_FPN").show();
-        } else if (!PhoneNumberValidation(fPhoneNo)) {
-            IsError = true;
-            $("#label_error_FPNFormat").show();
-        }
-
-        if (IsError == true) {
-            return false;
-        } else {
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("SaveData", "Refer")',
-                data: {
-                    Name: name,
-                    Email: email,
-                    PhoneNo: phoneNo,
-                    FriendName: fName,
-                    FriendEmail: fEmail,
-                    FriendPhoneNo: fPhoneNo,
-                    Description: description,
-                    jobId: job
-                },
-                success: function (result) {
-                    if (result == "Success") {
-                        window.location.href = '@Url.Action("Index", "jobs")';
-                    }
+                if (name == null || name == "") {
+                        IsError = true;
+                        $("#label_error_FN").show();
                 }
-            });
-        }
-    });
+
+                if (email == null || email == "") {
+                        IsError = true;
+                        $("#label_error_Email").show();
+                } else if (!EmailValidation(email)) {
+                        IsError = true;
+                        $("#label_error_EmailFormat").show();
+                }
+
+                if (phoneNo == null || phoneNo == "") {
+                        IsError = true;
+                        $("#label_error_PN").show();
+                } else if (!PhoneNumberValidation(phoneNo)) {
+                        IsError = true;
+                        $("#label_error_PNFormat").show();
+                }
+
+                if (fName == null || fName == "") {
+                        IsError = true;
+                        $("#label_error_FFN").show();
+                }
+
+                if (fEmail == null || fEmail == "") {
+                        IsError = true;
+                        $("#label_error_FEmail").show();
+                } else if (!EmailValidation(fEmail)) {
+                        IsError = true;
+                        $("#label_error_FEmailFormat").show();
+                }
+
+                if (fPhoneNo == null || fPhoneNo == "") {
+                        IsError = true;
+                        $("#label_error_FPN").show();
+                } else if (!PhoneNumberValidation(fPhoneNo)) {
+                        IsError = true;
+                        $("#label_error_FPNFormat").show();
+                }
+
+                if (IsError == true) {
+                        return false;
+                } else {
+                        $.ajax({
+                                type: "POST",
+                                url: '@Url.Action("SaveData", "Refer")',
+                                data: {
+                                        Name: name,
+                                        Email: email,
+                                        PhoneNo: phoneNo,
+                                        FriendName: fName,
+                                        FriendEmail: fEmail,
+                                        FriendPhoneNo: fPhoneNo,
+                                        Description: description,
+                                        jobId: job
+                                },
+                                success: function (result) {
+                                        if (result == "Success") {
+                                                $("#alert_inquiry_success").html("Refer friend successfully");
+                                                $("#alert_inquiry_success").show();
+                                                setTimeout(function () {
+                                                        $("#alert_inquiry_success").hide();
+                                                        window.location.href = '@Url.Action("Index", "jobs")';
+                                                }, 2000);
+
+                                        }
+                                        else {
+                                                $("#alert_inquiry_error").html("Error, Please try again after some time.");
+                                                $("#alert_inquiry_error").show();
+                                                setTimeout(function () {
+                                                        $("#alert_inquiry_error").hide();
+                                                        window.location.href = '@Url.Action("Index", "jobs")';
+                                                }, 2000);
+                                        }
+                                }
+                        });
+                }
+        });
 </script>

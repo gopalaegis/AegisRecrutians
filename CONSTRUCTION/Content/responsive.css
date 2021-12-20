@@ -331,3 +331,17 @@
 		line-height: 20px;
 	}
 }
+@media (max-width: 991px) {
+	.blog-flex {
+		flex-wrap: wrap;
+	}
+
+	.left-data, .right-data {
+		width: 100%;
+	}
+
+	.right-data {
+		height: 100%;
+	}
+}
+

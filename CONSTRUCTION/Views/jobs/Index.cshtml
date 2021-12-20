@@ -1,54 +1,58 @@
 ﻿@model CONSTRUCTION.Models.JobDetailViewModel
 @{
-    ViewBag.Title = "Jobs";
+        ViewBag.Title = "Jobs";
 }
 
 <!-- heading section -->
 <section class="heading pt-3 pb-3">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-header text-center">
-                    <h1>Recent most popular jobs</h1>
+        <div class="container">
+                <div class="row">
+                        <div class="col-12">
+                                <div class="section-header text-center">
+                                        <h1>Recent most popular jobs</h1>
+                                </div>
+                        </div>
                 </div>
-            </div>
         </div>
-    </div>
 </section>
 
 <!-- show list -->
 <section class="show_list pt-3 pb-3 titan">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-header text-center">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <div class="container">
+                @*<div class="row">
+                                <div class="col-12">
+                                        <div class="section-header text-center">
+                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                        </div>
+                                </div>
+                        </div>*@
+                <div class="row mt-2">
+                        <div class="col-12" id="jobDiv">
+                                @Html.Action("List", "jobs", new { city = Model.City, title = Model.Title, TechnologyId = Model.TechnologyId })
+                        </div>
                 </div>
-            </div>
         </div>
-        <div class="row mt-2">
-            <div class="col-12" id="jobDiv">
-                @Html.Action("List", "jobs", new { city = Model.City, title = Model.Title })
-            </div>
-        </div>
-    </div>
 </section>
 <script>
+
     $("#jobDiv").on("click", ".pageList", function () {
-        var page = $(this).attr("data-page");
-        var city = '@(Model.City)';
-        var title = '@(Model.Title)';
-        $.ajax({
-            url: '@Url.Action("List", "jobs")',
-            data: {
-                page: page,
-                city: city,
-                title: title
-            },
-            success: function (result) {
-                $("#jobDiv").html("");
-                $("#jobDiv").html(result);
-            }
-        });
-    })
+                var page = $(this).attr("data-page");
+                var city = '@(Model.City)';
+                var title = '@(Model.Title)';
+                var technology = '@(Model.TechnologyId)';
+                $.ajax({
+                        url: '@Url.Action("List", "jobs")',
+                        data: {
+                                page: page,
+                                city: city,
+                                title: title,
+                                TechnologyId: technology
+                        },
+                        success: function (result) {
+                                $("#jobDiv").html("");
+                                $("#jobDiv").html(result);
+                        }
+                });
+    });
+              
 </script>

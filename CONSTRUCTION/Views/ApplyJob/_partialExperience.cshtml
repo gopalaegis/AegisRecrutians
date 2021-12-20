@@ -2,7 +2,7 @@
 @{
     Layout = null;
 }
-<div class="experienceDatas col-12 row">
+<div class="experienceDatas row">
     <div class="col-4 col-sm-12">
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Employer" id="employer">
@@ -15,7 +15,8 @@
     </div>
     <div class="col-4 col-sm-12">
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Years of Active" id="activeYear">
+            <input type="text" class="form-control" placeholder="Years of Active" id="activeYear" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+            <label id="label_error_activeYear" class="errorMessage" style="display:none;">Enter Valid value</label>
         </div>
     </div>
     <div class="col-4 col-sm-12">
@@ -26,8 +27,8 @@
     <div class="col-4 col-sm-12">
         <div class="form-group">
             <div class="select-box">
-                <select class="form-control drpCountry">
-                    @foreach (var item in Model.drpCountry)
+                <select class="form-control" id="drpState">
+                    @foreach (var item in Model.drpState)
                     {
                         <option value="@item.Value">@item.Text</option>
                     }
@@ -38,8 +39,25 @@
     <div class="col-4 col-sm-12">
         <div class="form-group">
             <div class="select-box">
-                <select class="form-control" id="drpState">
-                    <option value="0">State</option>
+                <select class="form-control drpCountry">
+                    @if (Model.drpCountry.Count() > 1)
+                    {
+                        foreach (var item in Model.drpCountry)
+                        {
+                            if (item.Value == Model.drpCountry.Where(x => x.Value != "0").FirstOrDefault().Value)
+                            {
+                                <option value="@item.Value" selected="selected">@item.Text</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <option value="0">Country</option>
+                    }
                 </select>
             </div>
         </div>

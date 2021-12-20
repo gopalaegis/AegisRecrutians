@@ -4,24 +4,32 @@
 }
 
 <div id="addQualification" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"> Add: Qualification</h4>
+                <h4 class="modal-title modal_text"> Add: Qualification</h4>
             </div>
             <div class="modal-body">
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary btn_save">Save</button>
+                <button type="button" class="btn btn_save common-btn">Save</button>
                 <button type="button" class="btn btn-default btn_Close" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
 <div class="right-side">
-    <div class="heading">Qualification Master</div>
+    <div class="heading">
+        Qualification
+        <label class="switch">
+
+            <input id="chk_listFilter" type="checkbox" checked>
+            <span class="slider round"></span>
+        </label>
+        <label style="float:right;"> Filter Active / Deactive : </label>
+    </div>
 
     <div class="data-table style-1">
         <div class="box-table">
@@ -32,7 +40,7 @@
                     </div>
                 </div>
                 <div id="tableDiv">
-                    @Html.Action("JobQualificationMasterList", "Jobqualification")
+                    @Html.Action("JobQualificationMasterList", "Jobqualification", new { Status = "active" })
                 </div>
             </div>
         </div>
@@ -61,74 +69,136 @@
         });
     }
 
-    $("#btnAddQua").click(function(){
-        $.ajax({
-            url: '@Url.Action("AddEditJobQualification", "Jobqualification")',
-            success: function (data) {
-                $("#addQualification").find(".modal-body").html("");
-                $("#addQualification").find(".modal-body").html(data);
-            }
-        });
-    });
-
-
-    $("#addQualification").on("click", ".btn_save", function (e) {
-        var Id = $("#addQualification").find('#txt_Id').val();
-        var Qualification = $("#addQualification").find('#Drop_Qualification').val();
-        var isError = false;
-
-        if (Qualification == "") {
-            $("#addQualification").find('#label_error_qualification').show();
-            isError = true;
-        }
-
-        if (isError == true) {
-            return false
-        } else {
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("SaveJobQualificationMaster", "Jobqualification")',
-                data: {
-                    Id: Id,
-                    Qualification: Qualification,
-                },
-                success: function (result) {
-                    $("#tableDiv").html("");
-                    $("#tableDiv").html(result);
-                    $("#addQualification").find('.btn_Close').click();
-                    dataTableJobQualification();
+        function returnStatus() {
+                var status = 'deactive';
+                var value = $("#chk_listFilter").prop('checked');
+                if (value == true) {
+                        status = 'active';
                 }
-            });
+                return status;
         }
-    });
 
-    $("#tableDiv").on("click", ".editRow", function () {
-        debugger
-        var id = $(this).attr('data-id');
-        $.ajax({
-            url: '@Url.Action("AddEditJobQualification", "Jobqualification")',
-            data: {
-                Id:id
-            },
-            success: function (data) {
-                $("#addQualification").find(".modal-body").html("");
-                $("#addQualification").find(".modal-body").html(data);
-            }
+        $("#chk_listFilter").change(function () {
+                $("#preloader").show();
+                var status = returnStatus();
+                $.ajax({
+                        url: '@Url.Action("JobQualificationMasterList", "Jobqualification")',
+                        data: {
+                                Status: status
+                        },
+                        success: function (data) {
+                                $("#tableDiv").html("");
+                                $("#tableDiv").html(data);
+                                dataTableJobQualification();
+                                $("#preloader").hide();
+                        }
+                });
         });
-    });
 
-    $("#tableDiv").on("click",".deleteRow",function () {
-        var id = $(this).attr('data-id');
-        $.ajax({
-            url: '@Url.Action("DeleteJobQualificationMaster", "Jobqualification")',
-            data: {
-                Id: id
-            },
-            success: function (data) {
-                $("#tableDiv").html("");
-                $("#tableDiv").html(data);
-                dataTableJobQualification();
-            }
+        $("#tableDiv").on("click", ".Deactive", function () {
+                var Id = $(this).attr("data-id");
+                $("#preloader").show();
+                $.ajax({
+                        url: '@Url.Action("isDeactive", "Jobqualification")',
+                        data: { Id: Id, value: "deactive" },
+                        success: function (data) {
+                                $("#tableDiv").html("");
+                                $("#tableDiv").html(data);
+                                dataTableJobQualification();
+                                $("#preloader").hide();
+                                $("#alert_inquiry_success").html("Deactive Sussesfully");
+                                $("#alert_inquiry_success").show();
+                                setTimeout(function () {
+                                        $("#alert_inquiry_success").hide();
+                                }, 2000);
+                        }
+                });
         });
-    });
+
+        $("#tableDiv").on("click", ".Active", function () {
+                var Id = $(this).attr("data-id");
+                $("#preloader").show();
+                $.ajax({
+                        url: '@Url.Action("isDeactive", "Jobqualification")',
+                        data: { Id: Id, value: "active" },
+                        success: function (data) {
+                                $("#tableDiv").html("");
+                                $("#tableDiv").html(data);
+                                dataTableJobQualification();
+                                $("#preloader").hide();
+                                $("#alert_inquiry_success").html("Active Sussesfully");
+                                $("#alert_inquiry_success").show();
+                                setTimeout(function () {
+                                        $("#alert_inquiry_success").hide();
+                                }, 2000);
+                        }
+                });
+        });
+
+        $("#btnAddQua").click(function () {
+                $("#preloader").show();
+                $.ajax({
+                        url: '@Url.Action("AddEditJobQualification", "Jobqualification")',
+                        success: function (data) {
+                                $("#addQualification").find(".modal-body").html("");
+                                $("#addQualification").find(".modal-body").html(data);
+                                $("#preloader").hide();
+                        }
+                });
+        });
+
+        $("#addQualification").on("click", ".btn_save", function (e) {
+                $("#preloader").show();
+                $(".errorMessage").hide();
+                var Id = $("#addQualification").find('#txt_Id').val();
+                var Qualification = $("#addQualification").find('#txt_Qualification').val();
+                var isError = false;
+
+                if (Qualification == "") {
+                        $("#addQualification").find('#label_error_qualification').show();
+                        isError = true;
+                }
+
+                if (isError == true) {
+                        $("#preloader").hide();
+                        return false
+                } else {
+                        $.ajax({
+                                type: "POST",
+                                url: '@Url.Action("SaveJobQualificationMaster", "Jobqualification")',
+                                data: {
+                                        Id: Id,
+                                        Qualification: Qualification,
+                                },
+                                success: function (result) {
+                                        $("#tableDiv").html("");
+                                        $("#tableDiv").html(result);
+                                        $("#preloader").hide();
+                                        $("#addQualification").find('.btn_Close').click();
+                                        dataTableJobQualification();
+                                        $("#alert_inquiry_success").html("Save successfully");
+                                        $("#alert_inquiry_success").show();
+                                        setTimeout(function () {
+                                                $("#alert_inquiry_success").hide();
+                                        }, 2000);
+                                }
+                        });
+                }
+        });
+
+        $("#tableDiv").on("click", ".editRow", function () {
+                var id = $(this).attr('data-id');
+                $.ajax({
+                        url: '@Url.Action("AddEditJobQualification", "Jobqualification")',
+                        data: {
+                                Id: id
+                        },
+                        success: function (data) {
+                                $("#addQualification").find(".modal-body").html("");
+                                $("#addQualification").find(".modal-body").html(data);
+                        }
+                });
+        });
+
+
 </script>

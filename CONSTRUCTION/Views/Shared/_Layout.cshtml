@@ -3,27 +3,99 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+
+    <meta name="robots" content="@ViewBag.IsCrawlString" />
+    <meta name="google-site-verification" content="UfkdLk_tJW14KTBOZKPav3uNUTNWytTS2i0vlGHn6oU" />
+    <link rel="canonical" href="@ViewBag.CanonicalURL" />
     <link rel="shortcut icon" href="~/images/favicon.ico" type="image/x-icon" />
-    @*@Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")*@
     <link rel="stylesheet" href="~/Content/lib.css">
     <link rel="stylesheet" href="~/Content/style.css">
     <link rel="stylesheet" href="~/Content/responsive.css">
     <link rel="stylesheet" href="~/Content/navigation.css">
     <link rel="stylesheet" href="~/Content/developer.css">
+    <link href="~/Zebra_Dialog/css/flat/zebra_dialog.css" rel="stylesheet" />
+    <link href="~/EasyAutocomplete/autoComplete.css" rel="stylesheet" />
 
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/EasyAutocomplete/autoComplete.js"></script>
     <script src="~/Scripts/Validation.js"></script>
     @RenderSection("scripts", required: false)
+    <script type="application/ld+json">
+	@Html.Raw(ViewBag.SchemaTags)
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q9Q29DTB0G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-Q9Q29DTB0G');
+    </script>
+    <style>
+        input[type="date"] {
+            position: relative;
+        }
+
+            /* make the native arrow invisible and stretch it over the whole field so you can click anywhere in the input field to trigger the native datepicker*/
+            input[type="date"]::-webkit-calendar-picker-indicator {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: auto;
+                height: auto;
+                color: transparent;
+                background: transparent;
+            }
+
+            input[type="date"]::-webkit-inner-spin-button {
+                z-index: 1;
+            }
+
+            /* adjust clear button */
+            input[type="date"]::-webkit-clear-button {
+                z-index: 1;
+            }
+
+        .form-group {
+            display: block;
+            position: relative;
+        }
+
+        .d-flex {
+            display: flex;
+        }
+
+        .calendar-1 {
+            position: absolute;
+            right: 0;
+            transform: translate(-15%, 100%);
+        }
+
+        .color-red {
+            color: red;
+        }
+
+        .color-green {
+            color: green;
+        }
+    </style>
+
 </head>
 <body>
+    <div id="preloader" style="display:none;"></div>
+    
     <!-- Go to top -->
     <div id="return-to-top"><i class="fa fa-angle-up"></i></div>
 
     <!-- Whatsapp -->
     <div class="whatsapp">
-        <a href="https://api.whatsapp.com/send?phone=+919824127020&amp;text=I'm connected on AR" class="floats" target="_blank">
+        <a href="https://api.whatsapp.com/send?phone=+918000920081&amp;text=I'm connected on AR" class="floats" target="_blank">
             <svg class="svg-inline--fa fa-whatsapp fa-w-14 my-floats" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="whatsapp" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>
         </a>
     </div>
@@ -47,34 +119,34 @@
                 <div class="info-box inq">
                     <a href="javascript:;"><i class="fa fa-close closeInquiry"></i></a>
                     <strong class="title">Fill the details and We’ll get back to you soon</strong>
-                    <form>
-                        <div class="inquiry-box">
-                            <div class="form-group fullwidth">
-                                <textarea class="form-control" id="txtcomments" placeholder="Tell us your requirements"></textarea>
+                    <div class="inquiry-box">
+                        <div class="form-group fullwidth">
+                            <textarea class="form-control" id="txtcomments" placeholder="Tell us your requirements"></textarea>
+                        </div>
+                        <div class="form-group-block">
+                            <div class="form-group">
+                                <input class="form-control" id="txtphone" placeholder="Phone" type="number" max="10" onkeypress="return isNumberKey(event)">
                             </div>
-                            <div class="form-group-block">
-                                <div class="form-group">
-                                    <input class="form-control" id="txtphone" placeholder="Phone" type="text" onKeyPress="return checkIt(event);">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" id="txtemail" placeholder="Email" type="email">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" id="txtskype" placeholder="Skype" type="text">
-                                </div>
-                                <div class="form-group">
-                                    <img id="imgCaptcha" alt="captcha" src="Captcha.ashx" />
-                                    <input class="form-control" type="text" placeholder="Captcha" id="txtCaptcha" name="txtCaptcha" />
-                                </div>
-                                <div class="form-group Clear">
-                                    <button type="button" id="btnSubmit" value="Submit" name="Submit" class="btn-submit">Submit</button>
-                                </div>
-                                <div class="form-group Clear">
-                                    <span id="lblInfo"> </span>
-                                </div>
+                            <div class="form-group">
+                                <input class="form-control" id="txtemail" placeholder="Email" type="email">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="txtskype" placeholder="Skype" type="text">
+                            </div>
+                            <div class="form-group row d-flex">
+                                <div id="divGenerateRandomValues"></div>
+                                &ensp;
+                                <input class="form-control" type="text" placeholder="Captcha" id="txtCaptcha" name="txtCaptcha" />
+                                <label id="label_error_capcha" class="errorMessage" style="display:none;">Capcha is Incorrect !</label>
+                            </div>
+                            <div class="form-group Clear">
+                                <button type="button" id="btnSubmit" value="Submit" name="Submit" class="btn-submit" onclick="">Submit</button>
+                            </div>
+                            <div class="form-group Clear">
+                                <span id="lblInfo"> </span>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </li>
         </ul>
@@ -96,10 +168,10 @@
                                 <span class="menuline bar3"></span>
                             </a>
                             <ul class="navigation-menu menu">
-                                <li><a href="#" title="Home">About us</a></li>
-                                <li><a href="#">Professionals</a></li>
-                                <li><a href="#">Students and Graduates</a></li>
-                                <li><a href="#">Blog</a></li>
+                                <li><a href="@Url.Action("Index", "aboutUs")" title="Home">About us</a></li>
+                                <li><a href="@Url.Action("Index", "Professionals")">Professionals</a></li>
+                                <li><a href="@Url.Action("Index", "Student")">Students and Graduates</a></li>
+                                <li><a href="@Url.Action("Index", "Blog")">Blog</a></li>
                                 <li class="web-view account-details"><a href="#">Join Our Talent Network</a></li>
                             </ul>
                         </div>
@@ -111,8 +183,16 @@
 
     <main>
         @RenderBody()
+        <div id="alert_inquiry_success" class="alert alert-success fixedPosition" style="        display: none;">
+            Record save successfully.
+        </div>
+
+        <div id="alert_inquiry_error" class="alert alert-danger fixedPosition" style="        display: none;">
+            <strong> Record Deleted successfully.</strong>
+        </div>
+
         <!-- Footer -->
-        <footer class="footer_section desktop-view pt-3 pb-3">
+        <footer class="footer_section desktop-view">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -128,10 +208,10 @@
                                 <a href="javascript:;" target="_blank"><i class="fa fa-twitter"></i></a>
                             </div>
                             <ul>
-                                <li><a href="#">About Us</a></li>
+                                <li><a href="@Url.Action("Index", "aboutUs")">About Us</a></li>
                                 <li><a href="#">Career</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Articles</a></li>
+                                <li><a href="@Url.Action("ContactUs", "Home")">Contact Us</a></li>
+                                <li><a href="@Url.Action("Index", "Articles")">Articles</a></li>
                             </ul>
                         </div>
                     </div>
@@ -146,7 +226,10 @@
 
     <script src="~/Scripts/lib.js"></script>
     <script src="~/Scripts/functions.js"></script>
+    <script type="text/javascript" src="~/Zebra_Dialog/javascript/zebra_dialog.js"></script>
+    @*<script src="~/Zebra_Dialog-master/dist/zebra_dialog.min.js"></script>*@
     <script>
+        var iNumber = null;
         $(".form-control").change(function () {
             var value = $(this).val();
             if (value != "" && value != null) {
@@ -159,6 +242,114 @@
                 $(this).parent().find(".errorMessage").hide();
             }
         })
+        $(document).ready(function () {
+            sendEmail();
+        });
+
+                function isNumberKey(evt) {
+                        var charCode = (evt.which) ? evt.which : evt.keyCode
+                        if (charCode > 31 && (charCode < 48 || charCode > 57))
+                                return false;
+                        return true;
+                }
+                function sendEmail() {
+                        /*$("#btnSubmit").prop("disabled", true);*/
+                        iNumber = Math.floor(Math.random() * 10000);
+                        $("#divGenerateRandomValues").css({ "background-image": 'url(../../CommonImage/capcha.png)', 'width': '82px', 'height': '45px' });
+                        $("#divGenerateRandomValues").html("<input id='txtNewInput'></input>");
+                        $("#txtNewInput").css({ 'background': 'transparent', 'font-family': 'Arial', 'font-style': 'bold', 'font-size': '35px' });
+                        $("#txtNewInput").css({ 'width': '78px', 'border': 'none', 'color': 'black' });
+                        $("#txtNewInput").val(iNumber);
+                        $("#txtNewInput").prop('disabled', true);
+                }
+
+                $('body').on('keyup', '.form-control', function () {
+                        if ($(this).hasClass('errorMessageBorder')) {
+                                if ($(this).val() != "") {
+                                        $(this).removeClass('errorMessageBorder');
+                                }
+                        }
+                });
+
+                $("#btnSubmit").click(function () {
+                        var phone = $("#txtphone").val().trim();
+                        var email = $("#txtemail").val().trim();
+                        var skype = $("#txtskype").val().trim();
+                        var description = $("#txtcomments").val().trim();
+
+                        var IsError = false;
+
+                        if (phone == null || phone == "") {
+                                IsError = true;
+                                $("#txtphone").addClass('errorMessageBorder');
+                        }
+                        if (email == null || email == "") {
+                                IsError = true;
+                                $("#txtemail").addClass('errorMessageBorder');
+                        }
+                        if (skype == "") {
+                                IsError = true;
+                                $("#txtskype").addClass('errorMessageBorder');
+                        }
+
+                        if (description == "") {
+                                IsError = true;
+                                $("#txtcomments").addClass('errorMessageBorder');
+                        }
+
+                        if ($("#txtCaptcha").val() != iNumber) {
+                                IsError = true;
+                                $("#txtCaptcha").addClass('errorMessageBorder');
+                        }
+
+                        if (IsError == true) {
+                                return false;
+                        }
+                        else {
+                                $.ajax({
+                                        type: "POST",
+                                        url: '@Url.Action("SaveContectData", "Home")',
+                                        data: {
+                                                Skype: skype,
+                                                Email: email,
+                                                Mobile: phone,
+                                                Description: description
+                                        },
+                                        success: function (result) {
+                                                if (result == "Success") {
+                                                        $("#txtphone").val('');
+                                                        $("#txtemail").val('');
+                                                        $("#txtskype").val('');
+                                                        $("#txtcomments").val('');
+                                                        $("#txtCaptcha").val('');
+                                                        sendEmail();
+                                                        //$(".closeInquiry").click();
+                                                    $("#lblInfo").html("You will soon hear from us.");
+                                                    $("#lblInfo").removeClass("color-red");
+                                                    $("#lblInfo").addClass("color-green");
+                                                    //$("#alert_inquiry_success").show();
+                                                    setTimeout(function () { $("#lblInfo").html(''); }, 2000);
+
+                                                }
+                                                else {
+                                                        $("#txtphone").val('');
+                                                        $("#txtemail").val('');
+                                                        $("#txtskype").val('');
+                                                        $("#txtcomments").val('');
+                                                        $("#txtCaptcha").val('');
+                                                        sendEmail();
+                                                    $("#lblInfo").html("Error, Please try again after some time.");
+                                                    $("#lblInfo").removeClass("color-green");
+                                                    $("#lblInfo").addClass("color-red");
+                                                        //$("#alert_inquiry_error").show();
+                                                    //$(".closeInquiry").click();
+                                                    setTimeout(function () { $("#lblInfo").html(); }, 2000);
+
+                                                }
+                                        }
+                                });
+                        }
+                });
     </script>
 </body>
 </html>

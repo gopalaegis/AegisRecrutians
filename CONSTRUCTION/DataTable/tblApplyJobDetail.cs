@@ -29,5 +29,6 @@ namespace CONSTRUCTION.DataTable
         public Nullable<int> CountryId { get; set; }
         public Nullable<int> StateId { get; set; }
         public string Resume { get; set; }
+        public Nullable<bool> isActive { get; set; }
     }
 }

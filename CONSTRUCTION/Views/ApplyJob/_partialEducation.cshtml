@@ -1,38 +1,34 @@
 ﻿@model CONSTRUCTION.Models.ApplyJobViewModel
 
 @{
-    Layout = null;
+        Layout = null;
 }
-<div class="educationDatas col-12 row">
-    <div class="col-4 col-sm-12">
-        <div class="form-group">
-            <div class="select-box">
-                <select class="form-control" id="degree">
-                    @foreach (var item in Model.drpDegree)
-                    {
-                        <option value="@item.Value">@item.Text</option>
+<div class="educationDatas row">
+        <div class="col-4 col-sm-12">
+                <div class="form-group">
+                        <div class="select-box">
+                                <select class="form-control" id="degree">
+                                        @foreach (var item in Model.drpDegree)
+                                        {
+                                                <option value="@item.Value">@item.Text</option>
 
-                    }
-                </select>
+                                        }
+                                </select>
+                        </div>
+                </div>
+        </div>
+        <div class="col-4 col-sm-12">
+                <div class="form-group">
+                        <input type="text" class="form-control" placeholder="College/University" id="collage">
+                </div>
+        </div>
+        <div class="col-4 col-sm-12">
+            <div class="form-group">
+
+                <input type="text" class="form-control" placeholder="Year of Passing" id="year" onkeypress = "return event.charCode >= 48 && event.charCode <= 57">
+                <label id="label_error_Year" class="errorMessage" style="display:none;">Enter Valid value</label>
+
+
             </div>
         </div>
-    </div>
-    <div class="col-4 col-sm-12">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="College/University" id="collage">
-        </div>
-    </div>
-    <div class="col-4 col-sm-12">
-        <div class="form-group">
-            <div class="select-box">
-                <select class="form-control" id="year">
-                    <option value="0">Year of Passing </option>
-                    <option value="2021">2021</option>
-                    <option value="2020">2020</option>
-                    <option value="2019">2019</option>
-                    <option value="2018">2018</option>
-                </select>
-            </div>
-        </div>
-    </div>
 </div>

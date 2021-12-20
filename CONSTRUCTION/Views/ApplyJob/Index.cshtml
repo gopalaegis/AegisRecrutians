@@ -1,6 +1,8 @@
 ﻿@model CONSTRUCTION.Models.ApplyJobViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Apply now | " + Model.Job + " - Aegis Recruitment";
+    ViewBag.MetaDescription = "Apply your " + Model.Job + " job now by filling the complete details like work experience, education, personal information, etc. and get in touch for your desired job";
+    ViewBag.SchemaTags = Model.SchemaDescription;
 }
 
 <!-- heading section -->
@@ -30,7 +32,10 @@
             </div>
             <div class="col-6 col-sm-12">
                 <div class="back-link">
-                    <p><a href="@Model.URL"><i class="fa fa-angle-left"></i>   Back to Results</a></p>
+                    @if (!string.IsNullOrEmpty(Model.URL) && Model.URL != "")
+                    {
+                        <p><a href="@Model.URL"><i class="fa fa-angle-left"></i>   Back to Results</a></p>
+                    }
                 </div>
             </div>
         </div>
@@ -57,6 +62,7 @@
                             </div>
                             <div class="col-4 col-sm-12">
                                 <div class="form-group">
+                                    <i class="fa fa-calendar calendar-1"></i>
                                     <input type="date" class="form-control" placeholder="DOB" id="DOB">
                                     <label id="label_error_DOB" class="errorMessage" style="display:none;">DOB is required</label>
                                 </div>
@@ -92,16 +98,17 @@
                             </div>
                             <div class="col-4 col-sm-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Phone Number" id="mobile">
+                                    <input type="text" class="form-control" placeholder="Phone Number" id="mobile" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                                     <label id="label_error_PN" class="errorMessage" style="display:none;">Phone Number is required</label>
                                     <label id="label_error_PNFormat" class="errorMessage" style="display:none;">Phone Number is not Valid</label>
                                 </div>
                             </div>
-                            <div class="col-4 col-sm-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Phone Number" id="mobile1">
-                                </div>
-                            </div>
+                            @*<div class="col-4 col-sm-12">
+                                        <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Phone Number" id="mobile1" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                                <label id="label_error_PNFormat2" class="errorMessage" style="display:none;">Phone Number is not Valid</label>
+                                        </div>
+                                </div>*@
                         </div>
                         <div class="row address mt-2">
                             <div class="col-12">
@@ -109,18 +116,18 @@
                                     <h2>Address</h2>
                                 </div>
                             </div>
-                            <div class="col-4 col-sm-12">
-                                <div class="form-group">
-                                    <div class="select-box">
-                                        <select class="form-control" id="addressType">
-                                            <option value="0">Address Type</option>
-                                            <option value="Home">Home</option>
-                                            <option value="Business">Business</option>
-                                        </select>
-                                    </div>
-                                    <label id="label_error_addressType" class="errorMessage" style="display:none;">Address Type is required</label>
-                                </div>
-                            </div>
+                            @*<div class="col-4 col-sm-12">
+                                        <div class="form-group">
+                                                <div class="select-box">
+                                                        <select class="form-control" id="addressType">
+                                                                <option value="0">Address Type</option>
+                                                                <option value="Home">Home</option>
+                                                                <option value="Business">Business</option>
+                                                        </select>
+                                                </div>
+                                                <label id="label_error_addressType" class="errorMessage" style="display:none;">Address Type is required</label>
+                                        </div>
+                                </div>*@
                             <div class="col-4 col-sm-12">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Block no. / Flat no. / House name" id="fNo">
@@ -142,24 +149,41 @@
                             <div class="col-4 col-sm-12">
                                 <div class="form-group">
                                     <div class="select-box">
-                                        <select class="form-control country">
-                                            @foreach (var item in Model.drpCountry)
+                                        <select class="form-control state">
+                                            @foreach (var item in Model.drpState)
                                             {
                                                 <option value="@item.Value">@item.Text</option>
                                             }
                                         </select>
                                     </div>
-                                    <label id="label_error_Country" class="errorMessage" style="display:none;">Country is required</label>
+                                    <label id="label_error_State" class="errorMessage" style="display:none;">State is required</label>
                                 </div>
                             </div>
                             <div class="col-4 col-sm-12">
                                 <div class="form-group">
                                     <div class="select-box">
-                                        <select class="form-control state">
-                                            <option value="0">State</option>
+                                        <select class="form-control country">
+                                            @if (Model.drpCountry.Count() > 1)
+                                            {
+                                                foreach (var item in Model.drpCountry)
+                                                {
+                                                    if (item.Value == Model.drpCountry.Where(x => x.Value != "0").FirstOrDefault().Value)
+                                                    {
+                                                        <option value="@item.Value" selected="selected">@item.Text</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.Value">@item.Text</option>
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <option value="0">Country</option>
+                                            }
                                         </select>
                                     </div>
-                                    <label id="label_error_State" class="errorMessage" style="display:none;">State is required</label>
+                                    <label id="label_error_Country" class="errorMessage" style="display:none;">Country is required</label>
                                 </div>
                             </div>
                         </div>
@@ -182,7 +206,7 @@
                                     <h2>Work Experience</h2>
                                 </div>
                             </div>
-                            <div id="experienceDiv">
+                            <div id="experienceDiv" class="col-12">
                                 @Html.Action("ExperienceData", "ApplyJob")
                             </div>
                             <div class="col-12">
@@ -192,7 +216,7 @@
                         <div class="row mt-3 upload-doc">
                             <div class="col-7 col-sm-12">
                                 <div class="fill-upload">
-                                    <input id="file-upload" type="file" name="fileUpload" accept="pdf/*" />
+                                    <input id="file-upload" type="file" name="fileUpload" accept=".pdf,.doc, .docx,.rtf" />
                                     <label for="file-upload" id="file-drag">
                                         <img id="file-image" src="#" alt="Preview" class="hidden" />
                                         <div id="start">
@@ -203,10 +227,12 @@
                                             </div>
                                         </div>
                                     </label>
+                                    <label id="filename"></label>
+                                    <label id="label_error_FileSize" class="errorMessage" style="display:none;">RESUME is not less then 2 mb.</label>
+                                    <label id="label_error_FileFormat" class="errorMessage" style="display:none;">RESUME should be doc, docx, rtf, pdf.</label>
+                                    <label id="label_error_File" class="errorMessage" style="display: none;">RESUME is required</label>
                                 </div>
                                 <input id="hiddenFilename" type="hidden" value="" />
-
-                                <label id="label_error_File" class="errorMessage" style="display:none;">RESUME is required</label>
                             </div>
                         </div>
                         <div class="row pt-3 submit-box">
@@ -229,29 +255,47 @@
         var imageData = "";
         if (files.length > 0) {
             $("#label_error_File").hide();
-            if (window.FormData !== undefined) {
-                imageData = new FormData();
-                for (var x = 0; x < files.length; x++) {
-                    imageData.append("file" + x, files[x]);
-                }
-                setTimeout(function () {
-                    $.ajax({
-                        type: "POST",
-                        url: '@Url.Action("FileUplaod", "ApplyJob")',
-                        contentType: false,
-                        processData: false,
-                        data: imageData,
-                        success: function (result) {
-                            $("#hiddenFilename").val(result);
-                            var Pic = "/CommonImage/Resume/" + result;
-                            $("#file-image").attr('src', Pic);
+            if ((files[0].size / 1024) <= 2000) {
+                $("#label_error_FileSize").hide();
+                var ext = files[0].name.substr((files[0].name.lastIndexOf('.') + 1));
+                if (ext == 'doc' || ext == 'docx' || ext == 'rtf' || ext == 'pdf') {
+                    $("#label_error_FileFormat").hide();
+                    if (window.FormData !== undefined) {
+                        imageData = new FormData();
+                        for (var x = 0; x < files.length; x++) {
+                            imageData.append("file" + x, files[x]);
                         }
-                    });
-                }, 500);
+                        setTimeout(function () {
+                            $.ajax({
+                                type: "POST",
+                                url: '@Url.Action("FileUplaod", "ApplyJob")',
+                                contentType: false,
+                                processData: false,
+                                data: imageData,
+                                success: function (result) {
+                                    $("#hiddenFilename").val(result);
+                                    var Pic = "/CommonImage/Resume/" + result;
+                                    $("#file-image").attr('src', Pic);
+                                    $("#filename").text(files[0].name);
+                                }
+                            });
+                        }, 500);
+                    }
+                } else {
+                    $("#filename").text("");
+                    $("#hiddenFilename").val("");
+                    $("#label_error_FileFormat").show();
+                }
+            } else {
+                $("#filename").text("");
+                $("#hiddenFilename").val("");
+                $("#label_error_FileSize").show();
             }
         }
         else {
+            $("#filename").text("");
             $("#hiddenFilename").val("");
+            $("#label_error_File").show();
         }
     });
 
@@ -319,8 +363,8 @@
         var gender = $('input[name="gender"]:checked').val();
         var email = $("#email").val();
         var mobile = $("#mobile").val();
-        var mobile1 = $("#mobile1").val();
-        var addressType = $("#addressType").val();
+        //var mobile1 = $("#mobile1").val();
+        //var addressType = $("#addressType").val();
         var fno = $("#fNo").val();
         var area = $("#area").val();
         var city = $("#city").val();
@@ -332,6 +376,11 @@
         var assignEducation = [];
         $.each($("#educationDiv").find(".educationDatas"), function () {
             var value = parseInt($(this).find("#degree").val());
+            var year = parseInt($(this).find("#year").val());
+            if (year < 0) {
+                parseInt($(this).find("#label_error_Year").show());
+                IsError = true;
+            }
             if (value > 0) {
                 var details = {
                     DegreeId: parseInt($(this).find("#degree").val()),
@@ -345,6 +394,11 @@
         var assignExperience = [];
         $.each($("#experienceDiv").find(".experienceDatas"), function () {
             var value = $(this).find("#employer").val();
+            var year = parseInt($(this).find("#activeYear").val());
+            if (year < 0) {
+                parseInt($(this).find("#label_error_activeYear").show());
+                IsError = true;
+            }
             if (value != null && value != "") {
                 var details = {
                     Employer: $(this).find("#employer").val(),
@@ -376,7 +430,8 @@
         if (email == null || email == "") {
             IsError = true;
             $("#label_error_Email").show();
-        } else if (!EmailValidation(email)) {
+        }
+        if (!EmailValidation(email)) {
             IsError = true;
             $("#label_error_EmailFormat").show();
         }
@@ -389,10 +444,10 @@
             $("#label_error_PNFormat").show();
         }
 
-        if (addressType == null || addressType == "0") {
-            IsError = true;
-            $("#label_error_addressType").show();
-        }
+        //if (addressType == null || addressType == "0") {
+        //    IsError = true;
+        //    $("#label_error_addressType").show();
+        //}
 
         if (fno == null || fno == "") {
             IsError = true;
@@ -419,7 +474,7 @@
             $("#label_error_State").show();
         }
 
-        if (file == null || file == "0") {
+        if (file == null || file == "") {
             IsError = true;
             $("#label_error_File").show();
         }
@@ -427,6 +482,7 @@
         if (IsError == true) {
             return false;
         } else {
+            $("#preloader").show();
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("SaveData", "ApplyJob")',
@@ -436,8 +492,8 @@
                     Gender: gender,
                     Email: email,
                     PhoneNo1: mobile,
-                    PhoneNo2: mobile1,
-                    AddressType: addressType,
+                    //PhoneNo2: mobile1,
+                    //AddressType: addressType,
                     BlockNo: fno,
                     Street: area,
                     City: city,
@@ -449,11 +505,43 @@
                     Resume: file
                 },
                 success: function (result) {
+                    $("#preloader").hide();
                     if (result == "Success") {
-                        window.location.href = '@Url.Action("Index", "jobs")';
+                        $.Zebra_Dialog('Your CV has been submitted successfully. We will revert back to you soon.', {
+                            'type': 'confirmation',
+                            'title': 'Apply job',
+                            'buttons': [
+                                {
+                                    caption: 'Ok', callback: function () {
+                                        window.location.href = '@Url.Action("Index", "jobs")';
+                                    }
+                                }
+                            ]
+                        });
+                        @*$("#alert_inquiry_success").html("Apply job successfully");
+                        $("#alert_inquiry_success").show();
+                        setTimeout(function () {
+                            $("#alert_inquiry_success").hide();
+                            window.location.href = '@Url.Action("Index", "jobs")';
+                        }, 2000);*@
+                    } else {
+                        $.Zebra_Dialog('Somthing went wrong please try again after sometime.', {
+                            'type': 'error',
+                            'title': 'Error',
+                            'buttons': [
+                                {
+                                    caption: 'Ok', callback: function () {
+                                        window.location.href = '@Url.Action("Index", "jobs")';
+                                    }
+                                }
+                            ]
+                        });
                     }
                 }
             });
         }
+    });
+    $(".ZebraDialog_Close").click(function () {
+        window.location.href = '@Url.Action("Index", "jobs")';
     });
 </script>

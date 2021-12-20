@@ -1,0 +1,152 @@
+﻿@model Tuple<CONSTRUCTION.Models.SchemaTagModel, int>
+@{
+        ViewBag.Title = "Blog Section - Aegis Recruitment";
+        ViewBag.MetaDescription = "Check out here for some useful blogs of career or recruitment related and know the best things to grow an impactful unique career in right way.";
+        ViewBag.SchemaTags = Model.Item1.Description;
+        Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Template/css/style.css" rel="stylesheet" />
+<link href="~/Template/css/responsive.css" rel="stylesheet" />
+<!-- heading section -->
+<section class="heading pt-3 pb-3">
+        <div class="container">
+                <div class="row">
+                        <div class="col-12">
+                                <div class="section-header text-center">
+                                        <h1>Blogs, read it loud!</h1>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</section>
+
+<!-- articles blogs -->
+<section class="article_blog pt-3 pb-2 titan">
+        <div class="container">
+                <div class="row">
+                        <div class="col-12">
+                                <div class="section-header text-center">
+                                        <p>People are our most important asset. The long–term growth and success of JPMorgan Chase depends on our ability to attract and retain our employees. Maintaining a diverse and inclusive workplace where everyone can thrive is not only the smart thing to do — it’s the right thing to do. People are our most important asset. The long–term growth and success of JPMorgan Chase depends on our ability to attract and retain our employees. </p>
+                                </div>
+                        </div>
+                </div>
+                <div class="row">
+                        @Html.Action("BindBlog", "BLog", new { CategoryId = Model.Item2 })
+
+                       
+                </div>
+        </div>
+</section>
+<section class="form_section">
+        <div class="container">
+                <div class="row">
+                        <div class="col-12">
+                                <div class="job-req row">
+                                        <div class="col-6 col-sm-12">
+                                                <div class="talk">
+                                                        <h2>Talk to our experts about your JOB requirements</h2>
+                                                        <p>Contact us and know more about how our experts can help your business grow. Contact us and know more about how our experts can help your business grow. Contact us and know more about how our experts can help your business grow.</p>
+                                                        <p>Contact us and know more about how our experts can help your business grow. Contact us and know more about how our experts can help your business grow.</p>
+                                                        <div class="read-btn"><a href="javascript:;" class="send-msg">Let’s Talk</a></div>
+                                                </div>
+                                        </div>
+                                        <div class="col-6 col-sm-12">
+                                                <div class="form-fill" id="ContectUsDiv">
+                                                        <form>
+                                                                <div class="form-group" style="margin-bottom:24px;">
+                                                                        <input type="text" class="form-control name" placeholder="Name" id="name" style="margin-bottom:0px;">
+                                                                        <label id="label_error_name" class="errorMessage" style="display:none;">Name is required</label>
+                                                                </div>
+                                                                <div class="form-group" style="margin-bottom:24px;">
+                                                                        <input type="email" class="form-control email" placeholder="Email Id" id="email" style="margin-bottom:0px;">
+                                                                        <label id="label_error_Email" class="errorMessage" style="display:none;">Email Id is required</label>
+                                                                        <label id="label_error_EmailFormat" class="errorMessage" style="display:none;">Email Id is not Valid</label>
+                                                                </div>
+                                                                <div class="form-group" style="margin-bottom:24px;">
+                                                                        <input type="text" class="form-control phone" placeholder="Phone Number" id="mobile" style="margin-bottom:0px;">
+                                                                        <label id="label_error_PN" class="errorMessage" style="display:none;">Phone Number is required</label>
+                                                                        <label id="label_error_PNFormat" class="errorMessage" style="display:none;">Phone Number is not Valid</label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                        <textarea class="form-control project" placeholder="Describe your project" rows="3" id="description"></textarea>
+                                                                </div>
+                                                                <div class="read-btn">
+                                                                        <a id="submitData" class="send-msg">Submit</a>
+                                                                </div>
+                                                        </form>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</section>
+<script>
+    $("#ContectUsDiv").on("click", "#submitData", function () {
+        var name = $("#ContectUsDiv").find("#name").val();
+        var email = $("#ContectUsDiv").find("#email").val();
+        var mobile = $("#ContectUsDiv").find("#mobile").val();
+        var description = $("#ContectUsDiv").find("#description").val();
+
+        var IsError = false;
+
+        if (name == null || name == "") {
+            IsError = true;
+            $("#ContectUsDiv").find("#label_error_name").show();
+        }
+
+        if (email == null || email == "") {
+            IsError = true;
+            $("#ContectUsDiv").find("#label_error_Email").show();
+        } else if (!EmailValidation(email)) {
+            IsError = true;
+            $("#ContectUsDiv").find("#label_error_EmailFormat").show();
+        }
+
+        if (mobile == null || mobile == "") {
+            IsError = true;
+            $("#ContectUsDiv").find("#label_error_PN").show();
+        } else if (!PhoneNumberValidation(mobile)) {
+            IsError = true;
+            $("#ContectUsDiv").find("#label_error_PNFormat").show();
+        }
+
+        if (IsError == true) {
+            return false;
+        } else {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SaveContectData", "Home")',
+                data: {
+                    Name: name,
+                    Email: email,
+                    Mobile: mobile,
+                    Description: description
+                },
+                success: function (result) {
+                        if (result == "Success") {
+                                $("#ContectUsDiv").find("#name").val("");
+                                $("#ContectUsDiv").find("#email").val("");
+                                $("#ContectUsDiv").find("#mobile").val("");
+                                $("#ContectUsDiv").find("#description").val("");
+
+                                $("#alert_inquiry_success").html("Inquiry genrated successfully");
+                                $("#alert_inquiry_success").show();
+                                setTimeout(function () { $("#alert_inquiry_success").hide(); }, 2000);
+                        }
+                        else {
+                                $("#ContectUsDiv").find("#name").val("");
+                                $("#ContectUsDiv").find("#email").val("");
+                                $("#ContectUsDiv").find("#mobile").val("");
+                                $("#ContectUsDiv").find("#description").val("");
+
+                                $("#alert_inquiry_error").html("Error, Please try again after some time.");
+                                $("#alert_inquiry_error").show();
+                                $(".closeInquiry").click();
+                                setTimeout(function () { $("#alert_inquiry_error").hide(); }, 2000);
+                        }
+                }
+            });
+        }
+    });
+</script>

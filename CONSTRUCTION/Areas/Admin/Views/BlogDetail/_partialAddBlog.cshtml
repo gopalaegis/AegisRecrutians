@@ -1,0 +1,111 @@
+﻿@model CONSTRUCTION.Areas.Admin.Model.BlogViewModel
+
+<input type="hidden" id="txt_Id" value="@Model.Id" />
+<div class="row">
+        <div class="col-md-12">
+                <div class="card profile-card mb-3">
+                        <div class="card-body">
+                                <div class="row formGroup">
+                                        <div class="col-sm-4">
+                                                <label>Blog Title <span style="color:red">*</span></label>
+                                                <input type="text" id="txt_BlogTitle" value="@Model.BlogTitle" placeholder="Blog Title" class="form-control" />
+                                                <label id="label_error_BlogTitle" class="errorMessage" style="display:none;">Blog Title is required</label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                                <label>Date <span style="color:red">*</span></label>
+                                                <input type="text" id="txt_Date" value="@Model.Date" placeholder="Date" class="form-control" />
+                                                <label id="label_error_Date" class="errorMessage" style="display:none;">Date is required</label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                                <label>Category <span style="color:red">*</span></label>
+                                                <select class="form-control" id="ddl_category">
+                                                        @foreach (var item in Model.CategoryList)
+                                                        {
+                                                                if (item.Value == Model.CategoryId.ToString())
+                                                                {
+                                                                        <option value="@item.Value" selected="selected">@item.Text</option>
+                                                                }
+                                                                else
+                                                                {
+                                                                        <option value="@item.Value">@item.Text</option>
+                                                                }
+                                                        }
+                                                </select>
+                                                <label id="label_error_Category" class="errorMessage" style="display:none;">Category is required</label>
+                                        </div>
+                                </div>
+                                <div class="row formGroup">
+                                        <div class="col-sm-4">
+                                                <label>Short Description <span style="color:red">*</span></label>
+                                                <textarea id="txt_ShortDescription" value="@Model.ShortDescription" placeholder="Short Description" class="form-control">@Model.ShortDescription</textarea>
+                                                <label id="label_error_ShortDescription" class="errorMessage" style="display:none;">Short Description is required</label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                                <label>Image <span class="red">*</span></label>
+                                                <div class="img-upload">
+                                                        <div class="upbtn">
+                                                                <input autocomplete="off" id="image_browse" value="Upload a file from your computer" class="file-upload" style="display: block;" accept=".jpg, .png, .jpeg,.bmp, .tif, .tiff|images/*" name="Image" type="file" />
+                                                                <button type="button" class="btn common-btn btn-upload"><i class="fa fa-arrow-circle-o-up"></i> Select Image</button>
+                                                        </div>
+                                                        <input type="hidden" id="file_HiddenName" value="@Model.Image" />
+                                                        <label id="label_error_Image" class="errorMessage" style="display:none;">Image is required</label>
+                                                </div>
+
+                                        </div>
+                                        <div class="col-sm-4 align-self-end">
+                                                @{
+                                                        var finalPic = "/CommonImage/Blog/" + Model.Image;
+                                                }
+                                                <img id="img_Profile_Pic" src="@finalPic" style="height:80px;width:80px;" onerror="this.onerror=null; this.src='../images/no-image-available.jpg'" />
+                                        </div>
+                                </div>
+                                <div class="row formGroup">
+                                        <div class="col-sm-12">
+                                                <label>Blog Detail</label>
+                                                <textarea id="editor2" name="editor2" value="@Model.Blogdetail" placeholder="Blog Detail" class="form-control">@Model.Blogdetail</textarea>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                <div class="card profile-card mb-3">
+                        <div class="card-body">
+                                <div class="row formGroup">
+                                        <div class="col-sm-4">
+                                                <label>SEO Title</label>
+                                                <input type="text" id="txt_SEOTitle" value="@Model.SEOTitle" placeholder="SEO Title" class="form-control" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                                <label>Meta Description</label>
+                                                <textarea id="txt_ShortDescription" value="@Model.SEODescription" placeholder="SEO Description" class="form-control">@Model.SEODescription</textarea>
+                                        </div>
+                                        <div class="col-sm-4">
+                                                <label>Schema Tags</label>
+                                                <textarea id="txt_SchemaTags" value="@Model.MetaTags" placeholder="Schema Tags" class="form-control">@Model.MetaTags</textarea>
+                                        </div>
+                                </div>
+                                <div class="row formGroup">
+                                        <div class="col-sm-4">
+                                                <label>Canonical URL <span class="red">*</span></label>
+                                                <input type="text" id="txt_URL" value="@Model.URL" placeholder="Canonical URL" class="form-control" />
+                                                <label id="label_error_URL" class="errorMessage" style="display:none;">Canonical URL is required</label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                                <label>IsCrawl</label>
+                                                @if (Model.IsCrawl == true)
+                                                {
+                                                        <input type="checkbox" id="chk_Crawl" name="IsCrawl" class="form-control" checked="checked" style="width:20px">
+                                                }
+                                                else
+                                                {
+                                                        <input type="checkbox" id="chk_Crawl" name="IsCrawl" class="form-control" style="width:20px">
+                                                }
+                                        </div>
+
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
+<script>
+        CKEDITOR.replace('editor2');
+</script>

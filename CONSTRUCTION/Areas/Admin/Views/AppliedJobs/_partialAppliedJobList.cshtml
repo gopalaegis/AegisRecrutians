@@ -9,23 +9,42 @@
             <th>Gender</th>
             <th>Email</th>
             <th>Phone No</th>
+            <th>Status</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@item.Job</td>
-                <td>@item.Name</td>
-                <td>@item.DOB</td>
-                <td>@item.Gender</td>
-                <td>@item.Email</td>
-                <td>@item.PhoneNo1</td>
-                <td class="light-gray text-right d-flex align-items-center">
-                    <i class="detailRow fa fa-info-circle creamy ml-2 pr-2" aria-hidden="true" data-id="@item.Id" data-toggle="modal" data-target="#applicantDetails"></i>
-                </td>
-            </tr>
+        <tr>
+            <td>@item.Job</td>
+            <td>@item.Name</td>
+            <td>@item.DOB</td>
+            <td>@item.Gender</td>
+            <td>@item.Email</td>
+            <td>@item.PhoneNo1</td>
+            <td>
+                @if (item.isactive == true)
+                {
+                    <label>Active</label>
+                }
+                else
+                {
+                    <label>Deactive</label>
+                }
+            </td>
+            <td class="light-gray text-right d-flex align-items-center">
+                <i class="detailRow fa fa-info-circle creamy ml-2 pr-2" aria-hidden="true" data-id="@item.Id" data-toggle="modal" data-target="#applicantDetails"></i>
+                @if (item.isactive == true)
+                {
+                    <i class="fa fa-ban fa-ban-css red Deactive" data-id="@item.Id" title="De-Active"></i>
+                }
+                else
+                {
+                    <i class="fa fa-check-square fa-check-css green Active" data-id="@item.Id" title="Active"></i>
+                }
+            </td>
+        </tr>
         }
     </tbody>
 </table>

@@ -1,0 +1,72 @@
+﻿@model CONSTRUCTION.Areas.Admin.Model.ContentMasterViewModel
+
+<input type="hidden" id="txt_Id" value="@Model.Id" />
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card profile-card mb-3">
+            <div class="card-header"> Content Information </div>
+            <div class="card-body">
+                <div class="row formGroup">
+                    <div class="col-sm-4">
+                        <label>Title <span style="color:red">*</span></label>
+                        <input type="text" id="txt_Title" value="@Model.Title" placeholder="Title" class="form-control" />
+                        <label id="label_error_Title" class="errorMessage" style="display:none;">Title is required</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Controller <span style="color:red">*</span></label>
+                        <input type="text" id="txt_Controller" value="@Model.Controller" placeholder="Controller" class="form-control" />
+                        <label id="label_error_Controller" class="errorMessage" style="display:none;">Controller is required</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Action Result <span style="color:red">*</span></label>
+                        <input type="text" id="txt_ActionResult" value="@Model.ActionResult" placeholder="Action Result" class="form-control" />
+                        <label id="label_error_ActionResult" class="errorMessage" style="display:none;">ActionResult is required</label>
+                    </div>
+                </div>
+                <div class="row formGroup">
+                    <div class="col-sm-4">
+                        <label>Focus Keyphrase</label>
+                        <input type="text" id="txt_FKeyphrase" value="@Model.FocusKeyphrase" placeholder="Focus Keyphrase" class="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label>SEO title</label>
+                        <input type="text" id="txt_Seotitle" value="@Model.SEOtitle" placeholder="SEO title" class="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Slug</label>
+                        <input type="text" id="txt_Slug" value="@Model.Slug" placeholder="Slug" class="form-control" />
+                    </div>
+                </div>
+                <div class="row formGroup">
+                    <div class="col-sm-4">
+                        <label>IsCrawl</label>
+                        @if (Model.IsCrawl)
+                        {
+                            <input type="checkbox" id="chk_Crawl" name="IsCrawl" class="form-control" checked="checked" style="width:20px"/>
+                        }
+                        else
+                        {
+                            <input type="checkbox" id="chk_Crawl" name="IsCrawl" class="form-control" style="width:20px"/>
+                        }
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Canonical URL</label>
+                        <input type="text" id="txt_URL" value="@Model.CanonicalURL" placeholder="Canonical URL" class="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Schema Tags</label>
+                        <input type="text" id="txt_Tags" value="@Model.SchemaTags" placeholder="Schema Tags" class="form-control" />
+                    </div>
+                </div>
+                <div class="row formGroup">
+                    <div class="col-sm-12">
+                        <label>Meta Description</label>
+                        <textarea id="txt_description" placeholder="Meta Description" class="form-control">@Model.MetaDescription</textarea>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

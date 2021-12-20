@@ -15,6 +15,8 @@ namespace CONSTRUCTION.DataTable
     public partial class tblCountry
     {
         public int Id { get; set; }
+        public string sortname { get; set; }
         public string Name { get; set; }
+        public string phonecode { get; set; }
     }
 }

@@ -1,133 +1,149 @@
 ﻿@model CONSTRUCTION.Models.ApplyJobViewModel
 
-<div class="col-12">
-    <div class="title-heding">
-        <h2>Enter Your Information</h2>
-    </div>
+<div class="card profile-card ">
+        <div class="card-header"> Applicant Information </div>
+        <div class="card-body">
+                <div class="row formGroup">
+                        <div class="col-sm-4">
+                                <label>Name </label>
+                                <input type="text" value="@Model.Name" class="form-control" />
+                        </div>
+                        <div class="col-sm-4">
+                                <label>Job </label>
+                                <input type="text" value="@Model.Job" class="form-control" />
+                        </div>
+                        <div class="col-sm-4">
+                                <label>DOB </label>
+                                <input type="text" value="@Model.DOB" class="form-control" />
+                        </div>
+                </div>
+                <div class="row formGroup">
+                        <div class="col-sm-4">
+                                <label>Gender </label>
+                                <input type="text" value="@Model.Gender" class="form-control" />
+                        </div>
+                        <div class="col-sm-4">
+                                <label>Email </label>
+                                <input type="text" value="@Model.Name" class="form-control" />
+                        </div>
+                        <div class="col-sm-4">
+                                <label>Phone Numbers </label>
+                                @{
+                                        var mobile = Model.PhoneNo1;
+                                        if (Model.PhoneNo2 != null && Model.PhoneNo2 != "")
+                                        {
+                                                mobile = mobile + " , " + Model.PhoneNo2;
+                                        }
+                                }
+                                <input type="text" value="@mobile" class="form-control" />
+                        </div>
+                </div>
+        </div>
 </div>
-<div class="row formGroup">
-    <div class="col-sm-4">
-        <label>Name </label>
-        <input type="text" value="@Model.Name" class="form-control" />
-    </div>
-    <div class="col-sm-4">
-        <label>Job </label>
-        <input type="text" value="@Model.Job" class="form-control" />
-    </div>
-    <div class="col-sm-4">
-        <label>DOB </label>
-        <input type="text" value="@Model.DOB" class="form-control" />
-    </div>
+<br />
+<div class="card profile-card ">
+        <div class="card-header"> Address </div>
+        <div class="card-body">
+                <div class="row formGroup">
+                        <div class="col-sm-4">
+                                <label>Address Type </label>
+                                <input type="text" value="@Model.AddressType" class="form-control" />
+                        </div>
+                        <div class="col-sm-4">
+                                <label>Block No./Flat No./House Name </label>
+                                <input type="text" value="@Model.BlockNo" class="form-control" />
+                        </div>
+                        <div class="col-sm-4">
+                                <label>Street/Landmark/Area </label>
+                                <input type="text" value="@Model.Street" class="form-control" />
+                        </div>
+                </div>
+                <div class="row formGroup">
+                        <div class="col-sm-4">
+                                <label>City</label>
+                                <input type="text" value="@Model.City" class="form-control" />
+                        </div>
+                        <div class="col-sm-4">
+                                <label>State </label>
+                                <input type="text" value="@Model.State" class="form-control" />
+                        </div>
+                        <div class="col-sm-4">
+                                <label>Country </label>
+                                <input type="text" value="@Model.Country" class="form-control" />
+                        </div>
+                </div>
+
+        </div>
 </div>
-<div class="row formGroup">
-    <div class="col-sm-4">
-        <label>Gender </label>
-        <input type="text" value="@Model.Gender" class="form-control" />
-    </div>
-    <div class="col-sm-4">
-        <label>Email </label>
-        <input type="text" value="@Model.Name" class="form-control" />
-    </div>
-    <div class="col-sm-4">
-        <label>Phone Numbers </label>
-        @{
-            var mobile = Model.PhoneNo1;
-            if (Model.PhoneNo2 != null && Model.PhoneNo2 != "")
-            {
-                mobile = mobile + " , " + Model.PhoneNo2;
-            }
-        }
-        <input type="text" value="@mobile" class="form-control" />
-    </div>
+<br />
+<div class="card profile-card ">
+        <div class="card-header"> Education </div>
+        <div class="card-body">
+                @foreach (var item in Model.educationModel)
+                {
+                        <div class="row formGroup">
+                                <div class="col-sm-4">
+                                        <label>Degree </label>
+                                        <input type="text" value="@item.Degree" class="form-control" />
+                                </div>
+                                <div class="col-sm-4">
+                                        <label>Collage/University </label>
+                                        <input type="text" value="@item.Collage" class="form-control" />
+                                </div>
+                                <div class="col-sm-4">
+                                        <label>Year of Passing </label>
+                                        <input type="text" value="@item.PassingYear" class="form-control" />
+                                </div>
+                        </div>
+                }
+        </div>
 </div>
-<div class="col-12">
-    <div class="title-heding">
-        <h2>Address</h2>
-    </div>
+<br />
+<div class="card profile-card ">
+        <div class="card-header"> Work Experience </div>
+        <div class="card-body">
+
+                @foreach (var item in Model.experienceModel)
+                {
+                        <div class="row formGroup">
+                                <div class="col-sm-4">
+                                        <label>Employer </label>
+                                        <input type="text" value="@item.Employer" class="form-control" />
+                                </div>
+                                <div class="col-sm-4">
+                                        <label>Job Title </label>
+                                        <input type="text" value="@item.JobTitle" class="form-control" />
+                                </div>
+                                <div class="col-sm-4">
+                                        <label>Year of Active </label>
+                                        <input type="text" value="@item.ActiveYear" class="form-control" />
+                                </div>
+                        </div>
+                        <div class="row formGroup">
+                                <div class="col-sm-4">
+                                        <label>City</label>
+                                        <input type="text" value="@item.City" class="form-control" />
+                                </div>
+                                <div class="col-sm-4">
+                                        <label>State </label>
+                                        <input type="text" value="@item.State" class="form-control" />
+                                </div>
+                                <div class="col-sm-4">
+                                        <label>Country </label>
+                                        <input type="text" value="@item.Country" class="form-control" />
+                                </div>
+                        </div>
+                }
+        </div>
 </div>
-<div class="row formGroup">
-    <div class="col-sm-4">
-        <label>Address Type </label>
-        <input type="text" value="@Model.AddressType" class="form-control" />
-    </div>
-    <div class="col-sm-4">
-        <label>Block No./Flat No./House Name </label>
-        <input type="text" value="@Model.BlockNo" class="form-control" />
-    </div>
-    <div class="col-sm-4">
-        <label>Street/Landmark/Area </label>
-        <input type="text" value="@Model.Street" class="form-control" />
-    </div>
+
+<br />
+<div class="card profile-card ">
+        <div class="card-header"> Resume </div>
+        <div class="card-body">
+                @if (!string.IsNullOrEmpty(Model.Resume))
+                {
+                        <a href="@string.Format("/CommonImage/Resume/{0}",Model.Resume)" download target="_blank">Resume</a>
+                }
+        </div>
 </div>
-<div class="row formGroup">
-    <div class="col-sm-4">
-        <label>City</label>
-        <input type="text" value="@Model.City" class="form-control" />
-    </div>
-    <div class="col-sm-4">
-        <label>State </label>
-        <input type="text" value="@Model.State" class="form-control" />
-    </div>
-    <div class="col-sm-4">
-        <label>Country </label>
-        <input type="text" value="@Model.Country" class="form-control" />
-    </div>
-</div>
-<div class="col-12">
-    <div class="title-heding">
-        <h2>Education</h2>
-    </div>
-</div>
-@foreach (var item in Model.educationModel)
-{
-    <div class="row formGroup">
-        <div class="col-sm-4">
-            <label>Degree </label>
-            <input type="text" value="@item.Degree" class="form-control" />
-        </div>
-        <div class="col-sm-4">
-            <label>Collage/University </label>
-            <input type="text" value="@item.Collage" class="form-control" />
-        </div>
-        <div class="col-sm-4">
-            <label>Year of Passing </label>
-            <input type="text" value="@item.PassingYear" class="form-control" />
-        </div>
-    </div>
-}
-<div class="col-12">
-    <div class="title-heding">
-        <h2>Work Experience</h2>
-    </div>
-</div>
-@foreach (var item in Model.experienceModel)
-{
-    <div class="row formGroup">
-        <div class="col-sm-4">
-            <label>Employer </label>
-            <input type="text" value="@item.Employer" class="form-control" />
-        </div>
-        <div class="col-sm-4">
-            <label>Job Title </label>
-            <input type="text" value="@item.JobTitle" class="form-control" />
-        </div>
-        <div class="col-sm-4">
-            <label>Year of Active </label>
-            <input type="text" value="@item.ActiveYear" class="form-control" />
-        </div>
-    </div>
-    <div class="row formGroup">
-        <div class="col-sm-4">
-            <label>City</label>
-            <input type="text" value="@item.City" class="form-control" />
-        </div>
-        <div class="col-sm-4">
-            <label>State </label>
-            <input type="text" value="@item.State" class="form-control" />
-        </div>
-        <div class="col-sm-4">
-            <label>Country </label>
-            <input type="text" value="@item.Country" class="form-control" />
-        </div>
-    </div>
-}
