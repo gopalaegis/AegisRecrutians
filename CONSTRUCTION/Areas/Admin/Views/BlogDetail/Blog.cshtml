@@ -199,6 +199,7 @@
                 var SEODescription = $("#addSkill").find('#txt_ShortDescription').val();
                 var SchemaTags = $("#addSkill").find('#txt_SchemaTags').val();
                 var URL = $("#addSkill").find('#txt_URL').val();
+                var conoicalURL = $("#addSkill").find('#txt_CanonicalURL').val();
                 var IsCrawl = $("#addSkill").find('#chk_Crawl').prop('checked');
                 var isError = false;
                 if (BlogTitle == "") {
@@ -223,6 +224,11 @@
                 }
                 if (URL == "") {
                         $("#addSkill").find('#label_error_URL').show();
+                     
+                        isError = true;
+                }
+                if (conoicalURL == "") {
+                        $("#addSkill").find('#label_error_CanonicalURL').show();
                         isError = true;
                 }
                 if (isError == true) {
@@ -243,7 +249,8 @@
                                         SEODescription: SEODescription,
                                         SchemaTags: SchemaTags,
                                         URL: URL,
-                                        IsCrawl: IsCrawl
+                                        IsCrawl: IsCrawl,
+                                        ConicalURL: conoicalURL
                                 });
                         $.ajax({
                                 type: "POST",
