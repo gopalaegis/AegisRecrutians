@@ -27,5 +27,6 @@ namespace CONSTRUCTION.DataTable
         public string SEOTitle { get; set; }
         public string SEODescription { get; set; }
         public Nullable<bool> IsCrawl { get; set; }
+        public string ConicalURL { get; set; }
     }
 }

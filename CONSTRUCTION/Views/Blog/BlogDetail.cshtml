@@ -38,7 +38,7 @@
                                         <ul>
                                                 @foreach (var item in Model.BlogList)
                                                 {
-                                                        <li><a href="@Url.Action("BlogDetail","Blog",new { Id = item.Value})">@item.Text</a></li>
+                                                        <li><a href="@Url.Action("BlogDetail","Blog",new { slugURL = item.Value})">@item.Text</a></li>
                                                 }
                                         </ul>
                                 </div>

@@ -35,6 +35,7 @@ namespace CONSTRUCTION.Areas.Admin.Model
         public string Blogdetail { get; set; }
         public string URL { get; set; }
         public string MetaTags { get; set; }
+        public string ConicalURL { get; set; }
         public bool isactive { get; set; }
         public bool IsCrawl { get; set; }
     }

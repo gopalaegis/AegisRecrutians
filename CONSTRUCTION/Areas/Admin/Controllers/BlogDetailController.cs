@@ -130,6 +130,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                     model.SEODescription = blogData.SEODescription;
                     model.MetaTags = blogData.MetaTags;
                     model.IsCrawl = Convert.ToBoolean(blogData.IsCrawl);
+                    model.ConicalURL = blogData.ConicalURL;
                 }
             }
             List<SelectListItem> categoryList = new List<SelectListItem>();
@@ -175,6 +176,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 model.MetaTags = blogData.MetaTags;
                 model.IsCrawl = Convert.ToBoolean(blogData.IsCrawl);
                 model.isactive = Convert.ToBoolean(blogData.isActive);
+                model.ConicalURL = blogData.ConicalURL;
                 listModel.Add(model);
             }
             if (Status == "active")
@@ -206,6 +208,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 data.URL = model.URL;
                 data.SEODescription = model.SEODescription;
                 data.MetaTags = model.MetaTags;
+                data.ConicalURL = model.ConicalURL;
                 data.IsCrawl = Convert.ToBoolean(model.IsCrawl);
                 _db.SaveChanges();
             }
@@ -224,6 +227,7 @@ namespace CONSTRUCTION.Areas.Admin.Controllers
                 data.MetaTags = model.MetaTags;
                 data.IsCrawl = Convert.ToBoolean(model.IsCrawl);
                 data.isActive = true;
+                data.ConicalURL = model.ConicalURL;
                 _db.Blogs.Add(data);
                 _db.SaveChanges();
             }

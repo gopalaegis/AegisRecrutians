@@ -25,8 +25,8 @@ namespace CONSTRUCTION.Controllers
         public ActionResult BindAutoComplete()
         {
             var cityData = _db.tblCities.Select(x => x.Name).Distinct().ToList();
-            var jobTitle = _db.tblJobDetails.Select(x => x.Title).Distinct().ToList();
-            var data = _db.tblJobDetails.Select(x => x.KeyWords).ToList();
+            var jobTitle = _db.tblJobDetails.Where(x => x.isActive == true).Select(x => x.Title).Distinct().ToList();
+            var data = _db.tblJobDetails.Where(x => x.isActive == true).Select(x => x.KeyWords).ToList();
             foreach (var item in data)
             {
                 if (!string.IsNullOrEmpty(item))

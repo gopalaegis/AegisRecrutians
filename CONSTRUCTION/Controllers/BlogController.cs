@@ -39,6 +39,7 @@ namespace CONSTRUCTION.Controllers
                 m.Blogdetail = item.Blogdetail;
                 m.URL = item.URL;
                 m.MetaTags = item.MetaTags;
+                m.ConicalURL = item.ConicalURL;
                 model.Add(m);
             }
             if (CategoryId > 0)
@@ -69,6 +70,7 @@ namespace CONSTRUCTION.Controllers
                     model.SEODescription = blogData.SEODescription;
                     model.MetaTags = blogData.MetaTags;
                     model.IsCrawl = Convert.ToBoolean(blogData.IsCrawl);
+                    model.ConicalURL = blogData.ConicalURL;
                 }
             }
             List<SelectListItem> categoryList = new List<SelectListItem>();

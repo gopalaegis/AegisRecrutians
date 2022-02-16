@@ -85,9 +85,14 @@
                                 </div>
                                 <div class="row formGroup">
                                         <div class="col-sm-4">
+                                                <label>Slug URL <span class="red">*</span></label>
+                                                <input type="text" id="txt_URL" value="@Model.URL" placeholder="Slug URL" class="form-control" />
+                                                <label id="label_error_URL" class="errorMessage" style="display:none;">Slug URL is required</label>
+                                        </div>
+                                        <div class="col-sm-4">
                                                 <label>Canonical URL <span class="red">*</span></label>
-                                                <input type="text" id="txt_URL" value="@Model.URL" placeholder="Canonical URL" class="form-control" />
-                                                <label id="label_error_URL" class="errorMessage" style="display:none;">Canonical URL is required</label>
+                                                <input type="text" id="txt_CanonicalURL" value="@Model.ConicalURL" placeholder="Canonical URL" class="form-control" />
+                                                <label id="label_error_CanonicalURL" class="errorMessage" style="display:none;">Canonical URL is required</label>
                                         </div>
                                         <div class="col-sm-4">
                                                 <label>IsCrawl</label>
