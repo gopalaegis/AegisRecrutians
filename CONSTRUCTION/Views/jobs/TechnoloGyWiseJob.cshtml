@@ -1,39 +1,561 @@
 ﻿@model Tuple<int, CONSTRUCTION.Models.SEOModel>
 @{
-        ViewBag.Title = Model.Item2.SEOtitle;
-        ViewBag.MetaDescription = Model.Item2.MetaDescription;
-        ViewBag.MetaKeywords = Model.Item2.FocusKeyphrase;
-        ViewBag.IsCrawlString = Model.Item2.IsCrawlString;
-        ViewBag.CanonicalURL = Model.Item2.CanonicalURL;
-        ViewBag.SchemaTags = Model.Item2.SchemaTags;
+    ViewBag.Title = Model.Item2.SEOtitle;
+    ViewBag.MetaDescription = Model.Item2.MetaDescription;
+    ViewBag.MetaKeywords = Model.Item2.FocusKeyphrase;
+    ViewBag.IsCrawlString = Model.Item2.IsCrawlString;
+    ViewBag.CanonicalURL = Model.Item2.CanonicalURL;
+    ViewBag.SchemaTags = Model.Item2.SchemaTags;
 }
 
 <!-- heading section -->
 <section class="heading pt-3 pb-3">
-        <div class="container">
-                <div class="row">
-                        <div class="col-12">
-                                <div class="section-header text-center">
-                                        <h1>@Model.Item2.H1</h1>
-                                </div>
-                        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-header text-center">
+                    <h1>@Model.Item2.H1</h1>
                 </div>
+            </div>
         </div>
+    </div>
 </section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-header text-center">
+                    @if (ViewBag.CanonicalURL == "java-developers-jobs-bangalore")
+                    {
 
-<!-- show list -->
-<section class="show_list pt-3 pb-3 titan">
-        <div class="container">
-                <div class="row mt-2">
-                        <div class="col-12" id="jobDiv">
-                                @Html.Action("List", "jobs", new { TechnologyId = Model.Item1, technologyCityId = Model.Item2.cityId })
-                        </div>
+                        <p style="padding-top:20px">
+                            Take your career to new heights by applying for a job at Aegis Softtech!
+                            Aegis Softtech is a renowned software services company, trusted by clients cross the world.
+                            We are offering remote working opportunities to experienced professionals, freshers and interns!
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "java-developers-jobs-pune")
+                    {
+
+                        <p style="padding-top:20px">
+                            Join Aegis Softtech, a company focused on empowering businesses with the next-gen technology! We have remote working opportunities for experienced professionals, freshers and interns!
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "java-developers-jobs-gurgaon")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is a software services company redefining businesses with cutting-edge digital products.
+                            Explore all the remote working jobs we’re offering to freshers, professionals and interns!
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "java-developers-jobs-guwahati")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is a software services company redefining businesses with cutting-edge digital products.
+                            Explore all the remote working jobs we’re offering to freshers, professionals and interns!
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "java-developers-jobs-jaipur")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech, a trusted software services company is transforming businesses with latest-edge digital products.
+                            Explore all the remote working jobs we’re offering to freshers, professionals and interns!
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "java-developers-jobs-jodhpur")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is empowering businesses with IT solutions powered by latest technologies from more than 15 years.
+                            Join our group of technology experts by applying for a remote working job at Aegis.
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "java-developers-jobs-kochi")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech, an organization with more than 15 years of experience in the IT industry is inviting interns, freshers and experienced professionals to join our team of enthusiastic experts! We’ve many work from home opportunities for talented candidates!
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "java-developers-jobs-kozhikode")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech, a company offering cutting-edge technology solutions and flawless IT services to companies worldwide is inviting interns, freshers and experienced professionals to join us!
+                            Come, apply for a fully remote job at Aegis!
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "java-developers-jobs-goa")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is a leading IT services company. We’re a pioneer in the field of software development, app design and development, system integration and much more.
+                            We’ve work from home jobs for candidates with different levels of experience, including freshers.
+                        </p>
+                    }@if (ViewBag.CanonicalURL == "java-developers-jobs-mysore")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech, a leading name in the IT solutions and services industry empowering businesses with modern digital solutions.
+                            Join our team of technology professionals with years of experience and expertise! We’ve many remote working jobs for experienced professionals and freshers!                            
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "java-developers-jobs-mangalore")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech, a powerhouse of IT solutions and services is empowering businesses with cutting-edge digital solutions.
+                            Be a part of our talented group of technology professionals by applying for a remote working job at Aegis.
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "java-developers-jobs-vadodara")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech, a trusted IT services company is building impactful digital solutions for business across the world.
+                            Apply for a remote working job to be a part of our team of experts.
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "java-developers-jobs-surat")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is creating industry-transforming digital products and providing highly impactful software services to our clients globally.
+                            Become a part of the digital revolution! Come join us! Apply for a remote working opportunity at Aegis.
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "dynamics-crm-jobs-bangalore")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech, a globally renowned IT company is offering product development, SaaS, product engineering and software consulting to clients across the world.
+                            We are inviting candidates to join our passionate team of technology experts! We’ve several vacancies for freshers, experienced candidates and interns!
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "dynamics-crm-jobs-hyderabad")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is a company that believes in developing industry-transforming digital products and offering impressive software services to our clients worldwide.
+                            Apply for a remote working job to become a part of the digital revolution!
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "dynamics-crm-jobs-kolkata")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech provides product development, SaaS, product engineering and software consulting to clients worldwide.
+                            Take your career to a new height by applying for a remote working job at Aegis Softtech! Explore all the opportunities for professionals with experience and freshers and interns who want to start their journey.
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "dynamics-crm-jobs-pune")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is a trusted leader in the field of software development and IT services. We’re empowering companies with the latest technologies.
+                            Apply for a job and become a part of our ambitious and talented group of technology professionals. We’ve several remote working vacancies for beginners and experienced professionals.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "big-data-developers-jobs-chennai")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is empowering businesses with next-gen technological solutions and cutting-edge IT services from the last 15 years.
+                            If you are ambitious and want to achieve greater heights in your career, apply for a remote working job in Aegis.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "big-data-developers-jobs-delhi")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech has more than 15 years of experience in the IT field. From years, we are enabling business transformation through cutting-edge technology.
+                            Aegis has many remote working job opportunities for ambitious and hard-working professionals and interns.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "big-data-developers-jobs-ahmedabad")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech offers cutting-edge technology solutions and flawless IT services to businesses globally. We are inviting experienced professionals, freshers and interns to join us!
+                            Come, apply for a fully remote job at Aegis!
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "big-data-developers-jobs-pune")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is empowering businesses with digital solutions powered by next-gen technologies from more than 15 years.
+                            Apply for a remote big data developer job at Aegis to join our group of technology experts!
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "big-data-developers-jobs-bhubaneswar")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is revolutionizing the IT services landscape with cutting-edge and innovative IT solutions and services.
+                            Boost your career with a new and exciting job! We’ve remote working opportunities for beginners and experienced professionals.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "big-data-developers-jobs-gurgaon")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech, a company focused on empowering businesses with the next-gen digital solutions is a renowned name in the IT industry!
+                            We are offering many remote working opportunities for experienced professionals, freshers and interns!
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "big-data-developers-jobs-guwahati")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is known for offering innovative and impactful technology products and services to clients globally.
+                            Become a part of the digital revolution by applying for a work from home job at Aegis. We’ve openings for experienced and beginner big data developers.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "big-data-developers-jobs-indore")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is a pioneer in the field of software development, SaaS, software consulting services and other IT services. We’ve been successfully catering to the clients globally from more than 15 years.
+                            Aegis Softtech has many remote job openings for experienced and beginner big data developers. Apply and be a part of our team of big data experts!
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "big-data-developers-jobs-goa")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech, a leading IT services company offers services related to SaaS, software development, software consulting etc. to clients all across the world. We have a team of technology geniuses who have been providing latest digital products and services to businesses from over 15 years.
+                            We have several remote job openings for experienced big data developers and interns. Explore the opportunities now.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "big-data-developers-jobs-mangalore")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is a top-notch IT services company providing latest digital products to businesses around the world from more than 15 years. We use cutting-edge technology and techniques to make advanced digital products for our clients.
+                            Apply for a remote job opening at Aegis Softtech and be a part of our team of technology experts!
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "big-data-developers-jobs-mysore")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is revolutionizing businesses by offering them cutting-edge digital products and IT services from over 15 years. We serve clients from all across the world.
+                            Apply for a remote job opening at Aegis Softtech if you want to work on global projects using futuristic technologies.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "big-data-developers-jobs-vadodara")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is a leader in the IT services sector, serving clients from all across the world from over 15 years. We have an impressive portfolio of successfully accomplished digital projects, using the latest technologies.
+                            Become a part of the digital revolution by applying for a remote big data developer’s job in Aegis Softtech.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "big-data-developers-jobs-vellore")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech has more than 15 years of experience in the IT sector. We offer software development, software consulting, SaaS and other services to businesses in different countries, all around the world.
+                            Apply for a remote big data developer job in Aegis Softtech to be a part of the digital transformation.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "python-developers-jobs-bangalore")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is empowering businesses with cutting-edge digital products and services. We have more than 15 years of experience in the IT services sector. Our team offers services related to software, application development, software consulting and much more.
+                            Apply for a remote Python developer’s job in Aegis Softtech to become a part of team of IT geniuses.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "python-developers-jobs-chennai")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is enabling businesses to succeed using the latest digital products. We use our extensive, more than 15 years of experience to provide exceptional IT services to the businesses. Our team uses the most advanced technology and techniques for the digital products.
+                            Become a part of our team of Python experts! Apply for a remote Python developer job!
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "python-developers-jobs-hyderabad")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is a fast-growing organization with more than 15 years of experience in the world of technology. We are passionate to use the latest technology! Our teams help businesses transform!
+                            Apply for a remote Python developer job at Aegis Softtech to get motivated, empowered and rewarded continuously at Aegis Softtech.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "python-developers-jobs-kolkata")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is enabling businesses modernize technology, and use the latest digital products. We have more than 15 years of experience in the technology sector, serving clients from all across the world.
+                            Apply for a work from home Python developer job in Aegis Softtech to indulge in interesting development projects.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "python-developers-jobs-mumbai")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is helping businesses stay ahead in a fast-changing world by offering them cutting-edge technology and digital solutions.
+                            We empower our employees and continuously motivate and reward them! Apply for a job at Aegis Softtech to reach new heights of success!
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "python-developers-jobs-ahmedabad")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is a trusted name in the IT services sector. We have more than 15 years of experience of working with businesses from various parts of the world.
+                            Sharpen your skills by working on challenging and interesting products at Aegis Softtech! We offer remote jobs to experienced candidates, beginners and interns.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "python-developers-jobs-pune")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech, a pioneer in the technology industry has a talented team of experts who have successfully accomplished a wide range of projects using the latest technologies. Come join our team to empower businesses with latest technological products!
+                            Take your career to new heights by applying for a work from home Python developer job at Aegis Softtech.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "python-developers-jobs-bhopal")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is a renowned leader in the IT industry. We are serving businesses from all around the world with software development, SaaS, software consulting and other services.
+                            We have several remote working opportunities for talented developers with exceptional problem-solving abilities. Interns and beginners are also welcome to apply!
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "nodeJs-developers-jobs-bangalo re" || ViewBag.CanonicalURL == "nodeJs-developers-jobs-bangalore")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is one of the topmost IT services companies. We have extensive experience of working with businesses operating in different countries. Our team of technology experts help businesses transform!
+                            Join Aegis Softtech to transform businesses with cutting-edge digital products. Explore various remote nodeJS developer jobs now.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "nodeJs-developers-jobs-delhi")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is a leading IT company that believes in the advancement of technology. We make the most of the latest technologies to help the businesses transform! Our team of experts believe in creating high-tech digital products for our clients.
+                            Join Aegis Softtech by exploring various the remote nodeJS developer jobs now. We have openings for experience developers as well as interns.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "nodeJs-developers-jobs-mumbai")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech, a renowned name in the IT industry truly believes in its employees. We work together to empower businesses with advanced digital products.
+                            Our strength lies in our employees, and we are looking to expand our team. Apply for a work from home job opportunity at Aegis Softtech to be a part of our amazing team of developers.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "nodejs-developers-jobs-chandigarh")
+                    {
+
+                        <p style="padding-top:20px">
+                            A company with more than 15 years of experience, Aegis Softtech is a leading brand in the IT sector. We provide software/application development, SaaS, software consulting and many other services to businesses around the world.
+                            Aegis Softtech values and encourages passionate for work! Apply for this remote working opportunity if you are passionate about emerging technology.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "nodejs-developers-jobs-nagpur")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is offshore software development, testing, agile software development and custom software development company serving business around the world from more than 15 years.
+                            Apply for a work from home job at Aegis if you are also curious about emerging tech like we are!
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "nodejs-developers-jobs-gurgaon")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is a pioneer in the field of software development, testing, software consulting and much more. We have more than 15 years of valuable experience of providing exceptional services to our clients.
+                            Join Aegis Softtech to drive progress via impactful innovation and action! We welcome experienced professionals, beginners and interns to join our team.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "aws-developers-jobs-mumbai")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is a leading company in the IT sector. We offer customized software development, testing, AWS development, software consulting and other services to business across the world.
+                            We have AWS developer remote working jobs for experienced professionals, beginners and interns. Come, join our team!
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "aws-developers-jobs-pune")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is a leading technology company that aims to empower small- and large-scale business grow immensely by using innovative and highly advanced technological products.
+                            Apply for a remote working job at Aegis Softtech to join our talented team of software, application developers, testers, consultants etc.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "aws-developers-jobs-kochi")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech offers advanced software/application design and development services to empower businesses. We are a full-fledged technology company that offers a plethora of IT services to our clients, including development, testing, consulting and much more.
+                            Explore the AWS develop jobs to join our team! We offer remote working options to everyone.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "social-media-marketing-jobs-pune")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is a prominent technology company that also offers all-encompassing digital marketing services to our clients. We provide many services to business, including web development, SEO, social media management etc.
+                            Come and join our team of talented professionals by applying for a work from home job. We have social media marketing jobs for experienced candidates as well as interns.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "social-media-marketing-jobs-mumbai")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is committed to design and develop advanced technological solutions with continual innovation, around-the-clock improvement and customer satisfaction. We offer comprehensive services to our clients, including development, testing, digital marketing, SEO and much more.
+                            Apply for a remote working social media marketing job in Aegis Softtech.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "android-app-developers-jobs-mumbai")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech has a skilled team of technology experts, including developers, testers etc. who work on several latest technologies. We offer services related to Android, iOS, Java, Pentaho BI, Microsoft .Net, Big Data, Hadoop, Mongo DB, Microsoft CRM, Business Intelligence, Oracle and much more to businesses around the world.
+                            We have remote working job opportunities for experienced Android developers as well as interns. Explore now.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "snowflake-developers-jobs-chennai")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech specializes in software development, testing, software consulting and other technology services in various industries, including healthcare, banking and finance, logistics, manufacturing etc. We have been surpassing the expectations of our clients across the world from more than 15 years.
+                            Aegis Softtech has remote working opportunities for interns, beginners and experienced Snowflake developers.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "snowflake-developers-jobs-kolkata")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is a leading company in the software development, testing and consulting sector. We have more than 15 years of experience of working with clients globally on various development projects.
+                            Join Aegis Softtech to use the latest technology to develop advanced products. We have Snowflake developer jobs (work from home) for interns, beginners as well as experienced professionals.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "snowflake-developers-jobs-mumbai")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech has over 15 years of experience of helping businesses around the globe with application, software development and testing services. We offer a variety of other IT services to the clients as well.
+                            Apply for a work from home Snowflake developer job to join our skilled team of developers and designers.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "snowflake-developers-jobs-pune")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech is enabling businesses achieve their goals faster with next-gen technology solutions. We empower businesses with cutting-edge digital products.
+                            Become a part of our talented team of developers by applying for a remote working job.
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "snowflake-developers-jobs-indore")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech has over 15 years of experience of providing meaningful and innovative technology services to businesses around the world.
+                            Explore the remote working developer jobs in Aegis Softtech and join us to help us transform businesses!
+
+                        </p>
+                    }
+                    @if (ViewBag.CanonicalURL == "snowflake-developers-jobs-thrissur")
+                    {
+
+                        <p style="padding-top:20px">
+                            Aegis Softtech offers customized software development, testing, consulting and many other services to businesses around the world. We help businesses redefine success with the cutting-edge digital products!
+                            We have various remote working openings for professions, beginners and interns.
+
+                        </p>
+                    }
                 </div>
-                <br />
-                <div class="row">
-                        <iframe id="descriptionDiv" src="@Url.Action("BindHTMLCity","Jobs",new {Id=Model.Item2.Id,CityId=Model.Item2.cityId})" frameborder="0" style="overflow:hidden;width:100%" width="100%"></iframe>
-                </div>
+            </div>
         </div>
+    </div>
+    <div class="container" style="padding-top:10px">
+        <div class="net-brief-section">
+            <div class="row d-flex justify-content-center">
+                <div class="col-3 col-md-12">
+                    <div class="hire-btn color1">Performance Bonus</div>
+                </div>
+                <div class="col-3 col-md-12">
+                    <div class="hire-btn color3">Competitive Salary </div>
+                </div>
+                <div class="col-3 col-md-12">
+                    <div class="hire-btn color2">Open work culture</div>
+                </div>
+                <div class="col-3 col-md-12">
+                    <div class="hire-btn color3">Work from Home Option</div>
+                </div>
+                <div class="col-6">
+                    <div class="hire-btn color2">Technical Exposure on Large projects</div>
+                </div>
+                <div class="col-6">
+                    <div class="hire-btn color1">Opportunity to work with Corporate client's </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- show list -->
+<section class="show_list pb-3 titan">
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col-12" id="jobDiv">
+                @Html.Action("List", "jobs", new { TechnologyId = Model.Item1, technologyCityId = Model.Item2.cityId })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <iframe id="descriptionDiv" src="@Url.Action("BindHTMLCity","Jobs",new {Id=Model.Item2.Id,CityId=Model.Item2.cityId})" frameborder="0" style="overflow:hidden;width:100%" width="100%"></iframe>
+        </div>
+    </div>
 </section>
 
 <script>

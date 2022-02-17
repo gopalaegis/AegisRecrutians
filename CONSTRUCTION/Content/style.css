@@ -1269,3 +1269,35 @@ h3.border-water, h4.border-water {
     width: 31px;
     height: 31px;
 }
+.net-brief-section {
+    width: 100%;
+    display: inline-block;
+}
+.justify-content-center {
+    justify-content: center;
+}
+.d-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+.hiring-box a, .hire-btn {
+    color: #fff !important;
+}
+.color1 {
+    background-color: #DF9926;
+}
+.color3 {
+    background-color: #F16C51;
+}
+.color2 {
+    background-color: #00B28F;
+}
+.hire-btn {
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #fff;
+    padding: 15px 0;
+    margin-bottom: 15px;
+}
